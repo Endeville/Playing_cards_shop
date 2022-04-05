@@ -1,23 +1,35 @@
 :root{
-    --dark-blue:#05386B;
-    --dark-green: rgb(55, 150, 131);
-    --green: #5CDB95;
-    --light-green: #8EE4AF;
-    --grey: #EDF5E1;
+    /*--dark-blue:#05386B;*/
+    /*--dark-green: rgb(55, 150, 131);*/
+    /*--green: #5CDB95;*/
+    /*--light-green: #8EE4AF;*/
+    /*--grey: #EDF5E1;*/
+
+    --light-black: #16171D;
+    --black: #0b141a;
+    --dense-gold: #b78846;
+    --light-gold: #DBAB4D;
+    --grey: #efefef;
+    --dark-blue: rgb(54, 75, 179);
 }
 
 body {
     margin: 0px;
     padding: 0px;
     font-family: Arial, Helvetica, sans-serif;
-    background-color: var(--grey);
     height: 100%;
     width: 100%;
+
+    background-color: var(--light-black);
+    background-image: url('../images/background-pattern.webp');
+    background-position: center center;
+    background-repeat: repeat;
 }
 
 #nav {
     font: bold 12px Arial, Helvetica, Sans-serif;
-    background-color: var(--dark-green);
+    background-color: var(--black);
+    border-bottom: 4px solid var(--dense-gold);
     overflow: auto;
     width: 100%;
     min-width: 650px;
@@ -42,9 +54,9 @@ body {
 
 #nav a:hover {
     cursor: pointer;
-    color: var(--light-green);
+    color: var(--light-gold);
     font-weight: bolder;
-    border: 2px solid var(--light-green);
+    border: 2px solid var(--light-gold);
     border-radius: 5px;
 }
 
@@ -75,18 +87,18 @@ li::before {
     margin-right: 30vw;
     padding: 63px;
     text-align: center;
-    background-color: var(--light-green);
+    background-color: var(--light-gold);
     border-radius: 20px;
-    box-shadow: 4px 4px 5px 2px var(--dark-green);
+    box-shadow: 4px 4px 5px 2px var(--black);
 }
 
 .store-link {
     font-family: Lato, Arial, sans-serif;
-    color: var(--grey);
-    background-color: var(--dark-blue);
+    color: var(--dark-blue);
+    background-color: var(--black);
     margin: 2px;
     padding: 3px;
-    border: 3px solid transparent;
+    border: 3px solid var(--dark-blue);
     border-radius: 50px;
     align-self: center;
     width: 8vw;
@@ -94,10 +106,10 @@ li::before {
 
 .store-link:hover {
     cursor: pointer;
-    color: var(--dark-blue);
+    color: var(--black);
     text-decoration: none;
-    background-color: var(--light-green);
-    border-color: var(--dark-blue);
+    background-color: var(--light-gold);
+    border-color: var(--black);
 }
 
 .card-body {
@@ -108,7 +120,7 @@ li::before {
 }
 
 body>footer {
-    background-color: var(--dark-green);
+    background-color: var(--black);
     width: 100%;
     display: flex;
     font-size: 16px;
