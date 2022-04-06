@@ -9,6 +9,7 @@ import java.util.Set;
 public class OfferEntity extends BaseEntity{
 
     @ManyToOne
+    @JoinColumn(name = "deck_id", referencedColumnName = "id")
     private DeckEntity deck;
 
     @ManyToOne
@@ -21,6 +22,7 @@ public class OfferEntity extends BaseEntity{
     private Integer quantity;
 
     @OneToMany
+    @JoinColumn(name = "picture_id", referencedColumnName = "id")
     private Set<PictureEntity> additionalPictures;
 
     public OfferEntity() {

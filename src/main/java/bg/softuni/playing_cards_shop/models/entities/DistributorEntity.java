@@ -1,9 +1,6 @@
 package bg.softuni.playing_cards_shop.models.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Set;
 
 @Entity
@@ -20,7 +17,11 @@ public class DistributorEntity extends BaseEntity{
     private String description;
 
     @OneToMany
+    @JoinColumn(name = "picture_id", referencedColumnName = "id")
     private Set<PictureEntity> pictures;
+
+    @OneToMany(mappedBy = "distributor")
+    private Set<DeckEntity> decks;
 
     public DistributorEntity() {
     }

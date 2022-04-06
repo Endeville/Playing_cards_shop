@@ -31,9 +31,10 @@ public class UserEntity extends BaseEntity{
     private UserRole role;
 
     @ManyToMany
+    @JoinTable(name = "users_wishlists")
     private Set<DeckEntity> wishlist;
 
-    @OneToMany
+    @OneToMany(mappedBy = "seller")
     private Set<OfferEntity> offers;
 
     public UserEntity() {

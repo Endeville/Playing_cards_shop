@@ -16,6 +16,7 @@ public class DeckEntity extends BaseEntity{
     private String description;
 
     @OneToMany
+    @JoinColumn(name="picture_id", referencedColumnName = "id")
     private Set<PictureEntity> pictures;
 
     @Column(name = "country_of_origin")
@@ -28,7 +29,11 @@ public class DeckEntity extends BaseEntity{
     private CreatorEntity creator;
 
     @ManyToMany
+    @JoinTable(name = "decks_categories")
     private Set<CategoryEntity> categories;
+
+    @OneToMany
+    private Set<OfferEntity> offers;
 
     public DeckEntity() {
     }

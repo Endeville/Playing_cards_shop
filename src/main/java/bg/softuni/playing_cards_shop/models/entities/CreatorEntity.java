@@ -19,6 +19,7 @@ public class CreatorEntity extends BaseEntity {
     private Set<DeckEntity> decks;
 
     @OneToMany
+    @JoinColumn(name = "picture_id", referencedColumnName = "id")
     private Set<PictureEntity> pictures;
 
     public CreatorEntity() {
