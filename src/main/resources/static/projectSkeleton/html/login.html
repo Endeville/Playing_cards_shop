@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css"/>
+    <link rel="icon" href="../images/ace-of-spades.png">
+    <title>Victory</title>
+</head>
+<body>
+<nav id="nav">
+
+    <a href="/"><img src="../images/emblem.png"></a>
+    <ul>
+
+        <li><a href="/catalog">Catalog</a></li>
+        <li><a href="/search">Offers</a></li>
+        <span id="guest-nav">
+                    <li class="guest"><a href="/login">Login</a></li>
+                    <li class="guest"><a href="/register">Register</a></li>
+                </span>
+        <span id="user-nav">
+                    <li class="user"><a href="/create">Wishlist</a></li>
+                    <li id="logoutBtn" class="user"><a href="javascript:void(0)">Logout</a></li>
+                </span>
+    </ul>
+</nav>
+
+<main>
+    <div id="main">
+        <header id="page_heading" class="auth page-heading">
+
+            <h1>Your Account</h1>
+
+
+            <div class="auth_box">
+                <div class="auth_box_inner">
+
+
+                    <ul class="auth_nav">
+                        <li class="login"><a class="active" id="loginBtn" data-section="login"
+                                             href="javascript:void(0)"><span>Sign In</span></a></li>
+                        <li></li>
+                        <li class="register"><a id="registerBtn" href="javascript:void(0)" data-section="register"
+                                                class=""><span>Sign Up</span></a></li>
+                    </ul>
+
+
+                    <!-- Login Form -->
+                    <div id="auth_login" class="row auth-section">
+                        <form class="auth-form ng-pristine ng-valid" method="POST" action="">
+
+                            <div class="col s12">
+                                <p class="error" style="display: none;"></p>
+                                <p class="login-notice" style="display: none;"></p>
+                            </div>
+
+                            <div class="col s12">
+                                <input type="text" id="auth_login_username" name="_username" value=""
+                                       placeholder="Email Address" required="required" autocorrect="off"
+                                       spellcheck="false" autocomplete="off" class="text focus-field">
+                            </div>
+
+                            <div class="col s12">
+                                <input type="password" id="auth_login_password" name="_password" placeholder="Password"
+                                       autocomplete="off" required="required" class="text">
+                            </div>
+
+                            <div class="col s12">
+                                <input type="submit" id="login_submit" class="btn gold" name="_submit" value="Sign in">
+                            </div>
+
+                            <input type="hidden" name="_shopify_multipass" value="1" autocomplete="off">
+                            <input class="checkout_url" type="hidden" name="checkout_url" value="" autocomplete="off">
+                            <input class="redirect_url" type="hidden" name="redirect_url" value="" autocomplete="off">
+
+
+                        </form>
+                    </div>
+
+
+                    <!--Register From-->
+
+                    <div id="auth_register" class="row auth-section hidden">
+                        <form class="auth-form ng-pristine ng-valid" method="POST" action="">
+
+                            <div class="col s12">
+                                <p class="error" style="display: none;"></p>
+                                <p class="notice" style="display: none;">
+                                    <i class="icon-paper-plane"></i>
+                                    <strong>Check Your Email</strong>
+                                    We just sent you a message to verify your email address. Please check your email to
+                                    finalize registration and login!
+                                </p>
+                            </div>
+
+                            <div class="form-content">
+
+                                <div class="col s12 m6 l6">
+                                    <input type="text" id="auth_register_firstname" name="firstname" value=""
+                                           placeholder="First Name" required="required" autocorrect="off"
+                                           spellcheck="false" class="text focus-field">
+                                </div>
+
+                                <div class="col s12 m6 l6">
+                                    <input type="text" id="auth_register_lastname" name="lastname" value=""
+                                           placeholder="Last Name" required="required" autocorrect="off"
+                                           spellcheck="false" class="text">
+                                </div>
+
+                                <div class="col s12 m6 l6">
+                                    <input type="text" id="auth_register_username" name="username" value=""
+                                           placeholder="Username" required="required" autocorrect="off"
+                                           spellcheck="false" class="text">
+                                </div>
+
+                                <div class="col s12 m6 l6">
+                                    <input type="text" id="auth_register_email" name="email" value=""
+                                           placeholder="Email Address" required="required" autocorrect="off"
+                                           spellcheck="false" class="text">
+                                </div>
+
+                                <div class="col s12">
+                                    <input type="password" id="auth_register_password" name="password"
+                                           placeholder="Password" autocomplete="off" required="required" class="text">
+                                </div>
+
+
+                                <input type="text" name="magicshow" style="display: none">
+
+
+                                <div class="col s12">
+                                    <input type="submit" id="auth_register_submit" class="btn gold" name="_submit"
+                                           value="Create Your Account">
+                                </div>
+
+                            </div>
+
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </header>
+
+    </div>
+</main>
+
+<footer>&copy Victory 2022. All rights reserved.</footer>
+
+<script>
+    let registerMenu = document.querySelector("#auth_register");
+    let loginMenu = document.querySelector("#auth_login");
+    let registerBtnSwitch = document.querySelector("#registerBtn");
+    let loginBtnSwitch = document.querySelector("#loginBtn");
+
+    registerBtnSwitch.addEventListener("click", e => {
+        e.preventDefault();
+        registerMenu.style.display = "inline-block";
+        loginMenu.style.display = "none";
+    });
+
+    loginBtnSwitch.addEventListener("click", e => {
+        e.preventDefault();
+        loginMenu.style.display = "inline-block";
+        registerMenu.style.display = "none";
+    })
+</script>
+</body>
+</html>
