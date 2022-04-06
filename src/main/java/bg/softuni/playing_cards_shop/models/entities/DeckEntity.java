@@ -16,7 +16,7 @@ public class DeckEntity extends BaseEntity{
     private String description;
 
     @OneToMany
-    @JoinColumn(name="picture_id", referencedColumnName = "id")
+    @JoinColumn(name="deck_id")
     private Set<PictureEntity> pictures;
 
     @Column(name = "country_of_origin")
@@ -32,7 +32,7 @@ public class DeckEntity extends BaseEntity{
     @JoinTable(name = "decks_categories")
     private Set<CategoryEntity> categories;
 
-    @OneToMany
+    @OneToMany(mappedBy = "deck")
     private Set<OfferEntity> offers;
 
     public DeckEntity() {

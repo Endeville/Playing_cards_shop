@@ -12,14 +12,14 @@ public class CreatorEntity extends BaseEntity {
     @Column(nullable = false)
     private String name;
 
-    @Column
+    @Column(columnDefinition = "TEXT")
     private String description;
 
     @OneToMany(mappedBy = "creator")
     private Set<DeckEntity> decks;
 
     @OneToMany
-    @JoinColumn(name = "picture_id", referencedColumnName = "id")
+    @JoinColumn(name = "creator_id")
     private Set<PictureEntity> pictures;
 
     public CreatorEntity() {

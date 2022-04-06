@@ -13,11 +13,11 @@ public class DistributorEntity extends BaseEntity{
     @Column(unique = true, name = "url")
     private String siteUrl;
 
-    @Column
+    @Column(columnDefinition = "TEXT")
     private String description;
 
     @OneToMany
-    @JoinColumn(name = "picture_id", referencedColumnName = "id")
+    @JoinColumn(name = "distributor_id")
     private Set<PictureEntity> pictures;
 
     @OneToMany(mappedBy = "distributor")

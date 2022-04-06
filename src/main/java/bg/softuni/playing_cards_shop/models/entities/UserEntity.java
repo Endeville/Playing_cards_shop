@@ -18,7 +18,7 @@ public class UserEntity extends BaseEntity{
     @Column(nullable = false)
     private String lastName;
 
-    @Column
+    @Column(columnDefinition = "TEXT")
     private String address;
 
     @Column(nullable = false)
