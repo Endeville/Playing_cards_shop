@@ -13,10 +13,14 @@
     --dark-blue: rgb(54, 75, 179);
 }
 
+body, html {
+    font-weight: 400;
+    font-family: Lato, Arial, sans-serif;
+}
+
 body {
     margin: 0px;
     padding: 0px;
-    font-family: Lato, Arial, sans-serif;
     height: 100%;
     width: 100%;
 
@@ -29,7 +33,7 @@ body {
 #nav {
     font: bold 12px Arial, Helvetica, Sans-serif;
     background-color: var(--black);
-    border-bottom: 4px solid var(--dense-gold);
+    border-bottom: 4px solid var(--light-gold);
     overflow: auto;
     width: 100%;
     min-width: 650px;

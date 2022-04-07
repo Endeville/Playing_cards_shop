@@ -8,10 +8,10 @@ import java.util.Set;
 @Table(name = "offers")
 public class OfferEntity extends BaseEntity{
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     private DeckEntity deck;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     private UserEntity seller;
 
     @Column(nullable = false)

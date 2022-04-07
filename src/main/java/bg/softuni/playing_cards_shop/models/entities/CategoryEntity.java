@@ -10,7 +10,7 @@ import java.util.Set;
 @Table(name = "categories")
 public class CategoryEntity extends BaseEntity{
 
-    @Column
+    @Column(nullable = false, unique = true)
     private String category;
 
     @ManyToMany(mappedBy = "categories")

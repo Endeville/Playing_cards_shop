@@ -18,7 +18,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/style.css"/>
+    <link rel="stylesheet" href="../css/account.css"/>
     <link rel="icon" href="../images/ace-of-spades.png">
     <title>Victory</title>
 </head>
@@ -54,9 +54,9 @@
 
                     <ul class="auth_nav">
                         <li class="login"><a class="active" id="loginBtn" data-section="login"
-                                             href="javascript:void(0)"><span>Sign In</span></a></li>
+                                             href="/users/login"><span>Sign In</span></a></li>
                         <li></li>
-                        <li class="register"><a id="registerBtn" href="javascript:void(0)" data-section="register"
+                        <li class="register"><a id="registerBtn" href="/users/register" data-section="register"
                                                 class=""><span>Sign Up</span></a></li>
                     </ul>
 
@@ -71,54 +71,37 @@
                             </div>
 
                             <div class="col s12">
-                                <input type="text" id="auth_login_username" name="_username" value=""
+                                <input type="text" id="auth_login_username" name="username" value=""
                                        placeholder="Email Address" required="required" autocorrect="off"
                                        spellcheck="false" autocomplete="off" class="text focus-field">
                             </div>
 
                             <div class="col s12">
-                                <input type="password" id="auth_login_password" name="_password" placeholder="Password"
-                                       autocomplete="off" required="required" class="text">
+                                <input type="password" id="auth_login_password" name="password"
+                                       placeholder="Password" autocomplete="off" required="required" class="text">
                             </div>
 
                             <div class="col s12">
                                 <input type="submit" id="login_submit" class="btn gold" name="_submit" value="Sign in">
                             </div>
-
-                            <input type="hidden" name="_shopify_multipass" value="1" autocomplete="off">
-                            <input class="checkout_url" type="hidden" name="checkout_url" value="" autocomplete="off">
-                            <input class="redirect_url" type="hidden" name="redirect_url" value="" autocomplete="off">
-
-
                         </form>
                     </div>
 
 
-                    <!--Register From-->
+                    <!--Register Form-->
 
                     <div id="auth_register" class="row auth-section hidden">
                         <form class="auth-form ng-pristine ng-valid" method="POST" action="">
 
-                            <div class="col s12">
-                                <p class="error" style="display: none;"></p>
-                                <p class="notice" style="display: none;">
-                                    <i class="icon-paper-plane"></i>
-                                    <strong>Check Your Email</strong>
-                                    We just sent you a message to verify your email address. Please check your email to
-                                    finalize registration and login!
-                                </p>
-                            </div>
-
                             <div class="form-content">
-
                                 <div class="col s12 m6 l6">
-                                    <input type="text" id="auth_register_firstname" name="firstname" value=""
+                                    <input type="text" id="auth_register_firstname" name="firstName" value=""
                                            placeholder="First Name" required="required" autocorrect="off"
                                            spellcheck="false" class="text focus-field">
                                 </div>
 
                                 <div class="col s12 m6 l6">
-                                    <input type="text" id="auth_register_lastname" name="lastname" value=""
+                                    <input type="text" id="auth_register_lastname" name="lastName" value=""
                                            placeholder="Last Name" required="required" autocorrect="off"
                                            spellcheck="false" class="text">
                                 </div>
@@ -141,16 +124,11 @@
                                 </div>
 
 
-                                <input type="text" name="magicshow" style="display: none">
-
-
                                 <div class="col s12">
                                     <input type="submit" id="auth_register_submit" class="btn gold" name="_submit"
                                            value="Create Your Account">
                                 </div>
-
                             </div>
-
                         </form>
                     </div>
 
@@ -169,16 +147,31 @@
     let registerBtnSwitch = document.querySelector("#registerBtn");
     let loginBtnSwitch = document.querySelector("#loginBtn");
 
+    if (registerMenu.style.display === "none") {
+        loginBtnSwitch.style.borderBottom = "2px solid #b78846";
+    } else {
+        registerBtnSwitch.style.borderBottom = "2px solid #b78846";
+    }
+
     registerBtnSwitch.addEventListener("click", e => {
         e.preventDefault();
         registerMenu.style.display = "inline-block";
         loginMenu.style.display = "none";
+        registerBtnSwitch.disabled = true;
+        loginBtnSwitch.disabled = false;
+        loginBtnSwitch.style.borderBottom = "none";
+        registerBtnSwitch.style.borderBottom = "2px solid #b78846";
     });
 
     loginBtnSwitch.addEventListener("click", e => {
         e.preventDefault();
         loginMenu.style.display = "inline-block";
         registerMenu.style.display = "none";
+        registerBtnSwitch.disabled = false;
+        loginBtnSwitch.disabled = true;
+        loginBtnSwitch.style.borderBottom = "2px solid #b78846";
+        registerBtnSwitch.style.borderBottom = "none";
+
     })
 </script>
 </body>

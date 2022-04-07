@@ -12,7 +12,7 @@ public class DeckEntity extends BaseEntity{
     @Column(nullable = false, unique = true)
     private String title;
 
-    @Lob
+    @Column(columnDefinition = "TEXT")
     private String description;
 
     @OneToMany
