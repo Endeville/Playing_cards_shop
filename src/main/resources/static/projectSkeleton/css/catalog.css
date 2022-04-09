@@ -31,7 +31,7 @@ body {
     width: 100%;
 
     position: relative;
-    z-index: -1;
+    z-index: -3;
     background-color: var(--light-black);
 }
 
@@ -49,6 +49,7 @@ a {
     min-width: 650px;
     height: 10vh;
     min-height: 90px;
+
     align-items: center;
     display: flex;
 }
@@ -113,6 +114,8 @@ header.top {
     background: transparent;
 }
 
+/*search bar*/
+
 .search {
     align-items: center;
     background: var(--grey);
@@ -153,7 +156,7 @@ header.top {
 }
 .top .input {
     opacity: 1;
-    z-index: 1;
+    z-index: -1;
 }
 
 header .button {
@@ -167,7 +170,7 @@ header .button {
     margin: 0 0.75em;
     width: 2.75em;
     transition: all 0.25s;
-    z-index: 1;
+    z-index: -1;
     cursor: pointer;
     min-width: 2.25vw;
 }
@@ -184,6 +187,8 @@ header .button::before {
     font-size: 2.5em;
 }
 
+/*back to top button*/
+
 #btn-back-to-top {
     position: fixed;
     bottom: 6vh;
@@ -194,8 +199,16 @@ header .button::before {
     border-radius: 40%;
 }
 
-.modal-content{
-    background-color: var(--grey);
+/*modal*/
+
+#exampleModalCenter{
+    position: fixed;
+    z-index: 1;
+}
+
+.modal-backdrop{
+    position: fixed;
+    z-index: 0;
 }
 
 #openModalBtn{
@@ -213,14 +226,16 @@ header .button::before {
     border-color: transparent;
 }
 
+/*catalog - cards*/
+
 main{
     position: relative;
-    z-index: -1;
+    z-index: -2;
 }
 
 #catalogCont{
     background-color: transparent !important;
-    margin-top: 10vh;
+    margin-top: 15vh;
     margin-bottom: 10vh;
 }
 
@@ -250,6 +265,10 @@ main{
     color: var(--light-gold);
     transition: 0.5s;
 }
+
+
+
+/*footer*/
 
 body>footer {
     background-color: var(--black);
