@@ -17,6 +17,7 @@
     --light-gold: #DBAB4D;
     --grey: #efefef;
     --dark-blue: rgb(54, 75, 179);
+    --royal-red: #b75053;
 }
 
 body, html {
@@ -211,9 +212,24 @@ header .button::before {
     z-index: 0;
 }
 
+.sortBtnWrap{
+    max-width: 33vw;
+}
+
 #openModalBtn{
-    background-color: var(--dark-blue);
+    background-color: var(--royal-red);
     border-color: transparent;
+    border-radius: 10px;
+
+
+    height: 8vh;
+    margin: 16vh 4vw 4vh 4vw;/*top right bottom left*/
+    width: 10vw;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    box-shadow: var(--dense-gold) 0px 3px 7px 2px;
 }
 
 #saveSortBtn{
@@ -233,6 +249,10 @@ main{
     z-index: -2;
 }
 
+a.card-link-wrap{
+    color: inherit;
+}
+
 #catalogCont{
     background-color: transparent !important;
     margin-top: 15vh;
@@ -241,7 +261,7 @@ main{
 
 
 .productCard:hover{
-    transform: scale(1.03);
+    transform: scale(1.01);
 }
 
 .productCard{
@@ -252,17 +272,32 @@ main{
     color: var(--grey);
 }
 
+.btn-group{
+    margin-top: 2vh;
+}
+
 .cardBtn{
     border-color: var(--light-black);
     border-width: 2px;
-    margin: 2px;
+    margin: 5px;
     border-radius: 10% !important;
 }
 
-.cardBtn:hover{
-    background-color: var(--light-black);
-    border-color: var(--light-black);
-    color: var(--light-gold);
+.detailsBtn:hover{
+    background-color: var(--dark-blue);
+    border-color: var(--dark-blue);
+    transition: 0.5s;
+}
+
+.editBtn:hover{
+    background-color: green;
+    border-color: green;
+    transition: 0.5s;
+}
+
+.deleteBtn:hover{
+    background-color: firebrick;
+    border-color: firebrick;
     transition: 0.5s;
 }
 
@@ -287,4 +322,7 @@ body>footer {
     text-align: center;
     color: var(--grey);
     font-weight: bold;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
