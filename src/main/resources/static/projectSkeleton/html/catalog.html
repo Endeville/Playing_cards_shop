@@ -43,10 +43,17 @@
         </ul>
     </nav>
 
+<!--    <button type="button" class="btn btn-primary sort" data-toggle="modal"-->
+<!--            data-target="#exampleModalCenter" id="openModalBtn">-->
+<!--        Sort-->
+<!--    </button>-->
+
     <form class="search">
+        <input class="button sort btn btn-primary" type="button" data-toggle="modal" data-target="#exampleModalCenter" id="openSortModalBtn" name="category">
         <input class="input" type="text" name="search" placeholder="Search">
         <input class="button" type="submit" name="submit" value="🔍"/>
     </form>
+
 
 </header>
 
@@ -106,17 +113,6 @@
         <div class="container">
 
             <div class="row">
-
-                    <div class="col-md-4 sortBtnWrap">
-<!--                        <div class="card mb-4 box-shadow productCard">-->
-<!--                            <div class="card-body">-->
-                                <button type="button" class="btn btn-primary" data-toggle="modal"
-                                        data-target="#exampleModalCenter" id="openModalBtn">
-                                    Sort By Category
-                                </button>
-<!--                            </div>-->
-<!--                        </div>-->
-                    </div>
 
                 <a href="index.html" class="card-link-wrap">
                     <div class="col-md-4">
@@ -281,12 +277,15 @@
 
     //search bar js
     const header = document.querySelector("header");
+    const sortBtn=document.querySelector(".search .sort");
 
     function check() {
         if (window.scrollY === 0) {
             header.classList.add("top");
+            sortBtn.value="Sort";
         } else {
             header.classList.remove("top");
+            sortBtn.value=String.fromCharCode(parseInt("021D5",16));
         }
     }
 

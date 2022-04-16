@@ -1,15 +1,9 @@
 * {
-    /*box-sizing: border-box;*/
     margin: 0;
     padding: 0;
 }
 
 :root{
-    /*--dark-blue:#05386B;*/
-    /*--dark-green: rgb(55, 150, 131);*/
-    /*--green: #5CDB95;*/
-    /*--light-green: #8EE4AF;*/
-    /*--grey: #EDF5E1;*/
 
     --light-black: #16171D;
     --black: #0b141a;
@@ -23,6 +17,7 @@
 body, html {
     font-weight: 400;
     font-family: Lato, Arial, sans-serif;
+    text-align: center;
 }
 
 body {
@@ -115,6 +110,36 @@ header.top {
     background: transparent;
 }
 
+/*sort modal*/
+
+#exampleModalCenter{
+    position: fixed;
+    z-index: 1;
+}
+
+.modal-backdrop{
+    position: fixed;
+    z-index: 0;
+}
+
+.sortBtnWrap{
+    max-width: 33vw;
+}
+
+#saveSortBtn{
+    background-color: var(--dense-gold);
+    border-color: transparent;
+}
+
+#closeModalBtn{
+    background-color: var(--light-black);
+    border-color: transparent;
+}
+
+.search .sort{
+    background-color: var(--royal-red);
+}
+
 /*search bar*/
 
 .search {
@@ -131,8 +156,9 @@ header.top {
     position: absolute;
     top: 50%;
     transform: translate(-110%, -50%);
-    width: 400px;
+    width: 25vw;
     transition: all 0.25s;
+    content: '&#x21d5';
 }
 .top .search {
     max-width: 75%;
@@ -198,48 +224,6 @@ header .button::before {
     color: var(--grey);
     background-color: var(--dark-blue);
     border-radius: 40%;
-}
-
-/*modal*/
-
-#exampleModalCenter{
-    position: fixed;
-    z-index: 1;
-}
-
-.modal-backdrop{
-    position: fixed;
-    z-index: 0;
-}
-
-.sortBtnWrap{
-    max-width: 33vw;
-}
-
-#openModalBtn{
-    background-color: var(--royal-red);
-    border-color: transparent;
-    border-radius: 10px;
-
-
-    height: 8vh;
-    margin: 16vh 4vw 4vh 4vw;/*top right bottom left*/
-    width: 10vw;
-
-    overflow: hidden;
-    text-overflow: ellipsis;
-
-    box-shadow: var(--dense-gold) 0px 3px 7px 2px;
-}
-
-#saveSortBtn{
-    background-color: var(--dense-gold);
-    border-color: transparent;
-}
-
-#closeModalBtn{
-    background-color: var(--light-black);
-    border-color: transparent;
 }
 
 /*catalog - cards*/
