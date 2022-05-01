@@ -43,8 +43,7 @@ a {
     overflow: auto;
     width: 100%;
     min-width: 650px;
-    height: 10vh;
-    min-height: 90px;
+    height: 100px;
 
     align-items: center;
     display: flex;
@@ -94,11 +93,28 @@ li::before {
     margin-right: 0.2em;
 }
 
+#hamburger{
+    display: none;
+    text-decoration: none;
+    font-size: 2.75em;
+    font-weight: bolder;
+    position: fixed;
+    padding: 4px 4px 5px 4px;
+    border: 2px solid transparent;
+    background-color: transparent;
+    color: var(--dense-gold);
+    width: 90px;
+    height: 80px;
+    right:0;
+    margin-right: 10px;
+
+}
+
 header {
     align-items: center;
     background: white;
     display: flex;
-    height: 10vh;
+    height: 100px;
     justify-content: space-between;
     position: sticky;
     top: 0;
@@ -192,14 +208,13 @@ header .button {
     border: 0;
     border-radius: 2.75em;
     display: flex;
-    height: 2.75em;
+    height: 80%;
     justify-content: center;
     margin: 0 0.75em;
-    width: 2.75em;
+    width: 10%;
     transition: all 0.25s;
     z-index: -1;
     cursor: pointer;
-    min-width: 2.25vw;
 }
 header .button::before {
     font-size: 1.5em;
@@ -292,8 +307,7 @@ a.card-link-wrap{
 body>footer {
     background-color: var(--black);
     width: 100%;
-    height: 5vh;
-    display: flex;
+    height: 30px;
     font-size: 16px;
     justify-content: space-around;
     align-items: center;
