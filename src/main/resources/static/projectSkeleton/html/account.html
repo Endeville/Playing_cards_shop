@@ -15,6 +15,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
+
+    <script src="../js/navigation.js" type="module"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
@@ -23,23 +25,26 @@
     <title>Victory</title>
 </head>
 <body>
-<nav id="nav">
+<header>
+    <nav id="nav">
 
-    <a href="/"><img src="../images/emblem.png"></a>
-    <ul>
-
-        <li><a href="/catalog">Catalog</a></li>
-        <li><a href="/search">Offers</a></li>
-        <span id="guest-nav">
+        <a href="/"><img src="../images/emblem.png"></a>
+        <ul id="menu">
+            <li><a href="/catalog">Catalog</a></li>
+            <li><a href="/search">Offers</a></li>
+            <span id="guest-nav">
                     <li class="guest"><a href="/login">Login</a></li>
                     <li class="guest"><a href="/register">Register</a></li>
                 </span>
-        <span id="user-nav">
+            <span id="user-nav">
                     <li class="user"><a href="/create">Wishlist</a></li>
                     <li id="logoutBtn" class="user"><a href="javascript:void(0)">Logout</a></li>
-                </span>
-    </ul>
-</nav>
+            </span>
+        </ul>
+
+        <button id="hamburger">&#9776;</button>
+    </nav>
+</header>
 
 <main>
     <div id="main">

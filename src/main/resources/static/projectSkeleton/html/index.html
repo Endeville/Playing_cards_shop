@@ -16,6 +16,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
+    <script src="../js/navigation.js" type="module"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
@@ -30,8 +31,7 @@
     <nav id="nav">
 
         <a href="/"><img src="../images/emblem.png"></a>
-        <ul>
-
+        <ul id="menu">
             <li><a href="/catalog">Catalog</a></li>
             <li><a href="/search">Offers</a></li>
             <span id="guest-nav">
@@ -41,8 +41,10 @@
             <span id="user-nav">
                     <li class="user"><a href="/create">Wishlist</a></li>
                     <li id="logoutBtn" class="user"><a href="javascript:void(0)">Logout</a></li>
-                </span>
+            </span>
         </ul>
+
+        <button id="hamburger">&#9776;</button>
     </nav>
 </header>
 
@@ -63,6 +65,26 @@
 </main>
 
 <footer>&copy Victory 2022. All rights reserved.</footer>
+
+<script>
+    // const card=document.querySelector(".card");
+    //
+    // window.addEventListener("load", onResize);
+    // window.addEventListener("resize", onResize);
+    //
+    // function onResize(ev){
+    //     ev.preventDefault();
+    //
+    //     if(window.innerWidth<750){
+    //         card.style.marginLeft=(window.innerWidth-300)/2;
+    //         card.style.marginRight=(window.innerWidth-300)/2;
+    //     }else{
+    //         card.style.marginLeft=window.innerWidth*0.4;
+    //         card.style.marginRight=window.innerWidth*0.4;
+    //     }
+    // }
+</script>
+
 </body>
 
 </html>

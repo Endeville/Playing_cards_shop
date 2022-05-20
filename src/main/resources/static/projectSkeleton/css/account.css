@@ -1,3 +1,6 @@
+@import "utils/navigation.css";
+@import "utils/footer.css";
+
 :root {
     /*--dark-blue:#05386B;*/
     /*--dark-green: rgb(55, 150, 131);*/
@@ -17,58 +20,6 @@
 body, html {
     font-weight: 400;
     font-family: Lato, Arial, sans-serif;
-}
-
-#nav {
-    font: bold 12px Arial, Helvetica, Sans-serif;
-    background-color: var(--black);
-    border-bottom: 4px solid var(--light-gold);
-    overflow: auto;
-    width: 100%;
-    min-width: 650px;
-    height: 10vh;
-    min-height: 90px;
-    align-items: center;
-    display: flex;
-}
-
-#nav>ul a {
-    text-decoration: none;
-    color: var(--grey);
-    font-size: 20px;
-    font-weight: bolder;
-    position: relative;
-    margin: 18px;
-    padding: 4px 4px 5px 4px;
-    border: 2px solid transparent;
-}
-
-#nav>a {
-    border: 2px solid transparent;
-}
-
-#nav a:hover {
-    cursor: pointer;
-    color: var(--light-gold);
-    font-weight: bolder;
-    border: 2px solid var(--light-gold);
-    border-radius: 5px;
-}
-
-#nav ul {
-    margin: 0 0 0 auto;
-}
-
-#nav ul li {
-    display: inline;
-    margin: 0 2px;
-}
-
-#nav>a>img {
-    width: 90px;
-    height: 80px;
-    margin-left: 0.2em;
-    margin-right: 0.2em;
 }
 
 .page-heading.auth {
@@ -279,24 +230,5 @@ a, blockquote, body, figure, h1, h2, h3, h4, ol, p, ul {
 }
 
 #page_heading{
-    height:85vh;
-}
-
-body>footer {
-    background-color: var(--black);
-    width: 100%;
-    height: 5vh;
-    display: flex;
-    font-size: 16px;
-    justify-content: space-around;
-    align-items: center;
-    padding: 0 5px 0 3px;
-    margin: 0%;
-    margin-top: 25%;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    text-align: center;
-    color: var(--grey);
-    font-weight: bold;
+    height:86.5vh;
 }

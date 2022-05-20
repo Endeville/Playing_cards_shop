@@ -1,3 +1,7 @@
+@import "utils/navigation.css";
+@import "utils/footer.css";
+
+
 * {
     margin: 0;
     padding: 0;
@@ -38,97 +42,6 @@ a{
 a:hover{
     color: inherit;
     text-decoration: inherit;
-}
-
-
-#nav {
-    font: bold 12px Arial, Helvetica, Sans-serif;
-    background-color: var(--black);
-    border-bottom: 4px solid var(--light-gold);
-    overflow: auto;
-    width: 100%;
-    min-width: 650px;
-    height: 100px;
-
-    align-items: center;
-    display: flex;
-}
-
-#nav>ul a {
-    text-decoration: none;
-    color: var(--grey);
-    font-size: 20px;
-    font-weight: bolder;
-    position: relative;
-    margin: 18px;
-    padding: 4px 4px 5px 4px;
-    border: 2px solid transparent;
-}
-
-#nav>a {
-    border: 2px solid transparent;
-}
-
-#nav a:hover {
-    cursor: pointer;
-    color: var(--light-gold);
-    font-weight: bolder;
-    border: 2px solid var(--light-gold);
-    border-radius: 5px;
-}
-
-#nav ul {
-    margin: 0 0 0 auto;
-    max-width: 50vw;
-}
-
-#nav ul li {
-    display: inline;
-    margin: 0 2px;
-}
-
-li::before {
-    display: inline;
-}
-
-#nav>a>img {
-    width: 90px;
-    height: 80px;
-    margin-left: 0.2em;
-    margin-right: 0.2em;
-}
-
-#hamburger{
-    display: none;
-    text-decoration: none;
-    font-size: 2.75em;
-    font-weight: bolder;
-    position: fixed;
-    padding: 4px 4px 5px 4px;
-    border: 2px solid transparent;
-    background-color: transparent;
-    color: var(--dense-gold);
-    width: 90px;
-    height: 80px;
-    right:0;
-    margin-right: 10px;
-
-}
-
-header {
-    align-items: center;
-    background: white;
-    display: flex;
-    height: 100px;
-    justify-content: space-between;
-    position: sticky;
-    top: 0;
-    width: 100%;
-    transition: background 0.25s;
-}
-
-header.top {
-    background: transparent;
 }
 
 

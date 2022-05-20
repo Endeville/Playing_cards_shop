@@ -15,6 +15,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
+    <script src="../js/navigation.js" type="module"></script>
+    <script src="../js/backToTop.js" type="module"></script>
+    <script src="../js/searchbar.js" type="module"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
@@ -51,6 +54,8 @@
         <input class="input" type="text" name="search" placeholder="Search">
         <input class="button btn" type="submit" name="submit" value="🔍"/>
     </form>
+
+
 
 
 </header>
@@ -254,68 +259,14 @@
 <script>
 
     //hamburger menu
-    const menu=document.querySelector("#menu");
-    const hambBtn=document.querySelector("#hamburger");
-    const searchBar=document.querySelector(".search");
 
-    window.addEventListener("resize",onResize);
-    window.addEventListener("load", onResize);
-
-    function onResize(ev){
-        ev.preventDefault();
-
-        if(window.innerWidth<1450){
-            hambBtn.style.display="inline";
-            menu.style.display="none";
-            searchBar.style.display="none";
-        }else{
-            hambBtn.style.display="none";
-            menu.style.display="inline";
-            searchBar.style.display="flex";
-        }
-    }
 
     //search bar js
-    const header = document.querySelector("header");
-    const sortBtn=document.querySelector(".search .sort");
 
-    function check() {
-        if (window.scrollY === 0) {
-            header.classList.add("top");
-            sortBtn.value="Sort";
-        } else {
-            header.classList.remove("top");
-            sortBtn.value=String.fromCharCode(parseInt("021F5",16));
-        }
-    }
-
-    window.addEventListener("scroll", check);
-    window.addEventListener("load", check);
 
     //Back to top button js
 
-    const backTopBtn = document.getElementById("btn-back-to-top");
-    window.onscroll = function () {
-        scrollFunction();
-    };
 
-    function scrollFunction() {
-        if (
-            document.body.scrollTop > 20 ||
-            document.documentElement.scrollTop > 20
-        ) {
-            backTopBtn.style.display = "block";
-        } else {
-            backTopBtn.style.display = "none";
-        }
-    }
-
-    backTopBtn.addEventListener("click", backToTop);
-
-    function backToTop() {
-        document.body.scrollTop = 0;
-        document.documentElement.scrollTop = 0;
-    }
 </script>
 
 </body>
