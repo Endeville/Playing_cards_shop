@@ -1,35 +1,8 @@
 @import "utils/navigation.css";
 @import "utils/footer.css";
-
-
-:root{
-    /*--dark-blue:#05386B;*/
-    /*--dark-green: rgb(55, 150, 131);*/
-    /*--green: #5CDB95;*/
-    /*--light-green: #8EE4AF;*/
-    /*--grey: #EDF5E1;*/
-
-    --light-black: #16171D;
-    --black: #0b141a;
-    --dense-gold: #b78846;
-    --light-gold: #DBAB4D;
-    --grey: #efefef;
-    --dark-blue: rgb(54, 75, 179);
-    --royal-red: #b75053;
-}
-
-body, html {
-    font-weight: 400;
-    font-family: Lato, Arial, sans-serif;
-
-}
+@import "utils/defaults.css";
 
 body {
-    margin: 0px;
-    padding: 0px;
-    height: 100%;
-    width: 100%;
-
     background-color: var(--light-black) !important;
     background-image: url('../images/background-pattern.webp');
     background-position: center center;
@@ -59,7 +32,7 @@ body {
     min-width: 60px;
 }
 
-@media (max-width: 450px) {
+@media (max-height: 600px) {
     .card{
         margin-top: 5vh;
     }

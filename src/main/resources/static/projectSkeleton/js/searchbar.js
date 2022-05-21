@@ -10,12 +10,6 @@ function check() {
         header.classList.remove("top");
         sortBtn.value=String.fromCharCode(parseInt("021F5",16));
     }
-
-    if(window.innerWidth<1450){
-        searchbar.style.display="none";
-    }else{
-        searchbar.style.display="flex";
-    }
 }
 
 window.addEventListener("scroll", check);

@@ -1,43 +1,6 @@
 @import "utils/navigation.css";
 @import "utils/footer.css";
-
-* {
-    margin: 0;
-    padding: 0;
-}
-
-:root{
-
-    --light-black: #16171D;
-    --black: #0b141a;
-    --dense-gold: #b78846;
-    --light-gold: #DBAB4D;
-    --grey: #efefef;
-    --dark-blue: rgb(54, 75, 179);
-    --royal-red: #b75053;
-}
-
-body, html {
-    font-weight: 400;
-    font-family: Lato, Arial, sans-serif;
-    text-align: center;
-}
-
-body {
-    margin: 0px;
-    padding: 0px;
-    height: 100%;
-    width: 100%;
-
-    position: relative;
-    z-index: -3;
-    background-color: var(--light-black);
-}
-
-a {
-    color: inherit;
-    text-decoration: none;
-}
+@import "utils/defaults.css";
 
 main{
     position: relative;

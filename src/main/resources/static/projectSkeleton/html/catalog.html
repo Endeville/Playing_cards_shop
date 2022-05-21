@@ -28,9 +28,10 @@
 <header>
 
 
-    <nav id="nav">
+    <nav id="nav" class="navbar navbar-expand">
 
         <a href="/"><img src="../images/emblem.png"></a>
+
         <ul id="menu">
             <li><a href="/catalog">Catalog</a></li>
             <li><a href="/search">Offers</a></li>
@@ -44,12 +45,12 @@
             </span>
         </ul>
 
-        <button id="hamburger">&#9776;</button>
+        <a href="#" id="menu-toggle" class="navbar-brand">&#9776</a>
     </nav>
 
     <!--Search and sort-->
 
-    <form class="search">
+    <form class="search" id="searchForm">
         <input class="button sort btn btn-primary" type="button" data-toggle="modal" data-target="#exampleModalCenter" id="openSortModalBtn" name="category">
         <input class="input" type="text" name="search" placeholder="Search">
         <input class="button btn" type="submit" name="submit" value="🔍"/>
@@ -84,6 +85,20 @@
         </div>
     </div>
 </article>
+
+<div id="wrapper">
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li><a href="#">Catalog</a></li>
+            <li><a href="#">Offers</a></li>
+            <li><a href="#">Login</a></li>
+            <li><a href="#">Register</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Wishlist</a></li>
+            <li><a href="#">Logout</a></li>
+        </ul>
+    </div>
+</div>
 
 <main>
 
@@ -258,15 +273,23 @@
 
 <script>
 
-    //hamburger menu
+    $(function () {
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+    });
 
+    const wrapper = document.querySelector("#wrapper");
 
-    //search bar js
+    window.addEventListener("load", onResize);
+    window.addEventListener("resize", onResize);
 
+    function onResize(ev) {
+        ev.preventDefault();
 
-    //Back to top button js
-
-
+        wrapper.classList.remove("toggled");
+    }
 </script>
 
 </body>
