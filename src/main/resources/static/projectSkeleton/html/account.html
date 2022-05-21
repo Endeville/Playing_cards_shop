@@ -5,19 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="../css/account.css"/>
     <link rel="stylesheet" href="../css/bootstrap/bootstrapNav.css"/>
+
     <script src="../js/sidebar.js" type="module"></script>
+
     <link rel="icon" href="../images/ace-of-spades.png">
     <title>Victory</title>
 </head>
@@ -62,24 +63,32 @@
 </div>
 
 <main>
+
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <div class="panel panel-login">
                     <div class="panel-heading">
                         <div class="row">
+
+
                             <div class="col-xs-6">
                                 <a href="#" class="active" id="login-form-link">Login</a>
                             </div>
+
                             <div class="col-xs-6">
                                 <a href="#" id="register-form-link">Register</a>
                             </div>
+
+
                         </div>
                         <hr>
                     </div>
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-lg-12">
+
+
                                 <form id="login-form" action="https://phpoll.com/login/process" method="post"
                                       role="form" style="display: block;">
                                     <div class="form-group">
@@ -113,6 +122,7 @@
                                         </div>
                                     </div>
                                 </form>
+
                                 <form id="register-form" action="https://phpoll.com/register/process" method="post"
                                       role="form" style="display: none;">
                                     <div class="form-group">
@@ -141,6 +151,8 @@
                                         </div>
                                     </div>
                                 </form>
+
+
                             </div>
                         </div>
                     </div>
@@ -151,27 +163,6 @@
 </main>
 
 <footer>&copy Victory 2022. All rights reserved.</footer>
-
-<script>
-    $(function () {
-
-        $('#login-form-link').click(function (e) {
-            $("#login-form").delay(100).fadeIn(100);
-            $("#register-form").fadeOut(100);
-            $('#register-form-link').removeClass('active');
-            $(this).addClass('active');
-            e.preventDefault();
-        });
-        $('#register-form-link').click(function (e) {
-            $("#register-form").delay(100).fadeIn(100);
-            $("#login-form").fadeOut(100);
-            $('#login-form-link').removeClass('active');
-            $(this).addClass('active');
-            e.preventDefault();
-        });
-
-    });
-</script>
 
 </body>
 </html>
