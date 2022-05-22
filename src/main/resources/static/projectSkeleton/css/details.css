@@ -7,6 +7,9 @@ body{
     background-image: url('../images/background-pattern.webp');
     background-position: center center;
     background-repeat: repeat;
+
+    font-size: 1rem;
+    font-weight: bolder;
 }
 
 .card {

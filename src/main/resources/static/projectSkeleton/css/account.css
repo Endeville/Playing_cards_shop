@@ -12,6 +12,8 @@ main{
     text-align: center;
     background: url(../images/page-header-bg.webp) center center no-repeat #0b1319;
     z-index: -1;
+
+    font-weight: bolder;
 }
 
 .panel-login {
@@ -34,7 +36,7 @@ main{
     text-decoration: none;
     color: #666;
     font-weight: bold;
-    font-size: 15px;
+    font-size: 20px;
     -webkit-transition: all 0.1s linear;
     -moz-transition: all 0.1s linear;
     transition: all 0.1s linear;

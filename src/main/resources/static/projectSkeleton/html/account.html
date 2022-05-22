@@ -82,7 +82,6 @@
 
 
                         </div>
-                        <hr>
                     </div>
                     <div class="panel-body">
                         <div class="row">
@@ -163,6 +162,35 @@
 </main>
 
 <footer>&copy Victory 2022. All rights reserved.</footer>
+
+<script>
+    const loginBtn=document.querySelector("#login-form-link");
+    const loginForm=document.querySelector("#login-form");
+    const registerForm=document.querySelector("#register-form");
+    const registerBtn=document.querySelector("#register-form-link");
+
+    loginBtn.addEventListener("click", (ev)=>{
+        ev.preventDefault();
+
+        loginBtn.disabled=true;
+        loginBtn.classList.add("active")
+        loginForm.style.display="inline";
+        registerForm.style.display="none";
+        registerBtn.disabled=false;
+        registerBtn.classList.remove("active")
+    })
+
+    registerBtn.addEventListener("click", (ev)=>{
+        ev.preventDefault();
+
+        loginBtn.disabled=false;
+        loginBtn.classList.remove("active");
+        loginForm.style.display="none";
+        registerForm.style.display="inline";
+        registerBtn.disabled=true;
+        registerBtn.classList.add("active");
+    })
+</script>
 
 </body>
 </html>
