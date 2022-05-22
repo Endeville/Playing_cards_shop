@@ -100,4 +100,13 @@ public class DeckEntity extends BaseEntity{
         this.categories = categories;
         return this;
     }
+
+    public Set<OfferEntity> getOffers() {
+        return offers;
+    }
+
+    public DeckEntity setOffers(Set<OfferEntity> offers) {
+        this.offers = offers;
+        return this;
+    }
 }

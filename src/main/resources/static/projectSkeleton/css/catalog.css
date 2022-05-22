@@ -33,6 +33,27 @@
     background-color: var(--royal-red);
 }
 
+.modal-body{
+    margin: 0 !important;
+}
+
+.modal-body input{
+    -webkit-appearance: none;
+    display: none;
+    background: none;
+    border: none;
+}
+
+.modal-body form>label{
+    width: 100%;
+    line-height: 40px;
+}
+
+.modal-body input[type="radio"]:checked + label{
+    background-color: var(--grey);
+}
+
+
 /*search bar*/
 
 .search {
@@ -49,7 +70,7 @@
     position: absolute;
     top: 50%;
     transform: translate(-110%, -50%);
-    width: 25vw;
+    width: 450px;
     transition: all 0.25s;
     content: '&#x21d5';
 }
@@ -165,8 +186,3 @@ a.card-link-wrap{
     border-color: firebrick;
     transition: 0.5s;
 }
-
-
-
-/*footer*/
-
