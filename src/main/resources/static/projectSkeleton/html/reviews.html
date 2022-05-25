@@ -153,7 +153,10 @@
 
                             </div>
                             <div class="graph-star-rating-footer text-center mt-3 mb-3">
-                                <button type="button" class="btn btn-outline-primary btn-sm fill-btn" onclick="window.scroll(0, document.querySelector('.container').scrollHeight)">Rate and Review</button>
+                                <button type="button" class="btn btn-outline-primary btn-sm fill-btn"
+                                        onclick="document.getElementById('review-form').scrollIntoView({behavior:'smooth'})">
+                                    Rate and Review
+                                </button>
                             </div>
                         </div>
 
@@ -199,7 +202,7 @@
                     <div class="bg-white rounded shadow-sm p-4 mb-5 rating-review-select-page">
                         <h5 class="mb-4">Leave Comment</h5>
                         <p class="mb-2">Rate the Product</p>
-                        <form>
+                        <form id="review-form">
 
                             <input type="number" name="rating" tabindex="2" min="1" max="5"
                                    class="form-control" id="review-rating" placeholder="Rating(1-5)">
