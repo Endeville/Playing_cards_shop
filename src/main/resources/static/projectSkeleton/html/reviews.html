@@ -17,8 +17,6 @@
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
 
-    <script src="https://kit.fontawesome.com/b18db754f0.js" crossorigin="anonymous"></script>
-
     <script src="../js/backToTop.js" type="module"></script>
     <script src="../js/sidebar.js" type="module"></script>
 
@@ -90,7 +88,7 @@
 
                                 <div class="rating-list">
                                     <div class="rating-list-left text-black">
-                                        5 Star
+                                        <a href="#" class="sort-by-rating">5 Star</a>
                                     </div>
                                     <div class="rating-list-center">
                                         <div class="progress">
@@ -103,7 +101,7 @@
 
                                 <div class="rating-list">
                                     <div class="rating-list-left text-black">
-                                        4 Star
+                                        <a href="#" class="sort-by-rating">4 Star</a>
                                     </div>
                                     <div class="rating-list-center">
                                         <div class="progress">
@@ -116,7 +114,7 @@
 
                                 <div class="rating-list">
                                     <div class="rating-list-left text-black">
-                                        3 Star
+                                        <a href="#" class="sort-by-rating">3 Star</a>
                                     </div>
                                     <div class="rating-list-center">
                                         <div class="progress">
@@ -129,7 +127,7 @@
 
                                 <div class="rating-list">
                                     <div class="rating-list-left text-black">
-                                        2 Star
+                                        <a href="#" class="sort-by-rating">2 Star</a>
                                     </div>
                                     <div class="rating-list-center">
                                         <div class="progress">
@@ -142,7 +140,7 @@
 
                                 <div class="rating-list">
                                     <div class="rating-list-left text-black">
-                                        1 Star
+                                        <a href="#" class="sort-by-rating">1 Star</a>
                                     </div>
                                     <div class="rating-list-center">
                                         <div class="progress">
@@ -155,13 +153,12 @@
 
                             </div>
                             <div class="graph-star-rating-footer text-center mt-3 mb-3">
-                                <button type="button" class="btn btn-outline-primary btn-sm fill-btn">Rate and Review</button>
+                                <a href="#"><button type="button" class="btn btn-outline-primary btn-sm fill-btn">Rate and Review</button></a>
                             </div>
                         </div>
 
 
-                        <div class="bg-white rounded shadow-sm p-4 mb-4 restaurant-detailed-ratings-and-reviews">
-                            <a href="#" class="btn btn-outline-primary btn-sm float-right fill-btn">Top Rated</a>
+                        <div class="bg-white rounded shadow-sm p-4 mb-4 restaurant-detailed-ratings-and-reviews" id="review-section">
                             <h5 class="mb-1">All Ratings and Reviews</h5>
 
                             <div class="reviews-members pt-4 pb-4">
@@ -169,7 +166,7 @@
                                     <a href="#"><img alt="Generic placeholder image" src="http://bootdey.com/img/Content/avatar/avatar1.png" class="mr-3 rounded-pill"></a>
                                     <div class="media-body">
                                         <div class="reviews-members-header">
-                                            <h6 class="mb-1"><a class="text-black" href="#">Singh Osahan</a></h6>
+                                            <h6 class="mb-1"><a class="text-black reviewer" href="#">Singh Osahan</a></h6>
                                             <p class="text-gray">Tue, 20 Mar 2020</p>
                                         </div>
                                         <div class="reviews-members-body">
@@ -185,7 +182,7 @@
                                     <a href="#"><img alt="Generic placeholder image" src="http://bootdey.com/img/Content/avatar/avatar6.png" class="mr-3 rounded-pill"></a>
                                     <div class="media-body">
                                         <div class="reviews-members-header">
-                                            <h6 class="mb-1"><a class="text-black" href="#">Gurdeep Singh</a></h6>
+                                            <h6 class="mb-1"><a class="text-black reviewer" href="#">Gurdeep Singh</a></h6>
                                             <p class="text-gray">Tue, 20 Mar 2020</p>
                                         </div>
                                         <div class="reviews-members-body">
@@ -197,23 +194,25 @@
                             <hr>
                             <a class="text-center w-100 d-block mt-4 font-weight-bold" id="reveal-reviews" href="#">See All Reviews</a>
                         </div>
-                        <div class="bg-white rounded shadow-sm p-4 mb-5 rating-review-select-page">
-                            <h5 class="mb-4">Leave Comment</h5>
-                            <p class="mb-2">Rate the Place</p>
-                            <div class="mb-4">
+                    </div>
+
+                    <div class="bg-white rounded shadow-sm p-4 mb-5 rating-review-select-page">
+                        <h5 class="mb-4">Leave Comment</h5>
+                        <p class="mb-2">Rate the Product</p>
+                        <form>
+
+                            <input type="number" name="rating" tabindex="2" min="1" max="5"
+                                   class="form-control" id="review-rating" placeholder="Rating(1-5)">
+
+                            <div class="form-group">
+                                <label>Your Comment</label>
+                                <textarea class="form-control"></textarea>
                             </div>
-                            <form>
 
-                                <div class="form-group">
-                                    <label for="comment">Your Comment</label>
-                                    <textarea class="form-control" id="comment"></textarea>
-                                </div>
-
-                                <div class="form-group">
-                                    <button class="btn btn-primary btn-sm" id="submit-review-btn" type="button"> Submit Comment </button>
-                                </div>
-                            </form>
-                        </div>
+                            <div class="form-group">
+                                <button class="btn btn-primary btn-sm" type="button" id="submit-review-btn"> Submit Comment </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
