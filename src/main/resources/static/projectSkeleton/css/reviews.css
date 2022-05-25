@@ -208,7 +208,7 @@
 }
 
 .fill-btn{
-    border-color: var(--royal-red);
+    border: 3px solid var(--royal-red);
     color: var(--royal-red);
 }
 

@@ -45,7 +45,7 @@ main{
     font-size: 30px;
 }
 
-.panel-offer input[type="text"],.panel-offer input[type="email"],.panel-offer input[type="password"], .panel-offer input[type="number"]{
+.panel-offer input[type="text"],.panel-offer input[type="email"],.panel-offer input[type="password"], .panel-offer input[type="number"], .panel-offer input[type="file"]{
     height: 45px;
     border: 1px solid #ddd;
     font-size: 16px;
@@ -64,7 +64,7 @@ main{
     color: #d0d0d0;
 }
 
-.panel-offer input[type="text"]:hover,.panel-offer input[type="email"]:hover,.panel-offer input[type="password"]:hover,  .panel-offer input[type="number"]:hover{
+.panel-offer input[type="text"]:hover,.panel-offer input[type="email"]:hover,.panel-offer input[type="password"]:hover,  .panel-offer input[type="number"]:hover, .panel-offer input[type="file"]:hover{
     color: #000;
     background: #fff;
     transition: background-color .4s;
@@ -86,6 +86,36 @@ select{
     color: var(--grey);
     font-family: Lato, Arial, sans-serif !important;
     height: 45px;
+}
+
+#formFile {
+    display: none;
+}
+.custom-file-upload {
+    border: 4px solid var(--dark-blue);
+    border-radius: 20px;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+.custom-file-upload:hover{
+    background-color: var(--dark-blue);
+}
+
+#image-container{
+    width: 100%;
+    align-items: center;
+}
+
+#image-container td{
+    align-items: center;
+    color: var(--grey) !important;
+    font-size: 12px;
+}
+
+#image-group{
+    margin-bottom: 0;
 }
 
 /*bootstrap (trying to ruin my life)*/
