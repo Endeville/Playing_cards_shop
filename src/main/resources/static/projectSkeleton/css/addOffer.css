@@ -118,7 +118,7 @@ select{
     margin-bottom: 0;
 }
 
-/*bootstrap (trying to ruin my life)*/
+/*bootstrap trynna ruin my life bruh*/
 
 .show > .btn-light.dropdown-toggle{
     color: var(--grey);
@@ -140,6 +140,32 @@ btn-light:hover{
     color: var(--grey);
 }
 
+@media (min-width: 768px) {
+
+    #offer-form-cont{
+        max-width: 100% !important;
+        flex: 0 0 100%;
+    }
+
+}
+
+@media (min-width: 991px) {
+    #offer-form-cont{
+        flex: 0 0 50%;
+    }
+    
+}
+
+@media (max-width: 768px) {
+    .btn-makeOffer{
+        width: 100% !important;
+    }
+    #submit-cont{
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
 /*submit button*/
 
 .btn-makeOffer {
@@ -151,8 +177,10 @@ btn-light:hover{
     font-weight: normal;
     padding: 14px 0;
     text-transform: uppercase;
+    max-width: 100%;
 }
-.btn-makeOffer:hover{
+
+.btn-makeOffer:hover {
     color: #000;
     background: #fff;
     transition: background-color .4s;
