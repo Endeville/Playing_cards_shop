@@ -12,6 +12,11 @@ body{
     font-weight: bolder;
 }
 
+.container{
+    position: sticky;
+    z-index: -2;
+}
+
 .card {
     margin-top: 30px;
     margin-bottom: 30px;
@@ -35,9 +40,6 @@ body{
     color: #8898aa;
 }
 
-.description-details button:hover{
-    background-color: #c52ecd;
-}
 
 .table{
     background-color: var(--light-black);
@@ -74,4 +76,8 @@ body{
     background-color: var(--dark-blue);
     border-color: var(--dark-blue);
     color: var(--grey);
+}
+
+#purchase-btn{
+    color: inherit !important;
 }
