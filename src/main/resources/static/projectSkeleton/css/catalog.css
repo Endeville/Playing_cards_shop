@@ -164,9 +164,9 @@ a.card-link-wrap{
 
 .cardBtn{
     border-color: var(--light-black);
-    border-width: 2px;
+    border-width: 3px;
     margin: 5px;
-    border-radius: 10% !important;
+    border-radius: 7px !important;
 }
 
 .detailsBtn:hover{
