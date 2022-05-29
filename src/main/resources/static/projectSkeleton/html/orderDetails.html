@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+
+
+    <script src="../js/sidebar.js" type="module"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/orderDetails.css"/>
+
+    <link rel="icon" href="../images/ace-of-spades.png">
+    <title>Victory</title>
+</head>
+<body>
+<header>
+    <nav id="nav" class="navbar navbar-expand">
+
+        <a href="/"><img src="../images/emblem.png"></a>
+
+        <ul id="menu">
+            <li><a href="/catalog">Catalog</a></li>
+            <li><a href="/search">Offers</a></li>
+            <span id="guest-nav">
+                    <li class="guest"><a href="/login">Login</a></li>
+                    <li class="guest"><a href="/register">Register</a></li>
+                </span>
+            <span id="user-nav">
+                    <li class="user"><a href="/create">Wishlist</a></li>
+                    <li id="logoutBtn" class="user"><a href="javascript:void(0)">Logout</a></li>
+            </span>
+        </ul>
+
+        <a href="#" id="menu-toggle" class="navbar-brand">&#9776</a>
+    </nav>
+</header>
+
+<div id="wrapper">
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li><a href="#">Catalog</a></li>
+            <li><a href="#">Offers</a></li>
+            <li><a href="#">Login</a></li>
+            <li><a href="#">Register</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Wishlist</a></li>
+            <li><a href="#">Logout</a></li>
+        </ul>
+    </div>
+</div>
+
+<main>
+    <div class="container-fluid">
+
+        <div class="container">
+            <!-- Title -->
+            <div class="d-flex justify-content-between align-items-center py-3">
+                <h2 class="h5 mb-0"><a href="#" class="text-muted"></a> Order #16123222</h2>
+            </div>
+
+            <!-- Main content -->
+            <div class="row">
+                <div class="col-lg-8">
+                    <!-- Details -->
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="mb-3 d-flex justify-content-between">
+                                <div>
+                                    <span class="me-3">22-11-2021</span>
+                                    <span class="badge rounded-pill bg-info">SHIPPING</span>
+                                </div>
+                            </div>
+                            <table class="table table-borderless">
+                                <tbody>
+                                <tr>
+                                    <td class="product">
+                                        <div class="d-flex mb-2">
+                                            <div class="flex-shrink-0 product-image">
+                                                <img src="https://via.placeholder.com/280x280/87CEFA/000000" alt="" width="35" class="img-fluid">
+                                            </div>
+                                            <div class="flex-lg-grow-1 ms-3">
+                                                <h6 class="small mb-0"><a href="#" class="text-reset">Wireless Headphones with Noise Cancellation Tru Bass Bluetooth HiFi</a></h6>
+                                                <span class="small">Color: Black</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>1</td>
+                                    <td class="text-end">$79.99</td>
+                                </tr>
+                                <tr class="product">
+                                    <td>
+                                        <div class="d-flex mb-2">
+                                            <div class="flex-shrink-0 product-image">
+                                                <img src="https://via.placeholder.com/280x280/FF69B4/000000" alt="" width="35" class="img-fluid">
+                                            </div>
+                                            <div class="flex-lg-grow-1 ms-3">
+                                                <h6 class="small mb-0"><a href="#" class="text-reset">Smartwatch IP68 Waterproof GPS and Bluetooth Support</a></h6>
+                                                <span class="small">Color: White</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>1</td>
+                                    <td class="text-end">$79.99</td>
+                                </tr>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <td colspan="2">Subtotal</td>
+                                    <td class="text-end">$159,98</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">Shipping</td>
+                                    <td class="text-end">$20.00</td>
+                                </tr>
+                                <tr class="fw-bold">
+                                    <td colspan="2">TOTAL</td>
+                                    <td class="text-end">$169,98</td>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-lg-4">
+                    <!-- Customer Notes -->
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h3 class="h6">Customer Notes</h3>
+                            <p>Sed enim, faucibus litora velit vestibulum habitasse. Cras lobortis cum sem aliquet mauris rutrum. Sollicitudin. Morbi, sem tellus vestibulum porttitor.</p>
+                        </div>
+                    </div>
+                    <div class="card mb-4">
+                        <!-- Shipping information -->
+                        <div class="card-body">
+                            <h3 class="h6">Address</h3>
+                            <address>
+                                <strong>John Doe</strong><br>
+                                1355 Market St, Suite 900<br>
+                                San Francisco, CA 94103<br>
+                                <abbr title="Phone">P:</abbr> (123) 456-7890
+                            </address>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer>&copy Victory 2022. All rights reserved.</footer>
+
+<script>
+
+
+    //TODO: change this when making the template
+
+    document.querySelectorAll(".product").forEach(e=>e.addEventListener("click", (ev)=>{
+        ev.preventDefault();
+
+        window.location="home";
+    }))
+</script>
+
+</body>
+</html>

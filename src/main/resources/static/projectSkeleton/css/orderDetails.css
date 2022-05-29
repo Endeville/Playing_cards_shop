@@ -1,0 +1,43 @@
+@import "utils/navigation.css";
+@import "utils/footer.css";
+@import "utils/backToTopBtn.css";
+@import "utils/defaults.css";
+
+.container{
+    margin-top: 10vh;
+    margin-bottom: 100px;
+}
+
+.card {
+    box-shadow: 0 20px 27px 0 rgb(0 0 0 / 5%);
+    background-color: var(--grey);
+}
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 0 solid rgba(0,0,0,.125);
+    border-radius: 1rem;
+}
+
+tbody{
+    font-size: 20px !important;
+}
+
+tbody>tr:hover{
+    cursor: pointer;
+    background-color: rgb(227, 224, 224);
+}
+
+.product-image{
+    margin-right: 10px;
+}
+
+.text-reset {
+    --bs-text-opacity: 1;
+    color: inherit!important;
+}
