@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css?family=Assistant');
+@import "utils/navigation.css";
+@import "utils/footer.css";
+@import "utils/backToTopBtn.css";
+@import "utils/defaults.css";
+
+.container{
+    max-width: 90vw !important;
+    width: 90vw !important;
+    margin-bottom: 100px;
+}
+
+.cell-1 {
+    border-collapse: separate;
+    border-spacing: 0 4em;
+    background: var(--grey);
+    border-bottom: 5px solid transparent;
+    background-clip: padding-box;
+}
+
+thead {
+    background: var(--royal-red);
+    color: var(--light-gold);
+}
+
+tbody>tr:hover{
+    cursor: pointer;
+    background-color: rgb(227, 224, 224);
+}
+
+.toggle-btn {
+    width: 40px;
+    height: 21px;
+    background: grey;
+    border-radius: 50px;
+    padding: 3px;
+    cursor: pointer;
+    -webkit-transition: all 0.3s 0.1s ease-in-out;
+    -moz-transition: all 0.3s 0.1s ease-in-out;
+    -o-transition: all 0.3s 0.1s ease-in-out;
+    transition: all 0.3s 0.1s ease-in-out;
+}
+
+.toggle-btn > .inner-circle {
+    width: 15px;
+    height: 15px;
+    background: #fff;
+    border-radius: 50%;
+    -webkit-transition: all 0.3s 0.1s ease-in-out;
+    -moz-transition: all 0.3s 0.1s ease-in-out;
+    -o-transition: all 0.3s 0.1s ease-in-out;
+    transition: all 0.3s 0.1s ease-in-out;
+}
+
+.toggle-btn.active {
+    background: blue !important;
+}
+
+.toggle-btn.active > .inner-circle {
+    margin-left: 19px;
+}
