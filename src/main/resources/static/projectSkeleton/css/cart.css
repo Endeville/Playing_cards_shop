@@ -1,0 +1,122 @@
+@import "utils/navigation.css";
+@import "utils/footer.css";
+@import "utils/defaults.css";
+
+.container{
+    margin-top: 10vh;
+    margin-bottom: 100px;
+}
+
+.card {
+    box-shadow: 0 20px 27px 0 rgb(0 0 0 / 5%);
+    background-color: var(--grey);
+}
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: var(--grey);
+    background-clip: border-box;
+    border: 0 solid rgba(0,0,0,.125);
+    border-radius: 1rem;
+}
+
+tbody{
+    font-size: 20px !important;
+}
+
+.product:hover{
+    cursor: pointer;
+    background-color: rgb(227, 224, 224);
+}
+
+.product-image{
+    margin-right: 10px;
+}
+
+.text-reset {
+    --bs-text-opacity: 1;
+    color: inherit!important;
+}
+
+.quantity-cont{
+    width: 150px;
+    text-align: center;
+}
+
+.quantity-cont>button{
+    background: none;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+
+    border: 2px solid transparent;
+    padding-bottom: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 30px;
+}
+
+.quantity-cont>button:hover{
+    border-color: var(--dense-gold);
+}
+
+.minus{
+    margin-right: 5px;
+}
+
+.plus{
+    margin-left: 5px;
+}
+
+#purchase-btn{
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+
+    background: var(--royal-red) none;
+    color: var(--grey);
+
+    padding: 8px;
+    border: 5px solid transparent;
+    border-radius: 10px;
+    width: 85px;
+}
+
+#purchase-btn:hover{
+    background-color: transparent;
+    border-color: var(--royal-red);
+    color: var(--royal-red);
+}
+
+#purchase-row{
+    margin-top: 100px;
+}
+
+
+@media (max-width: 450px) {
+
+    .quantity-cont{
+        width: 5px;
+    }
+    .minus{
+        display: block;
+        margin: 0;
+    }
+    .plus{
+        display: block;
+        margin: 0;
+    }
+
+    .product-image{
+        display: none;
+    }
+    .product-description{
+        display: inline;
+        overflow: hidden;
+    }
+}
+

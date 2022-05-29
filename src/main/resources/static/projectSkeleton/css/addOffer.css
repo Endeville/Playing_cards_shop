@@ -167,6 +167,14 @@ btn-light:hover{
     }
 }
 
+.filter-option-inner-inner:before{
+    content: "Categories: ";
+}
+
+.filter-option-inner-inner{
+    content: none;
+}
+
 /*submit button*/
 
 .btn-makeOffer {
