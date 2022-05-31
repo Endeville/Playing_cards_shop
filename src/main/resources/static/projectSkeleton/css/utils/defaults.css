@@ -31,6 +31,7 @@ body {
     z-index: -3;
     background-color: var(--light-black);
     font-size: 1rem;
+    display: block;
 }
 
 main{
