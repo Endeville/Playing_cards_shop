@@ -43,3 +43,7 @@ a {
     color: inherit ;
     text-decoration: none !important;
 }
+
+input:focus{
+    outline: none;
+}

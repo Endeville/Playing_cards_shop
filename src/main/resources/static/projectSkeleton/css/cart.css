@@ -2,6 +2,10 @@
 @import "utils/footer.css";
 @import "utils/defaults.css";
 
+body{
+    background: url(../images/page-header-bg.webp) center center repeat #0b1319;
+}
+
 .container{
     margin-top: 10vh;
     margin-bottom: 100px;
@@ -21,6 +25,40 @@
     background-clip: border-box;
     border: 0 solid rgba(0,0,0,.125);
     border-radius: 1rem;
+}
+
+.col-lg-4{
+    max-width: 100%;
+}
+
+.side{
+    border: 2px solid var(--light-gold);
+    background-color: var(--light-black);
+    color: var(--grey);
+}
+
+input[type="text"],input[type="email"], input[type="password"] {
+    height: 45px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    -webkit-transition: all 0.1s linear;
+    -moz-transition: all 0.1s linear;
+    transition: all 0.1s linear;
+
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    background: none;
+    line-height: 26px;
+    padding: 15px;
+    margin: 0 0 10px;
+    color: var(--grey);
+}
+
+input[type="text"]:hover, input[type="email"]:hover, input[type="password"]:hover{
+    background: #fff;
+    transition: background-color .4s;
 }
 
 tbody{

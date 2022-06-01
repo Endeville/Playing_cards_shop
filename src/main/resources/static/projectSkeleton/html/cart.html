@@ -88,30 +88,42 @@
                                     <td class="product">
                                         <div class="d-flex mb-2">
                                             <div class="flex-shrink-0 product-image">
-                                                <img src="https://via.placeholder.com/280x280/87CEFA/000000" alt="" width="35" class="img-fluid">
+                                                <img src="https://via.placeholder.com/280x280/87CEFA/000000" alt=""
+                                                     width="35" class="img-fluid">
                                             </div>
                                             <div class="flex-lg-grow-1 ms-3 product-description">
-                                                <h6 class="small mb-0"><a href="#" class="text-reset">Wireless Headphones with Noise Cancellation Tru Bass Bluetooth HiFi</a></h6>
+                                                <h6 class="small mb-0"><a href="#" class="text-reset">Wireless
+                                                    Headphones with Noise Cancellation Tru Bass Bluetooth HiFi</a></h6>
                                                 <span class="small">Color: Black</span>
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="quantity-cont"><button class="minus">-</button><span class="quantity">5</span><button class="plus">+</button></td>
+                                    <td class="quantity-cont">
+                                        <button class="minus">-</button>
+                                        <span class="quantity">5</span>
+                                        <button class="plus">+</button>
+                                    </td>
                                     <td class="text-end product-price">$79.99</td>
                                 </tr>
                                 <tr>
                                     <td class="product">
                                         <div class="d-flex mb-2">
                                             <div class="flex-shrink-0 product-image">
-                                                <img src="https://via.placeholder.com/280x280/87CEFA/000000" alt="" width="35" class="img-fluid">
+                                                <img src="https://via.placeholder.com/280x280/87CEFA/000000" alt=""
+                                                     width="35" class="img-fluid">
                                             </div>
                                             <div class="flex-lg-grow-1 ms-3">
-                                                <h6 class="small mb-0"><a href="#" class="text-reset">Wireless Headphones with Noise Cancellation Tru Bass Bluetooth HiFi</a></h6>
+                                                <h6 class="small mb-0"><a href="#" class="text-reset">Wireless
+                                                    Headphones with Noise Cancellation Tru Bass Bluetooth HiFi</a></h6>
                                                 <span class="small">Color: Black</span>
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="quantity-cont"><button class="minus">-</button><span class="quantity">5</span><button class="plus">+</button></td>
+                                    <td class="quantity-cont">
+                                        <button class="minus">-</button>
+                                        <span class="quantity">5</span>
+                                        <button class="plus">+</button>
+                                    </td>
                                     <td class="text-end">$79.99</td>
                                 </tr>
                                 </tbody>
@@ -131,7 +143,7 @@
                                 <tr id="purchase-row">
                                     <td colspan="2"></td>
                                     <td class="text-end">
-                                        <a href="#" id="purchase-btn">Order</a>
+                                        <input type="submit" form="cart-notes" id="purchase-btn" value="Order">
                                     </td>
                                 </tr>
                                 </tfoot>
@@ -140,27 +152,38 @@
                     </div>
 
                 </div>
-                <div class="col-lg-4">
-                    <!-- Customer Notes -->
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <h3 class="h6">Customer Notes</h3>
-                            <p>Sed enim, faucibus litora velit vestibulum habitasse. Cras lobortis cum sem aliquet mauris rutrum. Sollicitudin. Morbi, sem tellus vestibulum porttitor.</p>
+                <form id="cart-notes">
+                    <div class="col-lg-4">
+                        <!-- Customer Notes -->
+                        <div class="card mb-4 side">
+                            <div class="card-body">
+                                <label class="h6" for="notes" class="form-control">Customer Notes</label>
+<!--                                <p>Sed enim, faucibus litora velit vestibulum habitasse. Cras lobortis cum sem aliquet-->
+<!--                                    mauris rutrum. Sollicitudin. Morbi, sem tellus vestibulum porttitor.</p>-->
+                               <input type="text" id="notes">
+                            </div>
+                        </div>
+                        <div class="card mb-4 side">
+                            <!-- Shipping information -->
+                            <div class="card-body">
+                                <address>
+
+                                    <label for="name">Name:</label>
+                                    <input type="text" id="name" form="cart-notes">
+
+                                    <label for="address">Address:</label>
+                                    <input type="text" id="address">
+
+                                    <label for="city">City/Postal Code</label>
+                                    <input type="text" id="city">
+
+                                    <label for="phone-number">Phone number:</label>
+                                    <input type="text" id="phone-number">
+                                </address>
+                            </div>
                         </div>
                     </div>
-                    <div class="card mb-4">
-                        <!-- Shipping information -->
-                        <div class="card-body">
-                            <h3 class="h6">Address</h3>
-                            <address>
-                                <strong>John Doe</strong><br>
-                                1355 Market St, Suite 900<br>
-                                San Francisco, CA 94103<br>
-                                <abbr title="Phone">P:</abbr> (123) 456-7890
-                            </address>
-                        </div>
-                    </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
@@ -171,10 +194,10 @@
 <script>
     //TODO: change this when making the template
 
-    document.querySelectorAll(".product").forEach(e=>e.addEventListener("click", (ev)=>{
+    document.querySelectorAll(".product").forEach(e => e.addEventListener("click", (ev) => {
         ev.preventDefault();
 
-        window.location="home";
+        window.location = "home";
     }))
 </script>
 
