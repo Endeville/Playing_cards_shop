@@ -24,7 +24,6 @@ body{
     background-color: var(--grey);
     background-clip: border-box;
     border: 0 solid rgba(0,0,0,.125);
-    border-radius: 1rem;
 }
 
 .col-lg-4{
@@ -35,6 +34,11 @@ body{
     border: 2px solid var(--light-gold);
     background-color: var(--light-black);
     color: var(--grey);
+}
+
+#address-holder{
+    max-height: 385px;
+    overflow-y: scroll;
 }
 
 input[type="text"],input[type="email"], input[type="password"] {
@@ -56,9 +60,50 @@ input[type="text"],input[type="email"], input[type="password"] {
     color: var(--grey);
 }
 
+address>div{
+    margin-bottom: 20px;
+    font-weight: bolder;
+    font-size: 20px
+}
+
 input[type="text"]:hover, input[type="email"]:hover, input[type="password"]:hover{
     background: #fff;
     transition: background-color .4s;
+}
+
+input[type="radio"]{
+    display: none;
+}
+
+address>label{
+    padding: 20px 20px 10px;
+}
+
+.address-option{
+    display: block;
+    line-height: 10px;
+    border: 3px solid transparent;
+}
+
+.address-option:hover{
+    border: 3px solid var(--dense-gold);
+    border-radius: 15px;
+}
+
+input[type="radio"]:checked+label{
+    border: 3px solid var(--royal-red);
+    border-radius: 15px;
+}
+
+#add-address{
+    padding: 10px 10px 12px;
+    border: 3px solid transparent;
+}
+
+#add-address:hover{
+    border: 3px solid var(--royal-red);
+    color: var(--royal-red);
+    cursor: pointer;
 }
 
 tbody{

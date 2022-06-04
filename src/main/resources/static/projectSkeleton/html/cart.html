@@ -157,28 +157,51 @@
                         <!-- Customer Notes -->
                         <div class="card mb-4 side">
                             <div class="card-body">
-                                <label class="h6" for="notes" class="form-control">Customer Notes</label>
-<!--                                <p>Sed enim, faucibus litora velit vestibulum habitasse. Cras lobortis cum sem aliquet-->
-<!--                                    mauris rutrum. Sollicitudin. Morbi, sem tellus vestibulum porttitor.</p>-->
-                               <input type="text" id="notes">
+                                <label class="h6" for="notes"> Notes</label>
+                                <input type="text" id="notes">
                             </div>
                         </div>
-                        <div class="card mb-4 side">
+                        <div class="card mb-4 side" id="address-holder">
                             <!-- Shipping information -->
                             <div class="card-body">
                                 <address>
 
-                                    <label for="name">Name:</label>
-                                    <input type="text" id="name" form="cart-notes">
+                                    <div>Choose and address:</div>
 
-                                    <label for="address">Address:</label>
-                                    <input type="text" id="address">
+                                    <input type="radio" id="address-1" form="cart-notes" name="address">
+                                    <label for="address-1" class="address-option">
+                                        <p>Name: Gosho</p>
+                                        <p>City, Country: Sofia, Bulgaria</p>
+                                        <p>Street: Vitoshka 53</p>
+                                        <p>Telephone: 0882871009</p>
+                                    </label>
 
-                                    <label for="city">City/Postal Code</label>
-                                    <input type="text" id="city">
+                                    <input type="radio" id="address-2" form="cart-notes" name="address">
+                                    <label for="address-2" class="address-option">
+                                        <p>Name: Gosho</p>
+                                        <p>City, Country: Sofia, Bulgaria</p>
+                                        <p>Street: Vitoshka 53</p>
+                                        <p>Telephone: 0882871009</p>
+                                    </label>
 
-                                    <label for="phone-number">Phone number:</label>
-                                    <input type="text" id="phone-number">
+
+                                    <input type="radio" id="address-3" form="cart-notes" name="address">
+                                    <label for="address-3" class="address-option">
+                                        <p>Name: Gosho</p>
+                                        <p>City, Country: Sofia, Bulgaria</p>
+                                        <p>Street: Vitoshka 53</p>
+                                        <p>Telephone: 0882871009</p>
+                                    </label>
+
+                                    <input type="radio" id="address-4" form="cart-notes" name="address">
+                                    <label for="address-4" class="address-option">
+                                        <p>Name: Gosho</p>
+                                        <p>City, Country: Sofia, Bulgaria</p>
+                                        <p>Street: Vitoshka 53</p>
+                                        <p>Telephone: 0882871009</p>
+                                    </label>
+
+                                    <a class="text-center w-100 d-block mt-4 font-weight-bold" id="add-address">Add Address</a>
                                 </address>
                             </div>
                         </div>
