@@ -44,6 +44,10 @@ a {
     text-decoration: none !important;
 }
 
+a:hover{
+    color: inherit;
+}
+
 input:focus{
     outline: none;
 }
