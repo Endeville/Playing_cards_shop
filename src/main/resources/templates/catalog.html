@@ -27,7 +27,7 @@
 
     <!--Search and sort-->
 
-    <th:block th:replace="~{/fragments/sidebar.html}"/>
+    <th:block th:replace="~{/fragments/searchbar.html}"/>
 
 </header>
 
@@ -81,7 +81,7 @@
 <main>
 
     <!-- Up to Top Button-->
-    <button type="button" class="btn btn-floating btn-lg" id="btn-back-to-top">&#x2191</button>
+    <th:block th:replace="~{/fragments/backToTop.html}"/>
 
     <!-- Catalog -->
 
@@ -250,8 +250,8 @@
 
 </body>
 
-<script src="../../js/backToTop.js" type="module"></script>
-<script src="../../js/searchbar.js" type="module"></script>
-<script src="../../js/sidebar.js" type="module"></script>
+<script src="../../js/backToTop.js"></script>
+<script src="../../js/searchbar.js"></script>
+<script src="../../js/sidebar.js"></script>
 
 </html>

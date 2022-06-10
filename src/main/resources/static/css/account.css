@@ -90,9 +90,9 @@ main{
     color: var(--grey);
     font-size: 14px;
     height: auto;
-    font-weight: normal;
     padding: 14px 0;
     text-transform: uppercase;
+    font-weight: bolder;
 }
 .btn-login:hover{
     color: #000;
@@ -115,9 +115,9 @@ main{
     color: var(--black);
     font-size: 14px;
     height: auto;
-    font-weight: normal;
     padding: 14px 0;
     text-transform: uppercase;
+    font-weight: bolder;
 }
 .btn-register:hover {
     color: var(--grey);
@@ -127,6 +127,12 @@ main{
 
 .form-group>label{
     color: var(--grey);
+}
+
+@media (max-height: 750px) {
+    main{
+        padding-top: 5vh;
+    }
 }
 
 

@@ -152,6 +152,7 @@ li::before {
 .sidebar-nav li {
     line-height: 50px;
     width: 100%;
+    font-weight: bolder;
 }
 
 .sidebar-nav li a {

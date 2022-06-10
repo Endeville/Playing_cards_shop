@@ -1,5 +1,5 @@
 const header = document.querySelector("header");
-const sortBtn=document.querySelector(".search .sort");
+const sortBtn=document.querySelector("#openSortModalBtn");
 const searchbar=document.querySelector(".search");
 
 function check() {
