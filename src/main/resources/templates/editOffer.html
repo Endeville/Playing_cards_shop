@@ -22,12 +22,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="../css/addOffer.css"/>
-    <link rel="stylesheet" href="../css/bootstrap/bootstrapNav.css"/>
+    <link rel="stylesheet" href="../static/css/addOffer.css"/>
+    <link rel="stylesheet" href="../static/css/bootstrap/bootstrapNav.css"/>
 
-    <script src="../js/sidebar.js" type="module"></script>
+    <script src="../static/js/sidebar.js" type="module"></script>
 
-    <link rel="icon" href="../images/ace-of-spades.png">
+    <link rel="icon" href="../static/images/ace-of-spades.png">
     <title>Victory</title>
 </head>
 <body>
@@ -36,7 +36,7 @@
 
     <nav id="nav" class="navbar navbar-expand">
 
-        <a href="/"><img src="../images/emblem.png"></a>
+        <a href="/"><img src="../static/images/emblem.png"></a>
 
         <ul id="menu">
             <li><a href="/catalog">Catalog</a></li>
@@ -80,7 +80,7 @@
                         <div class="row">
 
                             <div class="col">
-                                <label href="#" class="active" id="login-form-link">Add Address</label>
+                                <label href="#" class="active" id="login-form-link">Edit Offer</label>
                             </div>
 
                         </div>
@@ -90,38 +90,65 @@
                             <div class="col-lg-12">
 
 
-                                <form id="deck-form" method="post"
+                                <form id="offer-form" method="post"
                                       role="form" style="display: block;">
 
 
                                     <div class="form-group">
-                                        <input type="text" name="username" id="name" tabindex="1"
+                                        <input type="text" name="username" id="title" tabindex="1"
                                                class="form-control" placeholder="Title" value="">
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" name="password" id="country" tabindex="2"
-                                               class="form-control" placeholder="Country">
+                                        <input type="text" name="password" id="distributor" tabindex="2"
+                                               class="form-control" placeholder="Distributor">
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" name="password" id="city" tabindex="2"
-                                               class="form-control" placeholder="City">
+                                        <input type="number" step="0.01" name="password" id="Price" tabindex="2"
+                                               class="form-control" placeholder="Price">
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" name="password" id="street" tabindex="2"
-                                               class="form-control" placeholder="Street">
+                                        <input type="password" name="password" id="creator" tabindex="2"
+                                               class="form-control" placeholder="Creator">
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" name="password" id="telephone" tabindex="2"
-                                               class="form-control" placeholder="Telephone">
+                                        <select class="selectpicker" multiple data-live-search="true">
+                                            <option>Mustard</option>
+                                            <option>Ketchup</option>
+                                            <option>Relish</option>
+                                        </select>
                                     </div>
+                                    <div class="form-group" id="image-group">
+                                        <label for="formFile" class="custom-file-upload">
+                                            Click to upload images
+                                        </label>
+                                        <input class="form-control" type="file" id="formFile" multiple>
+                                    </div>
+
+                                    <table class="form-group" id="image-container">
+                                        <tbody>
+                                        <tr>
+                                            <td>Files Uploaded:</td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+
 
                                     <div class="form-group">
                                         <div class="col-sm-6 col-sm-offset-3" id="submit-cont">
                                             <input type="submit" name="login-submit" id="login-submit" tabindex="4"
-                                                   class="form-control btn btn-makeOffer" value="Add address">
+                                                   class="form-control btn btn-makeOffer" value="Edit Offer">
                                         </div>
                                     </div>
+
+
                                 </form>
+
                             </div>
                         </div>
                     </div>
