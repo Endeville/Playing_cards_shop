@@ -1,10 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/html">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -20,53 +17,20 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" type="text/css" href="../../css/home.css"/>
 
-    <link rel="icon" href="../../images/ace-of-spades.png">
-    <title>Victory</title>
+    <th:block th:include="~{/fragments/head.html}"/>
 
 </head>
 
 <body>
 <header>
     <nav id="nav" class="navbar navbar-expand">
-
-        <a href="/"><img src="../../images/emblem.png" alt="Victory"></a>
-
-        <ul id="menu">
-            <li><a href="/catalog">Catalog</a></li>
-            <li><a href="/search">Offers</a></li>
-            <span id="guest-nav">
-                    <li class="guest"><a href="/login">Login</a></li>
-                    <li class="guest"><a href="/register">Register</a></li>
-                </span>
-            <span id="user-nav">
-                    <li class="user"><a href="/create">Wishlist</a></li>
-                    <li id="logoutBtn" class="user"><a href="javascript:void(0)">Logout</a></li>
-            </span>
-        </ul>
-
-        <a href="#" id="menu-toggle" class="navbar-brand">&#9776</a>
+        <th:block th:include="~{/fragments/navigation.html}"/>
     </nav>
 </header>
 
-<div id="wrapper">
-    <div id="sidebar-wrapper">
-        <ul class="sidebar-nav">
-            <li><a href="#">Catalog</a></li>
-            <li><a href="#">Offers</a></li>
-            <li><a href="#">Login</a></li>
-            <li><a href="#">Register</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Wishlist</a></li>
-            <li><a href="#">Logout</a></li>
-        </ul>
-    </div>
-</div>
+<th:block th:replace="~{/fragments/sidebar.html}"/>
 
 <main>
     <section>
@@ -101,7 +65,7 @@
     </section>
 </main>
 
-<footer>&copy Victory 2022. All rights reserved.</footer>
+<th:block th:include="~{/fragments/footer.html}"/>
 
 </body>
 
