@@ -21,8 +21,8 @@ public class UserEntity extends BaseEntity{
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
-    private UserRole role;
+    @ManyToOne(optional = false)
+    private UserRoleEntity role;
 
     @ManyToMany
     @JoinTable(name = "users_wishlists")
@@ -70,11 +70,11 @@ public class UserEntity extends BaseEntity{
         return this;
     }
 
-    public UserRole getRole() {
+    public UserRoleEntity getRole() {
         return role;
     }
 
-    public UserEntity setRole(UserRole role) {
+    public UserEntity setRole(UserRoleEntity role) {
         this.role = role;
         return this;
     }
