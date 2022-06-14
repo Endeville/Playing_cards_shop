@@ -135,4 +135,13 @@ main{
     }
 }
 
+.form-control{
+    margin-bottom: 0 !important;
+}
+
+.error{
+    text-align: left;
+    color: var(--royal-red);
+}
+
 

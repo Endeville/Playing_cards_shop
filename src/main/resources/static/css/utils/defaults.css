@@ -56,3 +56,7 @@ a:focus{
 input:focus{
     outline: none;
 }
+
+.invalid-field{
+    border-color: var(--royal-red);
+}

@@ -1,5 +1,6 @@
 package bg.softuni.playing_cards_shop.web;
 
+import bg.softuni.playing_cards_shop.models.dtos.UserLoginDto;
 import bg.softuni.playing_cards_shop.models.dtos.UserRegistrationDto;
 import bg.softuni.playing_cards_shop.services.UserServiceImpl;
 import org.springframework.stereotype.Controller;
@@ -14,12 +15,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/register")
-public class RegisterController {
+@RequestMapping("/user")
+public class UserController {
 
     private final UserServiceImpl userService;
 
-    public RegisterController(UserServiceImpl userService) {
+    public UserController(UserServiceImpl userService) {
         this.userService = userService;
     }
 
@@ -28,24 +29,53 @@ public class RegisterController {
         return new UserRegistrationDto();
     }
 
-    @GetMapping
+    @GetMapping("/register")
     public String registerPage(Model model){
         model.addAttribute("form", "register");
 
         return "account";
     }
 
-    @PostMapping
+    @PostMapping("/register")
     public String register(@Valid UserRegistrationDto user,
                            BindingResult result,
                            RedirectAttributes redirectAttributes){
         if(result.hasErrors()){
             redirectAttributes.addFlashAttribute("user", user);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.user", result);
-            return "redirect:/register";
+            return "redirect:/user/register";
         }
 
-        userService.register(user);
+        this.userService.register(user);
+
+        return "redirect:/catalog";
+    }
+
+    @GetMapping("/login")
+    public String login(Model model){
+        model.addAttribute("form", "login");
+
+        return "account";
+    }
+
+    @PostMapping("/login")
+    public String login(@Valid UserLoginDto user,
+                        BindingResult result,
+                        RedirectAttributes redirectAttributes){
+        if(result.hasErrors() || !this.userService.login(user)){
+            redirectAttributes.addFlashAttribute("user", user);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.user", result);
+            return "redirect:/user/login";
+        }
+
+        this.userService.login(user);
+
+        return "redirect:/catalog";
+    }
+
+    @GetMapping("/logout")
+    public String logout(){
+        this.userService.logout();
 
         return "redirect:/";
     }
