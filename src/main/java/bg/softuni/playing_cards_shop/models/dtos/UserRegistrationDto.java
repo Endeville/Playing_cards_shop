@@ -1,5 +1,7 @@
 package bg.softuni.playing_cards_shop.models.dtos;
 
+import bg.softuni.playing_cards_shop.models.validations.UniqueEmail;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -7,11 +9,12 @@ import javax.validation.constraints.Size;
 public class UserRegistrationDto {
 
     @NotNull
-    @Size(min = 4, max=20)
+    @Size(min = 4, max=20, message = "The username should be between 4 and 20 characters")
     private String username;
 
-    @Email
-    @NotNull
+    @Email(message = "Invalid email")
+    @NotNull(message = "Email is mandatory")
+    @UniqueEmail
     private String email;
 
     @Size(min=6, max=30)
