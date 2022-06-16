@@ -17,9 +17,9 @@ import javax.validation.constraints.Size;
 )
 public class UserRegistrationDto {
 
-    @NotBlank(message = "Username is mandatory")
+    @NotNull(message = "")
     @Size(min = 4, max=20, message = "The username should be between 4 and 20 characters")
-    @UniqueEmail
+    @UniqueUsername
     private String username;
 
     @NotBlank(message = "Email is mandatory")
@@ -27,7 +27,7 @@ public class UserRegistrationDto {
     @UniqueEmail
     private String email;
 
-    @NotBlank(message = "Password is mandatory")
+    @NotNull(message = "")
     @Size(min=6, max=30, message = "Password must be between 6 and 30 characters")
     private String password;
 

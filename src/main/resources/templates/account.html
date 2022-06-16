@@ -94,7 +94,9 @@
                                                class="form-control" placeholder="Username"
                                                th:field="*{username}" th:errorclass="invalid-field">
                                         <div class="error">
-                                            <span th:each="err : ${#fields.errors('username')}" th:text="${err}"></span>
+                                            <span th:text="${#strings.listJoin(#fields.errors('username'), '; ')}">
+                                                The username should be between 4 and 20 characters
+                                            </span>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -102,7 +104,8 @@
                                                class="form-control" placeholder="Email Address"
                                                th:field="*{email}" th:errorclass="invalid-field">
                                         <div class="error">
-                                            <span th:each="err : ${#fields.errors('email')}" th:text="${err}">
+                                            <span th:text="${#strings.listJoin(#fields.errors('email'), '; ')}">
+
                                             </span>
                                         </div>
                                     </div>
@@ -111,7 +114,8 @@
                                                class="form-control" placeholder="Password"
                                                th:field="*{password}" th:errorclass="invalid-field">
                                         <div class="error">
-                                            <span th:each="err : ${#fields.errors('password')}" th:text="${err}">
+                                            <span th:text="${#strings.listJoin(#fields.errors('password'), '; ')}">
+                                                Password must be between 6 and 30 characters
                                             </span>
                                         </div>
                                     </div>
@@ -120,8 +124,7 @@
                                                class="form-control" placeholder="Confirm Password"
                                                th:field="*{rePass}" th:errorclass="invalid-field">
                                         <div class="error">
-                                            <span th:each="err : ${#fields.errors('rePass')}" th:text="${err}">
-                                            </span>
+                                            <span th:text="${#strings.listJoin(#fields.errors('rePass'), '; ')}"></span>
                                         </div>
                                     </div>
                                     <div class="form-group">
