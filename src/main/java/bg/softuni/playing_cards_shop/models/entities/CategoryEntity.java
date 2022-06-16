@@ -1,17 +1,17 @@
 package bg.softuni.playing_cards_shop.models.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import bg.softuni.playing_cards_shop.models.entities.enums.DeckCategory;
+
+import javax.persistence.*;
 import java.util.Set;
 
 @Entity
 @Table(name = "categories")
 public class CategoryEntity extends BaseEntity{
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false, unique = true)
-    private String category;
+    private DeckCategory category;
 
     @ManyToMany(mappedBy = "categories")
     private Set<DeckEntity> decks;
@@ -19,11 +19,11 @@ public class CategoryEntity extends BaseEntity{
     public CategoryEntity() {
     }
 
-    public String getCategory() {
+    public DeckCategory getCategory() {
         return category;
     }
 
-    public CategoryEntity setCategory(String category) {
+    public CategoryEntity setCategory(DeckCategory category) {
         this.category = category;
         return this;
     }

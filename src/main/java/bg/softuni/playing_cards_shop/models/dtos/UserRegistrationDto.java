@@ -1,25 +1,33 @@
 package bg.softuni.playing_cards_shop.models.dtos;
 
+import bg.softuni.playing_cards_shop.models.validations.FieldsMatch;
 import bg.softuni.playing_cards_shop.models.validations.UniqueEmail;
+import bg.softuni.playing_cards_shop.models.validations.UniqueUsername;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+
+@FieldsMatch(
+        first = "password",
+        second="rePass",
+        message = "Passwords should match"
+)
 public class UserRegistrationDto {
 
-    @NotNull
+    @NotBlank(message = "Username is mandatory")
     @Size(min = 4, max=20, message = "The username should be between 4 and 20 characters")
+    @UniqueEmail
     private String username;
 
-    @UniqueEmail
-    @Email(message = "Invalid email")
     @NotBlank(message = "Email is mandatory")
+    @Email(message = "Invalid email")
+    @UniqueEmail
     private String email;
 
-
-    @NotNull
+    @NotBlank(message = "Password is mandatory")
     @Size(min=6, max=30, message = "Password must be between 6 and 30 characters")
     private String password;
 

@@ -68,6 +68,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public boolean usernameExists(String username) {
+        return userRepository.existsByUsername(username);
+    }
+
+    @Override
     public void login(UserEntity user) {
         currentUser.login(modelMapper.map(user, CurrentUser.class));
     }

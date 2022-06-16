@@ -7,12 +7,16 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Target(ElementType.FIELD)
+@Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = UniqueEmailValidator.class)
-public @interface UniqueEmail {
+@Constraint(validatedBy = FieldsMatchValidator.class)
+public @interface FieldsMatch {
 
-    String message() default "User with this email already exists";
+    String first();
+
+    String second();
+
+    String message() default "Fields must match";
 
     Class<?>[] groups() default {};
 

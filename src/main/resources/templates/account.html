@@ -94,8 +94,7 @@
                                                class="form-control" placeholder="Username"
                                                th:field="*{username}" th:errorclass="invalid-field">
                                         <div class="error">
-                                            <span th:each="err : ${#fields.errors('username')}" th:text="${err}">
-                                            </span>
+                                            <span th:each="err : ${#fields.errors('username')}" th:text="${err}"></span>
                                         </div>
                                     </div>
                                     <div class="form-group">
