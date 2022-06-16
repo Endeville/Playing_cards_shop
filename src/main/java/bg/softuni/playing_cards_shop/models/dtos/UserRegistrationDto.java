@@ -1,8 +1,8 @@
 package bg.softuni.playing_cards_shop.models.dtos;
 
 import bg.softuni.playing_cards_shop.models.validations.FieldsMatch;
-import bg.softuni.playing_cards_shop.models.validations.UniqueEmail;
-import bg.softuni.playing_cards_shop.models.validations.UniqueUsername;
+import bg.softuni.playing_cards_shop.models.validations.UniqueField;
+import bg.softuni.playing_cards_shop.models.validations.enums.FieldType;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -19,12 +19,12 @@ public class UserRegistrationDto {
 
     @NotNull(message = "")
     @Size(min = 4, max=20, message = "The username should be between 4 and 20 characters")
-    @UniqueUsername
+    @UniqueField(fieldType = FieldType.USERNAME)
     private String username;
 
     @NotBlank(message = "Email is mandatory")
     @Email(message = "Invalid email")
-    @UniqueEmail
+    @UniqueField(fieldType = FieldType.EMAIL)
     private String email;
 
     @NotNull(message = "")
