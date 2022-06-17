@@ -58,5 +58,11 @@ input:focus{
 }
 
 .invalid-field{
-    border-color: var(--royal-red);
+    border-color: var(--royal-red) !important;
+}
+
+
+.error{
+    text-align: left !important;
+    color: var(--royal-red) !important;
 }
