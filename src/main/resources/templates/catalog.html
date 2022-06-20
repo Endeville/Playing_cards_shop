@@ -95,7 +95,7 @@
                         <div class="card mb-4 box-shadow productCard">
                             <img class="card-img-top"
                                  alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;"
-                                 th:src="@{*{picture.getUrl()}}"
+                                 th:if="*{pictures.size()>0}" th:src="@{*{pictures[0]}}"
                             >
                             <div class="card-body">
                                 <p class="card-text" th:text="*{title}"></p>

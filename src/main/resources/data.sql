@@ -21,6 +21,6 @@ VALUES ('High Victorian Green', 'USA', 'somethign idk', true, 1, 1),
        ('Monarchs Navy Blue', 'USA', 'monarchs ofc', true, 2, 1);
 
 INSERT INTO pictures(url, deck_id)
-VALUES ('resources/static/images/high_victorian_green.jpg', 1),
-       ('resources/static/images/monarchs1_1024x1024.webp', 2);
+VALUES ('/images/high_victorian_green.jpg', 1),
+       ('/images/monarchs1_1024x1024.webp', 2);
 
