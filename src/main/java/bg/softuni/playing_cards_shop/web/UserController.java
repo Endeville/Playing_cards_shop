@@ -62,13 +62,20 @@ public class UserController {
     public String login(@Valid UserLoginDto user,
                         BindingResult result,
                         RedirectAttributes redirectAttributes){
-        if(result.hasErrors() || !this.userService.login(user)){
+        if (result.hasErrors()) {
             redirectAttributes.addFlashAttribute("user", user);
-            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.user", result);
+            redirectAttributes.addFlashAttribute(
+                    "org.springframework.validation.BindingResult.user", result);
+
             return "redirect:/user/login";
         }
 
-        this.userService.login(user);
+        if (!this.userService.login(user)) {
+            redirectAttributes.addFlashAttribute("user", user);
+            redirectAttributes.addFlashAttribute("badCredentials", true);
+
+            return "redirect:/user/login";
+        }
 
         return "redirect:/catalog";
     }

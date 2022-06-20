@@ -3,15 +3,15 @@
 
     <ul id="menu">
         <li><a th:href="@{/catalog}">Catalog</a></li>
-        <li><a th:href="@{/search}">Offers</a></li>
-        <span id="guest-nav">
+        <span id="guest-nav" th:unless="${@currentUser.isLoggedIn()}">
                     <li class="guest"><a th:href="@{/user/login}">Login</a></li>
                     <li class="guest"><a th:href="@{/user/register}">Register</a></li>
                 </span>
-        <span id="user-nav">
+        <span id="user-nav" th:if="${@currentUser.isLoggedIn()}">
+                    <li class="user"><a th:href="@{/search}">Offers</a></li>
                     <li class="user"><a th:href="@{/create}">Wishlist</a></li>
                     <li id="logoutBtn" class="user"><a th:href="@{/user/logout}">Logout</a></li>
-            </span>
+        </span>
     </ul>
 
     <a href="javascript:void(0)" id="menu-toggle" class="navbar-brand">&#9776</a>

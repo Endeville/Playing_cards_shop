@@ -71,6 +71,10 @@
                                             <span th:text="${#strings.listJoin(#fields.errors('password'), '; ')}">
 
                                             </span>
+
+                                            <span th:if="${badCredentials}">
+                                                Could not find user with the given credentials
+                                            </span>
                                         </div>
                                     </div>
                                     <div class="form-group text-center">

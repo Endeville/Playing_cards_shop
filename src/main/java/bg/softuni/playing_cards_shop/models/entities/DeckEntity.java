@@ -1,8 +1,6 @@
 package bg.softuni.playing_cards_shop.models.entities;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
-import java.nio.file.Path;
 import java.util.Set;
 
 @Entity
@@ -14,6 +12,9 @@ public class DeckEntity extends BaseEntity{
 
     @Column(columnDefinition = "TEXT")
     private String description;
+
+    @Column(nullable = false, name = "accessible")
+    private boolean accessible;
 
     @OneToMany
     @JoinColumn(name="deck_id")
@@ -53,6 +54,15 @@ public class DeckEntity extends BaseEntity{
 
     public DeckEntity setDescription(String description) {
         this.description = description;
+        return this;
+    }
+
+    public Boolean getAccessible() {
+        return accessible;
+    }
+
+    public DeckEntity setAccessible(Boolean accepted) {
+        this.accessible = accepted;
         return this;
     }
 
