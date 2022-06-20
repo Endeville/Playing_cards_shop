@@ -21,8 +21,8 @@ public class DeckServiceImpl implements DeckService {
     }
 
     @Override
-    public Set<CatalogDeckDto> getAccessibleDecks() {
-        return deckRepository.getDeckEntityByAccessible(true).stream()
+    public Set<CatalogDeckDto> getApprovedDecks() {
+        return deckRepository.getDeckEntityByApproved(true).stream()
                 .map(e->modelMapper.map(e, CatalogDeckDto.class))
                 .collect(Collectors.toSet());
     }

@@ -1,12 +1,23 @@
 package bg.softuni.playing_cards_shop.models.dtos;
 
+import java.util.List;
 import java.util.Set;
 
 public class CatalogDeckDto {
+    private Long id;
     private String title;
     private Set<PictureDto> pictures;
 
     public CatalogDeckDto() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public CatalogDeckDto setId(Long id) {
+        this.id = id;
+        return this;
     }
 
     public String getTitle() {

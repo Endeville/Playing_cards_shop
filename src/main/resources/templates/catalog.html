@@ -88,26 +88,25 @@
     <div class="album py-5 bg-light" id="catalogCont">
         <div class="container">
 
-            <div class="row" th:each="deck : ${decks}" th:object="${deck}">
+            <div class="row">
 
-                <a href="home.html" class="card-link-wrap">
+                <a href="home.html" class="card-link-wrap" th:each="deck : ${decks}" th:object="${deck}">
                     <div class="col-md-4">
                         <div class="card mb-4 box-shadow productCard">
                             <img class="card-img-top"
-                                 data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail"
                                  alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;"
-                                 th:src="${deck.getPictures()[0]}"
-                                 data-holder-rendered="true">
+                                 th:src="@{*{picture.getUrl()}}"
+                            >
                             <div class="card-body">
-                                <p class="card-text" th:text="${deck.getTitle()}"></p>
+                                <p class="card-text" th:text="*{title}"></p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
                                         <a type="button"
-                                           class="btn btn-sm btn-outline-secondary cardBtn detailsBtn stretched-link">View</a>
+                                           class="btn btn-sm btn-outline-secondary cardBtn detailsBtn stretched-link" th:href="@{/catalog/deck/{deckId} (deckId=*{id})}">View</a>
                                         <a type="button"
-                                           class="btn btn-sm btn-outline-secondary cardBtn editBtn">Edit</a>
+                                           class="btn btn-sm btn-outline-secondary cardBtn editBtn" th:href="@{/catalog/deck/edit/{deckId} (deckId=*{id})}">Edit</a>
                                         <a type="button"
-                                           class="btn btn-sm btn-outline-secondary cardBtn deleteBtn">Delete</a>
+                                           class="btn btn-sm btn-outline-secondary cardBtn deleteBtn" th:href="@{/catalog/deck/delete/{deckId} (deckId=*{id})}">Delete</a>
                                     </div>
                                 </div>
                             </div>
@@ -123,8 +122,8 @@
 
 </body>
 
-<script src="../../js/backToTop.js"></script>
-<script src="../../js/searchbar.js"></script>
-<script src="../../js/sidebar.js"></script>
+<script th:src="@{/js/backToTop.js}"></script>
+<script th:src="@{/js/searchbar.js}"></script>
+<script th:src="@{/js/sidebar.js}"></script>
 
 </html>

@@ -13,8 +13,8 @@ public class DeckEntity extends BaseEntity{
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    @Column(nullable = false, name = "accessible")
-    private boolean accessible;
+    @Column(nullable=false, columnDefinition = "BOOLEAN DEFAULT FALSE")
+    private boolean approved;
 
     @OneToMany
     @JoinColumn(name="deck_id")
@@ -57,12 +57,12 @@ public class DeckEntity extends BaseEntity{
         return this;
     }
 
-    public Boolean getAccessible() {
-        return accessible;
+    public boolean getApproved() {
+        return approved;
     }
 
-    public DeckEntity setAccessible(Boolean accepted) {
-        this.accessible = accepted;
+    public DeckEntity setApproved(boolean accepted) {
+        this.approved = accepted;
         return this;
     }
 

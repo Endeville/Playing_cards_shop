@@ -19,7 +19,7 @@ public class DeckController {
 
     @GetMapping
     public String catalog(Model model){
-        model.addAttribute("decks",deckService.getAccessibleDecks());
+        model.addAttribute("decks",deckService.getApprovedDecks());
 
         return "catalog";
     }

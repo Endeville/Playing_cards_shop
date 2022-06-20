@@ -8,5 +8,5 @@ import java.util.Set;
 
 @Repository
 public interface DeckRepository extends JpaRepository<DeckEntity, Long> {
-    Set<DeckEntity> getDeckEntityByAccessible(Boolean accessible);
+    Set<DeckEntity> getDeckEntityByApproved(boolean approved);
 }
