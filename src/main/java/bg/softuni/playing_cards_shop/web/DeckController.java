@@ -4,6 +4,7 @@ import bg.softuni.playing_cards_shop.services.interfaces.DeckService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -14,6 +15,11 @@ public class DeckController {
 
     public DeckController(DeckService deckService) {
         this.deckService = deckService;
+    }
+
+    @ModelAttribute("search")
+    public String search(){
+        return "/decks";
     }
 
 

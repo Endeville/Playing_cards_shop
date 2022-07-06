@@ -6,6 +6,7 @@ import bg.softuni.playing_cards_shop.services.interfaces.DeckService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -21,9 +22,9 @@ public class DeckServiceImpl implements DeckService {
     }
 
     @Override
-    public Set<CatalogDeckDto> getApprovedDecks() {
+    public List<CatalogDeckDto> getApprovedDecks() {
         return deckRepository.getDeckEntityByApproved(true).stream()
                 .map(e->modelMapper.map(e, CatalogDeckDto.class))
-                .collect(Collectors.toSet());
+                .collect(Collectors.toList());
     }
 }

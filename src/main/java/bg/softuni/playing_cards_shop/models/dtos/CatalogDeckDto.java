@@ -1,6 +1,5 @@
 package bg.softuni.playing_cards_shop.models.dtos;
 
-import java.util.List;
 import java.util.Set;
 
 public class CatalogDeckDto {

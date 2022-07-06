@@ -3,6 +3,7 @@ package bg.softuni.playing_cards_shop.web;
 import bg.softuni.playing_cards_shop.models.dtos.UserLoginDto;
 import bg.softuni.playing_cards_shop.models.dtos.UserRegistrationDto;
 import bg.softuni.playing_cards_shop.services.UserServiceImpl;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,7 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/users")
 public class UserController {
 
     private final UserServiceImpl userService;
@@ -48,7 +49,7 @@ public class UserController {
 
         this.userService.register(user);
 
-        return "redirect:/catalog";
+        return "redirect:/decks/all";
     }
 
     @GetMapping("/login")
@@ -67,17 +68,29 @@ public class UserController {
             redirectAttributes.addFlashAttribute(
                     "org.springframework.validation.BindingResult.user", result);
 
-            return "redirect:/user/login";
+            return "redirect:/users/login";
         }
 
         if (!this.userService.login(user)) {
             redirectAttributes.addFlashAttribute("user", user);
             redirectAttributes.addFlashAttribute("badCredentials", true);
 
-            return "redirect:/user/login";
+            return "redirect:/users/login";
         }
 
-        return "redirect:/catalog";
+        return "redirect:/decks/all";
+    }
+
+    @PostMapping("/login-error")
+    public String failedLogin(@ModelAttribute(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY)
+                              String username,
+                              RedirectAttributes attributes){
+        attributes
+                .addFlashAttribute("badCredentials", true)
+                .addFlashAttribute("username", username);
+
+        return "redirect:/users/login";
+
     }
 
     @GetMapping("/logout")
