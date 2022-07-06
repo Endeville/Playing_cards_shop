@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/catalog")
+@RequestMapping("/decks")
 public class DeckController {
 
     private final DeckService deckService;
@@ -17,7 +17,7 @@ public class DeckController {
     }
 
 
-    @GetMapping
+    @GetMapping("/all")
     public String catalog(Model model){
         model.addAttribute("decks",deckService.getApprovedDecks());
 
