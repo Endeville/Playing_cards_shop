@@ -9,8 +9,13 @@
                 </span>
         <span id="user-nav" sec:authorize="isAuthenticated()">
                     <li class="user"><a th:href="@{/offers}">Offers</a></li>
-                    <li class="user"><a th:href="@{/users/{username}/wishlist (username=#authentication.getPrincipal().getUser().getUsername())}">Wishlist</a></li>
-                    <li id="logoutBtn" class="user"><a th:href="@{/user/logout}">Logout</a></li>
+                    <li class="user"><a th:href="@{/wishlist}">Wishlist</a></li>
+                    <li id="logoutBtn" class="user">
+                        <form th:action="@{/users/logout}"
+                              th:method="POST">
+                                <input type="submit" value="Logout">
+                        </form>
+                    </li>
         </span>
     </ul>
 

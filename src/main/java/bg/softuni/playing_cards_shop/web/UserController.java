@@ -44,7 +44,7 @@ public class UserController {
         if(result.hasErrors()){
             redirectAttributes.addFlashAttribute("user", user);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.user", result);
-            return "redirect:/user/register";
+            return "redirect:/users/register";
         }
 
         this.userService.register(user);
@@ -59,27 +59,27 @@ public class UserController {
         return "account";
     }
 
-    @PostMapping("/login")
-    public String login(@Valid UserLoginDto user,
-                        BindingResult result,
-                        RedirectAttributes redirectAttributes){
-        if (result.hasErrors()) {
-            redirectAttributes.addFlashAttribute("user", user);
-            redirectAttributes.addFlashAttribute(
-                    "org.springframework.validation.BindingResult.user", result);
-
-            return "redirect:/users/login";
-        }
-
-        if (!this.userService.login(user)) {
-            redirectAttributes.addFlashAttribute("user", user);
-            redirectAttributes.addFlashAttribute("badCredentials", true);
-
-            return "redirect:/users/login";
-        }
-
-        return "redirect:/decks/all";
-    }
+//    @PostMapping("/login")
+//    public String login(@Valid UserLoginDto user,
+//                        BindingResult result,
+//                        RedirectAttributes redirectAttributes){
+//        if (result.hasErrors()) {
+//            redirectAttributes.addFlashAttribute("user", user);
+//            redirectAttributes.addFlashAttribute(
+//                    "org.springframework.validation.BindingResult.user", result);
+//
+//            return "redirect:/users/login";
+//        }
+//
+//        if (!this.userService.login(user)) {
+//            redirectAttributes.addFlashAttribute("user", user);
+//            redirectAttributes.addFlashAttribute("badCredentials", true);
+//
+//            return "redirect:/users/login";
+//        }
+//
+//        return "redirect:/decks/all";
+//    }
 
     @PostMapping("/login-error")
     public String failedLogin(@ModelAttribute(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY)
@@ -87,16 +87,9 @@ public class UserController {
                               RedirectAttributes attributes){
         attributes
                 .addFlashAttribute("badCredentials", true)
-                .addFlashAttribute("username", username);
+                .addFlashAttribute(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY, username);
 
         return "redirect:/users/login";
 
-    }
-
-    @GetMapping("/logout")
-    public String logout(){
-        this.userService.logout();
-
-        return "redirect:/";
     }
 }

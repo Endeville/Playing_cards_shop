@@ -21,14 +21,32 @@
     z-index: -1;
 }
 
+#nav form{
+    text-align: left;
+    display: inline-block;
+}
+
 @media (max-height: 400px) {
     #nav{
         position: fixed;
     }
 }
 
-#nav>ul a {
+#nav>ul a{
     text-decoration: none;
+    color: var(--grey);
+    font-size: 20px;
+    font-weight: bolder;
+    position: relative;
+    margin: 18px;
+    padding: 4px 4px 5px 4px;
+    border: 2px solid transparent;
+}
+
+#nav>ul input[type='submit'] {
+    text-decoration: none !important;
+    -webkit-appearance: none !important;
+    background-color: transparent;
     color: var(--grey);
     font-size: 20px;
     font-weight: bolder;
@@ -43,6 +61,14 @@
 }
 
 #nav a:hover {
+    cursor: pointer;
+    color: var(--light-gold);
+    font-weight: bolder;
+    border: 2px solid var(--light-gold);
+    border-radius: 5px;
+}
+
+#nav input[type='submit']:hover {
     cursor: pointer;
     color: var(--light-gold);
     font-weight: bolder;

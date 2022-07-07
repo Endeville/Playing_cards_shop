@@ -8,13 +8,13 @@ public interface UserService{
 
     void register(UserRegistrationDto user);
 
-    void login(UserEntity user);
+//    void login(UserEntity user);
 
     boolean emailExists(String email);
 
-    boolean login(UserLoginDto userLoginDto);
+//    boolean login(UserLoginDto userLoginDto);
 
-    void logout();
+//    void logout();
 
     boolean usernameExists(String username);
 }

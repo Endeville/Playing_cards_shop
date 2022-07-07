@@ -54,26 +54,17 @@
 
 
                                 <form id="login-form" th:action="@{/users/login}" th:method="POST"
-                                      role="form" th:if="${form}=='login'" th:object="${user}">
+                                      role="form" th:if="${form}=='login'">
                                     <div class="form-group">
                                         <input type="text" name="username" id="log_username" tabindex="1"
                                                class="form-control" placeholder="Username"
-                                                th:field="*{username}" th:errorclass="invalid-field">
-                                        <div class="error">
-                                            <span th:text="${#strings.listJoin(#fields.errors('username'), '; ')}">
-
-                                            </span>
-                                        </div>
+                                                th:value="${username}">
                                     </div>
                                     <div class="form-group">
                                         <input type="password" name="password" id="log_password" tabindex="2"
-                                               class="form-control" placeholder="Password"
-                                                th:field="*{password}" th:errorclass="invalid-field">
+                                               class="form-control" placeholder="Password">
+
                                         <div class="error">
-                                            <span th:text="${#strings.listJoin(#fields.errors('password'), '; ')}">
-
-                                            </span>
-
                                             <span th:if="${badCredentials}">
                                                 Could not find user with the given credentials
                                             </span>
