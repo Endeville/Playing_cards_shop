@@ -21,6 +21,9 @@ public class UserEntity extends BaseEntity{
     @Column(nullable = false)
     private String password;
 
+    @Column
+    private byte rating;
+
     @ManyToOne(optional = false)
     private UserRoleEntity role;
 
@@ -30,6 +33,12 @@ public class UserEntity extends BaseEntity{
 
     @OneToMany(mappedBy = "seller")
     private Set<OfferEntity> offers;
+
+    @OneToMany(mappedBy = "creator")
+    private Set<ReviewEntity> reviews;
+
+    @OneToMany
+    private Set<NotificationEntity> notifications;
 
     public UserEntity() {
     }
@@ -94,6 +103,33 @@ public class UserEntity extends BaseEntity{
 
     public UserEntity setOffers(Set<OfferEntity> offers) {
         this.offers = offers;
+        return this;
+    }
+
+    public byte getRating() {
+        return rating;
+    }
+
+    public UserEntity setRating(byte rating) {
+        this.rating = rating;
+        return this;
+    }
+
+    public Set<ReviewEntity> getReviews() {
+        return reviews;
+    }
+
+    public UserEntity setReviews(Set<ReviewEntity> reviews) {
+        this.reviews = reviews;
+        return this;
+    }
+
+    public Set<NotificationEntity> getNotifications() {
+        return notifications;
+    }
+
+    public UserEntity setNotifications(Set<NotificationEntity> notifications) {
+        this.notifications = notifications;
         return this;
     }
 }

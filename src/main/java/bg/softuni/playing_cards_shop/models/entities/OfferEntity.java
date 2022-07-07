@@ -24,6 +24,9 @@ public class OfferEntity extends BaseEntity{
     @JoinColumn(name = "offer_id")
     private Set<PictureEntity> additionalPictures;
 
+    @OneToMany
+    private Set<ReviewEntity> reviews;
+
     public OfferEntity() {
     }
 
@@ -69,6 +72,15 @@ public class OfferEntity extends BaseEntity{
 
     public OfferEntity setAdditionalPictures(Set<PictureEntity> additionalPictures) {
         this.additionalPictures = additionalPictures;
+        return this;
+    }
+
+    public Set<ReviewEntity> getReviews() {
+        return reviews;
+    }
+
+    public OfferEntity setReviews(Set<ReviewEntity> reviews) {
+        this.reviews = reviews;
         return this;
     }
 }
