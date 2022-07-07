@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
@@ -22,53 +22,20 @@
 
     <script src="https://kit.fontawesome.com/b18db754f0.js" crossorigin="anonymous"></script>
 
-    <script src="../static/js/sidebar.js" type="module"></script>
+    <script src="../../js/sidebar.js" type="module"></script>
+    <link rel="stylesheet" href="../../css/details.css"/>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="../static/css/details.css"/>
-
-    <title>Victory</title>
+    <th:block th:replace="~{/fragments/head.html}"></th:block>
 </head>
 <body>
 
 <header>
     <nav id="nav" class="navbar navbar-expand">
-
-        <a href="/"><img src="../static/images/emblem.png"></a>
-
-        <ul id="menu">
-            <li><a href="/catalog">Catalog</a></li>
-            <li><a href="/search">Offers</a></li>
-            <span id="guest-nav">
-                    <li class="guest"><a href="/login">Login</a></li>
-                    <li class="guest"><a href="/register">Register</a></li>
-                </span>
-            <span id="user-nav">
-                    <li class="user"><a href="/create">Wishlist</a></li>
-                    <li id="logoutBtn" class="user"><a href="javascript:void(0)">Logout</a></li>
-            </span>
-        </ul>
-
-        <a href="#" id="menu-toggle" class="navbar-brand">&#9776</a>
+        <th:block th:replace="~{/fragments/navigation.html}"></th:block>
     </nav>
 </header>
 
-<div id="wrapper">
-    <div id="sidebar-wrapper">
-        <ul class="sidebar-nav">
-            <li><a href="#">Catalog</a></li>
-            <li><a href="#">Offers</a></li>
-            <li><a href="#">Login</a></li>
-            <li><a href="#">Register</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Wishlist</a></li>
-            <li><a href="#">Logout</a></li>
-        </ul>
-    </div>
-</div>
+<th:block th:replace="~{/fragments/sidebar.html}"></th:block>
 
 <main>
 

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -28,5 +29,16 @@ public class DeckController {
         model.addAttribute("decks",deckService.getApprovedDecks());
 
         return "catalog";
+    }
+
+    @GetMapping("/{id}")
+    public String deckDetails(@PathVariable(name = "id") String stringId, Model model){
+        var id=Long.parseLong(stringId);
+        var deckDto=this.deckService.findDeckDetailsById(id);
+
+        model.addAttribute("deck",deckDto);
+        model.addAttribute("recommendedPrice", this.deckService.getRecommendedPriceForDeckWithId(id));
+
+        return "deckDetails";
     }
 }

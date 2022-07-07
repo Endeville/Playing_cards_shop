@@ -108,14 +108,14 @@
                                     <div class="btn-group">
                                         <a type="button"
                                            class="btn btn-sm btn-outline-secondary cardBtn detailsBtn stretched-link"
-                                           th:href="@{/catalog/deck/{deckId} (deckId=*{id})}">View</a>
+                                           th:href="@{/decks/{deckId} (deckId=*{id})}">View</a>
                                         <span sec:authorize="hasRole('ADMIN')">
                                             <a type="button"
                                                class="btn btn-sm btn-outline-secondary cardBtn editBtn"
-                                               th:href="@{/catalog/deck/edit/{deckId} (deckId=*{id})}">Edit</a>
+                                               th:href="@{/decks/edit/{deckId} (deckId=*{id})}">Edit</a>
                                             <a type="button"
                                                class="btn btn-sm btn-outline-secondary cardBtn deleteBtn"
-                                               th:href="@{/catalog/deck/delete/{deckId} (deckId=*{id})}">Delete</a>
+                                               th:href="@{/decks/delete/{deckId} (deckId=*{id})}">Delete</a>
                                         </span>
                                     </div>
                                 </div>

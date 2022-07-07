@@ -43,7 +43,7 @@ public class ApplicationSecurityConfiguration {
                     .usernameParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY)
                     .passwordParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_PASSWORD_KEY)
                     .defaultSuccessUrl("/decks/all")
-                    .failureForwardUrl("/users/login-error")
+                    .failureForwardUrl("/users/login-error?error=true")
                 .and()
                 .logout()
                     .logoutUrl("/users/logout")

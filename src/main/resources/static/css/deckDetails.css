@@ -55,6 +55,10 @@ body{
     color: #728299!important;
 }
 
+.table a:hover{
+    color: var(--dark-blue);
+}
+
 @media (max-width: 100px) {
     .image-cont{
         display: block;

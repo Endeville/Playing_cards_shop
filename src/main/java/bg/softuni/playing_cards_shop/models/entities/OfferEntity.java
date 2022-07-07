@@ -1,5 +1,7 @@
 package bg.softuni.playing_cards_shop.models.entities;
 
+import bg.softuni.playing_cards_shop.models.entities.enums.OfferStatus;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Set;
@@ -19,6 +21,10 @@ public class OfferEntity extends BaseEntity{
 
     @Column(nullable = false)
     private Integer quantity;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private OfferStatus status;
 
     @OneToMany
     @JoinColumn(name = "offer_id")
@@ -81,6 +87,15 @@ public class OfferEntity extends BaseEntity{
 
     public OfferEntity setReviews(Set<ReviewEntity> reviews) {
         this.reviews = reviews;
+        return this;
+    }
+
+    public OfferStatus getStatus() {
+        return status;
+    }
+
+    public OfferEntity setStatus(OfferStatus status) {
+        this.status = status;
         return this;
     }
 }

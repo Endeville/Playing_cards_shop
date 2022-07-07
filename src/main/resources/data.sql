@@ -3,6 +3,16 @@ VALUES (1, 'ADMIN'),
        (2, 'MODERATOR'),
        (3, 'CLIENT');
 
+INSERT INTO categories(id, category)
+VALUES (1,'STANDARD'),
+    (2, 'GAME'),
+    (3, 'MAGIC'),
+    (4, 'CARDISTRY'),
+    (5, 'VINTAGE'),
+    (6, 'POKER'),
+    (7, 'GAFFED'),
+    (8, 'MARKED');
+
 INSERT INTO users(id, username, email, password, rating, role_id)
 VALUES (1, 'Endeville', 'victor.popdonchev@gmail.com', '9f6095cc9b392438eb577c67382a951ae945df94ab649e268f1fc2b527c678daebf5609944280cf8', 5, 3),
        (2, 'Vipop', 'xvipop@gmail.com', '9f6095cc9b392438eb577c67382a951ae945df94ab649e268f1fc2b527c678daebf5609944280cf8', 5, 1);
@@ -24,7 +34,18 @@ INSERT INTO decks (title, country_of_origin, description, approved, creator_id, 
 VALUES ('High Victorian Green', 'USA', 'somethign idk', true, 1, 1),
        ('Monarchs Navy Blue', 'USA', 'monarchs ofc', true, 2, 1);
 
+INSERT INTO decks_categories(decks_id, categories_id)
+VALUES (1, 2),
+       (1, 1),
+       (2, 1),
+       (2, 2),
+       (2, 3);
+
 INSERT INTO pictures(url, deck_id)
 VALUES ('/images/high_victorian_green.jpg', 1),
        ('/images/monarchs1_1024x1024.webp', 2);
+
+INSERT INTO offers(id, price, quantity, status, deck_id, seller_id)
+VALUES (1, 20, 4, 'APPROVED', 1, 1),
+        (2, 5, 2, 'LIMITED', 1 ,1 );
 
