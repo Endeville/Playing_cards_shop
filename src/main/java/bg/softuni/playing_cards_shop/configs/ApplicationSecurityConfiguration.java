@@ -33,9 +33,10 @@ public class ApplicationSecurityConfiguration {
         return httpSecurity
                 .authorizeRequests()
                     .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                    .antMatchers("/", "/users/login", "/users/register", "/about").permitAll()
+                    .antMatchers("/", "/users/login", "/users/register").permitAll()
+                    .antMatchers("/decks/*").hasAnyRole(UserRole.MODERATOR.name(), UserRole.ADMIN.name(), UserRole.CLIENT.name())
                     .antMatchers("/moderators/**").hasAnyRole(UserRole.MODERATOR.name(), UserRole.ADMIN.name())
-                    .antMatchers("/admins/**").hasRole(UserRole.ADMIN.name())
+                    .antMatchers("/admins/**", "/decks/edit/**", "/decks/delete/**").hasRole(UserRole.ADMIN.name())
                 .and()
                 .formLogin()
                     .loginPage("/users/login")

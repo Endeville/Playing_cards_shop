@@ -6,10 +6,8 @@ import bg.softuni.playing_cards_shop.models.entities.enums.UserRole;
 import bg.softuni.playing_cards_shop.repositories.UserRepository;
 import bg.softuni.playing_cards_shop.services.interfaces.UserRoleService;
 import bg.softuni.playing_cards_shop.services.interfaces.UserService;
-import bg.softuni.playing_cards_shop.services.security.AppUserDetailsService;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -23,7 +21,6 @@ public class UserServiceImpl implements UserService {
     private final PasswordEncoder passwordEncoder;
     private final UserRoleService userRoleService;
     private final UserDetailsService appUserDetailsService;
-//    private final CurrentUser currentUser;
 
     public UserServiceImpl(UserRepository userRepository, ModelMapper modelMapper,
                            PasswordEncoder passwordEncoder, UserRoleService userRoleService,
@@ -32,7 +29,6 @@ public class UserServiceImpl implements UserService {
         this.modelMapper = modelMapper;
         this.passwordEncoder = passwordEncoder;
         this.userRoleService = userRoleService;
-//        this.currentUser = currentUser;
         this.appUserDetailsService = appUserDetailsService;
     }
 
@@ -55,39 +51,11 @@ public class UserServiceImpl implements UserService {
                 .setAuthentication(auth);
     }
 
-//    @Override
-//    public boolean login(UserLoginDto userLoginDto) {
-//        Optional<UserEntity> user=this.userRepository.findUserEntityByUsername(userLoginDto.getUsername());
-//
-//        if(user.isEmpty()){
-//            return false;
-//        }
-//
-//        var success=this.passwordEncoder.matches(userLoginDto.getPassword(), user.get().getPassword());
-//
-//        if(success){
-//            login(user.get());
-//        }else{
-//            this.logout();
-//        }
-//
-//        return success;
-//    }
-
-//    @Override
-//    public void logout() {
-//        this.currentUser.logout();
-//    }
-
     @Override
     public boolean usernameExists(String username) {
         return userRepository.existsByUsername(username);
     }
 
-//    @Override
-//    public void login(UserEntity user) {
-//        currentUser.login(modelMapper.map(user, CurrentUser.class));
-//    }
 
     @Override
     public boolean emailExists(String email) {

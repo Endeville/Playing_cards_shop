@@ -1,6 +1,5 @@
 package bg.softuni.playing_cards_shop.web;
 
-import bg.softuni.playing_cards_shop.models.dtos.UserLoginDto;
 import bg.softuni.playing_cards_shop.models.dtos.UserRegistrationDto;
 import bg.softuni.playing_cards_shop.services.UserServiceImpl;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -58,28 +57,6 @@ public class UserController {
 
         return "account";
     }
-
-//    @PostMapping("/login")
-//    public String login(@Valid UserLoginDto user,
-//                        BindingResult result,
-//                        RedirectAttributes redirectAttributes){
-//        if (result.hasErrors()) {
-//            redirectAttributes.addFlashAttribute("user", user);
-//            redirectAttributes.addFlashAttribute(
-//                    "org.springframework.validation.BindingResult.user", result);
-//
-//            return "redirect:/users/login";
-//        }
-//
-//        if (!this.userService.login(user)) {
-//            redirectAttributes.addFlashAttribute("user", user);
-//            redirectAttributes.addFlashAttribute("badCredentials", true);
-//
-//            return "redirect:/users/login";
-//        }
-//
-//        return "redirect:/decks/all";
-//    }
 
     @PostMapping("/login-error")
     public String failedLogin(@ModelAttribute(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY)

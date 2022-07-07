@@ -6,7 +6,7 @@
         <span id="guest-nav" sec:authorize="!isAuthenticated()">
                     <li class="guest"><a th:href="@{/users/login}">Login</a></li>
                     <li class="guest"><a th:href="@{/users/register}">Register</a></li>
-                </span>
+        </span>
         <span id="user-nav" sec:authorize="isAuthenticated()">
                     <li class="user"><a th:href="@{/offers}">Offers</a></li>
                     <li class="user"><a th:href="@{/wishlist}">Wishlist</a></li>

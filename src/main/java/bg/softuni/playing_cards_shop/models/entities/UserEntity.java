@@ -22,7 +22,7 @@ public class UserEntity extends BaseEntity{
     private String password;
 
     @Column
-    private byte rating;
+    private int rating;
 
     @ManyToOne(optional = false)
     private UserRoleEntity role;
@@ -106,11 +106,11 @@ public class UserEntity extends BaseEntity{
         return this;
     }
 
-    public byte getRating() {
+    public int getRating() {
         return rating;
     }
 
-    public UserEntity setRating(byte rating) {
+    public UserEntity setRating(int rating) {
         this.rating = rating;
         return this;
     }

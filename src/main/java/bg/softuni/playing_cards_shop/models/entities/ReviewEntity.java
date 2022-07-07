@@ -12,7 +12,8 @@ public class ReviewEntity extends BaseEntity {
     @Column(nullable = false)
     private String review;
 
-    private byte rating;
+    @Column(nullable = false)
+    private int rating;
 
     @ManyToOne
     private UserEntity creator;
@@ -26,11 +27,11 @@ public class ReviewEntity extends BaseEntity {
         return this;
     }
 
-    public byte getRating() {
+    public int getRating() {
         return rating;
     }
 
-    public ReviewEntity setRating(byte rating) {
+    public ReviewEntity setRating(int rating) {
         this.rating = rating;
         return this;
     }

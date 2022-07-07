@@ -3,6 +3,10 @@ VALUES (1, 'ADMIN'),
        (2, 'MODERATOR'),
        (3, 'CLIENT');
 
+INSERT INTO users(id, username, email, password, rating, role_id)
+VALUES (1, 'Endeville', 'victor.popdonchev@gmail.com', '9f6095cc9b392438eb577c67382a951ae945df94ab649e268f1fc2b527c678daebf5609944280cf8', 5, 3),
+       (2, 'Vipop', 'xvipop@gmail.com', '9f6095cc9b392438eb577c67382a951ae945df94ab649e268f1fc2b527c678daebf5609944280cf8', 5, 1);
+
 INSERT INTO creators(id, name, description)
 VALUES (1, 'Joe White', 'Self taught, Specializing in branding and packaging design.
 Has a unique and secret process. Using Flash animation and programming techniques to create illustrations, visual effects and custom lettering.
