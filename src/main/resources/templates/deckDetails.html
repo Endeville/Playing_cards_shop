@@ -45,7 +45,7 @@
                 <h3 class="card-title" th:text="*{title}"></h3>
                 <div class="row">
                     <div class="col-lg-5 col-md-5 col-sm-6 image-cont">
-                        <div class="white-box text-center"><img th:src="*{pictures[0]}" class="img-responsive"></div>
+                        <div class="white-box text-center"><img th:src="*{pictures[0].url}" class="img-responsive"></div>
                     </div>
                     <div class="col-lg-7 col-md-7 col-sm-6 description-details">
                         <h4 class="box-title mt-5">Product description</h4>
@@ -62,11 +62,11 @@
                                 </tr>
                                 <tr>
                                     <td>Distributor</td>
-                                    <td><a th:href="@{*{distributor.siteUrl}}" th:text="*{distributor.brand}"></a></td>
+                                    <td><a th:href="@{/distributor/{id} (id=*{distributor.id})}" th:text="*{distributor.brand}"></a></td>
                                 </tr>
                                 <tr>
                                     <td>Creator</td>
-                                    <td><a th:href="@{/creators/{name} (name=*{creator.name})}" th:text="*{creator.name}"></a></td>
+                                    <td><a th:href="@{/creators/{name} (name=*{creator.id})}" th:text="*{creator.id}"></a></td>
                                 </tr>
                                 <tr>
                                     <td>Recommended price</td>

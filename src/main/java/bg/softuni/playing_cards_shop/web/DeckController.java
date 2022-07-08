@@ -32,8 +32,7 @@ public class DeckController {
     }
 
     @GetMapping("/{id}")
-    public String deckDetails(@PathVariable(name = "id") String stringId, Model model){
-        var id=Long.parseLong(stringId);
+    public String deckDetails(@PathVariable(name = "id") Long id, Model model){
         var deckDto=this.deckService.findDeckDetailsById(id);
 
         model.addAttribute("deck",deckDto);
