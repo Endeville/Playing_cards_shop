@@ -3,6 +3,11 @@
 @import "utils/backToTopBtn.css";
 @import "utils/defaults.css";
 
+body{
+    font-size: 15px;
+    font-weight: bolder;
+}
+
 /*sort modal*/
 
 #exampleModalCenter{
