@@ -67,9 +67,9 @@ public class UserController {
 
     }
 
-    @GetMapping("/profile/{id}")
-    public String profile(@PathVariable(name="id") Long id, Model model){
-        var userProfile=this.userService.findUserById(id);
+    @GetMapping("/profile/{username}")
+    public String profile(@PathVariable(name="username") String username, Model model){
+        var userProfile=this.userService.findUserByUsername(username);
 
         model.addAttribute("user", userProfile);
 

@@ -11,5 +11,5 @@ public interface UserService{
 
     boolean usernameExists(String username);
 
-    UserProfileDto findUserById(Long id);
+    UserProfileDto findUserByUsername(String username);
 }

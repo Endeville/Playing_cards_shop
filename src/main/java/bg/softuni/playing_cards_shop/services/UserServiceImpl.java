@@ -61,9 +61,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserProfileDto findUserById(Long id) {
+    public UserProfileDto findUserByUsername(String username) {
         return this.modelMapper.map(
-                this.userRepository.findById(id).orElseThrow(()->new ObjectNotFoundException(OBJECT_NAME_USER)),
+                this.userRepository.findUserEntityByUsername(username).orElseThrow(()->new ObjectNotFoundException(OBJECT_NAME_USER)),
                 UserProfileDto.class);
     }
 
