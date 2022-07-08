@@ -13,7 +13,7 @@ public class ReviewEntity extends BaseEntity {
     private String review;
 
     @Column(nullable = false)
-    private int rating;
+    private short rating;
 
     @ManyToOne
     private UserEntity creator;
@@ -27,11 +27,11 @@ public class ReviewEntity extends BaseEntity {
         return this;
     }
 
-    public int getRating() {
+    public short getRating() {
         return rating;
     }
 
-    public ReviewEntity setRating(int rating) {
+    public ReviewEntity setRating(short rating) {
         this.rating = rating;
         return this;
     }

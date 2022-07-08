@@ -1,6 +1,7 @@
 package bg.softuni.playing_cards_shop.services.interfaces;
 
 import bg.softuni.playing_cards_shop.models.dtos.UserRegistrationDto;
+import bg.softuni.playing_cards_shop.models.views.UserProfileDto;
 
 public interface UserService{
 
@@ -9,4 +10,6 @@ public interface UserService{
     boolean emailExists(String email);
 
     boolean usernameExists(String username);
+
+    UserProfileDto findUserById(Long id);
 }

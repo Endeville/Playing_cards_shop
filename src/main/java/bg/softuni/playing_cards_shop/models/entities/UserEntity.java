@@ -22,7 +22,7 @@ public class UserEntity extends BaseEntity{
     private String password;
 
     @Column
-    private int rating;
+    private short rating;
 
     @ManyToOne(optional = false)
     private UserRoleEntity role;
@@ -39,6 +39,9 @@ public class UserEntity extends BaseEntity{
 
     @OneToMany
     private Set<NotificationEntity> notifications;
+
+    @OneToMany
+    private Set<AddressEntity> addresses;
 
     public UserEntity() {
     }
@@ -106,11 +109,11 @@ public class UserEntity extends BaseEntity{
         return this;
     }
 
-    public int getRating() {
+    public short getRating() {
         return rating;
     }
 
-    public UserEntity setRating(int rating) {
+    public UserEntity setRating(short rating) {
         this.rating = rating;
         return this;
     }
@@ -130,6 +133,15 @@ public class UserEntity extends BaseEntity{
 
     public UserEntity setNotifications(Set<NotificationEntity> notifications) {
         this.notifications = notifications;
+        return this;
+    }
+
+    public Set<AddressEntity> getAddresses() {
+        return addresses;
+    }
+
+    public UserEntity setAddresses(Set<AddressEntity> addresses) {
+        this.addresses = addresses;
         return this;
     }
 }

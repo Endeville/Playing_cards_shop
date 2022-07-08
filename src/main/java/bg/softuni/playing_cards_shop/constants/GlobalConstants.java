@@ -4,4 +4,5 @@ public class GlobalConstants {
 
     public static final String OBJECT_NAME_DECK="deck";
     public static final String OBJECT_NAME_DISTRIBUTOR="distributor";
+    public static final String OBJECT_NAME_USER="user";
 }

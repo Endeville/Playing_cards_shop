@@ -6,10 +6,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -68,5 +65,14 @@ public class UserController {
 
         return "redirect:/users/login";
 
+    }
+
+    @GetMapping("/profile/{id}")
+    public String profile(@PathVariable(name="id") Long id, Model model){
+        var userProfile=this.userService.findUserById(id);
+
+        model.addAttribute("user", userProfile);
+
+        return "userProfile";
     }
 }

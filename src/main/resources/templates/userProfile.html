@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -18,56 +18,26 @@
             crossorigin="anonymous"></script>
 
 
-    <script src="../static/js/sidebar.js" type="module"></script>
-    <script src="../static/js/plus-minus.js" type="module"></script>
+    <script src="../../js/sidebar.js" type="module"></script>
+    <script src="../../js/plus-minus.js" type="module"></script>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/userProfile.css"/>
 
-    <link rel="stylesheet" href="../static/css/userProfile.css"/>
+    <th:block th:repalce="~{/fragments/head.html}"/>
 
-    <link rel="icon" href="../static/images/ace-of-spades.png">
-    <title>Victory</title>
 </head>
 <body>
 <header>
+
     <nav id="nav" class="navbar navbar-expand">
-
-        <a href="/"><img src="../static/images/emblem.png"></a>
-
-        <ul id="menu">
-            <li><a href="/catalog">Catalog</a></li>
-            <li><a href="/search">Offers</a></li>
-            <span id="guest-nav">
-                    <li class="guest"><a href="/login">Login</a></li>
-                    <li class="guest"><a href="/register">Register</a></li>
-                </span>
-            <span id="user-nav">
-                    <li class="user"><a href="/create">Wishlist</a></li>
-                    <li id="logoutBtn" class="user"><a href="javascript:void(0)">Logout</a></li>
-            </span>
-        </ul>
-
-        <a href="#" id="menu-toggle" class="navbar-brand">&#9776</a>
+        <th:block th:replace="~{/fragments/navigation.html}"/>
     </nav>
+
 </header>
 
-<div id="wrapper">
-    <div id="sidebar-wrapper">
-        <ul class="sidebar-nav">
-            <li><a href="#">Catalog</a></li>
-            <li><a href="#">Offers</a></li>
-            <li><a href="#">Login</a></li>
-            <li><a href="#">Register</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Wishlist</a></li>
-            <li><a href="#">Logout</a></li>
-        </ul>
-    </div>
-</div>
+<th:block th:replace="~{/fragments/sidebar.html}"/>
 <main>
-    <div class="page-content page-container" id="page-content">
+    <div class="page-content page-container" id="page-content" th:object="${user}">
         <div class="padding">
             <div class="row container d-flex justify-content-center">
                 <div class="col-xl-6 col-md-12">
@@ -79,8 +49,8 @@
                                         <img src="https://img.icons8.com/bubbles/100/000000/user.png" class="img-radius"
                                              alt="User-Profile-Image">
                                     </div>
-                                    <p class="m-b-10 f-w-600">Client</p>
-                                    <h6 class="f-w-600 username">Hembo Tingor</h6>
+                                    <p class="m-b-10 f-w-600" th:text="*{role}">Client</p>
+                                    <h6 class="f-w-600 username" th:text="*{username}">Hembo Tingor</h6>
                                     <i class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
                                 </div>
                             </div>
@@ -90,19 +60,15 @@
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <p class="m-b-10 f-w-600 header ">Email</p>
-                                            <h6 class="text-muted f-w-400">rntng@gmail.com</h6>
+                                            <h6 class="text-muted f-w-400" th:text="*{email}">rntng@gmail.com</h6>
                                         </div>
                                         <div class="col-sm-6">
                                             <p class="m-b-10 f-w-600 header header">Rating</p>
-                                            <h6 class="text-muted f-w-400">98979989898</h6>
+                                            <h6 class="text-muted f-w-400" th:text="*{rating}">98979989898</h6>
                                         </div>
                                         <div class="col-sm-6 addressBar">
                                             <p class="m-b-10 f-w-600 header header">Address/es</p>
-                                            <h6 class="text-muted f-w-400"></h6>
-                                            <h6 class="text-muted f-w-400">98979989898ewrgfwergwergfwegwergegrewgwrevwewrtvetrevtetgetge45yry567h5n65g</h6>
-                                            <h6 class="text-muted f-w-400">98979989898</h6>
-                                            <h6 class="text-muted f-w-400">98979989898</h6>
-                                            <h6 class="text-muted f-w-400">98979989898</h6>
+                                            <h6 class="text-muted f-w-400" th:each="address : *{addresses}" th:text="${address}"></h6>
                                             <a class="add-address">Add Addess</a>
                                         </div>
                                     </div>
@@ -110,7 +76,7 @@
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <p class="m-b-10 f-w-600 header">Reviews</p>
-                                            <h6 class="text-muted f-w-400">Sam Disuja</h6>
+                                            <h6 class="text-muted f-w-400"><a href="/">Sam Disuja</a></h6>
                                         </div>
                                         <div class="col-sm-6">
                                             <p class="m-b-10 f-w-600 header">Most Viewed</p>
