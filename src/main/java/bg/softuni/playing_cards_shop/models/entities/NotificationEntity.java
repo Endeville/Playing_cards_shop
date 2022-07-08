@@ -10,9 +10,8 @@ import java.time.LocalDate;
 @Table(name="notification")
 public class NotificationEntity extends BaseEntity{
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String content;
-
 
     private boolean seen;
 

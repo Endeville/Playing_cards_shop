@@ -1,6 +1,7 @@
 package bg.softuni.playing_cards_shop.services.interfaces;
 
 import bg.softuni.playing_cards_shop.models.dtos.UserRegistrationDto;
+import bg.softuni.playing_cards_shop.models.entities.AddressEntity;
 import bg.softuni.playing_cards_shop.models.views.UserProfileDto;
 
 public interface UserService{
@@ -11,5 +12,7 @@ public interface UserService{
 
     boolean usernameExists(String username);
 
-    UserProfileDto findUserByUsername(String username);
+    UserProfileDto findUserProfileByUsername(String username);
+
+    void addAddress(String name, AddressEntity address);
 }

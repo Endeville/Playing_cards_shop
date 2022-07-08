@@ -65,4 +65,5 @@ input:focus{
 .error{
     text-align: left !important;
     color: var(--royal-red) !important;
+    display: none;
 }

@@ -17,9 +17,10 @@
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
             crossorigin="anonymous"></script>
 
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
 
     <script src="../../js/sidebar.js" type="module"></script>
-    <script src="../../js/plus-minus.js" type="module"></script>
 
     <link rel="stylesheet" href="../../css/userProfile.css"/>
 
@@ -36,6 +37,7 @@
 </header>
 
 <th:block th:replace="~{/fragments/sidebar.html}"/>
+
 <main>
     <div class="page-content page-container" id="page-content" th:object="${user}">
         <div class="padding">
@@ -69,7 +71,7 @@
                                         <div class="col-sm-6 addressBar">
                                             <p class="m-b-10 f-w-600 header header">Address/es</p>
                                             <h6 class="text-muted f-w-400" th:each="address : *{addresses}" th:text="${address}"></h6>
-                                            <a class="add-address">Add Addess</a>
+                                            <a th:href="@{/addresses/add}" class="add-address">Add Address</a>
                                         </div>
                                     </div>
                                     <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600 header">Publications</h6>
@@ -92,6 +94,8 @@
         </div>
     </div>
 </main>
+
+<th:block th:replace="~{/fragments/footer.html}"/>
 
 </body>
 </html>

@@ -12,9 +12,6 @@ public class UserEntity extends BaseEntity{
     @Column(nullable = false, unique = true)
     private String username;
 
-    @Column(columnDefinition = "TEXT")
-    private String address;
-
     @Column(nullable = false, unique = true)
     private String email;
 
@@ -52,15 +49,6 @@ public class UserEntity extends BaseEntity{
 
     public UserEntity setUsername(String username) {
         this.username = username;
-        return this;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public UserEntity setAddress(String address) {
-        this.address = address;
         return this;
     }
 

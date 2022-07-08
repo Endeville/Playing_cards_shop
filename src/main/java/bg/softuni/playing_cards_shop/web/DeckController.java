@@ -19,7 +19,7 @@ public class DeckController {
     }
 
     @ModelAttribute("search")
-    public String search(){
+    public String searchItem(){
         return "/decks";
     }
 
@@ -40,4 +40,9 @@ public class DeckController {
 
         return "deckDetails";
     }
+
+//    @GetMapping("/search")
+//    public String search(){
+//
+//    }
 }

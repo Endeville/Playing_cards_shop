@@ -1,6 +1,7 @@
 package bg.softuni.playing_cards_shop.services;
 
 import bg.softuni.playing_cards_shop.models.dtos.UserRegistrationDto;
+import bg.softuni.playing_cards_shop.models.entities.AddressEntity;
 import bg.softuni.playing_cards_shop.models.entities.UserEntity;
 import bg.softuni.playing_cards_shop.models.entities.enums.UserRole;
 import bg.softuni.playing_cards_shop.models.views.UserProfileDto;
@@ -61,10 +62,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserProfileDto findUserByUsername(String username) {
+    public UserProfileDto findUserProfileByUsername(String username) {
         return this.modelMapper.map(
                 this.userRepository.findUserEntityByUsername(username).orElseThrow(()->new ObjectNotFoundException(OBJECT_NAME_USER)),
                 UserProfileDto.class);
+    }
+
+    @Override
+    public void addAddress(String name, AddressEntity address) {
+        var user=this.userRepository.findUserEntityByUsername(name)
+                .orElseThrow(()->new ObjectNotFoundException(OBJECT_NAME_USER));
+        var addresses=user.getAddresses();
+        addresses.add(address);
+        user.setAddresses(addresses);
+        this.userRepository.save(user);
     }
 
 

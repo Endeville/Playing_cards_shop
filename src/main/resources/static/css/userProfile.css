@@ -171,7 +171,8 @@ h6 {
     text-align: center;
     color: #666666 !important;
     border: 2px solid transparent;
-    border-radius: 20px;
+    border-radius: 15px;
+    padding: 2px;
 }
 
 .add-address:hover{

@@ -69,7 +69,7 @@ public class UserController {
 
     @GetMapping("/profile/{username}")
     public String profile(@PathVariable(name="username") String username, Model model){
-        var userProfile=this.userService.findUserByUsername(username);
+        var userProfile=this.userService.findUserProfileByUsername(username);
 
         model.addAttribute("user", userProfile);
 
