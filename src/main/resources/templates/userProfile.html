@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/3.6.95/css/materialdesignicons.css"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+
+
+    <script src="../static/js/sidebar.js" type="module"></script>
+    <script src="../static/js/plus-minus.js" type="module"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../static/css/userProfile.css"/>
+
+    <link rel="icon" href="../static/images/ace-of-spades.png">
+    <title>Victory</title>
+</head>
+<body>
+<header>
+    <nav id="nav" class="navbar navbar-expand">
+
+        <a href="/"><img src="../static/images/emblem.png"></a>
+
+        <ul id="menu">
+            <li><a href="/catalog">Catalog</a></li>
+            <li><a href="/search">Offers</a></li>
+            <span id="guest-nav">
+                    <li class="guest"><a href="/login">Login</a></li>
+                    <li class="guest"><a href="/register">Register</a></li>
+                </span>
+            <span id="user-nav">
+                    <li class="user"><a href="/create">Wishlist</a></li>
+                    <li id="logoutBtn" class="user"><a href="javascript:void(0)">Logout</a></li>
+            </span>
+        </ul>
+
+        <a href="#" id="menu-toggle" class="navbar-brand">&#9776</a>
+    </nav>
+</header>
+
+<div id="wrapper">
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li><a href="#">Catalog</a></li>
+            <li><a href="#">Offers</a></li>
+            <li><a href="#">Login</a></li>
+            <li><a href="#">Register</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Wishlist</a></li>
+            <li><a href="#">Logout</a></li>
+        </ul>
+    </div>
+</div>
+<main>
+    <div class="page-content page-container" id="page-content">
+        <div class="padding">
+            <div class="row container d-flex justify-content-center">
+                <div class="col-xl-6 col-md-12">
+                    <div class="card user-card-full">
+                        <div class="row m-l-0 m-r-0">
+                            <div class="col-sm-4 bg-c-lite-green user-profile">
+                                <div class="card-block text-center text-white">
+                                    <div class="m-b-25">
+                                        <img src="https://img.icons8.com/bubbles/100/000000/user.png" class="img-radius"
+                                             alt="User-Profile-Image">
+                                    </div>
+                                    <p class="m-b-10 f-w-600">Client</p>
+                                    <h6 class="f-w-600 username">Hembo Tingor</h6>
+                                    <i class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="card-block">
+                                    <h6 class="m-b-20 p-b-5 b-b-default f-w-600 header">Information</h6>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <p class="m-b-10 f-w-600 header ">Email</p>
+                                            <h6 class="text-muted f-w-400">rntng@gmail.com</h6>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <p class="m-b-10 f-w-600 header header">Rating</p>
+                                            <h6 class="text-muted f-w-400">98979989898</h6>
+                                        </div>
+                                        <div class="col-sm-6 addressBar">
+                                            <p class="m-b-10 f-w-600 header header">Address/es</p>
+                                            <h6 class="text-muted f-w-400"></h6>
+                                            <h6 class="text-muted f-w-400">98979989898ewrgfwergwergfwegwergegrewgwrevwewrtvetrevtetgetge45yry567h5n65g</h6>
+                                            <h6 class="text-muted f-w-400">98979989898</h6>
+                                            <h6 class="text-muted f-w-400">98979989898</h6>
+                                            <h6 class="text-muted f-w-400">98979989898</h6>
+                                            <a class="add-address">Add Addess</a>
+                                        </div>
+                                    </div>
+                                    <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600 header">Publications</h6>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <p class="m-b-10 f-w-600 header">Reviews</p>
+                                            <h6 class="text-muted f-w-400">Sam Disuja</h6>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <p class="m-b-10 f-w-600 header">Most Viewed</p>
+                                            <h6 class="text-muted f-w-400">Dinoter husainm</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+</body>
+</html>
