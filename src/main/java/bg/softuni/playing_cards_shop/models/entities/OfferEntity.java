@@ -22,13 +22,16 @@ public class OfferEntity extends BaseEntity{
     @Column(nullable = false)
     private Integer quantity;
 
+    @Column(nullable = false, columnDefinition = "TEXT")
+    private String description;
+
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private OfferStatus status;
 
     @OneToMany
     @JoinColumn(name = "offer_id")
-    private Set<PictureEntity> additionalPictures;
+    private Set<PictureEntity> pictures;
 
     @OneToMany
     private Set<ReviewEntity> reviews;
@@ -72,12 +75,12 @@ public class OfferEntity extends BaseEntity{
         return this;
     }
 
-    public Set<PictureEntity> getAdditionalPictures() {
-        return additionalPictures;
+    public Set<PictureEntity> getPictures() {
+        return pictures;
     }
 
-    public OfferEntity setAdditionalPictures(Set<PictureEntity> additionalPictures) {
-        this.additionalPictures = additionalPictures;
+    public OfferEntity setPictures(Set<PictureEntity> additionalPictures) {
+        this.pictures = additionalPictures;
         return this;
     }
 
@@ -96,6 +99,15 @@ public class OfferEntity extends BaseEntity{
 
     public OfferEntity setStatus(OfferStatus status) {
         this.status = status;
+        return this;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public OfferEntity setDescription(String description) {
+        this.description = description;
         return this;
     }
 }

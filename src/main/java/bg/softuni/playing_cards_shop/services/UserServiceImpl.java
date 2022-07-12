@@ -78,6 +78,11 @@ public class UserServiceImpl implements UserService {
         this.userRepository.save(user);
     }
 
+    @Override
+    public UserEntity findUserByUsername(String username) {
+        return this.userRepository.findUserEntityByUsername(username).orElseThrow(()->new ObjectNotFoundException(OBJECT_NAME_USER));
+    }
+
 
     @Override
     public boolean emailExists(String email) {

@@ -64,33 +64,29 @@
                                     <div class="form-group">
                                         <input type="text" name="country" id="country" tabindex="2"
                                                class="form-control" placeholder="Country"
-                                                th:field="*{country}" th:errorclass="'invalid-field is-invalid'">
-                                        <div class="error">
-                                            The country should have between 2 and 40 characters.
+                                                th:field="*{country}" th:errorclass="invalid-field">
+                                        <div class="error"  th:text="${#strings.listJoin(#fields.errors('country'), '; ')}">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <input type="text" name="city" id="city" tabindex="2"
                                                class="form-control" placeholder="City"
-                                                th:field="*{city}" th:errorclass="'invalid-field is-invalid'">
-                                        <div class="error">
-                                            The city should have between 2 and 100 characters.
+                                                th:field="*{city}" th:errorclass="invalid-field">
+                                        <div class="error" th:text="${#strings.listJoin(#fields.errors('city'), '; ')}">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <input type="text" name="street" id="street" tabindex="2"
                                                class="form-control" placeholder="Street"
-                                                th:field="*{street}" th:errorclass="'invalid-field is-invalid'">
-                                        <div class="error">
-                                            The street should have between 2 and 200 characters.
+                                                th:field="*{street}" th:errorclass="invalid-field">
+                                        <div class="error" th:text="${#strings.listJoin(#fields.errors('street'), '; ')}">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <input type="text" name="telephone" id="telephone" tabindex="2"
                                                class="form-control" placeholder="Telephone"
-                                                th:field="*{telephone}" th:errorclass="'invalid-field is-invalid'">
-                                        <div class="error">
-                                            Please enter a valid number.
+                                                th:field="*{telephone}" th:errorclass="invalid-field">
+                                        <div class="error" th:text="${#strings.listJoin(#fields.errors('telephone'), '; ')}">
                                         </div>
                                     </div>
 

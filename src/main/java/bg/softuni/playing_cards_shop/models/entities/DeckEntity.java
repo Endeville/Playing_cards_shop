@@ -17,7 +17,7 @@ public class DeckEntity extends BaseEntity{
     private boolean approved;
 
     @OneToMany
-    @JoinColumn(name="deck_id", nullable = false)
+    @JoinColumn(name="deck_id")
     private Set<PictureEntity> pictures;
 
     @Column(name = "country_of_origin")

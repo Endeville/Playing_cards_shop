@@ -41,11 +41,11 @@ VALUES (1, 2),
        (2, 2),
        (2, 3);
 
-INSERT INTO pictures(url, deck_id)
-VALUES ('/images/high_victorian_green.jpg', 1),
-       ('/images/monarchs1_1024x1024.webp', 2);
+INSERT INTO offers(id, price, quantity, description, status, deck_id, seller_id)
+VALUES (1, 20, 4, "Great offer. You won't find anything better", 'APPROVED', 1, 1),
+       (2, 5, 2, "Better hurry the offer won't be available soon.", 'LIMITED', 1 ,1 );
 
-INSERT INTO offers(id, price, quantity, status, deck_id, seller_id)
-VALUES (1, 20, 4, 'APPROVED', 1, 1),
-        (2, 5, 2, 'LIMITED', 1 ,1 );
+INSERT INTO pictures(url, deck_id, offer_id)
+VALUES ('/images/high_victorian_green.jpg', 1, 1),
+       ('/images/monarchs1_1024x1024.webp', 2, 2);
 

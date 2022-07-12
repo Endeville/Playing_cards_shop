@@ -1,11 +1,13 @@
 package bg.softuni.playing_cards_shop.services;
 
 import bg.softuni.playing_cards_shop.constants.GlobalConstants;
+import bg.softuni.playing_cards_shop.models.entities.DeckEntity;
 import bg.softuni.playing_cards_shop.models.entities.OfferEntity;
 import bg.softuni.playing_cards_shop.models.views.CatalogDeckDto;
 import bg.softuni.playing_cards_shop.models.views.DeckDetailsDto;
 import bg.softuni.playing_cards_shop.repositories.DeckRepository;
 import bg.softuni.playing_cards_shop.services.interfaces.DeckService;
+import bg.softuni.playing_cards_shop.web.exceptions.ItemNotCreatedException;
 import bg.softuni.playing_cards_shop.web.exceptions.ObjectNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -50,5 +52,12 @@ public class DeckServiceImpl implements DeckService {
                 .mapToDouble(BigDecimal::doubleValue)
                 .average()
                 .orElse(-1);
+    }
+
+    @Override
+    public DeckEntity findDeckByTitle(String title) {
+        return this.deckRepository
+                .findDeckEntityByTitle(title)
+                .orElseThrow(()-> new ItemNotCreatedException(OBJECT_NAME_DECK));
     }
 }

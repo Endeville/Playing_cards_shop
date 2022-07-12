@@ -1,5 +1,6 @@
 package bg.softuni.playing_cards_shop.services.interfaces;
 
+import bg.softuni.playing_cards_shop.models.entities.DeckEntity;
 import bg.softuni.playing_cards_shop.models.views.CatalogDeckDto;
 import bg.softuni.playing_cards_shop.models.views.DeckDetailsDto;
 
@@ -11,4 +12,6 @@ public interface DeckService {
     DeckDetailsDto findDeckDetailsById(long id);
 
     Integer getRecommendedPriceForDeckWithId(long id);
+
+    DeckEntity findDeckByTitle(String title);
 }

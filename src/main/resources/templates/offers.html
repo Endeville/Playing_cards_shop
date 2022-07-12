@@ -95,7 +95,7 @@
 
             <div class="row">
 
-                <a th:each="deck : ${decks}" th:object="${deck}" th:href="@{/decks/{deckId} (deckId=*{id})}" class="card-link-wrap">
+                <a th:each="offer : ${offers}" th:object="${offer}" th:href="@{/offers/{offerId} (offerId=*{id})}" class="card-link-wrap">
                     <div class="col-md-4">
                         <div class="card mb-4 box-shadow productCard">
                             <img class="card-img-top"
@@ -108,14 +108,14 @@
                                     <div class="btn-group">
                                         <a type="button"
                                            class="btn btn-sm btn-outline-secondary cardBtn detailsBtn stretched-link"
-                                           th:href="@{/decks/{deckId} (deckId=*{id})}">View</a>
+                                           th:href="@{/offers/{offerId} (offerId=*{id})}">View</a>
                                         <span sec:authorize="hasRole('ADMIN')">
                                             <a type="button"
                                                class="btn btn-sm btn-outline-secondary cardBtn editBtn"
-                                               th:href="@{/decks/edit/{deckId} (deckId=*{id})}">Edit</a>
+                                               th:href="@{/offers/edit/{offerId} (offerId=*{id})}">Edit</a>
                                             <a type="button"
                                                class="btn btn-sm btn-outline-secondary cardBtn deleteBtn"
-                                               th:href="@{/decks/delete/{deckId} (deckId=*{id})}">Delete</a>
+                                               th:href="@{/offers/delete/{offerId} (offerId=*{id})}">Delete</a>
                                         </span>
                                     </div>
                                 </div>
@@ -131,17 +131,6 @@
 <th:block th:replace="~{/fragments/footer.html}"/>
 
 </body>
-
-<!--<script th:inline="javascript">-->
-<!--    /*<![CDATA[*/-->
-
-
-<!--    searchbar.addEventListener("submit", (ev)=>{-->
-<!--        search(ev,"decks");-->
-<!--    })-->
-
-<!--    /*]]>*/-->
-<!--</script>-->
 
 <script th:src="@{/js/backToTop.js}"></script>
 <script th:src="@{/js/searchbar.js}"></script>

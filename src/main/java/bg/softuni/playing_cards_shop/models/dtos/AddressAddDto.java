@@ -5,20 +5,20 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 public class AddressAddDto {
-    @NotBlank
-    @Size(min=2, max=40)
+    @NotBlank(message = "")
+    @Size(min=2, max=40, message = "The country should have between 2 and 40 characters.")
     private String country;
 
-    @NotBlank
-    @Size(min=2, max=100)
+    @NotBlank(message = "")
+    @Size(min=2, max=100, message = "The city should have between 2 and 100 characters.")
     private String city;
 
-    @NotBlank
-    @Size(min=2, max=200)
+    @NotBlank(message = "")
+    @Size(min=2, max=200, message = "The street should have between 2 and 200 characters.")
     private String street;
 
-    @NotBlank
-    @Pattern(regexp = "\\d{10}|(?:\\d{3}-){2}\\d{4}|\\(\\d{3}\\)\\d{3}-?\\d{4}")
+    @NotBlank(message = "")
+    @Pattern(regexp = "\\d{10}|(?:\\d{3}-){2}\\d{4}|\\(\\d{3}\\)\\d{3}-?\\d{4}", message = "Please enter a valid telephone number.")
     private String telephone;
 
     public String getCountry() {
