@@ -21,9 +21,6 @@ public class AddOfferDto {
     @NotBlank(message = "Description is compulsory(product condition, signatures, number etc.)")
     private String description;
 
-    @NotEmpty(message = "Please the category in which the deck falls.")
-    private List<String> categories;
-
     @NotEmpty(message = "Please provide some pictures of the deck you are offering.")
     private List<String> pictures;
 
@@ -42,15 +39,6 @@ public class AddOfferDto {
 
     public AddOfferDto setPrice(BigDecimal price) {
         this.price = price;
-        return this;
-    }
-
-    public List<String> getCategories() {
-        return categories;
-    }
-
-    public AddOfferDto setCategories(List<String> categories) {
-        this.categories = categories;
         return this;
     }
 

@@ -14,4 +14,6 @@ public interface DeckService {
     Integer getRecommendedPriceForDeckWithId(long id);
 
     DeckEntity findDeckByTitle(String title);
+
+    List<String> getAllDeckTitles();
 }

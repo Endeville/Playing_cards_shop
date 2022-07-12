@@ -58,60 +58,70 @@
 
                                 <form id="offer-form" th:method="post" th:action="@{/offers/add}"
                                       role="form" style="display: block;"
-                                        th:object="${offer}"
+                                      th:object="${offer}"
                                 >
 
 
+<!--                                    <div class="form-group">-->
+<!--                                        <input type="text" name="username" id="deckTitle" tabindex="1"-->
+<!--                                               class="form-control" placeholder="Deck Title" value=""-->
+<!--                                               th:field="*{deckTitle}" th:errorclass="is-invalid"-->
+<!--                                        >-->
+<!--                                        <div class="error"-->
+<!--                                             th:text="${#strings.listJoin(#fields.errors('deckTitle'), '; ')}"></div>-->
+<!--                                    </div>-->
+
                                     <div class="form-group">
-                                        <input type="text" name="username" id="deckTitle" tabindex="1"
-                                               class="form-control" placeholder="Deck Title" value=""
-                                                th:field="*{deckTitle}" th:errorclass="is-invalid"
-                                        >
-                                        <div class="error" th:text="${#strings.listJoin(#fields.errors('deckTitle'), '; ')}"></div>
+                                        <div class="form-group">
+                                            <select class="selectpicker" data-live-search="true"
+                                                    name="categories"
+                                                    required
+                                                    th:field="*{deckTitle}" th:errorclass="is-invalid"
+                                            >
+                                                <option value="">Please select a title</option>
+                                                <option th:value="Add">Add another deck</option>
+                                                <option th:each="deckTitle : ${deckTitles}"
+                                                        th:value="${deckTitle}" th:text="${deckTitle}">Game</option>
+                                            </select>
+                                        </div>
+                                        <div class="error"
+                                             th:text="${#strings.listJoin(#fields.errors('deckTitle'), '; ')}"></div>
                                     </div>
+
                                     <div class="form-group">
                                         <input type="text" name="description" id="description" tabindex="2"
                                                class="form-control" placeholder="Description"
                                                th:field="*{description}" th:errorclass="is-invalid">
-                                        <div class="error" th:text="${#strings.listJoin(#fields.errors('description'), '; ')}"></div>
+                                        <div class="error"
+                                             th:text="${#strings.listJoin(#fields.errors('description'), '; ')}"></div>
                                     </div>
                                     <div class="form-group">
-                                        <input type="number" min="0.00" step="0.01" name="price" id="Price" tabindex="2"
+                                        <input type="number" min="0.00" step="0.01" name="price" id="Price"
+                                               tabindex="2"
                                                class="form-control" placeholder="Price"
                                                th:field="*{price}" th:errorclass="is-invalid">
-                                        <div class="error" th:text="${#strings.listJoin(#fields.errors('price'), '; ')}"></div>
+                                        <div class="error"
+                                             th:text="${#strings.listJoin(#fields.errors('price'), '; ')}"></div>
                                     </div>
                                     <div class="form-group">
-                                        <input type="number" min="1" step="1" name="quantity" id="quantity" tabindex="2"
+                                        <input type="number" min="1" step="1" name="quantity" id="quantity"
+                                               tabindex="2"
                                                class="form-control" placeholder="Quantity"
                                                th:field="*{quantity}" th:errorclass="is-invalid">
-                                        <div class="error" th:text="${#strings.listJoin(#fields.errors('quantity'), '; ')}"></div>
+                                        <div class="error"
+                                             th:text="${#strings.listJoin(#fields.errors('quantity'), '; ')}"></div>
                                     </div>
-<!--                                    <div class="form-group">-->
-<!--                                        <select class="selectpicker" multiple data-live-search="true" name="categories" required-->
-<!--                                            th:field="*{categories}" th:errorclass="is-invalid"-->
-<!--                                        >-->
-<!--                                            <option value=""></option>-->
-<!--                                            <option th:value="STANDARD">Standard</option>-->
-<!--                                            <option th:value="GAME">Game</option>-->
-<!--                                            <option th:value="MAGIC">Magic</option>-->
-<!--                                            <option th:value="CARDISTRY">Cardistry</option>-->
-<!--                                            <option th:value="VINTAGE">Vintage</option>-->
-<!--                                            <option th:value="POKER">Poker</option>-->
-<!--                                            <option th:value="GAFFED">Gaffed</option>-->
-<!--                                            <option th:value="MARKED">Marked</option>-->
-<!--                                        </select>-->
-<!--                                        <div class="error" th:text="${#strings.listJoin(#fields.errors('categories'), '; ')}"></div>-->
-<!--                                    </div>-->
+
                                     <div class="form-group" id="image-group">
                                         <label for="formFile" class="custom-file-upload">
                                             Click to upload images
                                         </label>
                                         <input name="pictures" class="form-control" type="file"
                                                id="formFile" multiple required
-                                                th:field="*{pictures}" th:errorclass="is-invalid"
+                                               th:field="*{pictures}" th:errorclass="is-invalid"
                                         >
-                                        <div class="error" th:text="${#strings.listJoin(#fields.errors('pictures'), '; ')}"></div>
+                                        <div class="error"
+                                             th:text="${#strings.listJoin(#fields.errors('pictures'), '; ')}"></div>
                                     </div>
 
                                     <table class="form-group" id="image-container">
@@ -131,7 +141,8 @@
 
                                     <div class="form-group">
                                         <div class="col-sm-6 col-sm-offset-3" id="submit-cont">
-                                            <input type="submit" name="offer-add-submit" id="offer-add-submit" tabindex="4"
+                                            <input type="submit" name="offer-add-submit" id="offer-add-submit"
+                                                   tabindex="4"
                                                    class="form-control btn btn-makeOffer" value="Create">
                                         </div>
                                     </div>

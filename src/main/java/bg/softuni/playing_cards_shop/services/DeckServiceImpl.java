@@ -60,4 +60,11 @@ public class DeckServiceImpl implements DeckService {
                 .findDeckEntityByTitle(title)
                 .orElseThrow(()-> new ItemNotCreatedException(OBJECT_NAME_DECK));
     }
+
+    @Override
+    public List<String> getAllDeckTitles() {
+        return this.deckRepository.getDeckEntityByApproved(true).stream()
+                .map(DeckEntity::getTitle)
+                .collect(Collectors.toList());
+    }
 }

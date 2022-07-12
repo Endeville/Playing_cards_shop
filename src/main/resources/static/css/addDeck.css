@@ -1,6 +1,207 @@
-@import "addOffer.css";
+@import "utils/navigation.css";
+@import "utils/footer.css";
+@import "utils/defaults.css";
 
-
-.panel{
-    margin-top: 5px;
+main{
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    height: 88vh;
+    padding: 5vh 20px 40px;
+    text-align: center;
+    background: url(../images/page-header-bg.webp) center center no-repeat #0b1319;
+    z-index: -1;
 }
+
+
+
+
+.panel-offer {
+    border-color: var(--light-gold);
+    border-width: 4px;
+    -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+    margin-top: 10vh;
+    margin-bottom: 100px;
+    background-color: var(--light-black);
+
+    font-weight: bolder;
+}
+.panel-offer>.panel-heading {
+    color: #00415d;
+    border-color: var(--light-gold);
+    text-align:center;
+    background-color: var(--light-black);
+    border-width: 2px;
+}
+.panel-offer>.panel-heading label{
+    text-decoration: none;
+    -webkit-transition: all 0.1s linear;
+    -moz-transition: all 0.1s linear;
+    transition: all 0.1s linear;
+    color: var(--grey);
+
+    font-weight: bolder;
+    font-size: 30px;
+}
+
+.panel-offer input[type="text"],.panel-offer input[type="email"],.panel-offer input[type="password"], .panel-offer input[type="number"], .panel-offer input[type="file"]{
+    height: 45px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    -webkit-transition: all 0.1s linear;
+    -moz-transition: all 0.1s linear;
+    transition: all 0.1s linear;
+
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    background: none;
+    line-height: 26px;
+    padding: 15px;
+    margin: 0 0 20px;
+    font-family: brandon-grotesque,helvetica,arial,sans-serif;
+    color: #d0d0d0;
+}
+
+.panel-offer input[type="text"]:hover,.panel-offer input[type="email"]:hover,.panel-offer input[type="password"]:hover,  .panel-offer input[type="number"]:hover, .panel-offer input[type="file"]:hover{
+    color: #000;
+    background: #fff;
+    transition: background-color .4s;
+}
+
+.dropdown{
+    width: 100% !important;
+    line-height: 26px !important;
+}
+
+select{
+    left:0 !important;
+    background: var(--light-black) !important;
+}
+
+.dropdown-toggle{
+    background: var(--light-black) !important;
+    line-height: 26px;
+    color: var(--grey);
+    font-family: Lato, Arial, sans-serif !important;
+    height: 45px;
+}
+
+#formFile {
+    display: none;
+}
+.custom-file-upload {
+    border: 4px solid var(--dark-blue);
+    border-radius: 20px;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+.custom-file-upload:hover{
+    background-color: var(--dark-blue);
+}
+
+#image-container{
+    width: 100%;
+    align-items: center;
+}
+
+#image-container td{
+    align-items: center;
+    color: var(--grey) !important;
+    font-size: 12px;
+}
+
+#image-group{
+    margin-bottom: 0;
+}
+
+/*bootstrap trynna ruin my life bruh*/
+
+.show > .btn-light.dropdown-toggle{
+    color: var(--grey);
+}
+
+.dropdown-toggle:hover{
+    color: var(--grey);
+}
+
+select:hover{
+    color: var(--grey);
+}
+
+.btn-light:hover{
+    color: var(--grey);
+}
+
+.filter-option:hover{
+    color: var(--grey);
+}
+
+@media (min-width: 768px) {
+
+    #offer-form-cont{
+        max-width: 100% !important;
+        flex: 0 0 100%;
+    }
+
+}
+
+@media (min-width: 991px) {
+    #offer-form-cont{
+        flex: 0 0 50%;
+    }
+
+}
+
+@media (max-width: 768px) {
+    .btn-makeOffer{
+        width: 100% !important;
+    }
+    #submit-cont{
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+.filter-option-inner-inner:before{
+    content: "Categories: ";
+}
+
+.filter-option-inner-inner{
+    content: none;
+}
+
+.btn:focus{
+    color: var(--grey) !important;
+}
+
+/*submit button*/
+
+.btn-makeOffer {
+    background-color: var(--dense-gold);
+    outline: none;
+    color: var(--grey);
+    font-size: 14px;
+    height: auto;
+    font-weight: normal;
+    padding: 14px 0;
+    text-transform: uppercase;
+    max-width: 100%;
+}
+
+.btn-makeOffer:hover {
+    color: #000;
+    background: #fff;
+    transition: background-color .4s;
+}
+
+.form-group>label{
+    color: var(--grey);
+}
+
+

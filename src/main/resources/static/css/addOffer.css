@@ -169,11 +169,15 @@ btn-light:hover{
 }
 
 .filter-option-inner-inner:before{
-    content: "Categories: ";
+    content: "Title: ";
 }
 
 .filter-option-inner-inner{
     content: none;
+}
+
+.btn:focus{
+    color: var(--grey) !important;
 }
 
 /*submit button*/

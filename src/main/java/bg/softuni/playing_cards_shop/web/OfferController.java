@@ -1,7 +1,7 @@
 package bg.softuni.playing_cards_shop.web;
 
 import bg.softuni.playing_cards_shop.models.dtos.AddOfferDto;
-import bg.softuni.playing_cards_shop.models.entities.enums.DeckCategory;
+import bg.softuni.playing_cards_shop.services.interfaces.DeckService;
 import bg.softuni.playing_cards_shop.services.interfaces.OfferService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,17 +13,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-import java.security.Principal;
-import java.util.List;
 
 @Controller
 @RequestMapping("/offers")
 public class OfferController {
 
     private final OfferService offerService;
+    private final DeckService deckService;
 
-    public OfferController(OfferService offerService) {
+    public OfferController(OfferService offerService, DeckService deckService) {
         this.offerService = offerService;
+        this.deckService = deckService;
     }
 
     @ModelAttribute("offer")
@@ -40,7 +40,10 @@ public class OfferController {
     }
 
     @GetMapping("/add")
-    public String addOfferView(){
+    public String addOfferView(Model model){
+
+        model.addAttribute("deckTitles", this.deckService.getAllDeckTitles());
+
         return "addOffer";
     }
 
