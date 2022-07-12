@@ -38,8 +38,8 @@ public class OfferServiceImpl implements OfferService {
         var offer=this.modelMapper.map(addOfferDto, OfferEntity.class);
 
         offer.setStatus(OfferStatus.PENDING)
-                .setSeller(userService.findUserByUsername(((AppUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername()))
-                .setDeck(deckService.findDeckByTitle(addOfferDto.getTitle()))
+                .setSeller(userService.findUserByUsername(SecurityContextHolder.getContext().getAuthentication().getName()))
+                .setDeck(deckService.findDeckByTitle(addOfferDto.getDeckTitle()))
                 .setPrice(addOfferDto.getPrice())
                 .setReviews(new HashSet<>())
                 .setQuantity(addOfferDto.getQuantity());
