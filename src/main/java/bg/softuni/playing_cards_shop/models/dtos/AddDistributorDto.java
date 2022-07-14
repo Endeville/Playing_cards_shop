@@ -11,11 +11,14 @@ public class AddDistributorDto {
     @NotBlank(message = "")
     @Size(min=2, max=60, message = "The brand should have between 2 and 60 characters.")
     private String brand;
+
     @NotBlank(message = "")
-    @Pattern(regexp = "", message = "Please enter a valid url.")
+//    @Pattern(regexp = "", message = "Please enter a valid url.")
     private String siteUrl;
+
     @NotBlank(message = "Please give a description of the distributor.")
     private String description;
+
     private List<MultipartFile> pictures;
 
     public String getBrand() {

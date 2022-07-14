@@ -22,7 +22,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     implementation 'org.modelmapper:modelmapper:3.1.0'
-    implementation 'com.cloudinary:cloudinary:1.0.14'
+    implementation group: 'com.cloudinary', name: 'cloudinary-http44', version: '1.32.2'
 
     annotationProcessor group: 'org.springframework.boot', name: 'spring-boot-configuration-processor'
 
