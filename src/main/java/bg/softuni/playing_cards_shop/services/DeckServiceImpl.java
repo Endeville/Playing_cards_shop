@@ -3,6 +3,7 @@ package bg.softuni.playing_cards_shop.services;
 import bg.softuni.playing_cards_shop.constants.GlobalConstants;
 import bg.softuni.playing_cards_shop.models.entities.DeckEntity;
 import bg.softuni.playing_cards_shop.models.entities.OfferEntity;
+import bg.softuni.playing_cards_shop.models.entities.PictureEntity;
 import bg.softuni.playing_cards_shop.models.views.CatalogDeckDto;
 import bg.softuni.playing_cards_shop.models.views.DeckDetailsDto;
 import bg.softuni.playing_cards_shop.repositories.DeckRepository;
@@ -32,7 +33,14 @@ public class DeckServiceImpl implements DeckService {
     @Override
     public List<CatalogDeckDto> getApprovedDecks() {
         return deckRepository.getDeckEntityByApproved(true).stream()
-                .map(e->modelMapper.map(e, CatalogDeckDto.class))
+                .map(e->{
+                   var deck= modelMapper.map(e, CatalogDeckDto.class);
+                   deck.setPictures(e.getPictures().stream()
+                           .map(PictureEntity::getUrl)
+                           .collect(Collectors.toList()));
+
+                   return deck;
+                })
                 .collect(Collectors.toList());
     }
 

@@ -46,3 +46,8 @@ spring:
   sql:
     init:
       mode: always
+
+cloudinary:
+  api-key: dykamqwpf
+  api-secret: 123169491616986
+  cloud-name: PKOdQAluFqeXPcOBQ0g451Vx4CI

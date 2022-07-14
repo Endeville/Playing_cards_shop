@@ -5,7 +5,7 @@ import java.util.List;
 public class DeckDetailsDto {
     private String title;
     private String description;
-    private List<PictureDto> pictures;
+    private List<String> pictures;
     private String country;
     private List<CategoryDto> categories;
     private CreatorIdDto creator;
@@ -26,15 +26,6 @@ public class DeckDetailsDto {
 
     public DeckDetailsDto setDescription(String description) {
         this.description = description;
-        return this;
-    }
-
-    public List<PictureDto> getPictures() {
-        return pictures;
-    }
-
-    public DeckDetailsDto setPictures(List<PictureDto> pictures) {
-        this.pictures = pictures;
         return this;
     }
 

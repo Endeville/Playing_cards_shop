@@ -182,7 +182,7 @@ select:hover{
 
 /*submit button*/
 
-.btn-makeOffer {
+.btn-addDeck {
     background-color: var(--dense-gold);
     outline: none;
     color: var(--grey);
@@ -194,7 +194,7 @@ select:hover{
     max-width: 100%;
 }
 
-.btn-makeOffer:hover {
+.btn-addDeck:hover {
     color: #000;
     background: #fff;
     transition: background-color .4s;

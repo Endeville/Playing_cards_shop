@@ -155,7 +155,7 @@ select:hover{
     #offer-form-cont{
         flex: 0 0 50%;
     }
-    
+
 }
 
 @media (max-width: 768px) {
@@ -182,7 +182,7 @@ select:hover{
 
 /*submit button*/
 
-.btn-makeOffer {
+.btn-addDistributor {
     background-color: var(--dense-gold);
     outline: none;
     color: var(--grey);
@@ -194,7 +194,7 @@ select:hover{
     max-width: 100%;
 }
 
-.btn-makeOffer:hover {
+.btn-addDistributor:hover {
     color: #000;
     background: #fff;
     transition: background-color .4s;

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+<head>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+
+
+    <link rel="stylesheet" href="../../css/addDistributor.css"/>
+    <link rel="stylesheet" href="../../css/bootstrap/bootstrapNav.css"/>
+
+    <script src="../../js/sidebar.js" type="module"></script>
+
+    <th:block th:repalce="~{/fragments/head.html}"/>
+</head>
+<body>
+
+<header>
+
+    <nav id="nav" class="navbar navbar-expand">
+        <th:block th:replace="~{/fragments/navigation.html}"/>
+    </nav>
+
+</header>
+
+<th:block th:replace="~{/fragments/sidebar.html}"/>
+
+<main>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3" id="distributor-form-cont">
+                <div class="panel panel-offer">
+                    <div class="panel-heading">
+                        <div class="row">
+
+                            <div class="col">
+                                <label class="active" id="distributor-form-link">Add Distributor</label>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-12">
+
+
+                                <form id="distributor-form" th:method="POST" th:action="@{/distributors/add}"
+                                      role="form" style="display: block;" th:object="${distributor}">
+
+
+                                    <div class="form-group">
+                                        <input type="text" name="brand" id="brand" tabindex="1"
+                                               class="form-control" placeholder="Brand" value=""
+                                                th:field="*{brand}" th:errorclass="invalid-field">
+                                        <div class="error"  th:text="${#strings.listJoin(#fields.errors('brand'), '; ')}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" name="siteUrl" id="url" tabindex="2"
+                                               class="form-control" placeholder="Site url"
+                                               th:field="*{siteUrl}" th:errorclass="invalid-field">
+                                        <div class="error"  th:text="${#strings.listJoin(#fields.errors('siteUrl'), '; ')}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" name="description" id="description" tabindex="2"
+                                               class="form-control" placeholder="Description"
+                                               th:field="*{description}" th:errorclass="invalid-field">
+                                        <div class="error"  th:text="${#strings.listJoin(#fields.errors('description'), '; ')}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group" id="image-group">
+                                        <label for="formFile" class="custom-file-upload">
+                                            Click to upload images
+                                        </label>
+                                        <input required class="form-control" type="file"
+                                               id="formFile" multiple accept=".jpg, .jpeg, .png"
+                                               th:field="*{pictures}" th:errorclass="invalid-field">
+                                        <div class="error"  th:text="${#strings.listJoin(#fields.errors('pictures'), '; ')}">
+                                        </div>
+                                    </div>
+
+                                    <table class="form-group" id="image-container">
+                                        <tbody>
+                                        <tr>
+                                            <td>Files Uploaded:</td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+
+
+                                    <div class="form-group">
+                                        <div class="col-sm-6 col-sm-offset-3" id="submit-cont">
+                                            <input type="submit" name="distributor-submit" id="distributor-submit" tabindex="4"
+                                                   class="form-control btn btn-addDistributor" value="Create">
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<th:block th:replace="~{/fragments/footer.html}"/>
+
+</body>
+</html>

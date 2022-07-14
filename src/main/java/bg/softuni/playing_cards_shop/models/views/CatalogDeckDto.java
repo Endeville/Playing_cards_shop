@@ -1,11 +1,12 @@
 package bg.softuni.playing_cards_shop.models.views;
 
+import java.util.List;
 import java.util.Set;
 
 public class CatalogDeckDto {
     private Long id;
     private String title;
-    private Set<PictureDto> pictures;
+    private List<String> pictures;
 
     public CatalogDeckDto() {
     }
@@ -28,11 +29,11 @@ public class CatalogDeckDto {
         return this;
     }
 
-    public Set<PictureDto> getPictures() {
+    public List<String> getPictures() {
         return pictures;
     }
 
-    public CatalogDeckDto setPictures(Set<PictureDto> pictures) {
+    public CatalogDeckDto setPictures(List<String> pictures) {
         this.pictures = pictures;
         return this;
     }

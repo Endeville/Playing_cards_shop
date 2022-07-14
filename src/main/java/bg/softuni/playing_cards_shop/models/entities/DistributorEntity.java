@@ -61,4 +61,13 @@ public class DistributorEntity extends BaseEntity{
         this.pictures = pictures;
         return this;
     }
+
+    public Set<DeckEntity> getDecks() {
+        return decks;
+    }
+
+    public DistributorEntity setDecks(Set<DeckEntity> decks) {
+        this.decks = decks;
+        return this;
+    }
 }

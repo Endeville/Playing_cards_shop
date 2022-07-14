@@ -46,6 +46,6 @@ VALUES (1, 20, 4, "Great offer. You won't find anything better", 'APPROVED', 1, 
        (2, 5, 2, "Better hurry the offer won't be available soon.", 'LIMITED', 1 ,1 );
 
 INSERT INTO pictures(url, deck_id, offer_id)
-VALUES ('/images/high_victorian_green.jpg', 1, 1),
-       ('/images/monarchs1_1024x1024.webp', 2, 2);
+VALUES ('https://res.cloudinary.com/dykamqwpf/image/upload/v1657796050/playing_cards_project/high_victorian_green_t27q49.jpg', 1, 1),
+       ('https://res.cloudinary.com/dykamqwpf/image/upload/v1657796051/playing_cards_project/monarchs1_1024x1024_rltbye.webp', 2, 2);
 
