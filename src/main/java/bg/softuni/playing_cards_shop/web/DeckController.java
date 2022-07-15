@@ -40,4 +40,11 @@ public class DeckController {
 
         return "deckDetails";
     }
+
+    @GetMapping("/add")
+    public String addDeckForm(){
+        //todo: after creator form do this(deckForm)
+
+        return "";
+    }
 }

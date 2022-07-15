@@ -12,7 +12,7 @@ public class ItemNotCreatedAdvice {
     @ExceptionHandler({ItemNotCreatedException.class})
     @ResponseStatus(value = HttpStatus.TEMPORARY_REDIRECT)
     public ModelAndView onItemNotCreated(ItemNotCreatedException ince){
-        var mv=new ModelAndView("add" + ince.getObjectName());
+        var mv=new ModelAndView("add" + ince.getObjectName().charAt(0) + ince.getObjectName().substring(1));
         mv.addObject("reason", "Could not find such " + ince.getObjectName());
 
         return mv;

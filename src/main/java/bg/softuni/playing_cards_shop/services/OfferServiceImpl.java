@@ -46,6 +46,8 @@ public class OfferServiceImpl implements OfferService {
                 .setQuantity(addOfferDto.getQuantity());
 
         this.offerRepository.save(offer);
+
+        //todo: fix if something is still not created
     }
 
     @Override
