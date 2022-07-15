@@ -43,7 +43,4 @@ public class DistributorDetailsDto {
         this.pictures = pictures;
         return this;
     }
-
-
-
 }

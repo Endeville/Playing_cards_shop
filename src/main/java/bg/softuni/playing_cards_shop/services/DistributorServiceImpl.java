@@ -2,6 +2,7 @@ package bg.softuni.playing_cards_shop.services;
 
 import bg.softuni.playing_cards_shop.models.dtos.AddDistributorDto;
 import bg.softuni.playing_cards_shop.models.entities.DistributorEntity;
+import bg.softuni.playing_cards_shop.models.entities.PictureEntity;
 import bg.softuni.playing_cards_shop.models.views.DistributorDetailsDto;
 import bg.softuni.playing_cards_shop.repositories.DistributorRepository;
 import bg.softuni.playing_cards_shop.services.interfaces.DistributorService;
@@ -11,6 +12,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.stream.Collectors;
 
 import static bg.softuni.playing_cards_shop.constants.GlobalConstants.OBJECT_NAME_DISTRIBUTOR;
 
@@ -29,9 +31,14 @@ public class DistributorServiceImpl implements DistributorService {
 
     @Override
     public DistributorDetailsDto findDistributorById(Long id) {
-        return this.modelMapper.map(
-                this.distributorRepository.findById(id).orElseThrow(()->new ObjectNotFoundException(OBJECT_NAME_DISTRIBUTOR)),
-                DistributorDetailsDto.class);
+        var distributor= this.distributorRepository
+                .findById(id)
+                .orElseThrow(()->new ObjectNotFoundException(OBJECT_NAME_DISTRIBUTOR));
+
+        var result=this.modelMapper.map(distributor, DistributorDetailsDto.class);
+        result.setPictures(this.pictureService.getPicturesUrls(distributor.getPictures()));
+
+        return result;
     }
 
     @Override

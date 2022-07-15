@@ -10,4 +10,6 @@ import java.util.Set;
 
 public interface PictureService {
     Set<PictureEntity> saveAll(List<MultipartFile> pictures) throws IOException;
+
+    List<String> getPicturesUrls(Set<PictureEntity> pictures);
 }

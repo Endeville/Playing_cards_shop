@@ -1,13 +1,12 @@
 package bg.softuni.playing_cards_shop.services;
 
-import bg.softuni.playing_cards_shop.constants.GlobalConstants;
 import bg.softuni.playing_cards_shop.models.entities.DeckEntity;
 import bg.softuni.playing_cards_shop.models.entities.OfferEntity;
-import bg.softuni.playing_cards_shop.models.entities.PictureEntity;
 import bg.softuni.playing_cards_shop.models.views.CatalogDeckDto;
 import bg.softuni.playing_cards_shop.models.views.DeckDetailsDto;
 import bg.softuni.playing_cards_shop.repositories.DeckRepository;
 import bg.softuni.playing_cards_shop.services.interfaces.DeckService;
+import bg.softuni.playing_cards_shop.services.interfaces.PictureService;
 import bg.softuni.playing_cards_shop.web.exceptions.ItemNotCreatedException;
 import bg.softuni.playing_cards_shop.web.exceptions.ObjectNotFoundException;
 import org.modelmapper.ModelMapper;
@@ -23,10 +22,12 @@ import static bg.softuni.playing_cards_shop.constants.GlobalConstants.OBJECT_NAM
 public class DeckServiceImpl implements DeckService {
 
     private final DeckRepository deckRepository;
+    private final PictureService pictureService;
     private final ModelMapper modelMapper;
 
-    public DeckServiceImpl(DeckRepository deckRepository, ModelMapper modelMapper) {
+    public DeckServiceImpl(DeckRepository deckRepository, PictureService pictureService, ModelMapper modelMapper) {
         this.deckRepository = deckRepository;
+        this.pictureService = pictureService;
         this.modelMapper = modelMapper;
     }
 
@@ -35,10 +36,7 @@ public class DeckServiceImpl implements DeckService {
         return deckRepository.getDeckEntityByApproved(true).stream()
                 .map(e->{
                    var deck= modelMapper.map(e, CatalogDeckDto.class);
-                   deck.setPictures(e.getPictures().stream()
-                           .map(PictureEntity::getUrl)
-                           .collect(Collectors.toList()));
-
+                   deck.setPictures(this.pictureService.getPicturesUrls(e.getPictures()));
                    return deck;
                 })
                 .collect(Collectors.toList());
@@ -46,14 +44,19 @@ public class DeckServiceImpl implements DeckService {
 
     @Override
     public DeckDetailsDto findDeckDetailsById(long id) {
-        var deck=deckRepository.getDeckEntityByIdAndApprovedIsTrue(id)
-                .orElse(null);
-        return this.modelMapper.map(deck, DeckDetailsDto.class);
+        var deck=deckRepository.findById(id)
+                .orElseThrow(()->new ObjectNotFoundException(OBJECT_NAME_DECK));
+
+        var result= this.modelMapper.map(deck, DeckDetailsDto.class);
+        result.setPictures(this.pictureService.getPicturesUrls(deck.getPictures()));
+
+        return result;
     }
 
     @Override
     public Integer getRecommendedPriceForDeckWithId(long id) {
-        return (int) this.deckRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException(OBJECT_NAME_DECK))
+        return (int) this.deckRepository.findById(id)
+                .orElseThrow(() -> new ObjectNotFoundException(OBJECT_NAME_DECK))
                 .getOffers().stream()
                 .filter(o->o.getStatus().name().equals("APPROVED") || o.getStatus().name().equals("LIMITED"))
                 .map(OfferEntity::getPrice)

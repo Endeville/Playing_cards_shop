@@ -64,4 +64,13 @@ public class DeckDetailsDto {
         this.distributor = distributor;
         return this;
     }
+
+    public List<String> getPictures() {
+        return pictures;
+    }
+
+    public DeckDetailsDto setPictures(List<String> pictures) {
+        this.pictures = pictures;
+        return this;
+    }
 }
