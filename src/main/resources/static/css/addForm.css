@@ -110,6 +110,11 @@ select{
     align-items: center;
 }
 
+#image-container th{
+    color: var(--grey);
+    font-size: 15px;
+}
+
 #image-container td{
     align-items: center;
     color: var(--grey) !important;
