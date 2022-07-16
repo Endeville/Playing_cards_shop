@@ -12,6 +12,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import static bg.softuni.playing_cards_shop.constants.GlobalConstants.OBJECT_NAME_DISTRIBUTOR;
@@ -49,5 +50,12 @@ public class DistributorServiceImpl implements DistributorService {
         distributor.setPictures(pictures);
 
         this.distributorRepository.save(distributor);
+    }
+
+    @Override
+    public List<String> getDistributorsNames() {
+        return this.distributorRepository.findAll().stream()
+                .map(DistributorEntity::getBrand)
+                .collect(Collectors.toList());
     }
 }

@@ -13,4 +13,6 @@ public interface DeckRepository extends JpaRepository<DeckEntity, Long> {
     Set<DeckEntity> getDeckEntityByApproved(boolean approved);
 
     Optional<DeckEntity> findDeckEntityByTitle(String title);
+
+    boolean existsByTitle(String title);
 }

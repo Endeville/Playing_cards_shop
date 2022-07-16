@@ -9,6 +9,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CreatorServiceImpl implements CreatorService {
@@ -30,5 +32,12 @@ public class CreatorServiceImpl implements CreatorService {
         creator.setPictures(pictures);
 
         this.creatorRepository.save(creator);
+    }
+
+    @Override
+    public List<String> getCreatorsNames() {
+        return this.creatorRepository.findAll().stream()
+                .map(CreatorEntity::getName)
+                .collect(Collectors.toList());
     }
 }

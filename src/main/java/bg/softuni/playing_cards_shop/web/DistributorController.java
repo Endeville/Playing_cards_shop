@@ -54,6 +54,7 @@ public class DistributorController {
 
         this.distributorService.addDistributor(distributorDto);
 
+        //todo: reconsider
         return "redirect:/decks/all";
     }
 }

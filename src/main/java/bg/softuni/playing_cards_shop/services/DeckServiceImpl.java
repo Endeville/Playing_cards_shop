@@ -1,5 +1,6 @@
 package bg.softuni.playing_cards_shop.services;
 
+import bg.softuni.playing_cards_shop.models.dtos.AddDeckDto;
 import bg.softuni.playing_cards_shop.models.entities.DeckEntity;
 import bg.softuni.playing_cards_shop.models.entities.OfferEntity;
 import bg.softuni.playing_cards_shop.models.views.CatalogDeckDto;
@@ -77,5 +78,15 @@ public class DeckServiceImpl implements DeckService {
         return this.deckRepository.getDeckEntityByApproved(true).stream()
                 .map(DeckEntity::getTitle)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public void addDeck(AddDeckDto addDeckDto) {
+        //todo: check if distributor and creator are valid -> map dto -> upload pictures -> persist entity
+    }
+
+    @Override
+    public boolean titleExists(String title) {
+        return this.deckRepository.existsByTitle(title);
     }
 }

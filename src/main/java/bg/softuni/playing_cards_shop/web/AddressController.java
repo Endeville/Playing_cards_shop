@@ -1,6 +1,6 @@
 package bg.softuni.playing_cards_shop.web;
 
-import bg.softuni.playing_cards_shop.models.dtos.AddressAddDto;
+import bg.softuni.playing_cards_shop.models.dtos.AddAddressDto;
 import bg.softuni.playing_cards_shop.services.interfaces.AddressService;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -24,8 +24,8 @@ public class AddressController {
     }
 
     @ModelAttribute("address")
-    public AddressAddDto address(){
-        return new AddressAddDto();
+    public AddAddressDto address(){
+        return new AddAddressDto();
     }
 
     @GetMapping("/add")
@@ -34,7 +34,7 @@ public class AddressController {
     }
 
     @PostMapping("/add")
-    public String addAddress(@Valid AddressAddDto address,
+    public String addAddress(@Valid AddAddressDto address,
                              BindingResult result,
                              RedirectAttributes attributes,
                              Principal principal){
@@ -47,6 +47,8 @@ public class AddressController {
 
         this.addressService.addAddress(address, principal.getName());
 
+
+        //todo: reconsider
         return "redirect:/users/profile/" + principal.getName();
     }
 }

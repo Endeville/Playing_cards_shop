@@ -1,5 +1,6 @@
 package bg.softuni.playing_cards_shop.services.interfaces;
 
+import bg.softuni.playing_cards_shop.models.dtos.AddDeckDto;
 import bg.softuni.playing_cards_shop.models.entities.DeckEntity;
 import bg.softuni.playing_cards_shop.models.views.CatalogDeckDto;
 import bg.softuni.playing_cards_shop.models.views.DeckDetailsDto;
@@ -16,4 +17,8 @@ public interface DeckService {
     DeckEntity findDeckByTitle(String title);
 
     List<String> getAllDeckTitles();
+
+    void addDeck(AddDeckDto addDeckDto);
+
+    boolean titleExists(String title);
 }

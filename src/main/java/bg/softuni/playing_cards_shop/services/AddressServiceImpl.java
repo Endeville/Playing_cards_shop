@@ -1,6 +1,6 @@
 package bg.softuni.playing_cards_shop.services;
 
-import bg.softuni.playing_cards_shop.models.dtos.AddressAddDto;
+import bg.softuni.playing_cards_shop.models.dtos.AddAddressDto;
 import bg.softuni.playing_cards_shop.models.entities.AddressEntity;
 import bg.softuni.playing_cards_shop.repositories.AddressRepository;
 import bg.softuni.playing_cards_shop.services.interfaces.AddressService;
@@ -22,7 +22,7 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public void addAddress(AddressAddDto addressDto, String name) {
+    public void addAddress(AddAddressDto addressDto, String name) {
         var address=this.modelMapper.map(addressDto, AddressEntity.class);
         address=this.addressRepository.save(address);
 

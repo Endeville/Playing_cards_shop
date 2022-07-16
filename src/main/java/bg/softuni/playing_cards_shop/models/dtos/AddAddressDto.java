@@ -4,17 +4,17 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-public class AddressAddDto {
+public class AddAddressDto {
     @NotBlank(message = "")
-    @Size(min=2, max=40, message = "The country should have between 2 and 40 characters.")
+    @Size(min=2, max=40, message = "Please fill in the country(up to 40 characters)")
     private String country;
 
     @NotBlank(message = "")
-    @Size(min=2, max=100, message = "The city should have between 2 and 100 characters.")
+    @Size(min=2, max=50, message = "Please fill in the city(up to 50 characters).")
     private String city;
 
     @NotBlank(message = "")
-    @Size(min=2, max=200, message = "The street should have between 2 and 200 characters.")
+    @Size(min=2, max=100, message = "Please fill in the street(up to 100 characters).")
     private String street;
 
     @NotBlank(message = "")
@@ -25,7 +25,7 @@ public class AddressAddDto {
         return country;
     }
 
-    public AddressAddDto setCountry(String country) {
+    public AddAddressDto setCountry(String country) {
         this.country = country;
         return this;
     }
@@ -34,7 +34,7 @@ public class AddressAddDto {
         return city;
     }
 
-    public AddressAddDto setCity(String city) {
+    public AddAddressDto setCity(String city) {
         this.city = city;
         return this;
     }
@@ -43,7 +43,7 @@ public class AddressAddDto {
         return street;
     }
 
-    public AddressAddDto setStreet(String street) {
+    public AddAddressDto setStreet(String street) {
         this.street = street;
         return this;
     }
@@ -52,7 +52,7 @@ public class AddressAddDto {
         return telephone;
     }
 
-    public AddressAddDto setTelephone(String telephone) {
+    public AddAddressDto setTelephone(String telephone) {
         this.telephone = telephone;
         return this;
     }

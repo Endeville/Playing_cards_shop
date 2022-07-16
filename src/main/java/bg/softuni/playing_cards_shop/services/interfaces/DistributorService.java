@@ -4,9 +4,12 @@ import bg.softuni.playing_cards_shop.models.dtos.AddDistributorDto;
 import bg.softuni.playing_cards_shop.models.views.DistributorDetailsDto;
 
 import java.io.IOException;
+import java.util.List;
 
 public interface DistributorService {
     DistributorDetailsDto findDistributorById(Long id);
 
     void addDistributor(AddDistributorDto distributorDto) throws IOException;
+
+    List<String> getDistributorsNames();
 }

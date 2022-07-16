@@ -2,6 +2,11 @@
 @import "utils/footer.css";
 @import "utils/defaults.css";
 
+
+body{
+    background: url(../images/page-header-bg.jpg) center center no-repeat #0b1319;
+}
+
 main{
     position: relative;
     display: block;
@@ -10,7 +15,6 @@ main{
     height: 88vh;
     padding: 5vh 20px 40px;
     text-align: center;
-    background: url(../images/page-header-bg.webp) center center no-repeat #0b1319;
     z-index: -1;
 }
 
@@ -173,8 +177,16 @@ select:hover{
     }
 }
 
-.filter-option-inner-inner:before{
+.category .filter-option-inner-inner:before{
     content: "Categories: ";
+}
+
+.distributor .filter-option-inner-inner:before{
+    content: "Distributor: ";
+}
+
+.creator .filter-option-inner-inner:before{
+    content: "Creator: ";
 }
 
 .filter-option-inner-inner{
