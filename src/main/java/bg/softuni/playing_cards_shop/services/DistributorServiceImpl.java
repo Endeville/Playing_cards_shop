@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import static bg.softuni.playing_cards_shop.constants.GlobalConstants.OBJECT_NAME_DISTRIBUTOR;
@@ -33,11 +34,11 @@ public class DistributorServiceImpl implements DistributorService {
 
     @Override
     public DistributorDetailsDto findDistributorById(Long id) {
-        var distributor= this.distributorRepository
+        var distributor = this.distributorRepository
                 .findById(id)
-                .orElseThrow(()->new ObjectNotFoundException(OBJECT_NAME_DISTRIBUTOR));
+                .orElseThrow(() -> new ObjectNotFoundException(OBJECT_NAME_DISTRIBUTOR));
 
-        var result=this.modelMapper.map(distributor, DistributorDetailsDto.class);
+        var result = this.modelMapper.map(distributor, DistributorDetailsDto.class);
         result.setPictures(this.pictureService.getPicturesUrls(distributor.getPictures()));
 
         return result;
@@ -45,10 +46,14 @@ public class DistributorServiceImpl implements DistributorService {
 
     @Override
     public void addDistributor(AddDistributorDto distributorDto) throws IOException {
-        var distributor=this.modelMapper.map(distributorDto, DistributorEntity.class);
+        var distributor = this.modelMapper.map(distributorDto, DistributorEntity.class);
 
-        var pictures=pictureService.saveAll(distributorDto.getPictures());
-        distributor.setPictures(pictures);
+        if (this.pictureService.validatePictures(distributorDto.getPictures())) {
+            var pictures = pictureService.saveAll(distributorDto.getPictures());
+            distributor.setPictures(pictures);
+        } else {
+            distributor.setPictures(Set.of(this.pictureService.getDefaultDistributorProfile()));
+        }
 
 
         //todo: add the distributor for mod approval

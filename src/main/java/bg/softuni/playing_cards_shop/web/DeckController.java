@@ -82,7 +82,14 @@ public class DeckController {
             return "redirect:/creators/add";
         }
 
-        this.deckService.addDeck(addDeckDto);
+        try {
+            this.deckService.addDeck(addDeckDto);
+        }catch(IllegalStateException e){
+            attributes.addFlashAttribute("deck", addDeckDto);
+            attributes.addFlashAttribute("org.springframework.validation.BindingResult.deck", result);
+
+            return "redirect:/decks/add";
+        }
 
         return "redirect:/decks/all";
     }

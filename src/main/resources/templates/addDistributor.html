@@ -92,7 +92,7 @@
                                         <label for="formFile" class="custom-file-upload">
                                             Click to upload images
                                         </label>
-                                        <input required class="form-control" type="file"
+                                        <input class="form-control" type="file"
                                                id="formFile" multiple accept=".jpg, .jpeg, .png"
                                                th:field="*{pictures}" th:errorclass="invalid-field">
                                         <div class="error"  th:text="${#strings.listJoin(#fields.errors('pictures'), '; ')}">
@@ -100,7 +100,7 @@
                                     </div>
 
                                     <table class="form-group" id="image-container">
-                                        <thead><tr><th>Files Uploaded(At least 1 is needed):</th></tr></thead>
+                                        <thead><tr><th>Files Uploaded:</th></tr></thead>
                                         <tbody>
                                         </tbody>
                                     </table>

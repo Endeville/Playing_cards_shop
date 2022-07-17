@@ -45,20 +45,20 @@ public class DeckServiceImpl implements DeckService {
     @Override
     public List<CatalogDeckDto> getApprovedDecks() {
         return deckRepository.getDeckEntityByApproved(true).stream()
-                .map(e->{
-                   var deck= modelMapper.map(e, CatalogDeckDto.class);
-                   deck.setPictures(this.pictureService.getPicturesUrls(e.getPictures()));
-                   return deck;
+                .map(e -> {
+                    var deck = modelMapper.map(e, CatalogDeckDto.class);
+                    deck.setPictures(this.pictureService.getPicturesUrls(e.getPictures()));
+                    return deck;
                 })
                 .collect(Collectors.toList());
     }
 
     @Override
     public DeckDetailsDto findDeckDetailsById(long id) {
-        var deck=deckRepository.findById(id)
-                .orElseThrow(()->new ObjectNotFoundException(OBJECT_NAME_DECK));
+        var deck = deckRepository.findById(id)
+                .orElseThrow(() -> new ObjectNotFoundException(OBJECT_NAME_DECK));
 
-        var result= this.modelMapper.map(deck, DeckDetailsDto.class);
+        var result = this.modelMapper.map(deck, DeckDetailsDto.class);
         result.setPictures(this.pictureService.getPicturesUrls(deck.getPictures()));
 
         return result;
@@ -69,7 +69,7 @@ public class DeckServiceImpl implements DeckService {
         return (int) this.deckRepository.findById(id)
                 .orElseThrow(() -> new ObjectNotFoundException(OBJECT_NAME_DECK))
                 .getOffers().stream()
-                .filter(o->o.getStatus().name().equals("APPROVED") || o.getStatus().name().equals("LIMITED"))
+                .filter(o -> o.getStatus().name().equals("APPROVED") || o.getStatus().name().equals("LIMITED"))
                 .map(OfferEntity::getPrice)
                 .mapToDouble(BigDecimal::doubleValue)
                 .average()
@@ -80,7 +80,7 @@ public class DeckServiceImpl implements DeckService {
     public DeckEntity findDeckByTitle(String title) {
         return this.deckRepository
                 .findDeckEntityByTitle(title)
-                .orElseThrow(()-> new ItemNotCreatedException(OBJECT_NAME_DECK));
+                .orElseThrow(() -> new ItemNotCreatedException(OBJECT_NAME_DECK));
     }
 
     @Override
@@ -92,18 +92,24 @@ public class DeckServiceImpl implements DeckService {
 
     @Override
     public void addDeck(AddDeckDto addDeckDto) throws IOException {
-        var deck=this.modelMapper.map(addDeckDto, DeckEntity.class);
+        var deck = this.modelMapper.map(addDeckDto, DeckEntity.class);
 
-        var creator=this.creatorService.findByName(addDeckDto.getCreatorName())
-                .orElseThrow(()->new ObjectNotFoundException(OBJECT_NAME_CREATOR));
-        var distributor=this.distributorService.findDistributorByBrand(addDeckDto.getDistributorBrand())
-                .orElseThrow(()->new ObjectNotFoundException(OBJECT_NAME_DISTRIBUTOR));
-        var categories=this.categoryService.findCategoriesByNames(addDeckDto.getCategories());
+        if (this.pictureService.validatePictures(addDeckDto.getPictures())) {
+            var pictures = this.pictureService.saveAll(addDeckDto.getPictures());
+            deck.setPictures(pictures);
+        } else {
+            throw new IllegalStateException("No pictures provided");
+        }
 
-        var pictures=this.pictureService.saveAll(addDeckDto.getPictures());
+        var creator = this.creatorService.findByName(addDeckDto.getCreatorName())
+                .orElseThrow(() -> new ObjectNotFoundException(OBJECT_NAME_CREATOR));
+        var distributor = this.distributorService.findDistributorByBrand(addDeckDto.getDistributorBrand())
+                .orElseThrow(() -> new ObjectNotFoundException(OBJECT_NAME_DISTRIBUTOR));
+        var categories = this.categoryService.findCategoriesByNames(addDeckDto.getCategories());
 
-        deck.setPictures(pictures)
-                .setCreator(creator)
+
+
+        deck.setCreator(creator)
                 .setDistributor(distributor)
                 .setCategories(new LinkedHashSet<>(categories));
 

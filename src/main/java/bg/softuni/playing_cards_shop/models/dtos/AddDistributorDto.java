@@ -21,7 +21,6 @@ public class AddDistributorDto {
     @NotBlank(message = "Please give a brief description of the distributor.")
     private String description;
 
-    @NotEmpty(message = "Please upload pictures for this distributor.")
     private List<MultipartFile> pictures;
 
     public String getBrand() {

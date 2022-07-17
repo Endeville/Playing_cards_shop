@@ -14,4 +14,8 @@ public interface PictureService {
     List<String> getPicturesUrls(Set<PictureEntity> pictures);
 
     PictureEntity getDefaultProfilePicture();
+
+    PictureEntity getDefaultDistributorProfile();
+
+    boolean validatePictures(List<MultipartFile> pictures);
 }

@@ -60,5 +60,16 @@ public class PictureServiceImpl implements PictureService {
                 .orElseThrow(()->new ObjectNotFoundException(OBJECT_NAME_PICTURE));
     }
 
+    @Override
+    public boolean validatePictures(List<MultipartFile> pictures) {
+        return !pictures.isEmpty() && !pictures.get(0).getOriginalFilename().trim().equals("");
+    }
+
+    @Override
+    public PictureEntity getDefaultDistributorProfile() {
+        return this.pictureRepository.findPictureEntityByUrl("src/main/resources/static/images/default_distributor.png")
+                .orElseThrow(()->new ObjectNotFoundException(OBJECT_NAME_PICTURE));
+    }
+
 
 }

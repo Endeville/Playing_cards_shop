@@ -29,11 +29,11 @@ public class CreatorServiceImpl implements CreatorService {
 
     @Override
     public void addCreator(AddCreatorDto creatorDto) throws IOException {
-        var creator=this.modelMapper.map(creatorDto, CreatorEntity.class);
-        if(!creatorDto.getPictures().get(0).getOriginalFilename().equals("")){
-            var pictures=this.pictureService.saveAll(creatorDto.getPictures());
+        var creator = this.modelMapper.map(creatorDto, CreatorEntity.class);
+        if (this.pictureService.validatePictures(creatorDto.getPictures())) {
+            var pictures = this.pictureService.saveAll(creatorDto.getPictures());
             creator.setPictures(pictures);
-        }else{
+        } else {
             creator.setPictures(Set.of(this.pictureService.getDefaultProfilePicture()));
         }
 

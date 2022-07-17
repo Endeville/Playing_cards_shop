@@ -50,5 +50,6 @@ VALUES ('https://res.cloudinary.com/dykamqwpf/image/upload/v1657796050/playing_c
        ('https://res.cloudinary.com/dykamqwpf/image/upload/v1657796051/playing_cards_project/monarchs1_1024x1024_rltbye.webp', 2, 2);
 
 INSERT INTO pictures(url)
-VALUES ('src/main/resources/static/images/default_profile.jpg')
+VALUES ('src/main/resources/static/images/default_profile.jpg'),
+       ('src/main/resources/static/images/default_distributor.png')
 
