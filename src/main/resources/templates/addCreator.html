@@ -66,7 +66,7 @@
 
                                     <div class="form-group">
                                         <input type="text" name="brand" id="brand" tabindex="1"
-                                               class="form-control" placeholder="Brand" value=""
+                                               class="form-control" placeholder="Name" value=""
                                                th:field="*{name}" th:errorclass="invalid-field">
                                         <div class="error"  th:text="${#strings.listJoin(#fields.errors('name'), '; ')}">
                                         </div>
@@ -82,7 +82,7 @@
                                         <label for="formFile" class="custom-file-upload">
                                             Click to upload images
                                         </label>
-                                        <input required class="form-control" type="file"
+                                        <input class="form-control" type="file"
                                                id="formFile" multiple accept=".jpg, .jpeg, .png"
                                                th:field="*{pictures}" th:errorclass="invalid-field">
                                         <div class="error"  th:text="${#strings.listJoin(#fields.errors('pictures'), '; ')}">

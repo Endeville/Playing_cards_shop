@@ -28,6 +28,7 @@
 server:
   port: 8000
 
+
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
@@ -46,6 +47,13 @@ spring:
   sql:
     init:
       mode: always
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+
 
 cloudinary:
   api-key: 123169491616986

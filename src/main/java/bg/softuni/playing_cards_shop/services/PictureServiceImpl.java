@@ -5,6 +5,7 @@ import bg.softuni.playing_cards_shop.models.entities.PictureEntity;
 import bg.softuni.playing_cards_shop.repositories.PictureRepository;
 import bg.softuni.playing_cards_shop.services.cloudinary.CloudinaryService;
 import bg.softuni.playing_cards_shop.services.interfaces.PictureService;
+import bg.softuni.playing_cards_shop.web.exceptions.ObjectNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -14,6 +15,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import static bg.softuni.playing_cards_shop.constants.GlobalConstants.OBJECT_NAME_PICTURE;
 
 @Service
 public class PictureServiceImpl implements PictureService {
@@ -49,6 +52,12 @@ public class PictureServiceImpl implements PictureService {
         return pictures.stream()
                 .map(PictureEntity::getUrl)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public PictureEntity getDefaultProfilePicture() {
+        return this.pictureRepository.findPictureEntityByUrl("src/main/resources/static/images/default_profile.jpg")
+                .orElseThrow(()->new ObjectNotFoundException(OBJECT_NAME_PICTURE));
     }
 
 

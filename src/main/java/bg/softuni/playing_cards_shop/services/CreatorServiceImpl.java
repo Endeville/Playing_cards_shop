@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -29,8 +30,12 @@ public class CreatorServiceImpl implements CreatorService {
     @Override
     public void addCreator(AddCreatorDto creatorDto) throws IOException {
         var creator=this.modelMapper.map(creatorDto, CreatorEntity.class);
-        var pictures=this.pictureService.saveAll(creatorDto.getPictures());
-        creator.setPictures(pictures);
+        if(!creatorDto.getPictures().get(0).getOriginalFilename().equals("")){
+            var pictures=this.pictureService.saveAll(creatorDto.getPictures());
+            creator.setPictures(pictures);
+        }else{
+            creator.setPictures(Set.of(this.pictureService.getDefaultProfilePicture()));
+        }
 
 
         //todo: add the creator for mod approval

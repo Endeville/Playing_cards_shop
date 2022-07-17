@@ -49,3 +49,6 @@ INSERT INTO pictures(url, deck_id, offer_id)
 VALUES ('https://res.cloudinary.com/dykamqwpf/image/upload/v1657796050/playing_cards_project/high_victorian_green_t27q49.jpg', 1, 1),
        ('https://res.cloudinary.com/dykamqwpf/image/upload/v1657796051/playing_cards_project/monarchs1_1024x1024_rltbye.webp', 2, 2);
 
+INSERT INTO pictures(url)
+VALUES ('src/main/resources/static/images/default_profile.jpg')
+
