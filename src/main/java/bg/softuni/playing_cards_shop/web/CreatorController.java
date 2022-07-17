@@ -45,7 +45,7 @@ public class CreatorController {
 
         this.creatorService.addCreator(creatorDto);
 
-        //todo: reconsider the redirect
+        //todo: reconsider
         return "redirect:/decks/all";
     }
 }

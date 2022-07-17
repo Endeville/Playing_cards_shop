@@ -1,23 +1,26 @@
 package bg.softuni.playing_cards_shop.models.validations.enums;
 
+import bg.softuni.playing_cards_shop.services.interfaces.DeckService;
+import bg.softuni.playing_cards_shop.services.interfaces.UserService;
+
 public enum FieldType {
-    EMAIL("User", "email"),
-    USERNAME("User", "username"),
-    TITLE("Deck", "title");
+    EMAIL(UserService.class, "email"),
+    USERNAME(UserService.class, "username"),
+    TITLE(DeckService.class, "title");
 
-    private final String entity;
-    private final String name;
+    private final Class<?> entityHandler;
+    private final String fieldName;
 
-    FieldType(String entity, String name) {
-        this.entity = entity;
-        this.name = name;
+    FieldType(Class<?> entityHandler, String name) {
+        this.entityHandler = entityHandler;
+        this.fieldName = name;
     }
 
-    public String getEntity() {
-        return entity;
+    public Class<?> getEntityHandler() {
+        return entityHandler;
     }
 
-    public String getName() {
-        return name;
+    public String getFieldName() {
+        return fieldName;
     }
 }

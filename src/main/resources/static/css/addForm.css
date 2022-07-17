@@ -89,7 +89,7 @@ select{
 .dropdown-toggle{
     background: var(--light-black) !important;
     line-height: 26px;
-    color: var(--grey);
+    color: #999;
     font-family: Lato, Arial, sans-serif !important;
     height: 45px;
 }
@@ -189,8 +189,14 @@ select:hover{
     content: "Creator: ";
 }
 
+.filter-option-inner-inner:before{
+    font-weight: bolder;
+    font-size: 16px;
+}
+
 .filter-option-inner-inner{
     content: none;
+    font-weight: bolder;
 }
 
 .btn:focus{
@@ -219,6 +225,22 @@ select:hover{
 
 .form-group>label{
     color: var(--grey);
+}
+
+.addMissingInfoAnchor{
+    color: var(--grey);
+    font-weight: normal;
+    font-size: 14px;
+    margin-top: 3px;
+    margin-left: 3px;
+}
+
+.distributor, .creator{
+    text-align: left !important;
+}
+
+.addMissingInfoAnchor:hover{
+    color: var(--dark-blue);
 }
 
 

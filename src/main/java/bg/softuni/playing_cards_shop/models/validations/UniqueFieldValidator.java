@@ -32,21 +32,20 @@ public class UniqueFieldValidator implements ConstraintValidator<UniqueField, Ob
         var result=false;
 
         try {
-            var className="bg.softuni.playing_cards_shop.services.interfaces." + this.fieldType.getEntity() + "Service";
-            var clazz = Class.forName(className);
-            var instance=clazz.cast(appContext.getBean(clazz));
+            var instance=appContext.getBean(this.fieldType.getEntityHandler());
 
-            var existsMethod = clazz.getDeclaredMethod(String.format("%sExists", this.fieldType.getName()), String.class);
+            var existsMethod = this.fieldType.getEntityHandler().getDeclaredMethod(String.format("%sExists", this.fieldType.getFieldName()), String.class);
             existsMethod.setAccessible(true);
 
             result= (boolean) existsMethod.invoke(instance,value);
-        } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException | ClassNotFoundException e) {
+        } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
             e.printStackTrace();
         }
 
         if(result){
+            var className=this.fieldType.getEntityHandler().getSimpleName();
             context
-                    .buildConstraintViolationWithTemplate(String.format("%s with such %s already exists", this.fieldType.getEntity() ,this.fieldType.getName()))
+                    .buildConstraintViolationWithTemplate(String.format("%s with such %s already exists", className.substring(0, className.length()-7) ,this.fieldType.getFieldName()))
                     .addConstraintViolation()
                     .disableDefaultConstraintViolation();
         }

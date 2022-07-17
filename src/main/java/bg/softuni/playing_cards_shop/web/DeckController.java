@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 @Controller
@@ -60,7 +61,8 @@ public class DeckController {
     @PostMapping("/add")
     public String addDeck(@Valid AddDeckDto addDeckDto,
                           BindingResult result,
-                          RedirectAttributes attributes){
+                          RedirectAttributes attributes,
+                          HttpServletRequest request){
         if(result.hasErrors()){
             attributes.addFlashAttribute("deck", addDeckDto);
             attributes.addFlashAttribute("org.springframework.validation.BindingResult.deck", result);
@@ -68,10 +70,19 @@ public class DeckController {
             return "redirect:/decks/add";
         }
 
+        if(addDeckDto.getDistributorBrand().equals("Add")){
+            attributes.addFlashAttribute("deck", addDeckDto);
+            attributes.addFlashAttribute("previous", "/decks/add");
+            return "redirect:/distributors/add";
+        }
+        if(addDeckDto.getCreatorName().equals("Add")){
+            attributes.addFlashAttribute("deck", addDeckDto);
+            attributes.addFlashAttribute("previous", "/decks/add");
+            return "redirect:/creators/add";
+        }
+
         this.deckService.addDeck(addDeckDto);
 
-
-        //todo: reconsider
         return "redirect:/decks/all";
     }
 }
