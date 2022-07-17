@@ -5,6 +5,7 @@ import bg.softuni.playing_cards_shop.models.entities.DeckEntity;
 import bg.softuni.playing_cards_shop.models.views.CatalogDeckDto;
 import bg.softuni.playing_cards_shop.models.views.DeckDetailsDto;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface DeckService {
@@ -18,7 +19,7 @@ public interface DeckService {
 
     List<String> getAllDeckTitles();
 
-    void addDeck(AddDeckDto addDeckDto);
+    void addDeck(AddDeckDto addDeckDto) throws IOException;
 
     boolean titleExists(String title);
 }

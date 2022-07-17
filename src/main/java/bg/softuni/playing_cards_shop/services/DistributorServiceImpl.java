@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static bg.softuni.playing_cards_shop.constants.GlobalConstants.OBJECT_NAME_DISTRIBUTOR;
@@ -49,6 +50,8 @@ public class DistributorServiceImpl implements DistributorService {
         var pictures=pictureService.saveAll(distributorDto.getPictures());
         distributor.setPictures(pictures);
 
+
+        //todo: add the distributor for mod approval
         this.distributorRepository.save(distributor);
     }
 
@@ -57,5 +60,10 @@ public class DistributorServiceImpl implements DistributorService {
         return this.distributorRepository.findAll().stream()
                 .map(DistributorEntity::getBrand)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Optional<DistributorEntity> findDistributorByBrand(String distributorBrand) {
+        return this.distributorRepository.findDistributorEntityByBrand(distributorBrand);
     }
 }

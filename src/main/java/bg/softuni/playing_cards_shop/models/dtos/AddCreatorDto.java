@@ -8,7 +8,6 @@ import javax.validation.constraints.Size;
 import java.util.List;
 
 public class AddCreatorDto {
-    //todo: field validation
     @NotBlank(message = "")
     @Size(min=2, max=100, message = "Please fill in the name of the creator(up to 100 characters).")
     private String name;

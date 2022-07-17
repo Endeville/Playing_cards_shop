@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -31,6 +32,8 @@ public class CreatorServiceImpl implements CreatorService {
         var pictures=this.pictureService.saveAll(creatorDto.getPictures());
         creator.setPictures(pictures);
 
+
+        //todo: add the creator for mod approval
         this.creatorRepository.save(creator);
     }
 
@@ -39,5 +42,10 @@ public class CreatorServiceImpl implements CreatorService {
         return this.creatorRepository.findAll().stream()
                 .map(CreatorEntity::getName)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Optional<CreatorEntity> findByName(String creatorName) {
+        return this.creatorRepository.findCreatorEntityByName(creatorName);
     }
 }
