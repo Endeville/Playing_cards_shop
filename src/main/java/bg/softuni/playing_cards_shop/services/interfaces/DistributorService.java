@@ -17,4 +17,6 @@ public interface DistributorService {
     Optional<DistributorEntity> findDistributorByBrand(String distributorBrand);
 
     DistributorDetailsDto findDistributorDetailsByBrand(String brand);
+
+    boolean brandExists(String brand);
 }

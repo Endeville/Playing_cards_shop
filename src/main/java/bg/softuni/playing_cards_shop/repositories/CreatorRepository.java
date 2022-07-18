@@ -10,4 +10,6 @@ import java.util.Optional;
 public interface CreatorRepository extends JpaRepository<CreatorEntity, Long> {
 
     Optional<CreatorEntity> findCreatorEntityByName(String name);
+
+    boolean existsByName(String name);
 }

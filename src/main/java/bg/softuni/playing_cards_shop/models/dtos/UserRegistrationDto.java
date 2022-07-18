@@ -19,12 +19,12 @@ public class UserRegistrationDto {
 
     @NotNull(message = "")
     @Size(min = 4, max=20, message = "The username should be between 4 and 20 characters")
-    @UniqueField(fieldType = FieldType.USERNAME)
+    @UniqueField(fieldType = FieldType.USER_USERNAME)
     private String username;
 
     @NotBlank(message = "Email is mandatory")
     @Email(message = "Invalid email")
-    @UniqueField(fieldType = FieldType.EMAIL)
+    @UniqueField(fieldType = FieldType.USER_EMAIL)
     private String email;
 
     @NotNull(message = "")

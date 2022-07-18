@@ -1,5 +1,7 @@
 package bg.softuni.playing_cards_shop.models.dtos;
 
+import bg.softuni.playing_cards_shop.models.validations.UniqueField;
+import bg.softuni.playing_cards_shop.models.validations.enums.FieldType;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotBlank;
@@ -11,6 +13,7 @@ import java.util.List;
 public class AddDistributorDto {
     @NotBlank(message = "")
     @Size(min=2, max=60, message = "Please fill in the brand(up to 60 characters).")
+    @UniqueField(fieldType = FieldType.DISTRIBUTOR_BRAND)
     private String brand;
 
     @NotBlank(message = "")

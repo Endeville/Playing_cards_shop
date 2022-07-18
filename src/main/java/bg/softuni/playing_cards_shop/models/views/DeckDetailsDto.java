@@ -8,8 +8,8 @@ public class DeckDetailsDto {
     private List<String> pictures;
     private String country;
     private List<CategoryDto> categories;
-    private CreatorIdDto creator;
-    private DistributorIdentificationDto distributor;
+    private CreatorNameDto creator;
+    private DistributorBrandDto distributor;
 
     public String getTitle() {
         return title;
@@ -47,20 +47,20 @@ public class DeckDetailsDto {
         return this;
     }
 
-    public CreatorIdDto getCreator() {
+    public CreatorNameDto getCreator() {
         return creator;
     }
 
-    public DeckDetailsDto setCreator(CreatorIdDto creator) {
+    public DeckDetailsDto setCreator(CreatorNameDto creator) {
         this.creator = creator;
         return this;
     }
 
-    public DistributorIdentificationDto getDistributor() {
+    public DistributorBrandDto getDistributor() {
         return distributor;
     }
 
-    public DeckDetailsDto setDistributor(DistributorIdentificationDto distributor) {
+    public DeckDetailsDto setDistributor(DistributorBrandDto distributor) {
         this.distributor = distributor;
         return this;
     }

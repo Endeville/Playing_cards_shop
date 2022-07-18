@@ -10,4 +10,6 @@ import java.util.Optional;
 public interface DistributorRepository extends JpaRepository<DistributorEntity, Long> {
 
     Optional<DistributorEntity> findDistributorEntityByBrand(String brand);
+
+    boolean existsByBrand(String brand);
 }

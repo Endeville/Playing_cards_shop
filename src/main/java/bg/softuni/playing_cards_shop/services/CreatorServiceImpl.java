@@ -53,4 +53,9 @@ public class CreatorServiceImpl implements CreatorService {
     public Optional<CreatorEntity> findByName(String creatorName) {
         return this.creatorRepository.findCreatorEntityByName(creatorName);
     }
+
+    @Override
+    public boolean nameExists(String name) {
+        return this.creatorRepository.existsByName(name);
+    }
 }

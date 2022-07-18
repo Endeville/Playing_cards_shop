@@ -45,6 +45,11 @@ public class DistributorServiceImpl implements DistributorService {
     }
 
     @Override
+    public boolean brandExists(String brand) {
+        return this.distributorRepository.existsByBrand(brand);
+    }
+
+    @Override
     public void addDistributor(AddDistributorDto distributorDto) throws IOException {
         var distributor = this.modelMapper.map(distributorDto, DistributorEntity.class);
 

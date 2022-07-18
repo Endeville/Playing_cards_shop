@@ -9,7 +9,7 @@ import java.util.Set;
 @Table(name = "creators")
 public class CreatorEntity extends BaseEntity {
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String name;
 
     @Column(columnDefinition = "TEXT")

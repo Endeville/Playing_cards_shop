@@ -4,18 +4,20 @@ VALUES (1, 'ADMIN'),
        (3, 'CLIENT');
 
 INSERT INTO categories(id, category)
-VALUES (1,'STANDARD'),
-    (2, 'GAME'),
-    (3, 'MAGIC'),
-    (4, 'CARDISTRY'),
-    (5, 'VINTAGE'),
-    (6, 'POKER'),
-    (7, 'GAFFED'),
-    (8, 'MARKED');
+VALUES (1, 'STANDARD'),
+       (2, 'GAME'),
+       (3, 'MAGIC'),
+       (4, 'CARDISTRY'),
+       (5, 'VINTAGE'),
+       (6, 'POKER'),
+       (7, 'GAFFED'),
+       (8, 'MARKED');
 
 INSERT INTO users(id, username, email, password, rating, role_id)
-VALUES (1, 'Endeville', 'victor.popdonchev@gmail.com', '9f6095cc9b392438eb577c67382a951ae945df94ab649e268f1fc2b527c678daebf5609944280cf8', 5, 3),
-       (2, 'Vipop', 'xvipop@gmail.com', '9f6095cc9b392438eb577c67382a951ae945df94ab649e268f1fc2b527c678daebf5609944280cf8', 5, 1);
+VALUES (1, 'Endeville', 'victor.popdonchev@gmail.com',
+        '9f6095cc9b392438eb577c67382a951ae945df94ab649e268f1fc2b527c678daebf5609944280cf8', 5, 3),
+       (2, 'Vipop', 'xvipop@gmail.com',
+        '9f6095cc9b392438eb577c67382a951ae945df94ab649e268f1fc2b527c678daebf5609944280cf8', 5, 1);
 
 INSERT INTO creators(id, name, description)
 VALUES (1, 'Joe White', 'Self taught, Specializing in branding and packaging design.
@@ -24,11 +26,11 @@ For work enquiries, Please email
 yeoldestudiouk@gmail.com'),
        (2, 'Curtis Jinkins', 'Independent Graphic Design Professional. Works at Neighborhood Studio.');
 
-
 INSERT INTO distributors(id, brand, description, url)
 VALUES (1, 'Theory11', 'Our team is composed of the best of the best minds in the magic industry - from performers to creators and consultants.
 As a result, our team has consulted and created magic for the majority of magic projects on stage, film, or television over the past decade',
         'https://www.theory11.com/');
+
 
 INSERT INTO decks (title, country_of_origin, description, approved, creator_id, distributor_id)
 VALUES ('High Victorian Green', 'USA', 'somethign idk', true, 1, 1),
@@ -43,13 +45,15 @@ VALUES (1, 2),
 
 INSERT INTO offers(id, price, quantity, description, status, deck_id, seller_id)
 VALUES (1, 20, 4, "Great offer. You won't find anything better", 'APPROVED', 1, 1),
-       (2, 5, 2, "Better hurry the offer won't be available soon.", 'LIMITED', 1 ,1 );
+       (2, 5, 2, "Better hurry the offer won't be available soon.", 'LIMITED', 1, 1);
 
 INSERT INTO pictures(url, deck_id, offer_id)
-VALUES ('https://res.cloudinary.com/dykamqwpf/image/upload/v1657796050/playing_cards_project/high_victorian_green_t27q49.jpg', 1, 1),
-       ('https://res.cloudinary.com/dykamqwpf/image/upload/v1657796051/playing_cards_project/monarchs1_1024x1024_rltbye.webp', 2, 2);
+VALUES ('https://res.cloudinary.com/dykamqwpf/image/upload/v1657796050/playing_cards_project/high_victorian_green_t27q49.jpg',
+        1, 1),
+       ('https://res.cloudinary.com/dykamqwpf/image/upload/v1657796051/playing_cards_project/monarchs1_1024x1024_rltbye.webp',
+        2, 2);
 
-INSERT INTO pictures(url)
-VALUES ('src/main/resources/static/images/default_profile.jpg'),
-       ('src/main/resources/static/images/default_distributor.png');
-
+INSERT INTO pictures(url, creator_id, distributor_id)
+VALUES ('https://res.cloudinary.com/dykamqwpf/image/upload/v1658170325/default_creator_wgjltr.jpg', 1, null),
+       ('https://res.cloudinary.com/dykamqwpf/image/upload/v1658170325/default_creator_wgjltr.jpg', 2, null),
+       ('https://res.cloudinary.com/dykamqwpf/image/upload/v1658170325/default_distributor_ogp1ju.png', null, 1);

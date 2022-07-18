@@ -39,11 +39,8 @@
         <div class="row decor-default">
             <div class="col-md-12">
                 <div class="contact">
-                    <div class="controls" th:if="*{pictures.size()>0}">
+                    <div class="controls">
                         <img th:src="@{*{pictures[0]}}" alt="cover" class="cover">
-                    </div>
-                    <div class="controls" th:unless="*{pictures.size()>0}">
-                        <img src="../static/images/distributor-8-499357.png" th:src="@{/images/distributor-8-499357.png}" alt="cover" class="cover">
                     </div>
 
                     <div class="row">

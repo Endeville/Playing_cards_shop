@@ -13,4 +13,6 @@ public interface CreatorService {
     List<String> getCreatorsNames();
 
     Optional<CreatorEntity> findByName(String creatorName);
+
+    boolean nameExists(String name);
 }

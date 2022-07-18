@@ -13,7 +13,7 @@ import java.util.List;
 public class AddDeckDto {
     @NotNull(message = "")
     @Size(min=1, max=100, message = "Please fill in the title of the deck(up to 100 characters).")
-    @UniqueField(fieldType = FieldType.TITLE)
+    @UniqueField(fieldType = FieldType.DECK_TITLE)
     private String title;
 
 

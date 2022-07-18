@@ -1,5 +1,7 @@
 package bg.softuni.playing_cards_shop.models.dtos;
 
+import bg.softuni.playing_cards_shop.models.validations.UniqueField;
+import bg.softuni.playing_cards_shop.models.validations.enums.FieldType;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotBlank;
@@ -10,6 +12,7 @@ import java.util.List;
 public class AddCreatorDto {
     @NotBlank(message = "")
     @Size(min=2, max=100, message = "Please fill in the name of the creator(up to 100 characters).")
+    @UniqueField(fieldType = FieldType.CREATOR_NAME)
     private String name;
 
     @NotBlank(message = "Please give a brief description of the creator.")

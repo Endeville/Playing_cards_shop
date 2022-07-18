@@ -98,4 +98,7 @@
 .row{
     padding-bottom: 30px;
 }
+.row a:hover{
+    color: var(--dark-blue);
+}
 

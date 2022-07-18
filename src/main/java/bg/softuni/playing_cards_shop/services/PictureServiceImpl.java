@@ -56,7 +56,7 @@ public class PictureServiceImpl implements PictureService {
 
     @Override
     public PictureEntity getDefaultProfilePicture() {
-        return this.pictureRepository.findPictureEntityByUrl("src/main/resources/static/images/default_profile.jpg")
+        return this.pictureRepository.findPictureEntityByUrl("https://res.cloudinary.com/dykamqwpf/image/upload/v1658170325/default_creator_wgjltr.jpg")
                 .orElseThrow(()->new ObjectNotFoundException(OBJECT_NAME_PICTURE));
     }
 
@@ -67,7 +67,7 @@ public class PictureServiceImpl implements PictureService {
 
     @Override
     public PictureEntity getDefaultDistributorProfile() {
-        return this.pictureRepository.findPictureEntityByUrl("src/main/resources/static/images/default_distributor.png")
+        return this.pictureRepository.findPictureEntityByUrl("https://res.cloudinary.com/dykamqwpf/image/upload/v1658170325/default_distributor_ogp1ju.png")
                 .orElseThrow(()->new ObjectNotFoundException(OBJECT_NAME_PICTURE));
     }
 
