@@ -6,10 +6,7 @@ import bg.softuni.playing_cards_shop.services.interfaces.OfferService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -61,6 +58,14 @@ public class OfferController {
         offerService.addOffer(addOfferDto);
 
         return "redirect:/offers/all";
+    }
+
+    @GetMapping("/{id}")
+    public String offerDetails(@PathVariable(name = "id") Long id, Model model){
+        var offer=this.offerService.getOfferDetailsById(id);
+
+        //todo: finish the job
+        return "";
     }
 
 

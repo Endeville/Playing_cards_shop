@@ -71,17 +71,6 @@ public class DeckController {
             return "redirect:/decks/add";
         }
 
-        if(addDeckDto.getDistributorBrand().equals("Add")){
-            attributes.addFlashAttribute("deck", addDeckDto);
-            attributes.addFlashAttribute("previous", "/decks/add");
-            return "redirect:/distributors/add";
-        }
-        if(addDeckDto.getCreatorName().equals("Add")){
-            attributes.addFlashAttribute("deck", addDeckDto);
-            attributes.addFlashAttribute("previous", "/decks/add");
-            return "redirect:/creators/add";
-        }
-
         try {
             this.deckService.addDeck(addDeckDto);
         }catch(IllegalStateException e){

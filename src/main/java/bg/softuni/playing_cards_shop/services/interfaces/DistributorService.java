@@ -9,11 +9,12 @@ import java.util.List;
 import java.util.Optional;
 
 public interface DistributorService {
-    DistributorDetailsDto findDistributorById(Long id);
 
     void addDistributor(AddDistributorDto distributorDto) throws IOException;
 
     List<String> getDistributorsNames();
 
     Optional<DistributorEntity> findDistributorByBrand(String distributorBrand);
+
+    DistributorDetailsDto findDistributorDetailsByBrand(String brand);
 }

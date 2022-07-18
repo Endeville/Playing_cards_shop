@@ -33,9 +33,9 @@ public class DistributorServiceImpl implements DistributorService {
     }
 
     @Override
-    public DistributorDetailsDto findDistributorById(Long id) {
+    public DistributorDetailsDto findDistributorDetailsByBrand(String brand) {
         var distributor = this.distributorRepository
-                .findById(id)
+                .findDistributorEntityByBrand(brand)
                 .orElseThrow(() -> new ObjectNotFoundException(OBJECT_NAME_DISTRIBUTOR));
 
         var result = this.modelMapper.map(distributor, DistributorDetailsDto.class);

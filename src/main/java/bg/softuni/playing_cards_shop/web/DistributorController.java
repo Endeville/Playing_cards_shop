@@ -26,9 +26,9 @@ public class DistributorController {
         return new AddDistributorDto();
     }
 
-    @GetMapping("/{id}")
-    public String distributorDetails(@PathVariable(name = "id") Long id, Model model){
-        var distributorDto=distributorService.findDistributorById(id);
+    @GetMapping("/{brand}")
+    public String distributorDetails(@PathVariable(name = "brand") String brand, Model model){
+        var distributorDto=distributorService.findDistributorDetailsByBrand(brand);
 
         model.addAttribute("distributor", distributorDto);
 

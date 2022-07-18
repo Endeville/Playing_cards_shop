@@ -4,6 +4,7 @@ import bg.softuni.playing_cards_shop.models.dtos.AddOfferDto;
 import bg.softuni.playing_cards_shop.models.entities.OfferEntity;
 import bg.softuni.playing_cards_shop.models.entities.enums.OfferStatus;
 import bg.softuni.playing_cards_shop.models.views.CatalogOfferDto;
+import bg.softuni.playing_cards_shop.models.views.OfferDetailsDto;
 import bg.softuni.playing_cards_shop.repositories.OfferRepository;
 import bg.softuni.playing_cards_shop.services.interfaces.DeckService;
 import bg.softuni.playing_cards_shop.services.interfaces.OfferService;
@@ -61,5 +62,11 @@ public class OfferServiceImpl implements OfferService {
                     return offer;
                 })
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public OfferDetailsDto getOfferDetailsById(Long id) {
+        //todo:
+        return new OfferDetailsDto();
     }
 }

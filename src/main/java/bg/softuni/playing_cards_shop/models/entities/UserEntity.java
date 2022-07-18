@@ -40,6 +40,9 @@ public class UserEntity extends BaseEntity{
     @OneToMany
     private Set<AddressEntity> addresses;
 
+    @OneToMany
+    private Set<CartProductEntity> cart;
+
     public UserEntity() {
     }
 
@@ -130,6 +133,15 @@ public class UserEntity extends BaseEntity{
 
     public UserEntity setAddresses(Set<AddressEntity> addresses) {
         this.addresses = addresses;
+        return this;
+    }
+
+    public Set<CartProductEntity> getCart() {
+        return cart;
+    }
+
+    public UserEntity setCart(Set<CartProductEntity> cart) {
+        this.cart = cart;
         return this;
     }
 }
