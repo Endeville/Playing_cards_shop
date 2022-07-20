@@ -14,7 +14,7 @@ public interface DistributorService {
 
     List<String> getDistributorsNames();
 
-    Optional<DistributorEntity> findDistributorByBrand(String distributorBrand);
+    DistributorEntity findDistributorByBrand(String distributorBrand);
 
     DistributorDetailsDto findDistributorDetailsByBrand(String brand);
 

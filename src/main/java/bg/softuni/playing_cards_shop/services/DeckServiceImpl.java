@@ -8,7 +8,6 @@ import bg.softuni.playing_cards_shop.models.views.CatalogDeckDto;
 import bg.softuni.playing_cards_shop.models.views.DeckDetailsDto;
 import bg.softuni.playing_cards_shop.repositories.DeckRepository;
 import bg.softuni.playing_cards_shop.services.interfaces.*;
-import bg.softuni.playing_cards_shop.web.exceptions.ItemNotCreatedException;
 import bg.softuni.playing_cards_shop.web.exceptions.ObjectNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -80,7 +79,7 @@ public class DeckServiceImpl implements DeckService {
     public DeckEntity findDeckByTitle(String title) {
         return this.deckRepository
                 .findDeckEntityByTitle(title)
-                .orElseThrow(() -> new ItemNotCreatedException(OBJECT_NAME_DECK));
+                .orElseThrow(() -> new ObjectNotFoundException(OBJECT_NAME_DECK));
     }
 
     @Override
@@ -101,10 +100,8 @@ public class DeckServiceImpl implements DeckService {
             throw new IllegalStateException("No pictures provided");
         }
 
-        var creator = this.creatorService.findByName(addDeckDto.getCreatorName())
-                .orElseThrow(() -> new ObjectNotFoundException(OBJECT_NAME_CREATOR));
-        var distributor = this.distributorService.findDistributorByBrand(addDeckDto.getDistributorBrand())
-                .orElseThrow(() -> new ObjectNotFoundException(OBJECT_NAME_DISTRIBUTOR));
+        var creator = this.creatorService.findByName(addDeckDto.getCreatorName());
+        var distributor = this.distributorService.findDistributorByBrand(addDeckDto.getDistributorBrand());
         var categories = this.categoryService.findCategoriesByNames(addDeckDto.getCategories());
 
 

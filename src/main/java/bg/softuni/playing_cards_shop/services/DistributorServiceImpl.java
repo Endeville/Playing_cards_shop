@@ -73,7 +73,8 @@ public class DistributorServiceImpl implements DistributorService {
     }
 
     @Override
-    public Optional<DistributorEntity> findDistributorByBrand(String distributorBrand) {
-        return this.distributorRepository.findDistributorEntityByBrand(distributorBrand);
+    public DistributorEntity findDistributorByBrand(String distributorBrand) {
+        return this.distributorRepository.findDistributorEntityByBrand(distributorBrand)
+                .orElseThrow(()-> new ObjectNotFoundException(OBJECT_NAME_DISTRIBUTOR));
     }
 }

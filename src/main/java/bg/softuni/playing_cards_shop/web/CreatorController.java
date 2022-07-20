@@ -3,11 +3,9 @@ package bg.softuni.playing_cards_shop.web;
 import bg.softuni.playing_cards_shop.models.dtos.AddCreatorDto;
 import bg.softuni.playing_cards_shop.services.interfaces.CreatorService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -47,5 +45,13 @@ public class CreatorController {
 
         //todo: reconsider
         return "redirect:/decks/all";
+    }
+
+    @GetMapping("/{name}")
+    public String creatorDetails(@PathVariable(name = "name") String name, Model model){
+        var creator=this.creatorService.getCreatorDetailsByName(name);
+        model.addAttribute("creator", creator);
+
+        return "creatorDetails";
     }
 }

@@ -2,9 +2,11 @@ package bg.softuni.playing_cards_shop.services;
 
 import bg.softuni.playing_cards_shop.models.dtos.AddCreatorDto;
 import bg.softuni.playing_cards_shop.models.entities.CreatorEntity;
+import bg.softuni.playing_cards_shop.models.views.CreatorDetailsDto;
 import bg.softuni.playing_cards_shop.repositories.CreatorRepository;
 import bg.softuni.playing_cards_shop.services.interfaces.CreatorService;
 import bg.softuni.playing_cards_shop.services.interfaces.PictureService;
+import bg.softuni.playing_cards_shop.web.exceptions.ObjectNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import static bg.softuni.playing_cards_shop.constants.GlobalConstants.OBJECT_NAME_CREATOR;
 
 @Service
 public class CreatorServiceImpl implements CreatorService {
@@ -50,12 +54,24 @@ public class CreatorServiceImpl implements CreatorService {
     }
 
     @Override
-    public Optional<CreatorEntity> findByName(String creatorName) {
-        return this.creatorRepository.findCreatorEntityByName(creatorName);
+    public CreatorEntity findByName(String creatorName) {
+        return this.creatorRepository.findCreatorEntityByName(creatorName)
+                .orElseThrow(()-> new ObjectNotFoundException(OBJECT_NAME_CREATOR));
     }
 
     @Override
     public boolean nameExists(String name) {
         return this.creatorRepository.existsByName(name);
+    }
+
+    @Override
+    public CreatorDetailsDto getCreatorDetailsByName(String name) {
+        var creator = this.creatorRepository.findCreatorEntityByName(name)
+                .orElseThrow(()-> new ObjectNotFoundException(OBJECT_NAME_CREATOR));
+
+        var result=this.modelMapper.map(creator, CreatorDetailsDto.class);
+        result.setPictures(this.pictureService.getPicturesUrls(creator.getPictures()));
+
+        return result;
     }
 }
