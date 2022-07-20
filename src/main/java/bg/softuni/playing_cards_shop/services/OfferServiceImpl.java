@@ -10,13 +10,17 @@ import bg.softuni.playing_cards_shop.services.interfaces.DeckService;
 import bg.softuni.playing_cards_shop.services.interfaces.OfferService;
 import bg.softuni.playing_cards_shop.services.interfaces.PictureService;
 import bg.softuni.playing_cards_shop.services.interfaces.UserService;
+import bg.softuni.playing_cards_shop.web.exceptions.ObjectNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
+
+import static bg.softuni.playing_cards_shop.constants.GlobalConstants.OBJECT_NAME_OFFER;
 
 @Service
 public class OfferServiceImpl implements OfferService {
@@ -66,7 +70,12 @@ public class OfferServiceImpl implements OfferService {
 
     @Override
     public OfferDetailsDto getOfferDetailsById(Long id) {
-        //todo:
-        return new OfferDetailsDto();
+        var offer = this.offerRepository.findById(id)
+                .orElseThrow(()-> new ObjectNotFoundException(OBJECT_NAME_OFFER));
+        var result=this.modelMapper.map(offer, OfferDetailsDto.class);
+
+        result.setPictures(this.pictureService.getPicturesUrls(offer.getPictures()));
+
+        return result;
     }
 }

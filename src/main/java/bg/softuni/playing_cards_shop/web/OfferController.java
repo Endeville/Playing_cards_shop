@@ -63,9 +63,9 @@ public class OfferController {
     @GetMapping("/{id}")
     public String offerDetails(@PathVariable(name = "id") Long id, Model model){
         var offer=this.offerService.getOfferDetailsById(id);
+        model.addAttribute("offer", offer);
 
-        //todo: finish the job
-        return "";
+        return "offerDetails";
     }
 
 

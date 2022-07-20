@@ -7,6 +7,7 @@ public class GlobalConstants {
     public static final String OBJECT_NAME_USER="user";
     public static final String OBJECT_NAME_CREATOR="creator";
     public static final String OBJECT_NAME_PICTURE="picture";
+    public static final String OBJECT_NAME_OFFER="offer";
 
     public static final String TEMP_FILE = "temp-file";
     public static final String URL = "url";

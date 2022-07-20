@@ -1,16 +1,25 @@
 package bg.softuni.playing_cards_shop.models.views;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 public class OfferDetailsDto {
+    private Long id;
     private String deckTitle;
     private String sellerUsername;
-    private BigDecimal price;
+    private Double price;
     private int quantity;
     private String description;
     private String status;
     private List<String> pictures;
+
+    public Long getId() {
+        return id;
+    }
+
+    public OfferDetailsDto setId(Long id) {
+        this.id = id;
+        return this;
+    }
 
     public String getDeckTitle() {
         return deckTitle;
@@ -30,11 +39,11 @@ public class OfferDetailsDto {
         return this;
     }
 
-    public BigDecimal getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public OfferDetailsDto setPrice(BigDecimal price) {
+    public OfferDetailsDto setPrice(Double price) {
         this.price = price;
         return this;
     }
