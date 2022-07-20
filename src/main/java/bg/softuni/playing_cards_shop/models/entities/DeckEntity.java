@@ -1,6 +1,7 @@
 package bg.softuni.playing_cards_shop.models.entities;
 
 import javax.persistence.*;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -118,5 +119,18 @@ public class DeckEntity extends BaseEntity{
     public DeckEntity setOffers(Set<OfferEntity> offers) {
         this.offers = offers;
         return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DeckEntity that = (DeckEntity) o;
+        return approved == that.approved && Objects.equals(title, that.title) && Objects.equals(description, that.description) && Objects.equals(pictures, that.pictures) && Objects.equals(countryOfOrigin, that.countryOfOrigin) && Objects.equals(distributor, that.distributor) && Objects.equals(creator, that.creator) && Objects.equals(categories, that.categories) && Objects.equals(offers, that.offers);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(title, description, approved, pictures, countryOfOrigin, distributor, creator, categories, offers);
     }
 }

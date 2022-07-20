@@ -2,12 +2,15 @@ package bg.softuni.playing_cards_shop.services;
 
 import bg.softuni.playing_cards_shop.models.dtos.UserRegistrationDto;
 import bg.softuni.playing_cards_shop.models.entities.AddressEntity;
+import bg.softuni.playing_cards_shop.models.entities.DeckEntity;
 import bg.softuni.playing_cards_shop.models.entities.UserEntity;
+import bg.softuni.playing_cards_shop.models.entities.WishlistItemEntity;
 import bg.softuni.playing_cards_shop.models.entities.enums.UserRole;
 import bg.softuni.playing_cards_shop.models.views.UserProfileDto;
 import bg.softuni.playing_cards_shop.repositories.UserRepository;
 import bg.softuni.playing_cards_shop.services.interfaces.UserRoleService;
 import bg.softuni.playing_cards_shop.services.interfaces.UserService;
+import bg.softuni.playing_cards_shop.services.interfaces.WishlistItemService;
 import bg.softuni.playing_cards_shop.web.exceptions.ObjectNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -15,6 +18,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.Set;
 
 import static bg.softuni.playing_cards_shop.constants.GlobalConstants.OBJECT_NAME_USER;
 
@@ -47,9 +52,9 @@ public class UserServiceImpl implements UserService {
 
         userRepository.save(user);
 
-        var userDetails=appUserDetailsService.loadUserByUsername(user.getUsername());
+        var userDetails = appUserDetailsService.loadUserByUsername(user.getUsername());
 
-        var auth= new UsernamePasswordAuthenticationToken(userDetails, userDetails.getPassword(), userDetails.getAuthorities());
+        var auth = new UsernamePasswordAuthenticationToken(userDetails, userDetails.getPassword(), userDetails.getAuthorities());
 
         SecurityContextHolder
                 .getContext()
@@ -64,15 +69,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserProfileDto findUserProfileByUsername(String username) {
         return this.modelMapper.map(
-                this.userRepository.findUserEntityByUsername(username).orElseThrow(()->new ObjectNotFoundException(OBJECT_NAME_USER)),
+                this.userRepository.findUserEntityByUsername(username).orElseThrow(() -> new ObjectNotFoundException(OBJECT_NAME_USER)),
                 UserProfileDto.class);
     }
 
     @Override
     public void addAddress(String name, AddressEntity address) {
-        var user=this.userRepository.findUserEntityByUsername(name)
-                .orElseThrow(()->new ObjectNotFoundException(OBJECT_NAME_USER));
-        var addresses=user.getAddresses();
+        var user = this.userRepository.findUserEntityByUsername(name)
+                .orElseThrow(() -> new ObjectNotFoundException(OBJECT_NAME_USER));
+        var addresses = user.getAddresses();
         addresses.add(address);
         user.setAddresses(addresses);
         this.userRepository.save(user);
@@ -80,7 +85,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserEntity findUserByUsername(String username) {
-        return this.userRepository.findUserEntityByUsername(username).orElseThrow(()->new ObjectNotFoundException(OBJECT_NAME_USER));
+        return this.userRepository.findUserEntityByUsername(username).orElseThrow(() -> new ObjectNotFoundException(OBJECT_NAME_USER));
+    }
+
+    @Override
+    public boolean currentUserHasLiked(DeckEntity deck) {
+        var user = this.userRepository.findUserEntityByUsername(SecurityContextHolder.getContext().getAuthentication().getName())
+                .orElseThrow(() -> new ObjectNotFoundException(OBJECT_NAME_USER));
+
+        return user.getWishlist()
+                .stream()
+                .anyMatch(w -> w.getDeck().equals(deck));
     }
 
 

@@ -10,6 +10,7 @@ public class DeckDetailsDto {
     private List<CategoryDto> categories;
     private CreatorNameDto creator;
     private DistributorBrandDto distributor;
+    private boolean liked;
 
     public String getTitle() {
         return title;
@@ -71,6 +72,15 @@ public class DeckDetailsDto {
 
     public DeckDetailsDto setPictures(List<String> pictures) {
         this.pictures = pictures;
+        return this;
+    }
+
+    public boolean isLiked() {
+        return liked;
+    }
+
+    public DeckDetailsDto setLiked(boolean liked) {
+        this.liked = liked;
         return this;
     }
 }

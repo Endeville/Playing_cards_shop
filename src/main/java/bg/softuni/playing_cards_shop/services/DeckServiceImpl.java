@@ -1,7 +1,6 @@
 package bg.softuni.playing_cards_shop.services;
 
 import bg.softuni.playing_cards_shop.models.dtos.AddDeckDto;
-import bg.softuni.playing_cards_shop.models.entities.CategoryEntity;
 import bg.softuni.playing_cards_shop.models.entities.DeckEntity;
 import bg.softuni.playing_cards_shop.models.entities.OfferEntity;
 import bg.softuni.playing_cards_shop.models.views.CatalogDeckDto;
@@ -14,10 +13,8 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import static bg.softuni.playing_cards_shop.constants.GlobalConstants.*;
@@ -29,14 +26,16 @@ public class DeckServiceImpl implements DeckService {
     private final PictureService pictureService;
     private final CreatorService creatorService;
     private final CategoryService categoryService;
+    private final UserService userService;
     private final DistributorService distributorService;
     private final ModelMapper modelMapper;
 
-    public DeckServiceImpl(DeckRepository deckRepository, PictureService pictureService, CreatorService creatorService, CategoryService categoryService, DistributorService distributorService, ModelMapper modelMapper) {
+    public DeckServiceImpl(DeckRepository deckRepository, PictureService pictureService, CreatorService creatorService, CategoryService categoryService, UserService userService, DistributorService distributorService, ModelMapper modelMapper) {
         this.deckRepository = deckRepository;
         this.pictureService = pictureService;
         this.creatorService = creatorService;
         this.categoryService = categoryService;
+        this.userService = userService;
         this.distributorService = distributorService;
         this.modelMapper = modelMapper;
     }
@@ -59,6 +58,7 @@ public class DeckServiceImpl implements DeckService {
 
         var result = this.modelMapper.map(deck, DeckDetailsDto.class);
         result.setPictures(this.pictureService.getPicturesUrls(deck.getPictures()));
+        result.setLiked(this.userService.currentUserHasLiked(deck));
 
         return result;
     }

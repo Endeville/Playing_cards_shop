@@ -24,9 +24,8 @@ public class UserEntity extends BaseEntity{
     @ManyToOne(optional = false)
     private UserRoleEntity role;
 
-    @ManyToMany
-    @JoinTable(name = "users_wishlists")
-    private Set<DeckEntity> wishlist;
+    @OneToMany(mappedBy = "user")
+    private Set<WishlistItemEntity> wishlist;
 
     @OneToMany(mappedBy = "seller")
     private Set<OfferEntity> offers;
@@ -82,11 +81,11 @@ public class UserEntity extends BaseEntity{
         return this;
     }
 
-    public Set<DeckEntity> getWishlist() {
+    public Set<WishlistItemEntity> getWishlist() {
         return wishlist;
     }
 
-    public UserEntity setWishlist(Set<DeckEntity> wishlist) {
+    public UserEntity setWishlist(Set<WishlistItemEntity> wishlist) {
         this.wishlist = wishlist;
         return this;
     }

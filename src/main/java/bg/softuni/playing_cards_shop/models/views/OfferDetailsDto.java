@@ -4,7 +4,7 @@ import java.util.List;
 
 public class OfferDetailsDto {
     private Long id;
-    private String deckTitle;
+    private DeckIdentificationDto deck;
     private String sellerUsername;
     private Double price;
     private int quantity;
@@ -21,12 +21,12 @@ public class OfferDetailsDto {
         return this;
     }
 
-    public String getDeckTitle() {
-        return deckTitle;
+    public DeckIdentificationDto getDeck() {
+        return deck;
     }
 
-    public OfferDetailsDto setDeckTitle(String deckTitle) {
-        this.deckTitle = deckTitle;
+    public OfferDetailsDto setDeck(DeckIdentificationDto deck) {
+        this.deck = deck;
         return this;
     }
 
