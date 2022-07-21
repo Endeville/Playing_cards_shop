@@ -1,7 +1,9 @@
-package bg.softuni.playing_cards_shop.web;
+package bg.softuni.playing_cards_shop.web.rest;
 
+import bg.softuni.playing_cards_shop.models.dtos.DeckTitleDto;
 import bg.softuni.playing_cards_shop.models.entities.DeckEntity;
 import bg.softuni.playing_cards_shop.models.entities.WishlistItemEntity;
+import bg.softuni.playing_cards_shop.models.views.WishlistItemDto;
 import bg.softuni.playing_cards_shop.services.interfaces.UserService;
 import bg.softuni.playing_cards_shop.services.interfaces.WishlistItemService;
 import org.springframework.http.HttpHeaders;
@@ -23,9 +25,8 @@ public class WishlistRestController {
         this.wishlistService = wishlistService;
     }
 
-    @PostMapping("/like")
-    @ResponseBody
-    public ResponseEntity<WishlistItemEntity> like(@RequestParam(name = "deckTitle") String title, @AuthenticationPrincipal UserDetails principal) {
+    @PostMapping(value = "/like", consumes = "application/json", produces = "application/json")
+    public ResponseEntity<WishlistItemDto> like(@RequestBody DeckTitleDto deckTitleDto, @AuthenticationPrincipal UserDetails principal) {
         if (principal == null) {
             return ResponseEntity
                     .status(HttpStatus.MOVED_PERMANENTLY)
@@ -33,10 +34,12 @@ public class WishlistRestController {
                     .build();
         }
 
-        var wishlist=this.wishlistService.like(principal, title);
+        var wishlist=this.wishlistService.like(principal, deckTitleDto.getTitle());
 
         return ResponseEntity
                 .ok()
-                .body(wishlist);
+                .body(new WishlistItemDto()
+                        .setDeckTitle(wishlist.getDeck().getTitle())
+                        .setUserUsername(wishlist.getUser().getUsername()));
     }
 }

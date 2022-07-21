@@ -22,11 +22,10 @@
 
     <script src="https://kit.fontawesome.com/b18db754f0.js" crossorigin="anonymous"></script>
 
-    <script src="../../js/sidebar.js" type="module"></script>
-    <script src="../../js/like.js" type="module"></script>
-    <link rel="stylesheet" href="../../css/productDetails.css"/>
+    <script th:src="@{/js/sidebar.js}" type="module"></script>
+    <link rel="stylesheet" th:href="@{/css/productDetails.css}"/>
 
-    <link rel="icon" href="../../images/ace-of-spades.png">
+    <link rel="icon" th:href="@{/images/ace-of-spades.png}">
     <title>Victory</title>
 
     <th:block th:replace="~{/fragments/head.html}"></th:block>
@@ -55,13 +54,13 @@
                         <h4 class="box-title mt-5">Product description</h4>
                         <p th:text="*{description}"></p>
 
-<!--                        todo: use rest api to like the deck and add it to wishlist-->
+                        <!--                        todo: use rest api to like the deck and add it to wishlist-->
                         <button class="btn btn-dark btn-rounded mr-1 heart-btn"
                                 th:classappend="*{liked} ? 'liked' : ''"
                                 data-toggle="tooltip" title=""
-                                data-original-title="Add to cart"
-                                th:onclick="like(this, [[${deck.title}]])"
-                        >
+                                data-original-title="Add to cart">
+<!--                                th:onclick="like(this, [[${deck.title}]])"-->
+
                             <i class="fa-solid fa-heart"></i>
                         </button>
                     </div>
@@ -76,15 +75,19 @@
                                 </tr>
                                 <tr>
                                     <td>Distributor</td>
-                                    <td><a th:href="@{/distributors/{brand} (brand=*{distributor.brand})}" th:text="*{distributor.brand}"></a></td>
+                                    <td><a th:href="@{/distributors/{brand} (brand=*{distributor.brand})}"
+                                           th:text="*{distributor.brand}"></a></td>
                                 </tr>
                                 <tr>
                                     <td>Creator</td>
-                                    <td><a th:href="@{/creators/{name} (name=*{creator.name})}" th:text="*{creator.name}"></a></td>
+                                    <td><a th:href="@{/creators/{name} (name=*{creator.name})}"
+                                           th:text="*{creator.name}"></a></td>
                                 </tr>
                                 <tr>
                                     <td>Recommended price</td>
-                                    <td th:text="${recommendedPrice<0 ? 'Missing information' : recommendedPrice + '€'}">Missing information</td>
+                                    <td th:text="${recommendedPrice<0 ? 'Missing information' : recommendedPrice + '€'}">
+                                        Missing information
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Country</td>
@@ -109,38 +112,34 @@
 
 </main>
 
-<!--<script th:inline="javascript">-->
+<script th:inline="javascript">
 
-<!--    const likeBtn=document.querySelector(".heart-btn");-->
+    const likeBtn=document.querySelector(".heart-btn");
+    const csrfHeaderName = document.head.querySelector('[name=_csrf_header]').content;
+    const csrfHeaderValue = document.head.querySelector('[name=_csrf]').content;
 
-<!--    likeBtn.addEventListener("click", like(ev,/*[[${deck.title}]]*/))-->
+    likeBtn.addEventListener("click", like);
 
-<!--    async function like(ev, deckTitle){-->
-<!--        ev.preventDefault();-->
+    async function like(ev){
+        ev.preventDefault();
 
-<!--        const options={-->
-<!--            method: "post",-->
-<!--            deckTitle: deckTitle-->
-<!--        };-->
+        const options={
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accepts': 'application/json',
+                [csrfHeaderName]: csrfHeaderValue
+            },
+            body: JSON.stringify({
+                title: [[${deck.title}]]
+            })
+        };
 
-<!--        await fetch("localhost:8000/api/users/like", options);-->
-<!--    }-->
-<!--</script>-->
+        await fetch("http://localhost:8000/api/users/like", options);
 
-<script>const likeBtn=document.querySelector(".heart-btn");
-
-// todo: finish the like functionality
-
-async function like(ev, deckTitle){
-    ev.preventDefault();
-
-    const options={
-        method: "post",
-        deckTitle: deckTitle
-    };
-
-    await fetch("localhost:8000/api/users/like", options);
-}</script>
+        likeBtn.classList.add("liked");
+    }
+</script>
 
 
 <th:block th:replace="~{/fragments/footer.html}"/>
