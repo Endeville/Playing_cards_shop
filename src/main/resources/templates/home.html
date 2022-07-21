@@ -17,12 +17,9 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="../../css/home.css"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}"/>
 
-    <link rel="icon" href="../../images/ace-of-spades.png">
-    <title>Victory</title>
-
-    <th:block th:include="~{/fragments/head.html}"/>
+    <th:block th:replace="~{/fragments/head.html}"/>
 
 </head>
 

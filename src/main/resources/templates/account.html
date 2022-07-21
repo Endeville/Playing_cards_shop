@@ -9,13 +9,11 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    <link rel="stylesheet" href="../../css/account.css"/>
-    <link rel="stylesheet" href="../../css/bootstrap/bootstrapNav.css"/>
+    <link rel="stylesheet" th:href="@{/css/account.css}"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap/bootstrapNav.css}"/>
 
-    <link rel="icon" href="../../images/ace-of-spades.png">
-    <title>Victory</title>
 
-    <th:block th:repalce="~{/fragments/head.html}"/>
+    <th:block th:replace="~{/fragments/head.html}"/>
 
 </head>
 <body>
@@ -147,9 +145,11 @@
     </div>
 </main>
 
+
 <th:block th:replace="~{/fragments/footer.html}"/>
 
-<script src="../../js/sidebar.js"></script>
+
+<script th:src="@{/js/sidebar.js}"></script>
 
 </body>
 </html>

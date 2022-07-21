@@ -10,13 +10,11 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 
-    <script src="../../js/sidebar.js" type="module"></script>
+    <script th:src="@{/js/sidebar.js}" type="module"></script>
 
-    <link rel="stylesheet" href="../../css/distributorDetails.css"/>
-    <link rel="stylesheet" href="../../css/bootstrap/bootstrapNav.css"/>
+    <link rel="stylesheet" th:href="@{/css/distributorDetails.css}"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap/bootstrapNav.css}"/>
 
-    <link rel="icon" href="../../images/ace-of-spades.png">
-    <title>Victory</title>
 
     <th:block th:replace="~{fragments/head.html}"></th:block>
 
@@ -62,7 +60,7 @@
                                     URL:
                                 </div>
                                 <div class="col-xs-9">
-                                    <a th:href="@{siteUrl}" th:text="*{siteUrl}"></a>
+                                    <a th:href="@{*{siteUrl}}" th:text="*{siteUrl}"></a>
                                 </div>
                             </div>
                         </div>

@@ -17,16 +17,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
 
 
-    <link rel="stylesheet" href="../../css/addForm.css"/>
-    <link rel="stylesheet" href="../../css/bootstrap/bootstrapNav.css"/>
+    <link rel="stylesheet" th:href="@{/css/addForm.css}"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap/bootstrapNav.css}"/>
 
-    <script src="../../js/sidebar.js" type="module"></script>
-    <script src="../../js/showSelectedFiles.js" type="module"></script>
+    <script th:src="@{/js/sidebar.js}" type="module"></script>
+    <script th:src="@{/js/showSelectedFiles.js}" type="module"></script>
 
-    <link rel="icon" href="../../images/ace-of-spades.png">
-    <title>Victory</title>
 
-    <th:block th:repalce="~{/fragments/head.html}"/>
+    <th:block th:replace="~{/fragments/head.html}"/>
 </head>
 <body>
 
