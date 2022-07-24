@@ -1,4 +1,4 @@
-package bg.softuni.playing_cards_shop.models.dtos;
+package bg.softuni.playing_cards_shop.models.dtos.rest;
 
 public class DeckTitleDto {
     private String title;

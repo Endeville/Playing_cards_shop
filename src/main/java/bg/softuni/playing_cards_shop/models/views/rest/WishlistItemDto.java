@@ -1,4 +1,4 @@
-package bg.softuni.playing_cards_shop.models.views;
+package bg.softuni.playing_cards_shop.models.views.rest;
 
 public class WishlistItemDto {
     private String userUsername;

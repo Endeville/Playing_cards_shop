@@ -78,4 +78,10 @@ public class OfferServiceImpl implements OfferService {
 
         return result;
     }
+
+    @Override
+    public OfferEntity findOfferById(Long id) {
+        return this.offerRepository.findById(id)
+                .orElseThrow(()->new ObjectNotFoundException(OBJECT_NAME_OFFER));
+    }
 }

@@ -98,6 +98,11 @@ public class UserServiceImpl implements UserService {
                 .anyMatch(w -> w.getDeck().equals(deck));
     }
 
+    @Override
+    public void findAddressesByUser(String username) {
+
+    }
+
 
     @Override
     public boolean emailExists(String email) {

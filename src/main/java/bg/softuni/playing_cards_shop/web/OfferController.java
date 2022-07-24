@@ -3,6 +3,8 @@ package bg.softuni.playing_cards_shop.web;
 import bg.softuni.playing_cards_shop.models.dtos.AddOfferDto;
 import bg.softuni.playing_cards_shop.services.interfaces.DeckService;
 import bg.softuni.playing_cards_shop.services.interfaces.OfferService;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -61,9 +63,13 @@ public class OfferController {
     }
 
     @GetMapping("/{id}")
-    public String offerDetails(@PathVariable(name = "id") Long id, Model model){
+    public String offerDetails(@PathVariable(name = "id") Long id,
+                               Model model,
+                               @AuthenticationPrincipal UserDetails principal){
         var offer=this.offerService.getOfferDetailsById(id);
+
         model.addAttribute("offer", offer);
+//        model.addAttribute("canBuy", this.offerService.currentUserCanBuy(id));
 
         return "offerDetails";
     }

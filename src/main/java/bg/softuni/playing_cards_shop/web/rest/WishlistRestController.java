@@ -1,10 +1,7 @@
 package bg.softuni.playing_cards_shop.web.rest;
 
-import bg.softuni.playing_cards_shop.models.dtos.DeckTitleDto;
-import bg.softuni.playing_cards_shop.models.entities.DeckEntity;
-import bg.softuni.playing_cards_shop.models.entities.WishlistItemEntity;
-import bg.softuni.playing_cards_shop.models.views.WishlistItemDto;
-import bg.softuni.playing_cards_shop.services.interfaces.UserService;
+import bg.softuni.playing_cards_shop.models.dtos.rest.DeckTitleDto;
+import bg.softuni.playing_cards_shop.models.views.rest.WishlistItemDto;
 import bg.softuni.playing_cards_shop.services.interfaces.WishlistItemService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -12,8 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Set;
 
 @RestController
 @RequestMapping("/api/users")

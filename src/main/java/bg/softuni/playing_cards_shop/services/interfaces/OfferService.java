@@ -1,6 +1,7 @@
 package bg.softuni.playing_cards_shop.services.interfaces;
 
 import bg.softuni.playing_cards_shop.models.dtos.AddOfferDto;
+import bg.softuni.playing_cards_shop.models.entities.OfferEntity;
 import bg.softuni.playing_cards_shop.models.views.CatalogOfferDto;
 import bg.softuni.playing_cards_shop.models.views.OfferDetailsDto;
 
@@ -13,4 +14,6 @@ public interface OfferService {
     List<CatalogOfferDto> getActiveOffers();
 
     OfferDetailsDto getOfferDetailsById(Long id);
+
+    OfferEntity findOfferById(Long id);
 }

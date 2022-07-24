@@ -11,6 +11,9 @@ public class CartProductEntity extends BaseEntity{
     @ManyToOne(optional = false)
     private OfferEntity offer;
 
+    @ManyToOne
+    private UserEntity customer;
+
     public int getQuantity() {
         return quantity;
     }
@@ -26,6 +29,15 @@ public class CartProductEntity extends BaseEntity{
 
     public CartProductEntity setOffer(OfferEntity offer) {
         this.offer = offer;
+        return this;
+    }
+
+    public UserEntity getCustomer() {
+        return customer;
+    }
+
+    public CartProductEntity setCustomer(UserEntity customer) {
+        this.customer = customer;
         return this;
     }
 }

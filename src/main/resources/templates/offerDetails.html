@@ -57,7 +57,7 @@
                         <h2 class="mt-5" th:text="|*{price}€|">
                         </h2>
 <!--                        todo: to cart, buy, like functionality - probably through rest api-->
-                        <button class="btn btn-dark btn-rounded mr-1 carted" data-toggle="tooltip" title="" data-original-title="Add to cart">
+                        <button class="btn btn-dark btn-rounded mr-1" data-toggle="tooltip" title="" data-original-title="Add to cart" id="add-cart-btn">
                             <i class="fa fa-shopping-cart"></i>
                         </button>
                         <button class="btn btn-primary btn-rounded buy-btn"><a href="javascript:void(0)" id="purchase-btn">Buy Now</a></button>
@@ -96,6 +96,68 @@
 </main>
 
 <th:block th:replace="~{/fragments/footer.html}"/>
+
+<script th:inline="javascript">
+
+    const buyBtn=document.getElementById("purchase-btn");
+    const addCartBtn=document.getElementById("add-cart-btn");
+    const csrfHeaderName = document.head.querySelector('[name=_csrf_header]').content;
+    const csrfHeaderValue = document.head.querySelector('[name=_csrf]').content;
+
+    addCartBtn.addEventListener("click", (ev)=>{
+        if(addCartBtn.classList.contains("carted")){
+            uncartProduct(ev);
+        }else{
+            addToCart(ev);
+        }
+    });
+    buyBtn.addEventListener("click", buyNow);
+
+    async function addToCart(ev){
+        ev.preventDefault();
+
+        const options={
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accepts': 'application/json',
+                [csrfHeaderName]: csrfHeaderValue
+            },
+            body: JSON.stringify({
+                id: [[${offer.id}]]
+            })
+        };
+
+        await fetch("http://localhost:8000/api/cart/add", options);
+
+        addCartBtn.classList.add("carted");
+    }
+
+    async function uncartProduct(ev){
+        ev.preventDefault();
+
+        const options={
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accepts': 'application/json',
+                [csrfHeaderName]: csrfHeaderValue
+            },
+            body: JSON.stringify({
+                id: [[${offer.id}]]
+            })
+        };
+
+        await fetch("http://localhost:8000/api/cart/delete", options);
+
+        addCartBtn.classList.remove("carted");
+    }
+
+    async function buyNow(ev){
+        await addToCart(ev);
+        window.location="http://localhost:8000/cart";
+    }
+</script>
 
 </body>
 </html>

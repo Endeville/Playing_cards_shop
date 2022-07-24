@@ -23,4 +23,6 @@ public interface UserService{
     UserEntity findUserByUsername(String username);
 
     boolean currentUserHasLiked(DeckEntity deck);
+
+    void findAddressesByUser(String username);
 }
