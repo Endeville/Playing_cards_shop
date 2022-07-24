@@ -1,7 +1,10 @@
 const fileInput=document.getElementById("formFile");
 const filenamesCont=document.querySelector("#image-container>tbody");
 
-fileInput.addEventListener("change", (ev)=>{
+fileInput.addEventListener("change", whenChanged);
+fileInput.addEventListener("load", whenChanged);
+
+function whenChanged(ev){
     ev.preventDefault();
 
     let children="";
@@ -11,4 +14,5 @@ fileInput.addEventListener("change", (ev)=>{
     }
 
     filenamesCont.innerHTML=children;
-})
+}
+

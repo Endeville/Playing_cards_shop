@@ -69,13 +69,13 @@
                                 </tr>
                                 <tr>
                                     <td>Distributor</td>
-                                    <td><a th:href="@{/distributors/{brand} (brand=*{distributor.brand})}"
-                                           th:text="*{distributor.brand}"></a></td>
+                                    <td><a th:href="@{/distributors/{brand} (brand=*{distributorBrand})}"
+                                           th:text="*{distributorBrand}"></a></td>
                                 </tr>
                                 <tr>
                                     <td>Creator</td>
-                                    <td><a th:href="@{/creators/{name} (name=*{creator.name})}"
-                                           th:text="*{creator.name}"></a></td>
+                                    <td><a th:href="@{/creators/{name} (name=*{creatorName})}"
+                                           th:text="*{creatorName}"></a></td>
                                 </tr>
                                 <tr>
                                     <td>Recommended price</td>
@@ -85,7 +85,7 @@
                                 </tr>
                                 <tr>
                                     <td>Country</td>
-                                    <td th:text="*{country}"></td>
+                                    <td th:text="*{countryOfOrigin}"></td>
                                 </tr>
                                 <tr>
                                     <td>Categories</td>

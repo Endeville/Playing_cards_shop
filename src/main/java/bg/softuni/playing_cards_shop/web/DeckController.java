@@ -1,6 +1,7 @@
 package bg.softuni.playing_cards_shop.web;
 
 import bg.softuni.playing_cards_shop.models.dtos.AddDeckDto;
+import bg.softuni.playing_cards_shop.models.views.DeckDetailsDto;
 import bg.softuni.playing_cards_shop.services.interfaces.CreatorService;
 import bg.softuni.playing_cards_shop.services.interfaces.DeckService;
 import bg.softuni.playing_cards_shop.services.interfaces.DistributorService;
@@ -81,5 +82,17 @@ public class DeckController {
         }
 
         return "redirect:/decks/all";
+    }
+
+    @GetMapping("/{id}/edit")
+    public String editPage(@PathVariable(name="id") Long id, Model model){
+        var deckDetailsById = this.deckService.findDeckDetailsById(id);
+
+        model.addAttribute("deck", deckDetailsById);
+
+        model.addAttribute("distributors", this.distributorService.getDistributorsNames());
+        model.addAttribute("creators", this.creatorService.getCreatorsNames());
+
+        return "editDeck";
     }
 }

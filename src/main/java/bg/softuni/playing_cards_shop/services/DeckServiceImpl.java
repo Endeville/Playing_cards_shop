@@ -108,7 +108,8 @@ public class DeckServiceImpl implements DeckService {
 
         deck.setCreator(creator)
                 .setDistributor(distributor)
-                .setCategories(new LinkedHashSet<>(categories));
+                .setCategories(new LinkedHashSet<>(categories))
+                .setApproved(false);
 
 
         //todo: add the deck for mod approval

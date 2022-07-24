@@ -6,10 +6,10 @@ public class DeckDetailsDto {
     private String title;
     private String description;
     private List<String> pictures;
-    private String country;
+    private String countryOfOrigin;
     private List<CategoryDto> categories;
-    private CreatorNameDto creator;
-    private DistributorBrandDto distributor;
+    private String creatorName;
+    private String distributorBrand;
     private boolean liked;
 
     public String getTitle() {
@@ -30,12 +30,12 @@ public class DeckDetailsDto {
         return this;
     }
 
-    public String getCountry() {
-        return country;
+    public String getCountryOfOrigin() {
+        return countryOfOrigin;
     }
 
-    public DeckDetailsDto setCountry(String country) {
-        this.country = country;
+    public DeckDetailsDto setCountryOfOrigin(String countryOfOrigin) {
+        this.countryOfOrigin = countryOfOrigin;
         return this;
     }
 
@@ -48,21 +48,21 @@ public class DeckDetailsDto {
         return this;
     }
 
-    public CreatorNameDto getCreator() {
-        return creator;
+    public String getCreatorName() {
+        return creatorName;
     }
 
-    public DeckDetailsDto setCreator(CreatorNameDto creator) {
-        this.creator = creator;
+    public DeckDetailsDto setCreatorName(String creatorName) {
+        this.creatorName = creatorName;
         return this;
     }
 
-    public DistributorBrandDto getDistributor() {
-        return distributor;
+    public String getDistributorBrand() {
+        return distributorBrand;
     }
 
-    public DeckDetailsDto setDistributor(DistributorBrandDto distributor) {
-        this.distributor = distributor;
+    public DeckDetailsDto setDistributorBrand(String distributorBrand) {
+        this.distributorBrand = distributorBrand;
         return this;
     }
 
