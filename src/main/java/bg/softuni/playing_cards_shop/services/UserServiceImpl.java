@@ -6,6 +6,7 @@ import bg.softuni.playing_cards_shop.models.entities.DeckEntity;
 import bg.softuni.playing_cards_shop.models.entities.UserEntity;
 import bg.softuni.playing_cards_shop.models.entities.WishlistItemEntity;
 import bg.softuni.playing_cards_shop.models.entities.enums.UserRole;
+import bg.softuni.playing_cards_shop.models.views.AddressDto;
 import bg.softuni.playing_cards_shop.models.views.UserProfileDto;
 import bg.softuni.playing_cards_shop.repositories.UserRepository;
 import bg.softuni.playing_cards_shop.services.interfaces.UserRoleService;
@@ -19,7 +20,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import static bg.softuni.playing_cards_shop.constants.GlobalConstants.OBJECT_NAME_USER;
 
@@ -99,8 +102,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void findAddressesByUser(String username) {
-
+    public List<AddressDto> findAddressesByUserUsername(String username) {
+        return this.userRepository.findUserEntityByUsername(username)
+                .orElseThrow(()->new ObjectNotFoundException(OBJECT_NAME_USER))
+                .getAddresses().stream()
+                .map(a->this.modelMapper.map(a, AddressDto.class))
+                .collect(Collectors.toList());
     }
 
 

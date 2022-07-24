@@ -2,6 +2,7 @@ package bg.softuni.playing_cards_shop.services;
 
 import bg.softuni.playing_cards_shop.models.dtos.rest.OfferIdDto;
 import bg.softuni.playing_cards_shop.models.entities.CartProductEntity;
+import bg.softuni.playing_cards_shop.models.views.CartProductDto;
 import bg.softuni.playing_cards_shop.models.views.rest.CartProductEssentialsDto;
 import bg.softuni.playing_cards_shop.repositories.CartProductRepository;
 import bg.softuni.playing_cards_shop.services.interfaces.CartProductService;
@@ -10,6 +11,9 @@ import bg.softuni.playing_cards_shop.services.interfaces.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CartProductServiceImpl implements CartProductService {
@@ -27,8 +31,10 @@ public class CartProductServiceImpl implements CartProductService {
     }
 
     @Override
-    public void getCartItemsByCustomer(String username) {
-
+    public List<CartProductDto> getCartProductsByCustomer(String username) {
+        return this.cartProductRepository.findCartProductEntitiesByCustomerUsername(username).stream()
+                .map(cp->this.modelMapper.map(cp, CartProductDto.class))
+                .collect(Collectors.toList());
     }
 
     @Override

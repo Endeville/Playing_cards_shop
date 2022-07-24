@@ -1,10 +1,20 @@
 package bg.softuni.playing_cards_shop.models.views;
 
 public class AddressDto {
+    private Long id;
     private String country;
     private String city;
     private String street;
     private String telephone;
+
+    public Long getId() {
+        return id;
+    }
+
+    public AddressDto setId(Long id) {
+        this.id = id;
+        return this;
+    }
 
     public String getCountry() {
         return country;

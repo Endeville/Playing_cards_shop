@@ -8,6 +8,8 @@ import bg.softuni.playing_cards_shop.services.interfaces.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AddressServiceImpl implements AddressService {
 

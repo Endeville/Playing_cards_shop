@@ -4,10 +4,6 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 >
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -24,7 +20,7 @@
     <script th:src="@{/js/sidebar.js}" type="module"></script>
     <script th:src="@{/js/plus-minus.js}" type="module"></script>
 
-    <link rel="stylesheet" th:href="@{/static/css/cart.css}"/>
+    <link rel="stylesheet" th:href="@{/css/cart.css}"/>
 
 
     <th:block th:replace="~{/fragments/head.html}"/>
@@ -53,59 +49,33 @@
                         <div class="card-body">
                             <div class="mb-3 d-flex justify-content-between">
                                 <div>
-                                    <span class="me-3">22-11-2021</span>
                                     <span class="badge rounded-pill bg-info">SHIPPING</span>
                                 </div>
                             </div>
                             <table class="table table-borderless">
                                 <tbody>
-                                <tr>
-                                    <td class="product">
+                                <tr th:each="product : ${products}" th:object="${product}">
+                                    <td class="product" th:id="*{offerId}">
                                         <div class="d-flex mb-2">
-                                            <div class="flex-shrink-0 product-image">
-                                                <img src="https://via.placeholder.com/280x280/87CEFA/000000" alt=""
-                                                     width="35" class="img-fluid">
-                                            </div>
                                             <div class="flex-lg-grow-1 ms-3 product-description">
-                                                <h6 class="small mb-0"><a href="#" class="text-reset">Wireless
-                                                    Headphones with Noise Cancellation Tru Bass Bluetooth HiFi</a></h6>
-                                                <span class="small">Color: Black</span>
+                                                <h6 class="small mb-0"><a href="#" class="text-reset"
+                                                                          th:text="*{offerDeckTitle}"></a></h6>
+                                                <span class="small" th:text="|Seller : *{offerSellerUsername}|"></span>
                                             </div>
                                         </div>
                                     </td>
                                     <td class="quantity-cont">
                                         <button class="minus">-</button>
-                                        <span class="quantity">5</span>
+                                        <span class="quantity" th:text="*{quantity}"></span>
                                         <button class="plus">+</button>
                                     </td>
-                                    <td class="text-end product-price">$79.99</td>
-                                </tr>
-                                <tr>
-                                    <td class="product">
-                                        <div class="d-flex mb-2">
-                                            <div class="flex-shrink-0 product-image">
-                                                <img src="https://via.placeholder.com/280x280/87CEFA/000000" alt=""
-                                                     width="35" class="img-fluid">
-                                            </div>
-                                            <div class="flex-lg-grow-1 ms-3">
-                                                <h6 class="small mb-0"><a href="#" class="text-reset">Wireless
-                                                    Headphones with Noise Cancellation Tru Bass Bluetooth HiFi</a></h6>
-                                                <span class="small">Color: Black</span>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="quantity-cont">
-                                        <button class="minus">-</button>
-                                        <span class="quantity">5</span>
-                                        <button class="plus">+</button>
-                                    </td>
-                                    <td class="text-end">$79.99</td>
+                                    <td class="text-end product-price" th:text="|*{offerPrice * quantity}€|"></td>
                                 </tr>
                                 </tbody>
                                 <tfoot>
                                 <tr class="fw-bold">
                                     <td colspan="2">TOTAL</td>
-                                    <td class="text-end">$169,98</td>
+                                    <td class="text-end" th:text="${totalPrice}"></td>
                                 </tr>
                                 <tr id="purchase-row">
                                     <td colspan="2"></td>
@@ -135,40 +105,20 @@
 
                                     <div>Choose an address:</div>
 
-                                    <input type="radio" id="address-1" form="cart-notes" name="address">
-                                    <label for="address-1" class="address-option">
-                                        <p>Name: Gosho</p>
-                                        <p>City, Country: Sofia, Bulgaria</p>
-                                        <p>Street: Vitoshka 53</p>
-                                        <p>Telephone: 0882871009</p>
-                                    </label>
 
-                                    <input type="radio" id="address-2" form="cart-notes" name="address">
-                                    <label for="address-2" class="address-option">
-                                        <p>Name: Gosho</p>
-                                        <p>City, Country: Sofia, Bulgaria</p>
-                                        <p>Street: Vitoshka 53</p>
-                                        <p>Telephone: 0882871009</p>
-                                    </label>
+                                    <th:block th:each="address: ${addresses}" th:object="${address}">
 
+                                        <input type="radio"  th:id="|address-*{id}|" form="cart-notes" name="address">
+                                        <label th:for="|address-*{id}|" class="address-option">
+                                            <p th:text="|City, Country: *{city}, *{country}|"></p>
+                                            <p th:text="|Street: *{street}|"></p>
+                                            <p th:text="|Telephone: *{telephone}|"></p>
+                                        </label>
 
-                                    <input type="radio" id="address-3" form="cart-notes" name="address">
-                                    <label for="address-3" class="address-option">
-                                        <p>Name: Gosho</p>
-                                        <p>City, Country: Sofia, Bulgaria</p>
-                                        <p>Street: Vitoshka 53</p>
-                                        <p>Telephone: 0882871009</p>
-                                    </label>
+                                    </th:block>
 
-                                    <input type="radio" id="address-4" form="cart-notes" name="address">
-                                    <label for="address-4" class="address-option">
-                                        <p>Name: Gosho</p>
-                                        <p>City, Country: Sofia, Bulgaria</p>
-                                        <p>Street: Vitoshka 53</p>
-                                        <p>Telephone: 0882871009</p>
-                                    </label>
-
-                                    <a class="text-center w-100 d-block mt-4 font-weight-bold" id="add-address">Add Address</a>
+                                    <a class="text-center w-100 d-block mt-4 font-weight-bold" id="add-address"
+                                       th:href="@{/addresses/add}">Add Address</a>
                                 </address>
                             </div>
                         </div>
@@ -179,15 +129,17 @@
     </div>
 </main>
 
-<footer>&copy Victory 2022. All rights reserved.</footer>
+
+<th:block th:replace="~{/fragments/footer.html}"/>
+
 
 <script>
-    //TODO: change this when making the template
-
     document.querySelectorAll(".product").forEach(e => e.addEventListener("click", (ev) => {
         ev.preventDefault();
 
-        window.location = "home";
+        const offerId=ev.currentTarget.id;
+
+        window.location = `/offers/${offerId}`;
     }))
 </script>
 

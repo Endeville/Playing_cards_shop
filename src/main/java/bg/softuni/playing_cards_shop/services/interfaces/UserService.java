@@ -4,8 +4,10 @@ import bg.softuni.playing_cards_shop.models.dtos.UserRegistrationDto;
 import bg.softuni.playing_cards_shop.models.entities.AddressEntity;
 import bg.softuni.playing_cards_shop.models.entities.DeckEntity;
 import bg.softuni.playing_cards_shop.models.entities.UserEntity;
+import bg.softuni.playing_cards_shop.models.views.AddressDto;
 import bg.softuni.playing_cards_shop.models.views.UserProfileDto;
 
+import java.util.List;
 import java.util.Set;
 
 public interface UserService{
@@ -24,5 +26,5 @@ public interface UserService{
 
     boolean currentUserHasLiked(DeckEntity deck);
 
-    void findAddressesByUser(String username);
+    List<AddressDto> findAddressesByUserUsername(String username);
 }

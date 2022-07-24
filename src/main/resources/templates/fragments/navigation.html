@@ -11,6 +11,7 @@
                     <li class="user"><a th:href="@{/offers/all}">Offers</a></li>
                     <li class="user"><a th:href="@{/wishlist}">Wishlist</a></li>
                     <li class="user"><a th:href="@{/users/profile/{username} (username=${#authentication.name})}">Profile</a></li>
+                    <li class="user"><a th:href="@{/cart}">Cart</a></li>
                     <li id="logoutBtn" class="user">
                         <form th:action="@{/users/logout}"
                               th:method="POST">
