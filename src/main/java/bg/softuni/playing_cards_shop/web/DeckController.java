@@ -1,6 +1,7 @@
 package bg.softuni.playing_cards_shop.web;
 
 import bg.softuni.playing_cards_shop.models.dtos.AddDeckDto;
+import bg.softuni.playing_cards_shop.models.dtos.EditDeckDto;
 import bg.softuni.playing_cards_shop.models.views.DeckDetailsDto;
 import bg.softuni.playing_cards_shop.services.interfaces.CreatorService;
 import bg.softuni.playing_cards_shop.services.interfaces.DeckService;
@@ -89,10 +90,28 @@ public class DeckController {
         var deckDetailsById = this.deckService.findDeckDetailsById(id);
 
         model.addAttribute("deck", deckDetailsById);
+        model.addAttribute("id", id);
 
         model.addAttribute("distributors", this.distributorService.getDistributorsNames());
         model.addAttribute("creators", this.creatorService.getCreatorsNames());
 
         return "editDeck";
+    }
+
+    @PatchMapping("/{id}/edit")
+    public String editDeck(@Valid EditDeckDto editDeckDto,
+                           BindingResult result,
+                           RedirectAttributes attributes,
+                           @PathVariable(name="id") Long id) throws IOException {
+        if(result.hasErrors()){
+            attributes.addFlashAttribute("deck", editDeckDto);
+            attributes.addFlashAttribute("org.springframework.validation.BindingResult.deck", result);
+
+            return "redirect:/decks/" + id + "/edit";
+        }
+
+        this.deckService.editDeck(id,editDeckDto);
+
+        return "redirect:/decks/all";
     }
 }

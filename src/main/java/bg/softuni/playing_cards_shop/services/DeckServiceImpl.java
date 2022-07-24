@@ -1,8 +1,10 @@
 package bg.softuni.playing_cards_shop.services;
 
 import bg.softuni.playing_cards_shop.models.dtos.AddDeckDto;
+import bg.softuni.playing_cards_shop.models.dtos.EditDeckDto;
 import bg.softuni.playing_cards_shop.models.entities.DeckEntity;
 import bg.softuni.playing_cards_shop.models.entities.OfferEntity;
+import bg.softuni.playing_cards_shop.models.entities.enums.DeckCategory;
 import bg.softuni.playing_cards_shop.models.views.CatalogDeckDto;
 import bg.softuni.playing_cards_shop.models.views.DeckDetailsDto;
 import bg.softuni.playing_cards_shop.repositories.DeckRepository;
@@ -119,5 +121,35 @@ public class DeckServiceImpl implements DeckService {
     @Override
     public boolean titleExists(String title) {
         return this.deckRepository.existsByTitle(title);
+    }
+
+    @Override
+    public void editDeck(Long id, EditDeckDto editDeckDto) throws IOException {
+        var deck = this.deckRepository.findById(id)
+                .orElseThrow(()-> new ObjectNotFoundException(OBJECT_NAME_DECK));
+
+        if (this.pictureService.validatePictures(editDeckDto.getPictures())) {
+            var pictures = this.pictureService.saveAll(editDeckDto.getPictures());
+            deck.setPictures(pictures);
+        } else {
+            throw new IllegalStateException("No pictures provided");
+        }
+
+        var creator = this.creatorService.findByName(editDeckDto.getCreatorName());
+        var distributor = this.distributorService.findDistributorByBrand(editDeckDto.getDistributorBrand());
+        var categories = this.categoryService.findCategoriesByNames(editDeckDto.getCategories());
+
+
+
+        deck.setCreator(creator)
+                .setDistributor(distributor)
+                .setCategories(new LinkedHashSet<>(categories))
+                .setTitle(editDeckDto.getTitle())
+                .setCountryOfOrigin(editDeckDto.getCountryOfOrigin())
+                .setDescription(editDeckDto.getDescription());
+
+
+        //todo: add the deck for mod approval
+        this.deckRepository.save(deck);
     }
 }

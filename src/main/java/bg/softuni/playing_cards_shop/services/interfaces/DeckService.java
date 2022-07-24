@@ -1,6 +1,7 @@
 package bg.softuni.playing_cards_shop.services.interfaces;
 
 import bg.softuni.playing_cards_shop.models.dtos.AddDeckDto;
+import bg.softuni.playing_cards_shop.models.dtos.EditDeckDto;
 import bg.softuni.playing_cards_shop.models.entities.DeckEntity;
 import bg.softuni.playing_cards_shop.models.views.CatalogDeckDto;
 import bg.softuni.playing_cards_shop.models.views.DeckDetailsDto;
@@ -22,4 +23,6 @@ public interface DeckService {
     void addDeck(AddDeckDto addDeckDto) throws IOException;
 
     boolean titleExists(String title);
+
+    void editDeck(Long id, EditDeckDto editDeckDto) throws IOException;
 }
