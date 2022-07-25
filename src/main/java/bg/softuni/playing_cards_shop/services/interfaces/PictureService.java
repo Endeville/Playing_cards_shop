@@ -18,4 +18,6 @@ public interface PictureService {
     PictureEntity getDefaultDistributorProfile();
 
     boolean validatePictures(List<MultipartFile> pictures);
+
+    void deletePictures(Set<PictureEntity> pictures);
 }

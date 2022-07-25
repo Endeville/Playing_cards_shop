@@ -101,6 +101,8 @@ public class OfferServiceImpl implements OfferService {
         var offer = this.offerRepository.findById(id)
                 .orElseThrow(()-> new ObjectNotFoundException(OBJECT_NAME_OFFER));
 
+        this.pictureService.deletePictures(offer.getPictures());
+
         if (this.pictureService.validatePictures(editOfferDto.getPictures())) {
             var pictures = this.pictureService.saveAll(editOfferDto.getPictures());
             offer.setPictures(pictures);

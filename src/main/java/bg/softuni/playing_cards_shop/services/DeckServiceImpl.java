@@ -129,6 +129,8 @@ public class DeckServiceImpl implements DeckService {
         var deck = this.deckRepository.findById(id)
                 .orElseThrow(()-> new ObjectNotFoundException(OBJECT_NAME_DECK));
 
+        this.pictureService.deletePictures(deck.getPictures());
+
         if (this.pictureService.validatePictures(editDeckDto.getPictures())) {
             var pictures = this.pictureService.saveAll(editDeckDto.getPictures());
             deck.setPictures(pictures);

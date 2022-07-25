@@ -66,6 +66,15 @@ public class PictureServiceImpl implements PictureService {
     }
 
     @Override
+    public void deletePictures(Set<PictureEntity> pictures) {
+        pictures.stream()
+                .map(PictureEntity::getPublicId)
+                .forEach(this.cloudinaryService::deleteImage);
+
+        this.pictureRepository.deleteAll(pictures);
+    }
+
+    @Override
     public PictureEntity getDefaultDistributorProfile() {
         return this.pictureRepository.findPictureEntityByUrl("https://res.cloudinary.com/dykamqwpf/image/upload/v1658170325/default_distributor_ogp1ju.png")
                 .orElseThrow(()->new ObjectNotFoundException(OBJECT_NAME_PICTURE));
