@@ -83,7 +83,9 @@
 
 
                                         <div class="error"
-                                             th:text="${#strings.listJoin(#fields.errors('distributorBrand'), '; ')}"></div>
+                                             th:text="${#strings.listJoin(#fields.errors('distributorBrand'), '; ')}">
+                                        </div>
+
                                         <div> <a target="_blank" th:href="@{/distributors/add}" class="addMissingInfoAnchor">Cannot find the distributor you are searching for?</a></div>
                                     </div>
 
@@ -99,7 +101,8 @@
 
 
                                         <div class="error"
-                                             th:text="${#strings.listJoin(#fields.errors('creatorName'), '; ')}"></div>
+                                             th:text="${#strings.listJoin(#fields.errors('creatorName'), '; ')}">
+                                        </div>
 
                                         <div> <a target="_blank" th:href="@{/creators/add}" class="addMissingInfoAnchor">Cannot find the creator you are searching for?</a></div>
 

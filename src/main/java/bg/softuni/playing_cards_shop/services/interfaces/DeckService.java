@@ -5,6 +5,7 @@ import bg.softuni.playing_cards_shop.models.dtos.EditDeckDto;
 import bg.softuni.playing_cards_shop.models.entities.DeckEntity;
 import bg.softuni.playing_cards_shop.models.views.CatalogDeckDto;
 import bg.softuni.playing_cards_shop.models.views.DeckDetailsDto;
+import bg.softuni.playing_cards_shop.models.views.DeckInfoDto;
 
 import java.io.IOException;
 import java.util.List;
@@ -25,4 +26,6 @@ public interface DeckService {
     boolean titleExists(String title);
 
     void editDeck(Long id, EditDeckDto editDeckDto) throws IOException;
+
+    DeckInfoDto findDeckInfoById(Long id);
 }

@@ -45,7 +45,7 @@ VALUES (1, 2),
 
 INSERT INTO offers(id, price, quantity, description, status, deck_id, seller_id)
 VALUES (1, 20, 4, "Great offer. You won't find anything better", 'APPROVED', 1, 1),
-       (2, 5, 2, "Better hurry the offer won't be available soon.", 'LIMITED', 1, 1);
+       (2, 5, 2, "Better hurry the offer won't be available soon.", 'LIMITED', 2, 1);
 
 INSERT INTO pictures(url, deck_id, offer_id)
 VALUES ('https://res.cloudinary.com/dykamqwpf/image/upload/v1657796050/playing_cards_project/high_victorian_green_t27q49.jpg',

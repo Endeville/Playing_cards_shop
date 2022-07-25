@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.util.List;
 
-public class AddOfferDto {
+public class EditOfferDto {
 
     @NotBlank(message = "Please fill in a title.")
     private String deckTitle;
@@ -30,7 +30,7 @@ public class AddOfferDto {
         return deckTitle;
     }
 
-    public AddOfferDto setDeckTitle(String deckTitle) {
+    public EditOfferDto setDeckTitle(String deckTitle) {
         this.deckTitle = deckTitle;
         return this;
     }
@@ -39,17 +39,8 @@ public class AddOfferDto {
         return price;
     }
 
-    public AddOfferDto setPrice(BigDecimal price) {
+    public EditOfferDto setPrice(BigDecimal price) {
         this.price = price;
-        return this;
-    }
-
-    public List<MultipartFile> getPictures() {
-        return pictures;
-    }
-
-    public AddOfferDto setPictures(List<MultipartFile> pictures) {
-        this.pictures = pictures;
         return this;
     }
 
@@ -57,7 +48,7 @@ public class AddOfferDto {
         return quantity;
     }
 
-    public AddOfferDto setQuantity(Integer quantity) {
+    public EditOfferDto setQuantity(Integer quantity) {
         this.quantity = quantity;
         return this;
     }
@@ -66,8 +57,17 @@ public class AddOfferDto {
         return description;
     }
 
-    public AddOfferDto setDescription(String description) {
+    public EditOfferDto setDescription(String description) {
         this.description = description;
+        return this;
+    }
+
+    public List<MultipartFile> getPictures() {
+        return pictures;
+    }
+
+    public EditOfferDto setPictures(List<MultipartFile> pictures) {
+        this.pictures = pictures;
         return this;
     }
 }

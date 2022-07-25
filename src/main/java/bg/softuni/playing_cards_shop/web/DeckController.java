@@ -87,9 +87,9 @@ public class DeckController {
 
     @GetMapping("/{id}/edit")
     public String editPage(@PathVariable(name="id") Long id, Model model){
-        var deckDetailsById = this.deckService.findDeckDetailsById(id);
+        var deckInfoById = this.deckService.findDeckInfoById(id);
 
-        model.addAttribute("deck", deckDetailsById);
+        model.addAttribute("deck", deckInfoById);
         model.addAttribute("id", id);
 
         model.addAttribute("distributors", this.distributorService.getDistributorsNames());

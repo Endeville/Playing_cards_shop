@@ -21,6 +21,7 @@
     <link rel="stylesheet" th:href="@{/css/bootstrap/bootstrapNav.css}"/>
 
     <script th:src="@{/js/sidebar.js}" type="module"></script>
+    <script th:src="@{/js/showSelectedFiles.js}" type="module"></script>
 
     <th:block th:replace="~{/fragments/head.html}"/>
 </head>
@@ -59,33 +60,30 @@
                                 <form id="offer-form" th:method="post" th:action="@{/offers/add}"
                                       role="form" style="display: block;"
                                       th:object="${offer}"
+                                      enctype="multipart/form-data"
                                 >
 
+                                    <div class="form-group deck">
+                                        <select class="selectpicker" data-live-search="true"
+                                                name="categories"
+                                                required
+                                                th:field="*{deckTitle}" th:errorclass="is-invalid"
+                                        >
+                                            <option value="">Please select a title</option>
+                                            <option th:each="deckTitle : ${deckTitles}"
+                                                    th:value="${deckTitle}" th:text="${deckTitle}">
+                                            </option>
+                                        </select>
 
-<!--                                    <div class="form-group">-->
-<!--                                        <input type="text" name="username" id="deckTitle" tabindex="1"-->
-<!--                                               class="form-control" placeholder="Deck Title" value=""-->
-<!--                                               th:field="*{deckTitle}" th:errorclass="is-invalid"-->
-<!--                                        >-->
-<!--                                        <div class="error"-->
-<!--                                             th:text="${#strings.listJoin(#fields.errors('deckTitle'), '; ')}"></div>-->
-<!--                                    </div>-->
-
-                                    <div class="form-group">
-                                        <div class="form-group">
-                                            <select class="selectpicker" data-live-search="true"
-                                                    name="categories"
-                                                    required
-                                                    th:field="*{deckTitle}" th:errorclass="is-invalid"
-                                            >
-                                                <option value="">Please select a title</option>
-                                                <option th:value="Add">Add another deck</option>
-                                                <option th:each="deckTitle : ${deckTitles}"
-                                                        th:value="${deckTitle}" th:text="${deckTitle}">Game</option>
-                                            </select>
-                                        </div>
                                         <div class="error"
-                                             th:text="${#strings.listJoin(#fields.errors('deckTitle'), '; ')}"></div>
+                                             th:text="${#strings.listJoin(#fields.errors('deckTitle'), '; ')}">
+                                        </div>
+
+                                        <div>
+                                            <a target="_blank" th:href="@{/decks/add}" class="addMissingInfoAnchor">
+                                                Cannot find the deck you are searching for?
+                                            </a>
+                                        </div>
                                     </div>
 
                                     <div class="form-group">
@@ -125,16 +123,12 @@
                                     </div>
 
                                     <table class="form-group" id="image-container">
+                                        <thead>
+                                        <tr>
+                                            <th>Files Uploaded(At least 1 is needed):</th>
+                                        </tr>
+                                        </thead>
                                         <tbody>
-                                        <tr>
-                                            <td>Files Uploaded:</td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                        </tr>
                                         </tbody>
                                     </table>
 

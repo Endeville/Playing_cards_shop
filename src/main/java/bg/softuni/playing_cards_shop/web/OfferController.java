@@ -1,6 +1,7 @@
 package bg.softuni.playing_cards_shop.web;
 
 import bg.softuni.playing_cards_shop.models.dtos.AddOfferDto;
+import bg.softuni.playing_cards_shop.models.dtos.EditOfferDto;
 import bg.softuni.playing_cards_shop.services.interfaces.DeckService;
 import bg.softuni.playing_cards_shop.services.interfaces.OfferService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.io.IOException;
 
 @Controller
 @RequestMapping("/offers")
@@ -49,7 +51,7 @@ public class OfferController {
     @PostMapping("/add")
     public String addOffer(@Valid AddOfferDto addOfferDto,
                            BindingResult result,
-                           RedirectAttributes attributes){
+                           RedirectAttributes attributes) throws IOException {
         if(result.hasErrors()){
             attributes.addFlashAttribute("offer", addOfferDto);
             attributes.addFlashAttribute("org.springframework.validation.BindingResult.offer", result);
@@ -72,6 +74,35 @@ public class OfferController {
 //        model.addAttribute("canBuy", this.offerService.currentUserCanBuy(id));
 
         return "offerDetails";
+    }
+
+    @GetMapping("/{id}/edit")
+    public String editPage(@PathVariable(name="id") Long id, Model model){
+        var offerById = this.offerService.getOfferInfoById(id);
+
+        model.addAttribute("offer", offerById);
+        model.addAttribute("id", id);
+
+        model.addAttribute("deckTitles", this.deckService.getAllDeckTitles());
+
+        return "editOffer";
+    }
+
+    @PatchMapping("/{id}/edit")
+    public String editOffer(@Valid EditOfferDto offer,
+                            BindingResult result,
+                            RedirectAttributes attributes,
+                            @PathVariable(name="id") Long id) throws IOException {
+        if(result.hasErrors()){
+            attributes.addFlashAttribute("offer", offer);
+            attributes.addFlashAttribute("org.springframework.validation.BindingResult.offer", result);
+
+            return "redirect:/offers/" + id + "/edit";
+        }
+
+        this.offerService.editOffer(id,offer);
+
+        return "redirect:/offers/all";
     }
 
 

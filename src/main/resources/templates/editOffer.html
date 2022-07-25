@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
@@ -18,57 +17,25 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
 
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/addForm.css}"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap/bootstrapNav.css}"/>
 
-    <link rel="stylesheet" href="../static/css/addOffer.css"/>
-    <link rel="stylesheet" href="../static/css/bootstrap/bootstrapNav.css"/>
+    <script th:src="@{/js/sidebar.js}" type="module"></script>
+    <script th:src="@{/js/showSelectedFiles.js}" type="module"></script>
 
-    <script src="../static/js/sidebar.js" type="module"></script>
-
-    <link rel="icon" href="../static/images/ace-of-spades.png">
-    <title>Victory</title>
+    <th:block th:replace="~{/fragments/head.html}"/>
 </head>
 <body>
 
 <header>
 
     <nav id="nav" class="navbar navbar-expand">
-
-        <a href="/"><img src="../static/images/emblem.png"></a>
-
-        <ul id="menu">
-            <li><a href="/catalog">Catalog</a></li>
-            <li><a href="/search">Offers</a></li>
-            <span id="guest-nav">
-                    <li class="guest"><a href="/login">Login</a></li>
-                    <li class="guest"><a href="/register">Register</a></li>
-                </span>
-            <span id="user-nav">
-                    <li class="user"><a href="/create">Wishlist</a></li>
-                    <li id="logoutBtn" class="user"><a href="javascript:void(0)">Logout</a></li>
-            </span>
-        </ul>
-
-        <a href="#" id="menu-toggle" class="navbar-brand">&#9776</a>
+        <th:block th:replace="~{/fragments/navigation.html}"/>
     </nav>
 
 </header>
 
-<div id="wrapper">
-    <div id="sidebar-wrapper">
-        <ul class="sidebar-nav">
-            <li><a href="#">Catalog</a></li>
-            <li><a href="#">Offers</a></li>
-            <li><a href="#">Login</a></li>
-            <li><a href="#">Register</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Wishlist</a></li>
-            <li><a href="#">Logout</a></li>
-        </ul>
-    </div>
-</div>
+<th:block th:replace="~{/fragments/sidebar.html}"/>
 
 <main>
 
@@ -80,7 +47,7 @@
                         <div class="row">
 
                             <div class="col">
-                                <label href="#" class="active" id="login-form-link">Edit Offer</label>
+                                <label class="active" id="create-offer-link">Edit Offer</label>
                             </div>
 
                         </div>
@@ -90,50 +57,80 @@
                             <div class="col-lg-12">
 
 
-                                <form id="offer-form" method="post"
-                                      role="form" style="display: block;">
+                                <form id="offer-form"
+                                      th:method="patch" th:action="@{/offers/{id}/edit (id=${id})}"
+                                      th:object="${offer}" role="form" style="display: block;"
+                                      enctype="multipart/form-data"
+                                >
 
-
-                                    <div class="form-group">
-                                        <input type="text" name="username" id="title" tabindex="1"
-                                               class="form-control" placeholder="Title" value="">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" name="password" id="distributor" tabindex="2"
-                                               class="form-control" placeholder="Distributor">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="number" step="0.01" name="password" id="Price" tabindex="2"
-                                               class="form-control" placeholder="Price">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="password" name="password" id="creator" tabindex="2"
-                                               class="form-control" placeholder="Creator">
-                                    </div>
-                                    <div class="form-group">
-                                        <select class="selectpicker" multiple data-live-search="true">
-                                            <option>Mustard</option>
-                                            <option>Ketchup</option>
-                                            <option>Relish</option>
+                                    <div class="form-group deck">
+                                        <select class="selectpicker" data-live-search="true"
+                                                name="categories"
+                                                required
+                                                th:field="*{deckTitle}" th:errorclass="is-invalid"
+                                        >
+                                            <option value="">Please select a title</option>
+                                            <option th:each="deckTitle : ${deckTitles}"
+                                                    th:value="${deckTitle}" th:text="${deckTitle}">
+                                            </option>
                                         </select>
+
+                                        <div class="error"
+                                             th:text="${#strings.listJoin(#fields.errors('deckTitle'), '; ')}">
+                                        </div>
+
+                                        <div>
+                                            <a target="_blank" th:href="@{/decks/add}" class="addMissingInfoAnchor">
+                                                Cannot find the deck you are searching for?
+                                            </a>
+                                        </div>
                                     </div>
+
+                                    <div class="form-group">
+                                        <input type="text" name="description" id="description" tabindex="2"
+                                               class="form-control" placeholder="Description"
+                                               th:field="*{description}" th:errorclass="is-invalid">
+                                        <div class="error"
+                                             th:text="${#strings.listJoin(#fields.errors('description'), '; ')}"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="number" min="0.00" step="0.01" name="price" id="Price"
+                                               tabindex="2"
+                                               class="form-control" placeholder="Price"
+                                               th:field="*{price}" th:errorclass="is-invalid">
+                                        <div class="error"
+                                             th:text="${#strings.listJoin(#fields.errors('price'), '; ')}"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="number" min="1" step="1" name="quantity" id="quantity"
+                                               tabindex="2"
+                                               class="form-control" placeholder="Quantity"
+                                               th:field="*{quantity}" th:errorclass="is-invalid">
+                                        <div class="error"
+                                             th:text="${#strings.listJoin(#fields.errors('quantity'), '; ')}"></div>
+                                    </div>
+
                                     <div class="form-group" id="image-group">
                                         <label for="formFile" class="custom-file-upload">
                                             Click to upload images
                                         </label>
-                                        <input class="form-control" type="file" id="formFile" multiple>
+                                        <input name="pictures" class="form-control" type="file"
+                                               id="formFile" multiple required
+                                               th:field="*{pictures}" th:errorclass="is-invalid"
+                                        >
+                                        <div class="error"
+                                             th:text="${#strings.listJoin(#fields.errors('pictures'), '; ')}"></div>
                                     </div>
 
                                     <table class="form-group" id="image-container">
+                                        <thead>
+                                        <tr>
+                                            <th>Files Uploaded(At least 1 is needed):</th>
+                                        </tr>
+                                        </thead>
                                         <tbody>
-                                        <tr>
-                                            <td>Files Uploaded:</td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
+                                        <tr th:each="picture : *{pictures}">
+                                            <th th:text="${picture}"></th>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -141,12 +138,11 @@
 
                                     <div class="form-group">
                                         <div class="col-sm-6 col-sm-offset-3" id="submit-cont">
-                                            <input type="submit" name="login-submit" id="login-submit" tabindex="4"
-                                                   class="form-control btn btn-makeOffer" value="Edit Offer">
+                                            <input type="submit" name="add-submit" id="add-submit"
+                                                   tabindex="4"
+                                                   class="form-control btn btn-add" value="Edit">
                                         </div>
                                     </div>
-
-
                                 </form>
 
                             </div>
@@ -158,7 +154,7 @@
     </div>
 </main>
 
-<footer>&copy Victory 2022. All rights reserved.</footer>
+<th:block th:replace="~{/fragments/footer.html}"/>
 
 </body>
 </html>

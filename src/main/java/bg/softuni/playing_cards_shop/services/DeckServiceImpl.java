@@ -7,6 +7,7 @@ import bg.softuni.playing_cards_shop.models.entities.OfferEntity;
 import bg.softuni.playing_cards_shop.models.entities.enums.DeckCategory;
 import bg.softuni.playing_cards_shop.models.views.CatalogDeckDto;
 import bg.softuni.playing_cards_shop.models.views.DeckDetailsDto;
+import bg.softuni.playing_cards_shop.models.views.DeckInfoDto;
 import bg.softuni.playing_cards_shop.repositories.DeckRepository;
 import bg.softuni.playing_cards_shop.services.interfaces.*;
 import bg.softuni.playing_cards_shop.web.exceptions.ObjectNotFoundException;
@@ -151,5 +152,16 @@ public class DeckServiceImpl implements DeckService {
 
         //todo: add the deck for mod approval
         this.deckRepository.save(deck);
+    }
+
+    @Override
+    public DeckInfoDto findDeckInfoById(Long id) {
+        var deck = deckRepository.findById(id)
+                .orElseThrow(() -> new ObjectNotFoundException(OBJECT_NAME_DECK));
+
+        var result = this.modelMapper.map(deck, DeckInfoDto.class);
+        result.setPictures(this.pictureService.getPicturesUrls(deck.getPictures()));
+
+        return result;
     }
 }
