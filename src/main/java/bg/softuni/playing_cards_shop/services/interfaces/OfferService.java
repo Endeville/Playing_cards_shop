@@ -1,6 +1,7 @@
 package bg.softuni.playing_cards_shop.services.interfaces;
 
 import bg.softuni.playing_cards_shop.models.dtos.AddOfferDto;
+import bg.softuni.playing_cards_shop.models.dtos.AddReviewDto;
 import bg.softuni.playing_cards_shop.models.dtos.EditOfferDto;
 import bg.softuni.playing_cards_shop.models.entities.OfferEntity;
 import bg.softuni.playing_cards_shop.models.views.CatalogOfferDto;
@@ -9,7 +10,6 @@ import bg.softuni.playing_cards_shop.models.views.OfferInfoDto;
 import bg.softuni.playing_cards_shop.models.views.ReviewDetailsDto;
 
 import java.io.IOException;
-import java.security.Principal;
 import java.util.List;
 
 public interface OfferService {
@@ -26,4 +26,6 @@ public interface OfferService {
     OfferInfoDto getOfferInfoById(Long id);
 
     List<ReviewDetailsDto> findReviewsByOfferId(Long id);
+
+    void addReviewToOfferById(Long id, AddReviewDto review);
 }

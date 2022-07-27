@@ -1,6 +1,7 @@
 package bg.softuni.playing_cards_shop.services;
 
 import bg.softuni.playing_cards_shop.models.dtos.AddOfferDto;
+import bg.softuni.playing_cards_shop.models.dtos.AddReviewDto;
 import bg.softuni.playing_cards_shop.models.dtos.EditOfferDto;
 import bg.softuni.playing_cards_shop.models.entities.OfferEntity;
 import bg.softuni.playing_cards_shop.models.entities.enums.OfferStatus;
@@ -9,10 +10,7 @@ import bg.softuni.playing_cards_shop.models.views.OfferDetailsDto;
 import bg.softuni.playing_cards_shop.models.views.OfferInfoDto;
 import bg.softuni.playing_cards_shop.models.views.ReviewDetailsDto;
 import bg.softuni.playing_cards_shop.repositories.OfferRepository;
-import bg.softuni.playing_cards_shop.services.interfaces.DeckService;
-import bg.softuni.playing_cards_shop.services.interfaces.OfferService;
-import bg.softuni.playing_cards_shop.services.interfaces.PictureService;
-import bg.softuni.playing_cards_shop.services.interfaces.UserService;
+import bg.softuni.playing_cards_shop.services.interfaces.*;
 import bg.softuni.playing_cards_shop.web.exceptions.ObjectNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,12 +18,9 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.HashSet;
-import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
-import static bg.softuni.playing_cards_shop.constants.GlobalConstants.OBJECT_NAME_DECK;
 import static bg.softuni.playing_cards_shop.constants.GlobalConstants.OBJECT_NAME_OFFER;
 
 @Service
@@ -35,13 +30,15 @@ public class OfferServiceImpl implements OfferService {
     private final PictureService pictureService;
     private final UserService userService;
     private final DeckService deckService;
+    private final ReviewService reviewService;
     private final ModelMapper modelMapper;
 
-    public OfferServiceImpl(OfferRepository offerRepository, PictureService pictureService, UserService userService, DeckService deckService, ModelMapper modelMapper) {
+    public OfferServiceImpl(OfferRepository offerRepository, PictureService pictureService, UserService userService, DeckService deckService, ReviewService reviewService, ModelMapper modelMapper) {
         this.offerRepository = offerRepository;
         this.pictureService = pictureService;
         this.userService = userService;
         this.deckService = deckService;
+        this.reviewService = reviewService;
         this.modelMapper = modelMapper;
     }
 
@@ -142,5 +139,19 @@ public class OfferServiceImpl implements OfferService {
                 .getReviews().stream()
                 .map(r-> this.modelMapper.map(r, ReviewDetailsDto.class))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public void addReviewToOfferById(Long id, AddReviewDto review) {
+        var offer=this.offerRepository.findById(id)
+                .orElseThrow(()->new ObjectNotFoundException(OBJECT_NAME_OFFER));
+
+        var reviewToAdd=this.reviewService.addReview(review);
+        var reviews=offer.getReviews();
+        reviews.add(reviewToAdd);
+
+        offer.setReviews(reviews);
+
+        this.offerRepository.save(offer);
     }
 }

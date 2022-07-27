@@ -48,4 +48,13 @@ public class ReviewEntity extends BaseEntity {
         this.creator = creator;
         return this;
     }
+
+    public Instant getCreated() {
+        return created;
+    }
+
+    public ReviewEntity setCreated(Instant created) {
+        this.created = created;
+        return this;
+    }
 }

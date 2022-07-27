@@ -1,6 +1,7 @@
 package bg.softuni.playing_cards_shop.web;
 
 import bg.softuni.playing_cards_shop.models.dtos.AddOfferDto;
+import bg.softuni.playing_cards_shop.models.dtos.AddReviewDto;
 import bg.softuni.playing_cards_shop.models.dtos.EditOfferDto;
 import bg.softuni.playing_cards_shop.models.views.ReviewDetailsDto;
 import bg.softuni.playing_cards_shop.services.interfaces.DeckService;
@@ -31,9 +32,19 @@ public class OfferController {
         this.deckService = deckService;
     }
 
-    @ModelAttribute("offer")
+    @ModelAttribute("addOffer")
     public AddOfferDto addOfferDto(){
         return new AddOfferDto();
+    }
+
+    @ModelAttribute("editOffer")
+    public EditOfferDto editOfferDto(){
+        return new EditOfferDto();
+    }
+
+    @ModelAttribute("addReview")
+    public AddReviewDto addReviewDto(){
+        return new AddReviewDto();
     }
 
     @GetMapping("/all")
@@ -57,7 +68,7 @@ public class OfferController {
                            BindingResult result,
                            RedirectAttributes attributes) throws IOException {
         if(result.hasErrors()){
-            attributes.addFlashAttribute("offer", addOfferDto);
+            attributes.addFlashAttribute("addOffer", addOfferDto);
             attributes.addFlashAttribute("org.springframework.validation.BindingResult.offer", result);
 
             return "redirect:/offers/add";
@@ -98,7 +109,7 @@ public class OfferController {
                             RedirectAttributes attributes,
                             @PathVariable(name="id") Long id) throws IOException {
         if(result.hasErrors()){
-            attributes.addFlashAttribute("offer", offer);
+            attributes.addFlashAttribute("editOffer", offer);
             attributes.addFlashAttribute("org.springframework.validation.BindingResult.offer", result);
 
             return "redirect:/offers/" + id + "/edit";
@@ -115,8 +126,28 @@ public class OfferController {
         this.sortReviewInfo(offerReviews, model);
 
         model.addAttribute("reviews", offerReviews);
+        model.addAttribute("id", id);
 
         return "reviews";
+    }
+
+    @PostMapping("/{id}/reviews/add")
+    public String addReview(@Valid AddReviewDto review,
+                            BindingResult result,
+                            RedirectAttributes attributes,
+                            @PathVariable(name="id") Long id){
+        attributes.addFlashAttribute("id", id);
+        if(result.hasErrors()){
+            attributes.addFlashAttribute("addReview", review);
+            attributes.addFlashAttribute("org.springframework.validation.BindingResult.addReview", result);
+            attributes.addFlashAttribute("badInfo", true);
+
+            return "redirect:/offers/" + id + "/reviews";
+        }
+
+        this.offerService.addReviewToOfferById(id, review);
+
+        return "redirect:/offers/" + id + "/reviews";
     }
 
     private void sortReviewInfo(List<ReviewDetailsDto> offerReviews, Model model) {

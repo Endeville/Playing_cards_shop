@@ -30,9 +30,14 @@ public class DeckController {
         this.creatorService = creatorService;
     }
 
-    @ModelAttribute("deck")
+    @ModelAttribute("addDeck")
     public AddDeckDto addDeckDto(){
         return new AddDeckDto();
+    }
+
+    @ModelAttribute("editDeck")
+    public EditDeckDto editDeckDto(){
+        return new EditDeckDto();
     }
 
 
@@ -67,7 +72,7 @@ public class DeckController {
                           RedirectAttributes attributes,
                           HttpServletRequest request) throws IOException {
         if(result.hasErrors()){
-            attributes.addFlashAttribute("deck", addDeckDto);
+            attributes.addFlashAttribute("addDeck", addDeckDto);
             attributes.addFlashAttribute("org.springframework.validation.BindingResult.deck", result);
 
             return "redirect:/decks/add";
@@ -76,7 +81,7 @@ public class DeckController {
         try {
             this.deckService.addDeck(addDeckDto);
         }catch(IllegalStateException e){
-            attributes.addFlashAttribute("deck", addDeckDto);
+            attributes.addFlashAttribute("addDeck", addDeckDto);
             attributes.addFlashAttribute("org.springframework.validation.BindingResult.deck", result);
 
             return "redirect:/decks/add";
@@ -104,7 +109,7 @@ public class DeckController {
                            RedirectAttributes attributes,
                            @PathVariable(name="id") Long id) throws IOException {
         if(result.hasErrors()){
-            attributes.addFlashAttribute("deck", editDeckDto);
+            attributes.addFlashAttribute("editDeck", editDeckDto);
             attributes.addFlashAttribute("org.springframework.validation.BindingResult.deck", result);
 
             return "redirect:/decks/" + id + "/edit";
