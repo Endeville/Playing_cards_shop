@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import java.time.Instant;
 
 @Entity
 @Table(name="reviews")
@@ -14,6 +15,9 @@ public class ReviewEntity extends BaseEntity {
 
     @Column(nullable = false)
     private short rating;
+
+    @Column(nullable = false, name = "created_on")
+    private Instant created;
 
     @ManyToOne
     private UserEntity creator;

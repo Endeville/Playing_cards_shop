@@ -7,6 +7,7 @@ import bg.softuni.playing_cards_shop.models.entities.enums.OfferStatus;
 import bg.softuni.playing_cards_shop.models.views.CatalogOfferDto;
 import bg.softuni.playing_cards_shop.models.views.OfferDetailsDto;
 import bg.softuni.playing_cards_shop.models.views.OfferInfoDto;
+import bg.softuni.playing_cards_shop.models.views.ReviewDetailsDto;
 import bg.softuni.playing_cards_shop.repositories.OfferRepository;
 import bg.softuni.playing_cards_shop.services.interfaces.DeckService;
 import bg.softuni.playing_cards_shop.services.interfaces.OfferService;
@@ -132,5 +133,14 @@ public class OfferServiceImpl implements OfferService {
         result.setPictures(this.pictureService.getPicturesUrls(offer.getPictures()));
 
         return result;
+    }
+
+    @Override
+    public List<ReviewDetailsDto> findReviewsByOfferId(Long id) {
+        return this.offerRepository.findById(id)
+                .orElseThrow(()->new ObjectNotFoundException(OBJECT_NAME_OFFER))
+                .getReviews().stream()
+                .map(r-> this.modelMapper.map(r, ReviewDetailsDto.class))
+                .collect(Collectors.toList());
     }
 }

@@ -6,6 +6,7 @@ import bg.softuni.playing_cards_shop.models.entities.OfferEntity;
 import bg.softuni.playing_cards_shop.models.views.CatalogOfferDto;
 import bg.softuni.playing_cards_shop.models.views.OfferDetailsDto;
 import bg.softuni.playing_cards_shop.models.views.OfferInfoDto;
+import bg.softuni.playing_cards_shop.models.views.ReviewDetailsDto;
 
 import java.io.IOException;
 import java.security.Principal;
@@ -23,4 +24,6 @@ public interface OfferService {
     void editOffer(Long id, EditOfferDto offer) throws IOException;
 
     OfferInfoDto getOfferInfoById(Long id);
+
+    List<ReviewDetailsDto> findReviewsByOfferId(Long id);
 }

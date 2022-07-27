@@ -2,6 +2,7 @@ package bg.softuni.playing_cards_shop.web;
 
 import bg.softuni.playing_cards_shop.models.dtos.AddOfferDto;
 import bg.softuni.playing_cards_shop.models.dtos.EditOfferDto;
+import bg.softuni.playing_cards_shop.models.views.ReviewDetailsDto;
 import bg.softuni.playing_cards_shop.services.interfaces.DeckService;
 import bg.softuni.playing_cards_shop.services.interfaces.OfferService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -14,6 +15,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/offers")
@@ -103,6 +107,28 @@ public class OfferController {
         this.offerService.editOffer(id,offer);
 
         return "redirect:/offers/all";
+    }
+
+    @GetMapping("/{id}/reviews")
+    public String offerReviews(@PathVariable(name = "id") Long id, Model model){
+        var offerReviews= this.offerService.findReviewsByOfferId(id);
+        this.sortReviewInfo(offerReviews, model);
+
+        model.addAttribute("reviews", offerReviews);
+
+        return "reviews";
+    }
+
+    private void sortReviewInfo(List<ReviewDetailsDto> offerReviews, Model model) {
+        model.addAttribute("ratings",
+                offerReviews.stream()
+                .collect(Collectors.groupingBy(ReviewDetailsDto::getRating, Collectors.counting())));
+
+        model.addAttribute("averageRating",
+                offerReviews.stream()
+                        .mapToDouble(ReviewDetailsDto::getRating)
+                        .average()
+                        .orElse(0));
     }
 
 

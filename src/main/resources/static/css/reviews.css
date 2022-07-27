@@ -238,11 +238,6 @@
     margin-bottom: 50px !important;
 }
 
-.sort-by-rating:hover{
-    color: var(--royal-red);
-    border-bottom: 2px solid var(--royal-red);
-}
-
 .reviewer:hover{
     color: var(--royal-red);
 }
