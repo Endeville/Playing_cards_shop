@@ -10,12 +10,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
             crossorigin="anonymous"></script>
-<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"-->
-<!--            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"-->
-<!--            crossorigin="anonymous"></script>-->
-<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/3.6.95/css/materialdesignicons.css"-->
-<!--            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"-->
-<!--            crossorigin="anonymous"></script>-->
 
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
@@ -48,11 +42,9 @@
                             <div class="col-sm-4 bg-c-lite-green user-profile">
                                 <div class="card-block text-center text-white">
                                     <div class="m-b-25">
-                                        <img src="https://img.icons8.com/bubbles/100/000000/user.png" class="img-radius"
-                                             alt="User-Profile-Image">
                                     </div>
                                     <p class="m-b-10 f-w-600" th:text="*{role}">Client</p>
-                                    <h6 class="f-w-600 username" th:text="*{username}">Hembo Tingor</h6>
+                                    <h6 class="f-w-600 username" th:text="*{username}"></h6>
                                     <i class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
                                 </div>
                             </div>
@@ -70,7 +62,15 @@
                                         </div>
                                         <div class="col-sm-6 addressBar">
                                             <p class="m-b-10 f-w-600 header header">Address/es</p>
-                                            <h6 class="text-muted f-w-400" th:each="address : *{addresses}" th:text="${address}"></h6>
+                                            <div th:each="address : *{addresses}" class="address-holder">
+                                                <h6 class="text-muted f-w-400"
+                                                    th:text="${address}">
+                                                </h6>
+                                                <button class="delete-address" th:id="|delete-${address.id}|">
+                                                    <img th:src="@{/images/bin.png}" alt="Delete" style="height: 20px; width: 20px;">
+                                                </button>
+                                            </div>
+
                                             <a th:href="@{/addresses/add}" class="add-address">Add Address</a>
                                         </div>
                                     </div>
@@ -96,6 +96,40 @@
 </main>
 
 <th:block th:replace="~{/fragments/footer.html}"/>
+
+
+<script th:inline="javascript">
+
+    const deleteAddressBtns=document.querySelectorAll(".delete-address");
+    const csrfHeaderName = document.head.querySelector('[name=_csrf_header]').content;
+    const csrfHeaderValue = document.head.querySelector('[name=_csrf]').content;
+
+    for (const deleteAddressBtn of deleteAddressBtns) {
+        deleteAddressBtn.addEventListener("click", (ev)=>{
+            ev.preventDefault();
+            const id=ev.currentTarget.id.substring(7);
+            deleteAddress(ev, id);
+        })
+    }
+
+    async function deleteAddress(ev, id){
+        const options={
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accepts': 'application/json',
+                [csrfHeaderName]: csrfHeaderValue
+            },
+            body: JSON.stringify({
+                id: id
+            })
+        };
+
+
+        ev.currentTarget.parentElement.style.display='none';
+        await fetch("http://localhost:8000/api/addresses/delete", options);
+    }
+</script>
 
 </body>
 </html>

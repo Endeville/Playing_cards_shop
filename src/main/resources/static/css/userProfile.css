@@ -181,3 +181,42 @@ h6 {
     cursor: pointer;
 }
 
+.delete-address{
+    background-color: transparent;
+    border: 2px solid transparent;
+    font-size: 14px;
+    font-weight: 500;
+    display: inline-block;
+    width: 40px;
+    height: 100%;
+}
+
+.address-holder:hover{
+    background-color: rgb(227, 224, 224);;
+}
+
+.delete-address:hover{
+    border: 2px solid var(--royal-red);
+}
+
+h6{
+    display: inline-block;
+   width: 80%;
+    margin-bottom: 0;
+}
+
+.address-holder{
+    max-height: 80px;
+    margin-bottom: .5rem;
+}
+
+@media (max-width: 420px) {
+    .address-holder{
+        margin-bottom: 50px;
+    }
+
+    .delete-address{
+        width: 30px;
+    }
+}
+

@@ -36,7 +36,7 @@ public class UserEntity extends BaseEntity{
     @OneToMany
     private Set<NotificationEntity> notifications;
 
-    @OneToMany
+    @OneToMany(mappedBy = "user")
     private Set<AddressEntity> addresses;
 
     @OneToMany

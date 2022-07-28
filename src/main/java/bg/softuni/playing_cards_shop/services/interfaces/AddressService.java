@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface AddressService {
     void addAddress(AddAddressDto address, String name);
+
+    void deleteAddressById(Long id);
 }

@@ -19,12 +19,22 @@ VALUES (1, 'Endeville', 'victor.popdonchev@gmail.com',
        (2, 'Vipop', 'xvipop@gmail.com',
         '9f6095cc9b392438eb577c67382a951ae945df94ab649e268f1fc2b527c678daebf5609944280cf8', 5, 1);
 
+INSERT INTO addresses(city, country, street, telephone, user_id)
+VALUES  ('Sofia', 'Bulgaria', 'Vitoshka', '0882867098', 1),
+        ('Plovidv', 'Bulgaria', 'Neshto1', '0882867092', 1),
+        ('Varna', 'Bulgaria', 'Nshto2', '0882867094', 2);
+
+-- INSERT INTO users_addresses(user_entity_id, addresses_id)
+-- VALUES (1, 1),
+--        (1, 2),
+--        (2, 3);
+
 INSERT INTO creators(id, name, description)
 VALUES (1, 'Joe White', 'Self taught, Specializing in branding and packaging design.
 Has a unique and secret process. Using Flash animation and programming techniques to create illustrations, visual effects and custom lettering.
 For work enquiries, Please email
 yeoldestudiouk@gmail.com'),
-       (2, 'Curtis Jinkins', 'Independent Graphic Design Professional. Works at Neighborhood Studio.');
+    (2, 'Curtis Jinkins', 'Independent Graphic Design Professional. Works at Neighborhood Studio.');
 
 INSERT INTO distributors(id, brand, description, url)
 VALUES (1, 'Theory11', 'Our team is composed of the best of the best minds in the magic industry - from performers to creators and consultants.
@@ -57,8 +67,9 @@ VALUES ('https://res.cloudinary.com/dykamqwpf/image/upload/v1657796050/playing_c
 
 UPDATE distributors
 SET picture_id=4
-WHERE id=1;
+WHERE id = 1;
 
 UPDATE creators
 SET picture_id=3
-WHERE id=1 OR 2;
+WHERE id = 1
+   OR 2;
