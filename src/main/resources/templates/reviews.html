@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -35,7 +38,7 @@
 
 <main>
 
-    <button type="button" class="btn btn-floating btn-lg" id="btn-back-to-top">&#x2191</button>
+    <th:block th:replace="~{/fragments/backToTop.html}"/>
 
 
     <div class="container">
@@ -147,6 +150,8 @@
                                 </div>
                             </div>
 
+
+<!--                            todo: see all reviews functionality remains unimplemented-->
                             <hr>
                             <a class="text-center w-100 d-block mt-4 font-weight-bold" id="reveal-reviews" href="#">See All Reviews</a>
                         </div>

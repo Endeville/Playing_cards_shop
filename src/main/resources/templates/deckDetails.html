@@ -115,6 +115,10 @@
     likeBtn.addEventListener("click", like);
 
     async function like(ev){
+        if(likeBtn.classList.contains("liked")){
+            await dislike(ev)
+            return;
+        }
         ev.preventDefault();
 
         const options={
@@ -130,6 +134,26 @@
         };
 
         await fetch("http://localhost:8000/api/users/like", options);
+
+        likeBtn.classList.add("liked");
+    }
+
+    async function dislike(ev){
+        ev.preventDefault();
+
+        const options={
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accepts': 'application/json',
+                [csrfHeaderName]: csrfHeaderValue
+            },
+            body: JSON.stringify({
+                title: [[${deck.title}]]
+            })
+        };
+
+        await fetch("http://localhost:8000/api/users/dislike", options);
 
         likeBtn.classList.add("liked");
     }

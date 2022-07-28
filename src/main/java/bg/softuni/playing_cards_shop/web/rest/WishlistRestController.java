@@ -37,4 +37,20 @@ public class WishlistRestController {
                         .setDeckTitle(wishlist.getDeck().getTitle())
                         .setUserUsername(wishlist.getUser().getUsername()));
     }
+
+    @DeleteMapping(value = "/like", consumes = "application/json", produces = "application/json")
+    public ResponseEntity<Void> dislike(@RequestBody DeckTitleDto deckTitleDto, @AuthenticationPrincipal UserDetails principal) {
+        if (principal == null) {
+            return ResponseEntity
+                    .status(HttpStatus.MOVED_PERMANENTLY)
+                    .header(HttpHeaders.LOCATION, "/users/login")
+                    .build();
+        }
+
+        this.wishlistService.dislike(principal, deckTitleDto.getTitle());
+
+        return ResponseEntity
+                .ok()
+                .build();
+    }
 }
