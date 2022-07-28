@@ -18,9 +18,8 @@ public class CreatorEntity extends BaseEntity {
     @OneToMany(mappedBy = "creator")
     private Set<DeckEntity> decks;
 
-    @OneToMany
-    @JoinColumn(name = "creator_id")
-    private Set<PictureEntity> pictures;
+    @OneToOne
+    private PictureEntity picture;
 
     public CreatorEntity() {
     }
@@ -52,12 +51,12 @@ public class CreatorEntity extends BaseEntity {
         return this;
     }
 
-    public Set<PictureEntity> getPictures() {
-        return pictures;
+    public PictureEntity getPicture() {
+        return picture;
     }
 
-    public CreatorEntity setPictures(Set<PictureEntity> pictures) {
-        this.pictures = pictures;
+    public CreatorEntity setPicture(PictureEntity picture) {
+        this.picture = picture;
         return this;
     }
 }

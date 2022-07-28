@@ -51,9 +51,14 @@ INSERT INTO pictures(url, deck_id, offer_id)
 VALUES ('https://res.cloudinary.com/dykamqwpf/image/upload/v1657796050/playing_cards_project/high_victorian_green_t27q49.jpg',
         1, 1),
        ('https://res.cloudinary.com/dykamqwpf/image/upload/v1657796051/playing_cards_project/monarchs1_1024x1024_rltbye.webp',
-        2, 2);
+        2, 2),
+       ('https://res.cloudinary.com/dykamqwpf/image/upload/v1658170325/default_creator_wgjltr.jpg', null, null),
+       ('https://res.cloudinary.com/dykamqwpf/image/upload/v1658170325/default_distributor_ogp1ju.png', null, null);
 
-INSERT INTO pictures(url, creator_id, distributor_id)
-VALUES ('https://res.cloudinary.com/dykamqwpf/image/upload/v1658170325/default_creator_wgjltr.jpg', 1, null),
-       ('https://res.cloudinary.com/dykamqwpf/image/upload/v1658170325/default_creator_wgjltr.jpg', 2, null),
-       ('https://res.cloudinary.com/dykamqwpf/image/upload/v1658170325/default_distributor_ogp1ju.png', null, 1);
+UPDATE distributors
+SET picture_id=4
+WHERE id=1;
+
+UPDATE creators
+SET picture_id=3
+WHERE id=1 OR 2;

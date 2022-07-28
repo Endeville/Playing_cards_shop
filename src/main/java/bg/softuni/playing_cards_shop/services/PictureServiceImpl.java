@@ -38,10 +38,7 @@ public class PictureServiceImpl implements PictureService {
         var result=new HashSet<PictureEntity>();
 
         for (MultipartFile picture : pictures) {
-            final var uploaded = cloudinaryService.uploadImage(picture);
-            result.add(pictureRepository.save(new PictureEntity()
-                    .setUrl(uploaded.getUrl())
-                    .setPublicId(uploaded.getPublicId())));
+            result.add(this.save(picture));
         }
 
         return result;
@@ -50,7 +47,7 @@ public class PictureServiceImpl implements PictureService {
     @Override
     public List<String> getPicturesUrls(Set<PictureEntity> pictures) {
         return pictures.stream()
-                .map(PictureEntity::getUrl)
+                .map(this::getPictureUrl)
                 .collect(Collectors.toList());
     }
 
@@ -72,6 +69,19 @@ public class PictureServiceImpl implements PictureService {
                 .forEach(this.cloudinaryService::deleteImage);
 
         this.pictureRepository.deleteAll(pictures);
+    }
+
+    @Override
+    public String getPictureUrl(PictureEntity picture) {
+        return picture.getUrl();
+    }
+
+    @Override
+    public PictureEntity save(MultipartFile picture) throws IOException {
+        final var uploaded = cloudinaryService.uploadImage(picture);
+        return pictureRepository.save(new PictureEntity()
+                .setUrl(uploaded.getUrl())
+                .setPublicId(uploaded.getPublicId()));
     }
 
     @Override

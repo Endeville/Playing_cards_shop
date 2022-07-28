@@ -34,11 +34,11 @@ public class CreatorServiceImpl implements CreatorService {
     @Override
     public void addCreator(AddCreatorDto creatorDto) throws IOException {
         var creator = this.modelMapper.map(creatorDto, CreatorEntity.class);
-        if (this.pictureService.validatePictures(creatorDto.getPictures())) {
-            var pictures = this.pictureService.saveAll(creatorDto.getPictures());
-            creator.setPictures(pictures);
+        if (this.pictureService.validatePictures(List.of(creatorDto.getPicture()))) {
+            var picture = this.pictureService.save(creatorDto.getPicture());
+            creator.setPicture(picture);
         } else {
-            creator.setPictures(Set.of(this.pictureService.getDefaultProfilePicture()));
+            creator.setPicture(this.pictureService.getDefaultProfilePicture());
         }
 
 
@@ -70,7 +70,7 @@ public class CreatorServiceImpl implements CreatorService {
                 .orElseThrow(()-> new ObjectNotFoundException(OBJECT_NAME_CREATOR));
 
         var result=this.modelMapper.map(creator, CreatorDetailsDto.class);
-        result.setPictures(this.pictureService.getPicturesUrls(creator.getPictures()));
+        result.setPicture(this.pictureService.getPictureUrl(creator.getPicture()));
 
         return result;
     }

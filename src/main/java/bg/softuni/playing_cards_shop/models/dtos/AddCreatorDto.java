@@ -19,7 +19,7 @@ public class AddCreatorDto {
     private String description;
 
     //todo: spring adds some tomcat multipart file when this is empty -> fix it
-    private List<MultipartFile> pictures;
+    private MultipartFile picture;
 
     public AddCreatorDto() {
     }
@@ -42,12 +42,12 @@ public class AddCreatorDto {
         return this;
     }
 
-    public List<MultipartFile> getPictures() {
-        return pictures;
+    public MultipartFile getPicture() {
+        return picture;
     }
 
-    public AddCreatorDto setPictures(List<MultipartFile> pictures) {
-        this.pictures = pictures;
+    public AddCreatorDto setPicture(MultipartFile picture) {
+        this.picture = picture;
         return this;
     }
 }

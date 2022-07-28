@@ -39,7 +39,7 @@ public class DistributorServiceImpl implements DistributorService {
                 .orElseThrow(() -> new ObjectNotFoundException(OBJECT_NAME_DISTRIBUTOR));
 
         var result = this.modelMapper.map(distributor, DistributorDetailsDto.class);
-        result.setPictures(this.pictureService.getPicturesUrls(distributor.getPictures()));
+        result.setPicture(this.pictureService.getPictureUrl(distributor.getPicture()));
 
         return result;
     }
@@ -53,11 +53,11 @@ public class DistributorServiceImpl implements DistributorService {
     public void addDistributor(AddDistributorDto distributorDto) throws IOException {
         var distributor = this.modelMapper.map(distributorDto, DistributorEntity.class);
 
-        if (this.pictureService.validatePictures(distributorDto.getPictures())) {
-            var pictures = pictureService.saveAll(distributorDto.getPictures());
-            distributor.setPictures(pictures);
+        if (this.pictureService.validatePictures(List.of(distributorDto.getPicture()))) {
+            var pictures = pictureService.save(distributorDto.getPicture());
+            distributor.setPicture(pictures);
         } else {
-            distributor.setPictures(Set.of(this.pictureService.getDefaultDistributorProfile()));
+            distributor.setPicture(this.pictureService.getDefaultDistributorProfile());
         }
 
 

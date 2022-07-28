@@ -24,7 +24,7 @@ public class AddDistributorDto {
     @NotBlank(message = "Please give a brief description of the distributor.")
     private String description;
 
-    private List<MultipartFile> pictures;
+    private MultipartFile picture;
 
     public String getBrand() {
         return brand;
@@ -53,12 +53,12 @@ public class AddDistributorDto {
         return this;
     }
 
-    public List<MultipartFile> getPictures() {
-        return pictures;
+    public MultipartFile getPicture() {
+        return picture;
     }
 
-    public AddDistributorDto setPictures(List<MultipartFile> pictures) {
-        this.pictures = pictures;
+    public AddDistributorDto setPicture(MultipartFile picture) {
+        this.picture = picture;
         return this;
     }
 }

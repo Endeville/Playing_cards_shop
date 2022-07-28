@@ -16,9 +16,8 @@ public class DistributorEntity extends BaseEntity{
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    @OneToMany
-    @JoinColumn(name = "distributor_id")
-    private Set<PictureEntity> pictures;
+    @OneToOne
+    private PictureEntity picture;
 
     @OneToMany(mappedBy = "distributor")
     private Set<DeckEntity> decks;
@@ -53,12 +52,12 @@ public class DistributorEntity extends BaseEntity{
         return this;
     }
 
-    public Set<PictureEntity> getPictures() {
-        return pictures;
+    public PictureEntity getPicture() {
+        return picture;
     }
 
-    public DistributorEntity setPictures(Set<PictureEntity> pictures) {
-        this.pictures = pictures;
+    public DistributorEntity setPicture(PictureEntity picture) {
+        this.picture = picture;
         return this;
     }
 

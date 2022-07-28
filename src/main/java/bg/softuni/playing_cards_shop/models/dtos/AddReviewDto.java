@@ -1,6 +1,7 @@
 package bg.softuni.playing_cards_shop.models.dtos;
 
 public class AddReviewDto {
+//    todo: add validation
     private short rating;
     private String review;
 

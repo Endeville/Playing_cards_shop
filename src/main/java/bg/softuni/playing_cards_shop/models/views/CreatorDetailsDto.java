@@ -5,7 +5,7 @@ import java.util.List;
 public class CreatorDetailsDto {
     private String name;
     private String description;
-    private List<String> pictures;
+    private String picture;
 
     public String getName() {
         return name;
@@ -25,12 +25,12 @@ public class CreatorDetailsDto {
         return this;
     }
 
-    public List<String> getPictures() {
-        return pictures;
+    public String getPicture() {
+        return picture;
     }
 
-    public CreatorDetailsDto setPictures(List<String> pictures) {
-        this.pictures = pictures;
+    public CreatorDetailsDto setPicture(String picture) {
+        this.picture = picture;
         return this;
     }
 }

@@ -20,4 +20,8 @@ public interface PictureService {
     boolean validatePictures(List<MultipartFile> pictures);
 
     void deletePictures(Set<PictureEntity> pictures);
+
+    String getPictureUrl(PictureEntity picture);
+
+    PictureEntity save(MultipartFile picture) throws IOException;
 }

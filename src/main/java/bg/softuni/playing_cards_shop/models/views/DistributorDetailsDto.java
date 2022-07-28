@@ -6,7 +6,7 @@ public class DistributorDetailsDto {
     private String brand;
     private String siteUrl;
     private String description;
-    private List<String> pictures;
+    private String picture;
 
     public String getBrand() {
         return brand;
@@ -35,12 +35,12 @@ public class DistributorDetailsDto {
         return this;
     }
 
-    public List<String> getPictures() {
-        return pictures;
+    public String getPicture() {
+        return picture;
     }
 
-    public DistributorDetailsDto setPictures(List<String> pictures) {
-        this.pictures = pictures;
+    public DistributorDetailsDto setPicture(String picture) {
+        this.picture = picture;
         return this;
     }
 }
