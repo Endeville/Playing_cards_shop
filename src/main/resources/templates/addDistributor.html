@@ -93,7 +93,7 @@
                                         <input class="form-control" type="file"
                                                id="formFile" multiple accept=".jpg, .jpeg, .png"
                                                th:field="*{picture}" th:errorclass="invalid-field">
-                                        <div class="error"  th:text="${#strings.listJoin(#fields.errors('pictures'), '; ')}">
+                                        <div class="error"  th:text="*{picture}">
                                         </div>
                                     </div>
 

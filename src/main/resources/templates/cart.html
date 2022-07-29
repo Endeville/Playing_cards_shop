@@ -36,6 +36,39 @@
 
 </header>
 
+<article class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header no-border">
+                <h5 class="modal-title" id="exampleModalLongTitle">
+                    Are you sure you want to continue?
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body no-border">
+                <form th:action="@{/orders/add}" th:method="get" id="place_order_form">
+                </form>
+
+                <div class="modal-footer no-border">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeModalBtn">
+                        Return
+                    </button>
+                    <button type="submit" class="btn btn-primary" id="saveSortBtn" form="place_order_form">
+                        Yes, continue
+                    </button>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</article>
+
 <th:block th:replace="~{/fragments/sidebar.html}"/>
 
 <main>
@@ -80,8 +113,9 @@
                                 <tr id="purchase-row">
                                     <td colspan="2"></td>
                                     <td class="text-end">
-<!--                                        todo: order functionality-->
-                                        <input type="submit" form="cart-notes" id="purchase-btn" value="Order">
+                                        <!--                                        todo: order functionality-->
+                                        <input type="button" form="cart-notes" id="purchase-btn" value="Order"
+                                               data-toggle="modal" data-target="#exampleModalCenter">
                                     </td>
                                 </tr>
                                 </tfoot>
@@ -109,7 +143,7 @@
 
                                     <th:block th:each="address: ${addresses}" th:object="${address}">
 
-                                        <input type="radio"  th:id="|address-*{id}|" form="cart-notes" name="address">
+                                        <input type="radio" th:id="|address-*{id}|" form="cart-notes" name="address">
                                         <label th:for="|address-*{id}|" class="address-option">
                                             <p th:text="|City, Country: *{city}, *{country}|"></p>
                                             <p th:text="|Street: *{street}|"></p>
@@ -138,7 +172,7 @@
     document.querySelectorAll(".product").forEach(e => e.addEventListener("click", (ev) => {
         ev.preventDefault();
 
-        const offerId=ev.currentTarget.id;
+        const offerId = ev.currentTarget.id;
 
         window.location = `/offers/${offerId}`;
     }))
