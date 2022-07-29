@@ -1,5 +1,6 @@
 package bg.softuni.playing_cards_shop.services;
 
+import bg.softuni.playing_cards_shop.models.entities.DeckEntity;
 import bg.softuni.playing_cards_shop.models.entities.WishlistItemEntity;
 import bg.softuni.playing_cards_shop.models.views.CatalogDeckDto;
 import bg.softuni.playing_cards_shop.repositories.WishlistItemRepository;
@@ -9,6 +10,7 @@ import bg.softuni.playing_cards_shop.services.interfaces.UserService;
 import bg.softuni.playing_cards_shop.services.interfaces.WishlistItemService;
 import bg.softuni.playing_cards_shop.web.exceptions.ObjectNotFoundException;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -45,9 +47,13 @@ public class WishlistItemServiceImpl implements WishlistItemService {
     }
 
     @Override
-    public List<CatalogDeckDto> getCurrentUserWishlist(UserDetails principal) {
-        var currentUser=this.userService.findUserByUsername(principal.getUsername());
-        return currentUser.getWishlist().stream()
+    public List<CatalogDeckDto> getCurrentUserWishlistByKeyword(UserDetails principal, String search, String sort) {
+
+        return this.wishlistItemRepository
+                .findWishlistItemEntitiesByUserUsernameAndDeckTitleContainingIgnoreCase(principal.getUsername(),
+                        search,
+                        Sort.by(sort))
+                .stream()
                 .map(w->{
                     var deck = modelMapper.map(w.getDeck(), CatalogDeckDto.class);
                     deck.setPictures(this.pictureService.getPicturesUrls(w.getDeck().getPictures()));

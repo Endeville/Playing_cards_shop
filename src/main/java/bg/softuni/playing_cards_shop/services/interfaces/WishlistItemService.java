@@ -9,7 +9,7 @@ import java.util.List;
 public interface WishlistItemService {
     WishlistItemEntity like(UserDetails principal, String title);
 
-    List<CatalogDeckDto> getCurrentUserWishlist(UserDetails principal);
+    List<CatalogDeckDto> getCurrentUserWishlistByKeyword(UserDetails principal, String search, String sort);
 
     void dislike(UserDetails principal, String title);
 }

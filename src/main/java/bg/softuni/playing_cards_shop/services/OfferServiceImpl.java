@@ -13,6 +13,7 @@ import bg.softuni.playing_cards_shop.repositories.OfferRepository;
 import bg.softuni.playing_cards_shop.services.interfaces.*;
 import bg.softuni.playing_cards_shop.web.exceptions.ObjectNotFoundException;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
@@ -65,8 +66,8 @@ public class OfferServiceImpl implements OfferService {
     }
 
     @Override
-    public List<CatalogOfferDto> getActiveOffers() {
-        return this.offerRepository.findOfferEntityByStatusApprovedOrLimited().stream()
+    public List<CatalogOfferDto> getActiveOffersByKeyword(String search, String sort) {
+        return this.offerRepository.findOfferEntityByStatusApprovedOrLimited(search, Sort.by(sort)).stream()
                 .map((o)->{
                     var offer=this.modelMapper.map(o, CatalogOfferDto.class);
                     offer.setTitle(o.getDeck().getTitle());

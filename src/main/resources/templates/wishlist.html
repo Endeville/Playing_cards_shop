@@ -51,17 +51,17 @@
 
 <!--                                        Change ids(and label fors) and sort options-->
 
-                    <input type="radio" th:name="sort" th:value="sa" id="1">
-                    <label for="1">Sort Alphabetically</label>
+                    <input type="radio" name="sort" value="deck.title" id="1">
+                    <label for="1">Sort By Title(Default)</label>
 
-                    <input type="radio" th:name="sort" th:value="splth" id="2">
-                    <label for="2">Sort By Price(Low to High)</label>
+                    <input type="radio" name="sort" value="deck.recommendedPrice" id="2">
+                    <label for="2">Sort By Recommended Price(Low to High)</label>
 
-                    <input type="radio" th:name="sort" th:value="sphtl" id="3">
-                    <label for="3">Sort by Price(High to Low)</label>
+                    <input type="radio" name="sort" value="deck.creator.name" id="3">
+                    <label for="3">Sort by Creator</label>
 
-                    <input type="radio" th:name="sort" th:value="sra" id="4">
-                    <label for="4">Sort Alphabetically</label>
+                    <input type="radio" name="sort" value="deck.countryOfOrigin" id="4">
+                    <label for="4">Sort by Country of Origin</label>
 
                 </form>
 

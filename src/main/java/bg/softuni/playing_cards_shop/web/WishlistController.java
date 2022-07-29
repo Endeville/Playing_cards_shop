@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/wishlist")
@@ -20,8 +21,10 @@ public class WishlistController {
 
 
     @GetMapping
-    public String showWishlist(Model model, @AuthenticationPrincipal UserDetails principal){
-        model.addAttribute("decks", this.wishlistItemService.getCurrentUserWishlist(principal));
+    public String showWishlist(@RequestParam(name="sort", required = false, defaultValue = "deck.title") String sort,
+                               @RequestParam(name = "search", required = false, defaultValue = "") String search,
+                               Model model, @AuthenticationPrincipal UserDetails principal){
+        model.addAttribute("decks", this.wishlistItemService.getCurrentUserWishlistByKeyword(principal, search, sort));
         model.addAttribute("showSearch", true);
 
         return "wishlist";

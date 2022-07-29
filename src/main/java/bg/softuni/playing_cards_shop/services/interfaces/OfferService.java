@@ -15,7 +15,7 @@ import java.util.List;
 public interface OfferService {
     void addOffer(AddOfferDto addOfferDto) throws IOException;
 
-    List<CatalogOfferDto> getActiveOffers();
+    List<CatalogOfferDto> getActiveOffersByKeyword(String search, String sort);
 
     OfferDetailsDto getOfferDetailsById(Long id);
 

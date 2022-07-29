@@ -16,7 +16,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.io.IOException;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -48,8 +47,10 @@ public class OfferController {
     }
 
     @GetMapping("/all")
-    public String showOffers(Model model){
-        var offers=this.offerService.getActiveOffers();
+    public String showOffers(@RequestParam(name="sort", required = false, defaultValue = "deck.title") String sort,
+                             @RequestParam(name = "search", required = false, defaultValue = "") String search,
+                             Model model){
+        var offers=this.offerService.getActiveOffersByKeyword(search, sort);
         model.addAttribute("offers", offers);
         model.addAttribute("showSearch", true);
 
