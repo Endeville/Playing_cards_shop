@@ -10,6 +10,7 @@ public class DeckDetailsDto {
     private List<CategoryDto> categories;
     private String creatorName;
     private String distributorBrand;
+    private Integer recommendedPrice;
     private boolean liked;
 
     public String getTitle() {
@@ -81,6 +82,15 @@ public class DeckDetailsDto {
 
     public DeckDetailsDto setLiked(boolean liked) {
         this.liked = liked;
+        return this;
+    }
+
+    public Integer getRecommendedPrice() {
+        return recommendedPrice;
+    }
+
+    public DeckDetailsDto setRecommendedPrice(Integer recommendedPrice) {
+        this.recommendedPrice = recommendedPrice;
         return this;
     }
 }

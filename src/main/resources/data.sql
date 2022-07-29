@@ -37,9 +37,9 @@ As a result, our team has consulted and created magic for the majority of magic 
         'https://www.theory11.com/');
 
 
-INSERT INTO decks (title, country_of_origin, description, approved, creator_id, distributor_id)
-VALUES ('High Victorian Green', 'USA', 'somethign idk', true, 1, 1),
-       ('Monarchs Navy Blue', 'USA', 'monarchs ofc', true, 2, 1);
+INSERT INTO decks (title, country_of_origin, description, approved,recommended_price, creator_id, distributor_id)
+VALUES ('High Victorian Green', 'USA', 'somethign idk', true, 5, 1, 1),
+       ('Monarchs Navy Blue', 'USA', 'monarchs ofc', true, 10, 2, 1);
 
 INSERT INTO decks_categories(decks_id, categories_id)
 VALUES (1, 2),

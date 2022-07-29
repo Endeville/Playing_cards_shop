@@ -19,9 +19,9 @@ public class DeckEntity extends BaseEntity{
     private boolean approved;
 
     @Column
-    private BigDecimal recommendedPrice;
+    private Integer recommendedPrice;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name="deck_id")
     private Set<PictureEntity> pictures;
 
@@ -34,11 +34,11 @@ public class DeckEntity extends BaseEntity{
     @ManyToOne
     private CreatorEntity creator;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "decks_categories")
     private Set<CategoryEntity> categories;
 
-    @OneToMany(mappedBy = "deck")
+    @OneToMany(mappedBy = "deck", fetch = FetchType.EAGER)
     private Set<OfferEntity> offers;
 
     public DeckEntity() {
@@ -78,6 +78,19 @@ public class DeckEntity extends BaseEntity{
     public DeckEntity setPictures(Set<PictureEntity> pictures) {
         this.pictures = pictures;
         return this;
+    }
+
+    public Integer getRecommendedPrice() {
+        return recommendedPrice;
+    }
+
+    public DeckEntity setRecommendedPrice(Integer recommendedPrice) {
+        this.recommendedPrice = recommendedPrice;
+        return this;
+    }
+
+    public boolean isApproved() {
+        return approved;
     }
 
     public String getCountryOfOrigin() {

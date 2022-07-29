@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import static bg.softuni.playing_cards_shop.constants.GlobalConstants.*;
@@ -67,18 +68,6 @@ public class DeckServiceImpl implements DeckService {
     }
 
     @Override
-    public Integer getRecommendedPriceForDeckWithId(long id) {
-        return (int) this.deckRepository.findById(id)
-                .orElseThrow(() -> new ObjectNotFoundException(OBJECT_NAME_DECK))
-                .getOffers().stream()
-                .filter(o -> o.getStatus().name().equals("APPROVED") || o.getStatus().name().equals("LIMITED"))
-                .map(OfferEntity::getPrice)
-                .mapToDouble(BigDecimal::doubleValue)
-                .average()
-                .orElse(-1);
-    }
-
-    @Override
     public DeckEntity findDeckByTitle(String title) {
         return this.deckRepository
                 .findDeckEntityByTitle(title)
@@ -87,7 +76,7 @@ public class DeckServiceImpl implements DeckService {
 
     @Override
     public List<String> getAllDeckTitles() {
-        return this.deckRepository.getDeckEntityByApproved(true).stream()
+        return this.deckRepository.getDeckEntitiesByApproved(true).stream()
                 .map(DeckEntity::getTitle)
                 .collect(Collectors.toList());
     }
@@ -112,7 +101,8 @@ public class DeckServiceImpl implements DeckService {
         deck.setCreator(creator)
                 .setDistributor(distributor)
                 .setCategories(new LinkedHashSet<>(categories))
-                .setApproved(false);
+                .setApproved(false)
+                .setRecommendedPrice(-1);
 
 
         //todo: add the deck for mod approval
@@ -165,5 +155,26 @@ public class DeckServiceImpl implements DeckService {
         result.setPictures(this.pictureService.getPicturesUrls(deck.getPictures()));
 
         return result;
+    }
+
+    @Override
+    public void updateRecommendedPrices() {
+        var deckEntitiesByApproved = this.deckRepository.getDeckEntitiesByApproved(true);
+        for (DeckEntity deckEntity : deckEntitiesByApproved) {
+            deckEntity.setRecommendedPrice(getRecommendedPriceForDeck(deckEntity));
+        }
+
+        this.deckRepository.saveAll(deckEntitiesByApproved);
+    }
+
+
+    private Integer getRecommendedPriceForDeck(DeckEntity deck) {
+        return (int) deck
+                .getOffers().stream()
+                .filter(o -> o.getStatus().name().equals("APPROVED") || o.getStatus().name().equals("LIMITED"))
+                .map(OfferEntity::getPrice)
+                .mapToDouble(BigDecimal::doubleValue)
+                .average()
+                .orElse(-1);
     }
 }

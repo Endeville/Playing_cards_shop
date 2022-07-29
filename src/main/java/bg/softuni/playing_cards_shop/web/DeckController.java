@@ -57,7 +57,6 @@ public class DeckController {
         var deckDto=this.deckService.findDeckDetailsById(id);
 
         model.addAttribute("deck",deckDto);
-        model.addAttribute("recommendedPrice", this.deckService.getRecommendedPriceForDeckWithId(id));
 
         return "deckDetails";
     }

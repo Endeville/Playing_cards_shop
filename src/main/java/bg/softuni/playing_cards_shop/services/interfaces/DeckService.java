@@ -15,8 +15,6 @@ public interface DeckService {
 
     DeckDetailsDto findDeckDetailsById(long id);
 
-    Integer getRecommendedPriceForDeckWithId(long id);
-
     DeckEntity findDeckByTitle(String title);
 
     List<String> getAllDeckTitles();
@@ -28,4 +26,6 @@ public interface DeckService {
     void editDeck(Long id, EditDeckDto editDeckDto) throws IOException;
 
     DeckInfoDto findDeckInfoById(Long id);
+
+    void updateRecommendedPrices();
 }

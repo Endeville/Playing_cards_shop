@@ -81,7 +81,7 @@
                                 </tr>
                                 <tr>
                                     <td>Recommended price</td>
-                                    <td th:text="${recommendedPrice<0 ? 'Missing information' : recommendedPrice + '€'}">
+                                    <td th:text="*{recommendedPrice}<0 ? 'Missing information' : *{recommendedPrice} + '€'">
                                         Missing information
                                     </td>
                                 </tr>
