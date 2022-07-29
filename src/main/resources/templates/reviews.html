@@ -55,69 +55,17 @@
                             </div>
                             <div class="graph-star-rating-body">
 
-                                <div class="rating-list">
+                                <div class="rating-list" th:each="key : ${ratings.keySet()}">
                                     <div class="rating-list-left text-black">
-                                        <a class="sort-by-rating">5 Star</a>
+                                        <a class="sort-by-rating" th:text="|${key} Star|"></a>
                                     </div>
                                     <div class="rating-list-center">
                                         <div class="progress">
-                                            <div th:style="'width: ${ratings.get(5)}'" aria-valuemax="5" aria-valuemin="0" aria-valuenow="5" role="progressbar" class="progress-bar bg-primary">
+                                            <div th:style="|width: ${ratings.get(key)}%|" aria-valuemax="5" aria-valuemin="0" aria-valuenow="5" role="progressbar" class="progress-bar bg-primary">
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="rating-list-right text-black" th:text="|${ratings.get(5) ?: 0}%|"></div>
-                                </div>
-
-                                <div class="rating-list">
-                                    <div class="rating-list-left text-black">
-                                        <a class="sort-by-rating">4 Star</a>
-                                    </div>
-                                    <div class="rating-list-center">
-                                        <div class="progress">
-                                            <div th:style="'width: ${ratings.get(4)}'" aria-valuemax="5" aria-valuemin="0" aria-valuenow="5" role="progressbar" class="progress-bar bg-primary">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="rating-list-right text-black" th:text="|${ratings.get(4) ?: 0}%|"></div>
-                                </div>
-
-                                <div class="rating-list">
-                                    <div class="rating-list-left text-black">
-                                        <a class="sort-by-rating">3 Star</a>
-                                    </div>
-                                    <div class="rating-list-center">
-                                        <div class="progress">
-                                            <div th:style="'width: ${ratings.get(3)}'" aria-valuemax="5" aria-valuemin="0" aria-valuenow="5" role="progressbar" class="progress-bar bg-primary">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="rating-list-right text-black" th:text="|${ratings.get(3) ?: 0}%|"></div>
-                                </div>
-
-                                <div class="rating-list">
-                                    <div class="rating-list-left text-black">
-                                        <a class="sort-by-rating">2 Star</a>
-                                    </div>
-                                    <div class="rating-list-center">
-                                        <div class="progress">
-                                            <div th:style="'width: ${ratings.get(2)}'" aria-valuemax="5" aria-valuemin="0" aria-valuenow="5" role="progressbar" class="progress-bar bg-primary">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="rating-list-right text-black" th:text="|${ratings.get(2) ?: 0}%|"></div>
-                                </div>
-
-                                <div class="rating-list">
-                                    <div class="rating-list-left text-black">
-                                        <a class="sort-by-rating">1 Star</a>
-                                    </div>
-                                    <div class="rating-list-center">
-                                        <div class="progress">
-                                            <div th:style="'width: ${ratings.get(1)}'" aria-valuemax="5" aria-valuemin="0" aria-valuenow="5" role="progressbar" class="progress-bar bg-primary">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="rating-list-right text-black" th:text="|${ratings.get(1) ?: 0}%|"></div>
+                                    <div class="rating-list-right text-black" th:text="|${ratings.get(key) ?: 0}%|"></div>
                                 </div>
 
                             </div>
@@ -141,6 +89,7 @@
                                                 <a class="text-black reviewer" th:href="@{/users/profile/{name} (name=*{creatorUsername})}" th:text="*{creatorUsername}">
                                                 </a>
                                             </h6>
+                                            <strong th:text="|Rating : *{rating}|"></strong>
                                             <p class="text-gray" th:text="*{#dates.format(created, 'dd-MMM-yyyy')}"></p>
                                         </div>
                                         <div class="reviews-members-body">
@@ -153,11 +102,11 @@
 
 <!--                            todo: see all reviews functionality remains unimplemented-->
                             <hr>
-                            <a class="text-center w-100 d-block mt-4 font-weight-bold" id="reveal-reviews" href="#">See All Reviews</a>
+<!--                            <a class="text-center w-100 d-block mt-4 font-weight-bold" id="reveal-reviews" href="#">See All Reviews</a>-->
                         </div>
                     </div>
 
-                    <div class="bg-white rounded shadow-sm p-4 mb-5 rating-review-select-page">
+                    <div class="bg-white rounded shadow-sm p-4 mb-5 rating-review-select-page" th:if="${!alreadyRated}">
                         <h5 class="mb-4">Leave Comment</h5>
                         <p class="mb-2">Rate the Product</p>
                         <form id="review-form" th:object="${addReview}" th:method="POST" th:action="@{/offers/{id}/reviews/add (id=${id})}">
@@ -193,7 +142,7 @@
 </main>
 
 <script th:inline="javascript">
-    if([[${badIinfo}]]){
+    if([[${badInfo}]]){
         document.getElementById('review-form').scrollIntoView({behavior:'smooth'});
     }
 </script>

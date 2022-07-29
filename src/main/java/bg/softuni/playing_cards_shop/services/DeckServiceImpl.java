@@ -18,7 +18,6 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import static bg.softuni.playing_cards_shop.constants.GlobalConstants.*;
@@ -161,14 +160,14 @@ public class DeckServiceImpl implements DeckService {
     public void updateRecommendedPrices() {
         var deckEntitiesByApproved = this.deckRepository.getDeckEntitiesByApproved(true);
         for (DeckEntity deckEntity : deckEntitiesByApproved) {
-            deckEntity.setRecommendedPrice(getRecommendedPriceForDeck(deckEntity));
+            deckEntity.setRecommendedPrice(calculateRecommendedPriceForDeck(deckEntity));
         }
 
         this.deckRepository.saveAll(deckEntitiesByApproved);
     }
 
 
-    private Integer getRecommendedPriceForDeck(DeckEntity deck) {
+    private Integer calculateRecommendedPriceForDeck(DeckEntity deck) {
         return (int) deck
                 .getOffers().stream()
                 .filter(o -> o.getStatus().name().equals("APPROVED") || o.getStatus().name().equals("LIMITED"))

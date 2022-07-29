@@ -3,6 +3,7 @@ package bg.softuni.playing_cards_shop.models.entities;
 import bg.softuni.playing_cards_shop.models.entities.enums.UserRole;
 
 import javax.persistence.*;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -142,5 +143,18 @@ public class UserEntity extends BaseEntity{
     public UserEntity setCart(Set<CartProductEntity> cart) {
         this.cart = cart;
         return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserEntity that = (UserEntity) o;
+        return rating == that.rating && Objects.equals(username, that.username) && Objects.equals(email, that.email) && Objects.equals(password, that.password) && Objects.equals(role, that.role) && Objects.equals(wishlist, that.wishlist) && Objects.equals(offers, that.offers) && Objects.equals(reviews, that.reviews) && Objects.equals(notifications, that.notifications) && Objects.equals(addresses, that.addresses) && Objects.equals(cart, that.cart);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(username, email, password, rating, role, wishlist, offers, reviews, notifications, addresses, cart);
     }
 }

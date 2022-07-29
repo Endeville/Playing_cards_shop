@@ -8,6 +8,7 @@ import bg.softuni.playing_cards_shop.models.views.CatalogOfferDto;
 import bg.softuni.playing_cards_shop.models.views.OfferDetailsDto;
 import bg.softuni.playing_cards_shop.models.views.OfferInfoDto;
 import bg.softuni.playing_cards_shop.models.views.ReviewDetailsDto;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.IOException;
 import java.util.List;
@@ -28,4 +29,6 @@ public interface OfferService {
     List<ReviewDetailsDto> findReviewsByOfferId(Long id);
 
     void addReviewToOfferById(Long id, AddReviewDto review);
+
+    boolean offerHasBeenRatedByUser(Long id, UserDetails principal);
 }

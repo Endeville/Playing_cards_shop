@@ -4,6 +4,7 @@ import bg.softuni.playing_cards_shop.models.dtos.AddOfferDto;
 import bg.softuni.playing_cards_shop.models.dtos.AddReviewDto;
 import bg.softuni.playing_cards_shop.models.dtos.EditOfferDto;
 import bg.softuni.playing_cards_shop.models.entities.OfferEntity;
+import bg.softuni.playing_cards_shop.models.entities.ReviewEntity;
 import bg.softuni.playing_cards_shop.models.entities.enums.OfferStatus;
 import bg.softuni.playing_cards_shop.models.views.CatalogOfferDto;
 import bg.softuni.playing_cards_shop.models.views.OfferDetailsDto;
@@ -15,6 +16,7 @@ import bg.softuni.playing_cards_shop.web.exceptions.ObjectNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -154,5 +156,15 @@ public class OfferServiceImpl implements OfferService {
         offer.setReviews(reviews);
 
         this.offerRepository.save(offer);
+    }
+
+    @Override
+    public boolean offerHasBeenRatedByUser(Long id, UserDetails principal) {
+        var user=this.userService.findUserByUsername(principal.getUsername());
+        return offerRepository.findById(id)
+                .orElseThrow(()->new ObjectNotFoundException(OBJECT_NAME_OFFER))
+                .getReviews()
+                .stream().map(ReviewEntity::getCreator)
+                .anyMatch(c-> c.equals(user));
     }
 }

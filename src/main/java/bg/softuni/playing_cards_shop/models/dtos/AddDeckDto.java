@@ -16,7 +16,6 @@ public class AddDeckDto {
     @UniqueField(fieldType = FieldType.DECK_TITLE)
     private String title;
 
-
     private String description;
 
     private String countryOfOrigin;
