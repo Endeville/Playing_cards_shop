@@ -48,7 +48,7 @@
             </div>
 
             <div class="modal-body">
-                <form action="#" method="get" id="sort_form">
+                <form th:action="@{/decks/all}" th:method="get" id="sort_form">
 
                     <input type="radio" name="sort" value="title" id="1">
                     <label for="1">Sort By Title(Default)</label>

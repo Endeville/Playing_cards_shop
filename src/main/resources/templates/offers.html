@@ -48,7 +48,7 @@
             </div>
 
             <div class="modal-body">
-                <form action="javascript:void(0)" method="get" id="sort_form">
+                <form th:action="@{/offers/all}" th:method="get" id="sort_form">
 
                     <input type="radio" name="sort" value="deck.title" id="1">
                     <label for="1">Sort By Deck Title(Default)</label>
@@ -59,8 +59,8 @@
                     <input type="radio" name="sort" value="seller.username" id="3">
                     <label for="3">Sort by Seller</label>
 
-                    <input type="radio" name="sort" value="distributor.brand" id="4">
-                    <label for="4">Sort by Distributor</label>
+                    <input type="radio" name="sort" value="quantity" id="4">
+                    <label for="4">Sort by Quantity</label>
 
                 </form>
 
