@@ -163,6 +163,16 @@ li::before {
     width: 100%;
 }
 
+#sidebar-wrapper ul{
+    width: 100%;
+    text-align: center;
+}
+
+#search-input{
+    height: 35px;
+    width: 100px;
+}
+
 
 /* Sidebar Styles */
 

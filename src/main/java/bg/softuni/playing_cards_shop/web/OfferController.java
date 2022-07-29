@@ -51,6 +51,7 @@ public class OfferController {
     public String showOffers(Model model){
         var offers=this.offerService.getActiveOffers();
         model.addAttribute("offers", offers);
+        model.addAttribute("showSearch", true);
 
         return "offers";
     }
@@ -95,7 +96,7 @@ public class OfferController {
     public String editPage(@PathVariable(name="id") Long id, Model model){
         var offerById = this.offerService.getOfferInfoById(id);
 
-        model.addAttribute("offer", offerById);
+        model.addAttribute("editOffer", offerById);
         model.addAttribute("id", id);
 
         model.addAttribute("deckTitles", this.deckService.getAllDeckTitles());

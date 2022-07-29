@@ -2,10 +2,10 @@ package bg.softuni.playing_cards_shop.web;
 
 import bg.softuni.playing_cards_shop.models.dtos.AddDeckDto;
 import bg.softuni.playing_cards_shop.models.dtos.EditDeckDto;
-import bg.softuni.playing_cards_shop.models.views.DeckDetailsDto;
 import bg.softuni.playing_cards_shop.services.interfaces.CreatorService;
 import bg.softuni.playing_cards_shop.services.interfaces.DeckService;
 import bg.softuni.playing_cards_shop.services.interfaces.DistributorService;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.awt.print.Pageable;
 import java.io.IOException;
 
 @Controller
@@ -42,8 +43,11 @@ public class DeckController {
 
 
     @GetMapping("/all")
-    public String catalog(Model model){
-        model.addAttribute("decks",deckService.getApprovedDecks());
+    public String catalog(@RequestParam(name="sort", required = false, defaultValue = "title") String sort,
+                          @RequestParam(name = "search", required = false, defaultValue = "") String search,
+                          Model model){
+        model.addAttribute("decks",deckService.getApprovedDecksByKeyword(search, sort));
+        model.addAttribute("showSearch", true);
 
         return "catalog";
     }
@@ -94,7 +98,7 @@ public class DeckController {
     public String editPage(@PathVariable(name="id") Long id, Model model){
         var deckInfoById = this.deckService.findDeckInfoById(id);
 
-        model.addAttribute("deck", deckInfoById);
+        model.addAttribute("editDeck", deckInfoById);
         model.addAttribute("id", id);
 
         model.addAttribute("distributors", this.distributorService.getDistributorsNames());

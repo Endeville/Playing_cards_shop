@@ -24,11 +24,6 @@ VALUES  ('Sofia', 'Bulgaria', 'Vitoshka', '0882867098', 1),
         ('Plovidv', 'Bulgaria', 'Neshto1', '0882867092', 1),
         ('Varna', 'Bulgaria', 'Nshto2', '0882867094', 2);
 
--- INSERT INTO users_addresses(user_entity_id, addresses_id)
--- VALUES (1, 1),
---        (1, 2),
---        (2, 3);
-
 INSERT INTO creators(id, name, description)
 VALUES (1, 'Joe White', 'Self taught, Specializing in branding and packaging design.
 Has a unique and secret process. Using Flash animation and programming techniques to create illustrations, visual effects and custom lettering.

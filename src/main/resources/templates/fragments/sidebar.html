@@ -7,6 +7,22 @@
                     <li><a th:href="@{/users/register}">Register</a></li>
                 </th:block>
                 <th:block sec:authorize="isAuthenticated()">
+                    <th:block th:if="${showSearch}">
+                        <li>
+                            <form th:action="@{${#httpServletRequest.requestURI}}"
+                                  th:method="get">
+                                <input id="search-input" type="text" th:name="search" placeholder="Search...">
+                                <input type="submit" style="display:none">
+                            </form>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)"
+                               data-toggle="modal" data-target="#exampleModalCenter"
+                               id="openSortModalBtnSidebar" onclick="document.getElementById('wrapper').classList.remove('toggled')">
+                                Sort
+                            </a>
+                        </li>
+                    </th:block>
                     <li><a th:href="@{/decks/all}">Catalog</a></li>
                     <li><a th:href="@{/offers/all}">Offers</a></li>
                     <li><a th:href="@{/wishlist}">Wishlist</a></li>

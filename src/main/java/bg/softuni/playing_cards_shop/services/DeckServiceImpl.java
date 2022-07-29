@@ -4,7 +4,6 @@ import bg.softuni.playing_cards_shop.models.dtos.AddDeckDto;
 import bg.softuni.playing_cards_shop.models.dtos.EditDeckDto;
 import bg.softuni.playing_cards_shop.models.entities.DeckEntity;
 import bg.softuni.playing_cards_shop.models.entities.OfferEntity;
-import bg.softuni.playing_cards_shop.models.entities.enums.DeckCategory;
 import bg.softuni.playing_cards_shop.models.views.CatalogDeckDto;
 import bg.softuni.playing_cards_shop.models.views.DeckDetailsDto;
 import bg.softuni.playing_cards_shop.models.views.DeckInfoDto;
@@ -12,6 +11,7 @@ import bg.softuni.playing_cards_shop.repositories.DeckRepository;
 import bg.softuni.playing_cards_shop.services.interfaces.*;
 import bg.softuni.playing_cards_shop.web.exceptions.ObjectNotFoundException;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -44,8 +44,8 @@ public class DeckServiceImpl implements DeckService {
     }
 
     @Override
-    public List<CatalogDeckDto> getApprovedDecks() {
-        return deckRepository.getDeckEntityByApproved(true).stream()
+    public List<CatalogDeckDto> getApprovedDecksByKeyword(String search, String sort) {
+        return deckRepository.getDeckEntitiesByApprovedAndTitleContainingIgnoreCase(true, search, Sort.by(sort)).stream()
                 .map(e -> {
                     var deck = modelMapper.map(e, CatalogDeckDto.class);
                     deck.setPictures(this.pictureService.getPicturesUrls(e.getPictures()));

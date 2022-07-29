@@ -22,7 +22,10 @@ public class WishlistController {
     @GetMapping
     public String showWishlist(Model model, @AuthenticationPrincipal UserDetails principal){
         model.addAttribute("decks", this.wishlistItemService.getCurrentUserWishlist(principal));
+        model.addAttribute("showSearch", true);
 
         return "wishlist";
     }
+
+
 }

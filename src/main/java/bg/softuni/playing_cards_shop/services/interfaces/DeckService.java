@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.List;
 
 public interface DeckService {
-    List<CatalogDeckDto> getApprovedDecks();
+    List<CatalogDeckDto> getApprovedDecksByKeyword(String search, String sort);
 
     DeckDetailsDto findDeckDetailsById(long id);
 

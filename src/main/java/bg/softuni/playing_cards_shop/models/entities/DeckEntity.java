@@ -1,6 +1,7 @@
 package bg.softuni.playing_cards_shop.models.entities;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Objects;
 import java.util.Set;
 
@@ -16,6 +17,9 @@ public class DeckEntity extends BaseEntity{
 
     @Column(nullable=false, columnDefinition = "BOOLEAN DEFAULT FALSE")
     private boolean approved;
+
+    @Column
+    private BigDecimal recommendedPrice;
 
     @OneToMany
     @JoinColumn(name="deck_id")
