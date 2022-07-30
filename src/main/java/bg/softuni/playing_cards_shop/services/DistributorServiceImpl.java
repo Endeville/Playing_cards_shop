@@ -2,7 +2,6 @@ package bg.softuni.playing_cards_shop.services;
 
 import bg.softuni.playing_cards_shop.models.dtos.AddDistributorDto;
 import bg.softuni.playing_cards_shop.models.entities.DistributorEntity;
-import bg.softuni.playing_cards_shop.models.entities.PictureEntity;
 import bg.softuni.playing_cards_shop.models.views.DistributorDetailsDto;
 import bg.softuni.playing_cards_shop.repositories.DistributorRepository;
 import bg.softuni.playing_cards_shop.services.interfaces.DistributorService;
@@ -13,8 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import static bg.softuni.playing_cards_shop.constants.GlobalConstants.OBJECT_NAME_DISTRIBUTOR;

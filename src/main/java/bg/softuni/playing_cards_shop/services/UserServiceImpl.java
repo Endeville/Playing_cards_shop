@@ -4,14 +4,12 @@ import bg.softuni.playing_cards_shop.models.dtos.UserRegistrationDto;
 import bg.softuni.playing_cards_shop.models.entities.AddressEntity;
 import bg.softuni.playing_cards_shop.models.entities.DeckEntity;
 import bg.softuni.playing_cards_shop.models.entities.UserEntity;
-import bg.softuni.playing_cards_shop.models.entities.WishlistItemEntity;
 import bg.softuni.playing_cards_shop.models.entities.enums.UserRole;
 import bg.softuni.playing_cards_shop.models.views.AddressDto;
 import bg.softuni.playing_cards_shop.models.views.UserProfileDto;
 import bg.softuni.playing_cards_shop.repositories.UserRepository;
 import bg.softuni.playing_cards_shop.services.interfaces.UserRoleService;
 import bg.softuni.playing_cards_shop.services.interfaces.UserService;
-import bg.softuni.playing_cards_shop.services.interfaces.WishlistItemService;
 import bg.softuni.playing_cards_shop.web.exceptions.ObjectNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -21,7 +19,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import static bg.softuni.playing_cards_shop.constants.GlobalConstants.OBJECT_NAME_USER;
@@ -93,8 +90,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean currentUserHasLiked(DeckEntity deck) {
-        var user = this.userRepository.findUserEntityByUsername(SecurityContextHolder.getContext().getAuthentication().getName())
-                .orElseThrow(() -> new ObjectNotFoundException(OBJECT_NAME_USER));
+        var user = this.getCurrentUser();
 
         return user.getWishlist()
                 .stream()
@@ -108,6 +104,12 @@ public class UserServiceImpl implements UserService {
                 .getAddresses().stream()
                 .map(a->this.modelMapper.map(a, AddressDto.class))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public UserEntity getCurrentUser() {
+        return this.userRepository.findUserEntityByUsername(SecurityContextHolder.getContext().getAuthentication().getName())
+                .orElseThrow(()-> new ObjectNotFoundException(OBJECT_NAME_USER));
     }
 
 

@@ -50,9 +50,9 @@ public class CartProductServiceImpl implements CartProductService {
     }
 
     @Override
-    public void deleteProduct(OfferIdDto offerIdDto, UserDetails principal) {
+    public void deleteProduct(OfferIdDto offerIdDto) {
         this.cartProductRepository
-                .deleteByCustomerIdAndOfferId(this.userService.findUserByUsername(principal.getUsername()).getId(),
+                .deleteByCustomerIdAndOfferId(this.userService.getCurrentUser().getId(),
                         offerIdDto.getId());
     }
 }

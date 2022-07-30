@@ -12,5 +12,5 @@ public interface CartProductService {
 
     CartProductEssentialsDto addProduct(OfferIdDto offerIdDto, UserDetails principal);
 
-    void deleteProduct(OfferIdDto offerIdDto, UserDetails principal);
+    void deleteProduct(OfferIdDto offerIdDto);
 }

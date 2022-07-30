@@ -34,7 +34,7 @@ public class AddressRestController {
         this.addressService.deleteAddressById(Long.parseLong(addressIdDto.getId()));
 
         return ResponseEntity
-                .ok()
+                .status(HttpStatus.NO_CONTENT)
                 .build();
     }
 }

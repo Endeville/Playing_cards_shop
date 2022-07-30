@@ -6,8 +6,6 @@ import bg.softuni.playing_cards_shop.repositories.ReviewRepository;
 import bg.softuni.playing_cards_shop.services.interfaces.ReviewService;
 import bg.softuni.playing_cards_shop.services.interfaces.UserService;
 import org.modelmapper.ModelMapper;
-import org.springframework.context.ApplicationContext;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
@@ -28,7 +26,7 @@ public class ReviewServiceImpl implements ReviewService {
     @Override
     public ReviewEntity addReview(AddReviewDto addReview) {
         var review=this.modelMapper.map(addReview, ReviewEntity.class);
-        review.setCreator(this.userService.findUserByUsername(SecurityContextHolder.getContext().getAuthentication().getName()));
+        review.setCreator(this.userService.getCurrentUser());
         review.setCreated(Instant.now());
 
         return this.reviewRepository.save(review);

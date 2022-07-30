@@ -1,6 +1,5 @@
 package bg.softuni.playing_cards_shop.web;
 
-import bg.softuni.playing_cards_shop.models.views.CartProductDto;
 import bg.softuni.playing_cards_shop.services.interfaces.CartProductService;
 import bg.softuni.playing_cards_shop.services.interfaces.UserService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

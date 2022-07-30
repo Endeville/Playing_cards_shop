@@ -1,5 +1,5 @@
 
-#exampleModalCenter{
+#exampleModalCenter, #consentModal{
     position: fixed;
     z-index: 1;
 }
@@ -13,12 +13,12 @@
     max-width: 33vw;
 }
 
-#saveSortBtn{
+#saveSortBtn, #continueBtn{
     background-color: var(--dense-gold);
     border-color: transparent;
 }
 
-#closeModalBtn{
+#closeModalBtn, #returnBtn{
     background-color: var(--light-black);
     border-color: transparent;
 }

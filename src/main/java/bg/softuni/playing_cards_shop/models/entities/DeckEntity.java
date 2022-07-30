@@ -1,7 +1,6 @@
 package bg.softuni.playing_cards_shop.models.entities;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 import java.util.Objects;
 import java.util.Set;
 
@@ -21,24 +20,24 @@ public class DeckEntity extends BaseEntity{
     @Column
     private Integer recommendedPrice;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name="deck_id")
     private Set<PictureEntity> pictures;
 
     @Column(name = "country_of_origin")
     private String countryOfOrigin;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, cascade = CascadeType.DETACH)
     private DistributorEntity distributor;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.DETACH)
     private CreatorEntity creator;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
     @JoinTable(name = "decks_categories")
     private Set<CategoryEntity> categories;
 
-    @OneToMany(mappedBy = "deck", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "deck", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<OfferEntity> offers;
 
     public DeckEntity() {

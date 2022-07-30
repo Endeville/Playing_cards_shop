@@ -1,6 +1,5 @@
 package bg.softuni.playing_cards_shop.configs;
 
-import bg.softuni.playing_cards_shop.models.entities.UserRoleEntity;
 import bg.softuni.playing_cards_shop.models.entities.enums.UserRole;
 import bg.softuni.playing_cards_shop.repositories.UserRepository;
 import bg.softuni.playing_cards_shop.services.security.AppUserDetailsService;
@@ -8,7 +7,6 @@ import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
@@ -36,7 +34,7 @@ public class ApplicationSecurityConfiguration {
                     .antMatchers("/", "/users/login", "/users/register").permitAll()
                     .antMatchers("/decks/*", "/users/profile/**", "/addresses/**",
                             "/creators/**", "/distributors/**", "/offers/**", "/cart/**",
-                            "/wishlist/**")
+                            "/wishlist/**", "/api/**")
                         .hasAnyRole(UserRole.MODERATOR.name(), UserRole.ADMIN.name(), UserRole.CLIENT.name())
                     .antMatchers("/moderators/**").hasAnyRole(UserRole.MODERATOR.name(), UserRole.ADMIN.name())
                     .antMatchers("/admins/**", "/decks/**/edit/**", "/decks/**/delete/**").hasRole(UserRole.ADMIN.name())

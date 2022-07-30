@@ -7,9 +7,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.List;
 
 public interface WishlistItemService {
-    WishlistItemEntity like(UserDetails principal, String title);
+    WishlistItemEntity like(String title);
 
     List<CatalogDeckDto> getCurrentUserWishlistByKeyword(UserDetails principal, String search, String sort);
 
-    void dislike(UserDetails principal, String title);
+    void dislike(String title);
 }

@@ -1,6 +1,5 @@
 package bg.softuni.playing_cards_shop.services;
 
-import bg.softuni.playing_cards_shop.models.entities.DeckEntity;
 import bg.softuni.playing_cards_shop.models.entities.WishlistItemEntity;
 import bg.softuni.playing_cards_shop.models.views.CatalogDeckDto;
 import bg.softuni.playing_cards_shop.repositories.WishlistItemRepository;
@@ -37,9 +36,9 @@ public class WishlistItemServiceImpl implements WishlistItemService {
     }
 
     @Override
-    public WishlistItemEntity like(UserDetails principal, String title) {
+    public WishlistItemEntity like(String title) {
         var deck = this.deckService.findDeckByTitle(title);
-        var user = this.userService.findUserByUsername(principal.getUsername());
+        var user = this.userService.getCurrentUser();
 
         return this.wishlistItemRepository.save(new WishlistItemEntity()
                 .setUser(user)
@@ -63,9 +62,9 @@ public class WishlistItemServiceImpl implements WishlistItemService {
     }
 
     @Override
-    public void dislike(UserDetails principal, String title) {
+    public void dislike(String title) {
         var deck = this.deckService.findDeckByTitle(title);
-        var user = this.userService.findUserByUsername(principal.getUsername());
+        var user = this.userService.getCurrentUser();
 
         var item=this.wishlistItemRepository.findWishlistItemEntityByUserAndDeck(user,deck)
                 .orElseThrow(()->new ObjectNotFoundException(OBJECT_NAME_WISHLIST_ITEM));

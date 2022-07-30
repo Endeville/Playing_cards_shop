@@ -8,8 +8,6 @@ import bg.softuni.playing_cards_shop.services.interfaces.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class AddressServiceImpl implements AddressService {
 
@@ -26,6 +24,7 @@ public class AddressServiceImpl implements AddressService {
     @Override
     public void addAddress(AddAddressDto addressDto, String name) {
         var address=this.modelMapper.map(addressDto, AddressEntity.class);
+        address.setUser(userService.getCurrentUser());
         address=this.addressRepository.save(address);
 
         this.userService.addAddress(name, address);

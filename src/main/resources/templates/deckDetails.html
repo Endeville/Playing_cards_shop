@@ -135,7 +135,7 @@
             })
         };
 
-        await fetch("http://localhost:8000/api/users/like", options);
+        await fetch("http://localhost:8000/api/wishlist/like", options);
 
         likeBtn.classList.add("liked");
     }
@@ -155,9 +155,9 @@
             })
         };
 
-        await fetch("http://localhost:8000/api/users/dislike", options);
+        await fetch("http://localhost:8000/api/wishlist/dislike", options);
 
-        likeBtn.classList.add("liked");
+        likeBtn.classList.remove("liked");
     }
 </script>
 

@@ -1,6 +1,5 @@
 package bg.softuni.playing_cards_shop.services;
 
-import bg.softuni.playing_cards_shop.models.cloudinary.CloudinaryImage;
 import bg.softuni.playing_cards_shop.models.entities.PictureEntity;
 import bg.softuni.playing_cards_shop.repositories.PictureRepository;
 import bg.softuni.playing_cards_shop.services.cloudinary.CloudinaryService;

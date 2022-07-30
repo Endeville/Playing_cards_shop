@@ -1,9 +1,5 @@
 package bg.softuni.playing_cards_shop.models.views;
 
-import bg.softuni.playing_cards_shop.models.entities.UserEntity;
-
-import javax.persistence.Column;
-import javax.persistence.ManyToOne;
 import java.time.Instant;
 
 public class ReviewDetailsDto {

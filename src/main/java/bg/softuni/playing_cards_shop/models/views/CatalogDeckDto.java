@@ -1,7 +1,6 @@
 package bg.softuni.playing_cards_shop.models.views;
 
 import java.util.List;
-import java.util.Set;
 
 public class CatalogDeckDto {
     private Long id;

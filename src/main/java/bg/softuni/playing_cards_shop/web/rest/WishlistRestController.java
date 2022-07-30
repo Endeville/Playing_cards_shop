@@ -11,7 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/wishlist")
 public class WishlistRestController {
 
     private final WishlistItemService wishlistService;
@@ -29,7 +29,7 @@ public class WishlistRestController {
                     .build();
         }
 
-        var wishlist=this.wishlistService.like(principal, deckTitleDto.getTitle());
+        var wishlist=this.wishlistService.like(deckTitleDto.getTitle());
 
         return ResponseEntity
                 .ok()
@@ -38,7 +38,7 @@ public class WishlistRestController {
                         .setUserUsername(wishlist.getUser().getUsername()));
     }
 
-    @DeleteMapping(value = "/like", consumes = "application/json", produces = "application/json")
+    @DeleteMapping(value = "/dislike", consumes = "application/json", produces = "application/json")
     public ResponseEntity<Void> dislike(@RequestBody DeckTitleDto deckTitleDto, @AuthenticationPrincipal UserDetails principal) {
         if (principal == null) {
             return ResponseEntity
@@ -47,7 +47,7 @@ public class WishlistRestController {
                     .build();
         }
 
-        this.wishlistService.dislike(principal, deckTitleDto.getTitle());
+        this.wishlistService.dislike(deckTitleDto.getTitle());
 
         return ResponseEntity
                 .ok()

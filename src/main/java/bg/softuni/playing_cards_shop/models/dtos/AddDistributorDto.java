@@ -5,10 +5,8 @@ import bg.softuni.playing_cards_shop.models.validations.enums.FieldType;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import java.util.List;
 
 public class AddDistributorDto {
     @NotBlank(message = "")

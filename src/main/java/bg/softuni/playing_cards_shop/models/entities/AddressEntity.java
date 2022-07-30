@@ -1,7 +1,5 @@
 package bg.softuni.playing_cards_shop.models.entities;
 
-import org.springframework.transaction.annotation.EnableTransactionManagement;
-
 import javax.persistence.*;
 
 @Entity
@@ -55,6 +53,15 @@ public class AddressEntity  extends BaseEntity{
 
     public AddressEntity setTelephone(String telephone) {
         this.telephone = telephone;
+        return this;
+    }
+
+    public UserEntity getUser() {
+        return user;
+    }
+
+    public AddressEntity setUser(UserEntity user) {
+        this.user = user;
         return this;
     }
 }

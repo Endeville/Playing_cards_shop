@@ -2,12 +2,10 @@ package bg.softuni.playing_cards_shop.services.cloudinary;
 
 import bg.softuni.playing_cards_shop.models.cloudinary.CloudinaryImage;
 import com.cloudinary.Cloudinary;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.Map;

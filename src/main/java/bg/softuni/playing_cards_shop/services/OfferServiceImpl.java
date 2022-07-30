@@ -15,7 +15,6 @@ import bg.softuni.playing_cards_shop.services.interfaces.*;
 import bg.softuni.playing_cards_shop.web.exceptions.ObjectNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Sort;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -57,7 +56,7 @@ public class OfferServiceImpl implements OfferService {
         }
 
         offer.setStatus(OfferStatus.PENDING)
-                .setSeller(userService.findUserByUsername(SecurityContextHolder.getContext().getAuthentication().getName()))
+                .setSeller(this.userService.getCurrentUser())
                 .setDeck(deckService.findDeckByTitle(addOfferDto.getDeckTitle()))
                 .setPrice(addOfferDto.getPrice())
                 .setReviews(new HashSet<>())
@@ -112,7 +111,7 @@ public class OfferServiceImpl implements OfferService {
         }
 
         offer.setStatus(OfferStatus.PENDING)
-                .setSeller(userService.findUserByUsername(SecurityContextHolder.getContext().getAuthentication().getName()))
+                .setSeller(this.userService.getCurrentUser())
                 .setDeck(deckService.findDeckByTitle(editOfferDto.getDeckTitle()))
                 .setPrice(editOfferDto.getPrice())
                 .setReviews(new HashSet<>())
@@ -160,7 +159,7 @@ public class OfferServiceImpl implements OfferService {
 
     @Override
     public boolean offerHasBeenRatedByUser(Long id, UserDetails principal) {
-        var user=this.userService.findUserByUsername(principal.getUsername());
+        var user=this.userService.getCurrentUser();
         return offerRepository.findById(id)
                 .orElseThrow(()->new ObjectNotFoundException(OBJECT_NAME_OFFER))
                 .getReviews()

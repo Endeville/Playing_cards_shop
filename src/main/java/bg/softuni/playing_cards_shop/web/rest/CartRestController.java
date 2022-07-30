@@ -47,10 +47,10 @@ public class CartRestController {
                     .build();
         }
 
-        this.cartProductService.deleteProduct(offerIdDto, principal);
+        this.cartProductService.deleteProduct(offerIdDto);
 
         return ResponseEntity
-                .status(204)
+                .status(HttpStatus.NO_CONTENT)
                 .build();
     }
 }

@@ -8,7 +8,6 @@ import bg.softuni.playing_cards_shop.models.views.AddressDto;
 import bg.softuni.playing_cards_shop.models.views.UserProfileDto;
 
 import java.util.List;
-import java.util.Set;
 
 public interface UserService{
 
@@ -27,4 +26,6 @@ public interface UserService{
     boolean currentUserHasLiked(DeckEntity deck);
 
     List<AddressDto> findAddressesByUserUsername(String username);
+
+    UserEntity getCurrentUser();
 }

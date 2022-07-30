@@ -1,7 +1,5 @@
 package bg.softuni.playing_cards_shop.models.views;
 
-import java.util.List;
-
 public class DistributorDetailsDto {
     private String brand;
     private String siteUrl;

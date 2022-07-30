@@ -77,6 +77,39 @@
     </div>
 </article>
 
+<article class="modal fade" id="consentModal" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header no-border">
+                <h5 class="modal-title" id="consentModalTitle">
+                    Are you sure you want to continue?
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeConsentModalBtn">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body no-border">
+                <form action="javascript:void(0)" th:method="get" id="place_order_form">
+                </form>
+
+                <div class="modal-footer no-border">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="returnBtn">
+                        Return
+                    </button>
+                    <button type="submit" class="btn btn-primary" id="continueBtn" form="place_order_form">
+                        Yes, continue
+                    </button>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</article>
+
 <!--Sidebar-->
 
 <th:block th:replace="~{/fragments/sidebar.html}"/>
@@ -110,10 +143,12 @@
                                         <span sec:authorize="hasRole('ADMIN')">
                                             <a type="button"
                                                class="btn btn-sm btn-outline-secondary cardBtn editBtn"
-                                               th:href="@{/decks/edit/{deckId} (deckId=*{id})}">Edit</a>
+                                               th:href="@{/decks/{deckId}/edit (deckId=*{id})}">Edit</a>
                                             <a type="button"
                                                class="btn btn-sm btn-outline-secondary cardBtn deleteBtn"
-                                               th:href="@{/decks/delete/{deckId} (deckId=*{id})}">Delete</a>
+                                               data-toggle="modal" data-target="#consentModal"
+                                               th:id="|delete-*{title}|"
+                                               href="javascript:void(0)">Delete</a>
                                         </span>
                                     </div>
                                 </div>
@@ -129,6 +164,12 @@
 <th:block th:replace="~{/fragments/footer.html}"/>
 
 </body>
+
+<script th:inline="javascript">
+
+</script>
+
+<script th:src="@{/js/deleteDeck.js}"></script>
 
 <script th:src="@{/js/backToTop.js}"></script>
 <script th:src="@{/js/searchbar.js}"></script>

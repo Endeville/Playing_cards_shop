@@ -2,6 +2,7 @@ package bg.softuni.playing_cards_shop.services;
 
 import bg.softuni.playing_cards_shop.models.dtos.AddDeckDto;
 import bg.softuni.playing_cards_shop.models.dtos.EditDeckDto;
+import bg.softuni.playing_cards_shop.models.dtos.rest.DeckTitleDto;
 import bg.softuni.playing_cards_shop.models.entities.DeckEntity;
 import bg.softuni.playing_cards_shop.models.entities.OfferEntity;
 import bg.softuni.playing_cards_shop.models.views.CatalogDeckDto;
@@ -20,7 +21,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static bg.softuni.playing_cards_shop.constants.GlobalConstants.*;
+import static bg.softuni.playing_cards_shop.constants.GlobalConstants.OBJECT_NAME_DECK;
 
 @Service
 public class DeckServiceImpl implements DeckService {
@@ -164,6 +165,13 @@ public class DeckServiceImpl implements DeckService {
         }
 
         this.deckRepository.saveAll(deckEntitiesByApproved);
+    }
+
+    @Override
+    public void deleteDeck(DeckTitleDto deckTitleDto) {
+        this.deckRepository.delete(
+                this.deckRepository.findDeckEntityByTitle(deckTitleDto.getTitle())
+                .orElseThrow(()-> new ObjectNotFoundException(OBJECT_NAME_DECK)));
     }
 
 
