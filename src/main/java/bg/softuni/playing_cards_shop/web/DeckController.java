@@ -43,8 +43,10 @@ public class DeckController {
     @GetMapping("/all")
     public String catalog(@RequestParam(name="sort", required = false, defaultValue = "title") String sort,
                           @RequestParam(name = "search", required = false, defaultValue = "") String search,
+                          @RequestParam(name="distributor", required = false, defaultValue = "") String distributor,
+                          @RequestParam(name="creator", required = false, defaultValue = "") String creator,
                           Model model){
-        model.addAttribute("decks",deckService.getApprovedDecksByKeyword(search, sort));
+        model.addAttribute("decks",deckService.getApprovedDecksByKeyword(search, sort, distributor, creator));
         model.addAttribute("showSearch", true);
 
         return "catalog";

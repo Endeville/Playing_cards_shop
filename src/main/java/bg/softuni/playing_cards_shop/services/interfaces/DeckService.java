@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.List;
 
 public interface DeckService {
-    List<CatalogDeckDto> getApprovedDecksByKeyword(String search, String sort);
+    List<CatalogDeckDto> getApprovedDecksByKeyword(String search, String sort, String distributor, String creator);
 
     DeckDetailsDto findDeckDetailsById(long id);
 

@@ -45,8 +45,8 @@ public class DeckServiceImpl implements DeckService {
     }
 
     @Override
-    public List<CatalogDeckDto> getApprovedDecksByKeyword(String search, String sort) {
-        return deckRepository.getDeckEntitiesByApprovedAndTitleContainingIgnoreCase(true, search, Sort.by(sort)).stream()
+    public List<CatalogDeckDto> getApprovedDecksByKeyword(String search, String sort, String distributor, String creator) {
+        return deckRepository.getDeckEntitiesByApprovedAndTitleDistributorOrCreatorContaining(true, search, Sort.by(sort), distributor, creator).stream()
                 .map(e -> {
                     var deck = modelMapper.map(e, CatalogDeckDto.class);
                     deck.setPictures(this.pictureService.getPicturesUrls(e.getPictures()));
