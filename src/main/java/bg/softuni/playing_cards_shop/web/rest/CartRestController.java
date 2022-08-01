@@ -2,6 +2,8 @@ package bg.softuni.playing_cards_shop.web.rest;
 
 import bg.softuni.playing_cards_shop.models.dtos.rest.OfferIdDto;
 import bg.softuni.playing_cards_shop.models.views.rest.CartProductEssentialsDto;
+import bg.softuni.playing_cards_shop.models.dtos.rest.CartProductUpdateDto;
+import bg.softuni.playing_cards_shop.models.views.rest.CartProductPriceQuantityDto;
 import bg.softuni.playing_cards_shop.services.interfaces.CartProductService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -52,5 +54,31 @@ public class CartRestController {
         return ResponseEntity
                 .status(HttpStatus.NO_CONTENT)
                 .build();
+    }
+
+    @PutMapping(value = "/update", consumes = "application/json", produces = "application/json")
+    public ResponseEntity<CartProductPriceQuantityDto> updateCartProduct(@RequestBody CartProductUpdateDto cartProductUpdateDto,
+                                                                         @AuthenticationPrincipal UserDetails principal){
+        if (principal == null) {
+            return ResponseEntity
+                    .status(HttpStatus.MOVED_PERMANENTLY)
+                    .header(HttpHeaders.LOCATION, "/users/login")
+                    .build();
+        }
+
+        CartProductPriceQuantityDto result=new CartProductPriceQuantityDto();
+
+        if(cartProductUpdateDto.getOperation().equalsIgnoreCase("plus")){
+            result=this.cartProductService.changeQuantity(cartProductUpdateDto.getOfferId(), 1);
+        }else if(cartProductUpdateDto.getOperation().equalsIgnoreCase("minus")){
+            result=this.cartProductService.changeQuantity(cartProductUpdateDto.getOfferId(), -1);
+        }else{
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .build();
+        }
+
+        return ResponseEntity
+                .ok(result);
     }
 }

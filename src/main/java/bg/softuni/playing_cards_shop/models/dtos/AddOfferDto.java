@@ -2,6 +2,7 @@ package bg.softuni.playing_cards_shop.models.dtos;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Positive;
@@ -17,6 +18,7 @@ public class AddOfferDto {
     private BigDecimal price;
 
     @Positive(message = "Please select valid quantity.")
+    @Max(40)
     private Integer quantity;
 
     @NotBlank(message = "Description is compulsory(product condition, signatures, number etc.)")

@@ -38,7 +38,7 @@ public class UserEntity extends BaseEntity{
     @OneToMany(mappedBy = "user")
     private Set<AddressEntity> addresses;
 
-    @OneToMany
+    @OneToMany(mappedBy = "customer")
     private Set<CartProductEntity> cart;
 
     public UserEntity() {

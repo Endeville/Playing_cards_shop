@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface CartProductRepository extends JpaRepository<CartProductEntity, Long> {
@@ -14,4 +15,6 @@ public interface CartProductRepository extends JpaRepository<CartProductEntity, 
     void deleteByCustomerIdAndOfferId(Long customerId, Long offerId);
 
     List<CartProductEntity> findCartProductEntitiesByCustomerUsername(String customerUsername);
+
+    Optional<CartProductEntity> findCartProductEntityByOfferIdAndCustomerId(Long offer_id, Long customer_id);
 }

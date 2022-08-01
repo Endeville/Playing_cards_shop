@@ -57,7 +57,10 @@
                         <h2 class="mt-5" th:text="|*{price}€|">
                         </h2>
 
-                        <button class="btn btn-dark btn-rounded mr-1" data-toggle="tooltip" title="" data-original-title="Add to cart" id="add-cart-btn">
+                        <button class="btn btn-dark btn-rounded mr-1" data-toggle="tooltip" title=""
+                                data-original-title="Add to cart" id="add-cart-btn"
+                                th:classappend="*{carted} ? 'carted' : ''"
+                        >
                             <i class="fa fa-shopping-cart"></i>
                         </button>
                     </div>

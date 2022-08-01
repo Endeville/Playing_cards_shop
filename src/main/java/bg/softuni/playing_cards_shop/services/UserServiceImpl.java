@@ -3,6 +3,7 @@ package bg.softuni.playing_cards_shop.services;
 import bg.softuni.playing_cards_shop.models.dtos.UserRegistrationDto;
 import bg.softuni.playing_cards_shop.models.entities.AddressEntity;
 import bg.softuni.playing_cards_shop.models.entities.DeckEntity;
+import bg.softuni.playing_cards_shop.models.entities.OfferEntity;
 import bg.softuni.playing_cards_shop.models.entities.UserEntity;
 import bg.softuni.playing_cards_shop.models.entities.enums.UserRole;
 import bg.softuni.playing_cards_shop.models.views.AddressDto;
@@ -110,6 +111,15 @@ public class UserServiceImpl implements UserService {
     public UserEntity getCurrentUser() {
         return this.userRepository.findUserEntityByUsername(SecurityContextHolder.getContext().getAuthentication().getName())
                 .orElseThrow(()-> new ObjectNotFoundException(OBJECT_NAME_USER));
+    }
+
+    @Override
+    public boolean currentUserHasCarted(OfferEntity offer) {
+        var user=this.getCurrentUser();
+
+        return user.getCart()
+                .stream()
+                .anyMatch(cp->cp.getOffer().equals(offer));
     }
 
 

@@ -8,6 +8,7 @@ public class CartProductDto {
     private int quantity;
     private String offerSellerUsername;
     private BigDecimal offerPrice;
+    private int offerQuantity;
 
     public Long getOfferId() {
         return offerId;
@@ -51,6 +52,15 @@ public class CartProductDto {
 
     public CartProductDto setOfferPrice(BigDecimal offerPrice) {
         this.offerPrice = offerPrice;
+        return this;
+    }
+
+    public int getOfferQuantity() {
+        return offerQuantity;
+    }
+
+    public CartProductDto setOfferQuantity(int offerQuantity) {
+        this.offerQuantity = offerQuantity;
         return this;
     }
 }

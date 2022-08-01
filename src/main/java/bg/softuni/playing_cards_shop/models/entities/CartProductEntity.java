@@ -1,9 +1,6 @@
 package bg.softuni.playing_cards_shop.models.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "cart_items")
@@ -11,6 +8,7 @@ public class CartProductEntity extends BaseEntity{
     @Column(nullable = false)
     private int quantity;
 
+    @JoinColumn(unique = true)
     @ManyToOne(optional = false)
     private OfferEntity offer;
 
