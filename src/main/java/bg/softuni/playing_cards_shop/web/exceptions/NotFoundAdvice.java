@@ -9,8 +9,7 @@ public class NotFoundAdvice {
 
     @ExceptionHandler({ObjectNotFoundException.class})
     public ModelAndView handleObjectNotFound(ObjectNotFoundException onfe){
-        var mv=new ModelAndView("errors/objectNotFound");
-
+        var mv=new ModelAndView("errors/404");
 
         return mv;
     }

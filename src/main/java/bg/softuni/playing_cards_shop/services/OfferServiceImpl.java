@@ -85,7 +85,7 @@ public class OfferServiceImpl implements OfferService {
                 .orElseThrow(()-> new ObjectNotFoundException(OBJECT_NAME_OFFER));
         var result=this.modelMapper.map(offer, OfferDetailsDto.class);
 
-        result.setPictures(this.pictureService.getPictureUrl(offer.getPicture()));
+        result.setPicture(this.pictureService.getPictureUrl(offer.getPicture()));
         result.setCarted(this.userService.currentUserHasCarted(offer));
 
         return result;
@@ -130,7 +130,7 @@ public class OfferServiceImpl implements OfferService {
                 .orElseThrow(()-> new ObjectNotFoundException(OBJECT_NAME_OFFER));
         var result=this.modelMapper.map(offer, OfferInfoDto.class);
 
-        result.setPictures(this.pictureService.getPictureUrl(offer.getPicture()));
+        result.setPicture(this.pictureService.getPictureUrl(offer.getPicture()));
 
         return result;
     }

@@ -46,7 +46,7 @@ public class OrderController {
     //todo: doesn't handle the exception correctly
     @ExceptionHandler(InvalidOrderException.class)
     public ModelAndView handleEmptyOrderExceptions(InvalidOrderException e) {
-        ModelAndView modelAndView = new ModelAndView("/cart");
+        var modelAndView = new ModelAndView("offers");
         modelAndView.addObject("message", e.getMessage());
         modelAndView.addObject("cartNotes", e.getCartNotesDto());
         modelAndView.setStatus(HttpStatus.BAD_REQUEST);

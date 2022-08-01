@@ -289,7 +289,7 @@ header.top {
     background: transparent;
 }
 
-@media (max-width: 1450px) {
+@media (max-width: 1800px) {
     #menu{
         display: none;
     }
