@@ -9,10 +9,10 @@ public class CartProductEntity extends BaseEntity{
     private int quantity;
 
     @JoinColumn(unique = true)
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, cascade = CascadeType.DETACH)
     private OfferEntity offer;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.DETACH)
     private UserEntity customer;
 
     public int getQuantity() {

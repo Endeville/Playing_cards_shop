@@ -51,14 +51,11 @@
             </div>
 
             <div class="modal-body no-border">
-                <form th:action="@{/orders/add}" th:method="get" id="place_order_form">
-                </form>
-
                 <div class="modal-footer no-border">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeModalBtn">
                         Return
                     </button>
-                    <button type="submit" class="btn btn-primary" id="saveSortBtn" form="place_order_form">
+                    <button type="submit" class="btn btn-primary" id="saveSortBtn" form="cart-notes">
                         Yes, continue
                     </button>
                 </div>
@@ -114,7 +111,7 @@
                                     <td colspan="2"></td>
                                     <td class="text-end">
                                         <!--                                        todo: order functionality-->
-                                        <input type="button" form="cart-notes" id="purchase-btn" value="Order"
+                                        <input type="button" id="purchase-btn" value="Order"
                                                data-toggle="modal" data-target="#exampleModalCenter">
                                     </td>
                                 </tr>
@@ -124,13 +121,13 @@
                     </div>
 
                 </div>
-                <form id="cart-notes">
+                <form id="cart-notes" th:action="@{/orders/add}" th:method="POST">
                     <div class="col-lg-4">
                         <!-- Customer Notes -->
                         <div class="card mb-4 side">
                             <div class="card-body">
                                 <label class="h6" for="notes"> Notes</label>
-                                <input type="text" id="notes">
+                                <input type="text" id="notes" name="notes">
                             </div>
                         </div>
                         <div class="card mb-4 side" id="address-holder">
@@ -143,7 +140,7 @@
 
                                     <th:block th:each="address: ${addresses}" th:object="${address}">
 
-                                        <input type="radio" th:id="|address-*{id}|" form="cart-notes" name="address">
+                                        <input type="radio" th:id="|address-*{id}|" th:value="*{id}" form="cart-notes" name="addressId">
                                         <label th:for="|address-*{id}|" class="address-option">
                                             <p th:text="|City, Country: *{city}, *{country}|"></p>
                                             <p th:text="|Street: *{street}|"></p>

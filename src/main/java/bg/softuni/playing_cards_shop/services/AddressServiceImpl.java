@@ -5,8 +5,11 @@ import bg.softuni.playing_cards_shop.models.entities.AddressEntity;
 import bg.softuni.playing_cards_shop.repositories.AddressRepository;
 import bg.softuni.playing_cards_shop.services.interfaces.AddressService;
 import bg.softuni.playing_cards_shop.services.interfaces.UserService;
+import bg.softuni.playing_cards_shop.web.exceptions.ObjectNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+
+import static bg.softuni.playing_cards_shop.constants.GlobalConstants.OBJECT_NAME_ADDRESS;
 
 @Service
 public class AddressServiceImpl implements AddressService {
@@ -33,5 +36,11 @@ public class AddressServiceImpl implements AddressService {
     @Override
     public void deleteAddressById(Long id) {
         this.addressRepository.deleteById(id);
+    }
+
+    @Override
+    public AddressEntity findAddressById(Long addressId) {
+        return this.addressRepository.findById(addressId)
+                .orElseThrow(()->new ObjectNotFoundException(OBJECT_NAME_ADDRESS));
     }
 }

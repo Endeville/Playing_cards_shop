@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import static bg.softuni.playing_cards_shop.constants.GlobalConstants.OBJECT_NAME_CART_PRODUCT;
@@ -39,6 +40,14 @@ public class CartProductServiceImpl implements CartProductService {
     @Override
     public List<CartProductDto> getCartProductsByCustomer(String username) {
         return this.cartProductRepository.findCartProductEntitiesByCustomerUsername(username).stream()
+                .filter(cp->{
+                    if(cp.getQuantity()==0){
+                        this.cartProductRepository.delete(cp);
+                        return false;
+                    }else{
+                        return true;
+                    }
+                })
                 .map(cp->this.modelMapper.map(cp, CartProductDto.class))
                 .collect(Collectors.toList());
     }
@@ -84,5 +93,10 @@ public class CartProductServiceImpl implements CartProductService {
         result.setMaxQuantity(cartProduct.getOffer().getQuantity());
 
         return result;
+    }
+
+    @Override
+    public void deleteCartProducts(Set<CartProductEntity> cart) {
+        this.cartProductRepository.deleteAll(cart);
     }
 }
