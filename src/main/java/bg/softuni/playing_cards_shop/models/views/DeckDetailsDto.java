@@ -3,6 +3,7 @@ package bg.softuni.playing_cards_shop.models.views;
 import java.util.List;
 
 public class DeckDetailsDto {
+    private Long id;
     private String title;
     private String description;
     private String picture;
@@ -12,6 +13,15 @@ public class DeckDetailsDto {
     private String distributorBrand;
     private Integer recommendedPrice;
     private boolean liked;
+
+    public Long getId() {
+        return id;
+    }
+
+    public DeckDetailsDto setId(Long id) {
+        this.id = id;
+        return this;
+    }
 
     public String getTitle() {
         return title;

@@ -31,4 +31,6 @@ public interface OfferService {
     void addReviewToOfferById(Long id, AddReviewDto review);
 
     boolean offerHasBeenRatedByUser(Long id, UserDetails principal);
+
+    void deleteOffer(Long id);
 }

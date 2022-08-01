@@ -23,6 +23,7 @@
     <script src="https://kit.fontawesome.com/b18db754f0.js" crossorigin="anonymous"></script>
 
     <script th:src="@{/js/sidebar.js}" type="module"></script>
+    <script th:src="@{/js/deleteOffer.js}" type="module"></script>
     <link rel="stylesheet" th:href="@{/css/productDetails.css}"/>
 
     <th:block th:replace="~{/fragments/head.html}"></th:block>
@@ -34,6 +35,37 @@
         <th:block th:replace="~{/fragments/navigation.html}"></th:block>
     </nav>
 </header>
+
+<article class="modal fade" id="consentModal" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header no-border">
+                <h5 class="modal-title" id="consentModalTitle">
+                    Are you sure you want to continue?
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeConsentModalBtn">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body no-border">
+
+                <div class="modal-footer no-border">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="returnBtn">
+                        Return
+                    </button>
+                    <button class="btn btn-primary" id="continueBtn">
+                        Yes, continue
+                    </button>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</article>
 
 <th:block th:replace="~{/fragments/sidebar.html}"></th:block>
 
@@ -63,6 +95,18 @@
                         >
                             <i class="fa fa-shopping-cart"></i>
                         </button>
+                        <span sec:authorize="hasRole('ADMIN')" id="admin-panel">
+                            <span sec:authorize="hasRole('ADMIN')">
+                                <a type="button"
+                                   class="btn btn-sm btn-outline-secondary cardBtn editBtn"
+                                   th:href="@{/offers/{offerId}/edit (offerId=*{id})}">Edit</a>
+                                <a type="button"
+                                   class="btn btn-sm btn-outline-secondary cardBtn deleteBtn"
+                                   data-toggle="modal" data-target="#consentModal"
+                                   th:id="|delete-*{id}|"
+                                   href="javascript:void(0)">Delete</a>
+                            </span>
+                        </span>
                     </div>
 
                     <div class="col-lg-12 col-md-12 col-sm-12">

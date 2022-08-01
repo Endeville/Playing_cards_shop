@@ -167,4 +167,11 @@ public class OfferServiceImpl implements OfferService {
                 .stream().map(ReviewEntity::getCreator)
                 .anyMatch(c-> c.equals(user));
     }
+
+    @Override
+    public void deleteOffer(Long id) {
+        this.offerRepository.save(this.offerRepository.findById(id)
+                .orElseThrow(()-> new ObjectNotFoundException(OBJECT_NAME_OFFER))
+                .setStatus(OfferStatus.EXPIRED));
+    }
 }

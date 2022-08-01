@@ -1,39 +1,39 @@
-const deleteDeckBtns=document.querySelectorAll(".deleteBtn");
+const deleteOfferBtns=document.querySelectorAll(".deleteBtn");
 const csrfHeaderName = document.head.querySelector('[name=_csrf_header]').content;
 const csrfHeaderValue = document.head.querySelector('[name=_csrf]').content;
 
 const closeBtn=document.getElementById("closeConsentModalBtn");
 const continueBtn=document.getElementById("continueBtn");
 
-for (const deleteDeckBtn of deleteDeckBtns) {
-    deleteDeckBtn.addEventListener("click", (ev)=>{
+for (const deleteOfferBtn of deleteOfferBtns) {
+    deleteOfferBtn.addEventListener("click", (ev)=>{
         ev.preventDefault();
-        const title=ev.currentTarget.id.substring(7);
-        showConsentModal(title);
+        const id=Number(ev.currentTarget.id.substring(7));
+        showConsentModal(id);
     })
 }
 
-function showConsentModal(title){
+function showConsentModal(id){
     continueBtn.addEventListener("click", (ev)=>{
-        deleteDeck(ev, title)
+        deleteOffer(ev, id)
     })
 }
 
-async function deleteDeck(ev, title){
+async function deleteOffer(ev, id){
     closeBtn.click();
 
     const options={
-        method: 'DELETE',
+        method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
             'Accepts': 'application/json',
             [csrfHeaderName]: csrfHeaderValue
         },
         body: JSON.stringify({
-            title: title
+            id
         })
     };
 
-    await fetch("http://localhost:8000/api/decks/delete", options);
-    window.location="/decks/all";
+    await fetch("http://localhost:8000/api/offers/delete", options);
+    window.location="/offers/all";
 }

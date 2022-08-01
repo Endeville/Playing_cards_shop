@@ -1,6 +1,7 @@
 @import "utils/navigation.css";
 @import "utils/footer.css";
 @import "utils/defaults.css";
+@import "utils/modal.css";
 
 body{
     background-color: var(--light-black) !important;
@@ -85,4 +86,18 @@ body{
 
 #purchase-btn{
     color: inherit !important;
+}
+
+
+
+.editBtn:hover{
+    background-color: green;
+    border-color: green;
+    transition: 0.5s;
+}
+
+.deleteBtn:hover{
+    background-color: firebrick;
+    border-color: firebrick;
+    transition: 0.5s;
 }

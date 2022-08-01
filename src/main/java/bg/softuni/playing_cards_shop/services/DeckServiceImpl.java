@@ -172,8 +172,6 @@ public class DeckServiceImpl implements DeckService {
         this.deckRepository.delete(
                 this.deckRepository.findDeckEntityByTitle(deckTitleDto.getTitle())
                 .orElseThrow(()-> new ObjectNotFoundException(OBJECT_NAME_DECK)));
-
-
     }
 
 

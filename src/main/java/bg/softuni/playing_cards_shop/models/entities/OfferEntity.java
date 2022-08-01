@@ -10,10 +10,10 @@ import java.util.Set;
 @Table(name = "offers")
 public class OfferEntity extends BaseEntity{
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, cascade = CascadeType.DETACH)
     private DeckEntity deck;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, cascade = CascadeType.DETACH)
     private UserEntity seller;
 
     @Column(nullable = false)
@@ -29,10 +29,10 @@ public class OfferEntity extends BaseEntity{
     @Enumerated(EnumType.STRING)
     private OfferStatus status;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private PictureEntity picture;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private Set<ReviewEntity> reviews;
 
     public OfferEntity() {

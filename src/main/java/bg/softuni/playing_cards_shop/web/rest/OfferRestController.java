@@ -1,31 +1,29 @@
 package bg.softuni.playing_cards_shop.web.rest;
 
 import bg.softuni.playing_cards_shop.models.dtos.rest.DeckTitleDto;
-import bg.softuni.playing_cards_shop.services.interfaces.DeckService;
+import bg.softuni.playing_cards_shop.models.dtos.rest.OfferIdDto;
+import bg.softuni.playing_cards_shop.services.interfaces.OfferService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/decks")
-public class DeckRestController {
+@RequestMapping("/api/offers")
+public class OfferRestController {
 
-    private final DeckService deckService;
+    private final OfferService offerService;
 
-    public DeckRestController(DeckService deckService) {
-        this.deckService = deckService;
+    public OfferRestController(OfferService offerService) {
+        this.offerService = offerService;
     }
 
-    @DeleteMapping(value = "/delete", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<Void> deleteDeck(@RequestBody DeckTitleDto deckTitleDto,
+
+    @PutMapping(value = "/delete", consumes = "application/json", produces = "application/json")
+    public ResponseEntity<Void> deleteOffer(@RequestBody OfferIdDto offerIdDto,
                                                @AuthenticationPrincipal UserDetails principal){
         if (principal == null) {
             return ResponseEntity
@@ -41,7 +39,7 @@ public class DeckRestController {
                     .build();
         }
 
-        this.deckService.deleteDeck(deckTitleDto);
+        this.offerService.deleteOffer(offerIdDto.getId());
 
         return ResponseEntity
                 .status(HttpStatus.NO_CONTENT)
