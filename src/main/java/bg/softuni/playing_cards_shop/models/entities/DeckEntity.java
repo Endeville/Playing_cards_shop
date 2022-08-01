@@ -36,7 +36,7 @@ public class DeckEntity extends BaseEntity{
     @JoinTable(name = "decks_categories")
     private Set<CategoryEntity> categories;
 
-    @OneToMany(mappedBy = "deck", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "deck", cascade = CascadeType.ALL)
     private Set<OfferEntity> offers;
 
     public DeckEntity() {

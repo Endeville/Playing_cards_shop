@@ -18,6 +18,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
@@ -170,8 +171,6 @@ public class OfferServiceImpl implements OfferService {
 
     @Override
     public void deleteOffer(Long id) {
-        this.offerRepository.save(this.offerRepository.findById(id)
-                .orElseThrow(()-> new ObjectNotFoundException(OBJECT_NAME_OFFER))
-                .setStatus(OfferStatus.EXPIRED));
+        this.offerRepository.deleteById(id);
     }
 }
