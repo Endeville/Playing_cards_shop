@@ -105,7 +105,7 @@
                                 <tfoot>
                                 <tr class="fw-bold">
                                     <td colspan="2">TOTAL</td>
-                                    <td class="text-end" th:text="${totalPrice}"></td>
+                                    <td class="text-end" th:text="|${totalPrice}€|" id="total-price"></td>
                                 </tr>
                                 <tr id="purchase-row">
                                     <td colspan="2"></td>
@@ -121,13 +121,13 @@
                     </div>
 
                 </div>
-                <form id="cart-notes" th:action="@{/orders/add}" th:method="POST">
+                <form id="cart-notes" th:action="@{/orders/add}" th:method="POST" th:object="${cartNotes}">
                     <div class="col-lg-4">
                         <!-- Customer Notes -->
                         <div class="card mb-4 side">
                             <div class="card-body">
-                                <label class="h6" for="notes"> Notes</label>
-                                <input type="text" id="notes" name="notes">
+                                <label class="h6" for="notes">Notes</label>
+                                <input type="text" id="notes" name="notes" th:field="*{notes}">
                             </div>
                         </div>
                         <div class="card mb-4 side" id="address-holder">
@@ -136,6 +136,11 @@
                                 <address>
 
                                     <div>Choose an address:</div>
+
+                                    <div>
+                                        <div class="error" th:text="${#strings.listJoin(#fields.errors('addressId'), '; ')}">
+                                        </div>
+                                    </div>
 
 
                                     <th:block th:each="address: ${addresses}" th:object="${address}">

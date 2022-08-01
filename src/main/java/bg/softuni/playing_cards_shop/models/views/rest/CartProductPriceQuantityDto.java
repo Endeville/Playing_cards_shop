@@ -6,6 +6,7 @@ public class CartProductPriceQuantityDto {
     private int quantity;
     private BigDecimal price;
     private int maxQuantity;
+    private BigDecimal pricePerProduct;
 
     public int getQuantity() {
         return quantity;
@@ -31,6 +32,15 @@ public class CartProductPriceQuantityDto {
 
     public CartProductPriceQuantityDto setMaxQuantity(int maxQuantity) {
         this.maxQuantity = maxQuantity;
+        return this;
+    }
+
+    public BigDecimal getPricePerProduct() {
+        return pricePerProduct;
+    }
+
+    public CartProductPriceQuantityDto setPricePerProduct(BigDecimal pricePerProduct) {
+        this.pricePerProduct = pricePerProduct;
         return this;
     }
 }

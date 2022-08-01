@@ -5,7 +5,7 @@ const headers={
     'Accepts': 'application/json',
     [csrfHeaderName]: csrfHeaderValue
 }
-
+const totalPrice=document.getElementById("total-price");
 
 const minusBtns=document.querySelectorAll(".minus");
 minusBtns.forEach(e=>e.addEventListener("click", minus));
@@ -41,6 +41,7 @@ async function minus(ev){
 
     parent.querySelector(".plus").disabled=false;
     priceCont.textContent=result.price.toFixed(2) + "€";
+    totalPrice.textContent=String((Number(getPrice(totalPrice.textContent))-result.pricePerProduct).toFixed(2)) + "€";
 }
 
 const plusBtns=document.querySelectorAll(".plus");
@@ -81,7 +82,9 @@ async function plus(ev){
     }
 
     priceCont.textContent=result.price.toFixed(2) + "€";
+    totalPrice.textContent=String((Number(getPrice(totalPrice.textContent))+result.pricePerProduct).toFixed(2)) + "€";
+}
 
-
-    // priceCont.textContent=String((Math.round(pricePerProduct*Number(quantitySpan.textContent) * 100) / 100).toFixed(2)) + "€";
+function getPrice(price){
+    return Number(price.substring(0, price.length-1));
 }

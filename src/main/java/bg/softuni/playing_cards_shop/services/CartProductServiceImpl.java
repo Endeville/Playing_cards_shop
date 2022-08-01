@@ -78,19 +78,20 @@ public class CartProductServiceImpl implements CartProductService {
                 .orElseThrow(()-> new ObjectNotFoundException(OBJECT_NAME_CART_PRODUCT));
 
         if(cartProduct.getQuantity()==cartProduct.getOffer().getQuantity() && i>=0){
-            var result=this.modelMapper.map(cartProduct, CartProductPriceQuantityDto.class);
-            result.setPrice(cartProduct.getOffer().getPrice().multiply(BigDecimal.valueOf(cartProduct.getQuantity())));
-            result.setMaxQuantity(cartProduct.getOffer().getQuantity());
-
-            return result;
+            return getCartProductPriceQuantityDto(cartProduct);
         }
 
         cartProduct.setQuantity(cartProduct.getQuantity()+i);
         this.cartProductRepository.save(cartProduct);
 
+        return getCartProductPriceQuantityDto(cartProduct);
+    }
+
+    private CartProductPriceQuantityDto getCartProductPriceQuantityDto(CartProductEntity cartProduct) {
         var result=this.modelMapper.map(cartProduct, CartProductPriceQuantityDto.class);
         result.setPrice(cartProduct.getOffer().getPrice().multiply(BigDecimal.valueOf(cartProduct.getQuantity())));
         result.setMaxQuantity(cartProduct.getOffer().getQuantity());
+        result.setPricePerProduct(cartProduct.getOffer().getPrice());
 
         return result;
     }

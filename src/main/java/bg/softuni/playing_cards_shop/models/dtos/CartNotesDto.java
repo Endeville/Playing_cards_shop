@@ -5,7 +5,7 @@ import javax.validation.constraints.NotNull;
 public class CartNotesDto {
     private String notes;
 
-    @NotNull
+    @NotNull(message = "Please provide a delivery address.")
     private Long addressId;
 
     public String getNotes() {

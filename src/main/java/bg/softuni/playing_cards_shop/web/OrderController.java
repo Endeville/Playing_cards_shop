@@ -25,11 +25,6 @@ public class OrderController {
         this.orderService = orderService;
     }
 
-    @ModelAttribute("cartNotes")
-    public CartNotesDto cartNotesDto(){
-        return new CartNotesDto();
-    }
-
     @PostMapping("/add")
     public String addOrder(@Valid CartNotesDto cartNotesDto,
                            BindingResult result,
@@ -48,6 +43,7 @@ public class OrderController {
         }
     }
 
+    //todo: doesn't handle the exception correctly
     @ExceptionHandler(InvalidOrderException.class)
     public ModelAndView handleEmptyOrderExceptions(InvalidOrderException e) {
         ModelAndView modelAndView = new ModelAndView("/cart");
