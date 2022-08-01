@@ -32,7 +32,7 @@ public class CreatorServiceImpl implements CreatorService {
     @Override
     public void addCreator(AddCreatorDto creatorDto) throws IOException {
         var creator = this.modelMapper.map(creatorDto, CreatorEntity.class);
-        if (this.pictureService.validatePictures(List.of(creatorDto.getPicture()))) {
+        if (this.pictureService.validatePicture(creatorDto.getPicture())) {
             var picture = this.pictureService.save(creatorDto.getPicture());
             creator.setPicture(picture);
         } else {

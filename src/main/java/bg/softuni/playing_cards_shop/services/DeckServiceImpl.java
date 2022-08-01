@@ -49,7 +49,7 @@ public class DeckServiceImpl implements DeckService {
         return deckRepository.getDeckEntitiesByApprovedAndTitleDistributorOrCreatorContaining(true, search, Sort.by(sort), distributor, creator).stream()
                 .map(e -> {
                     var deck = modelMapper.map(e, CatalogDeckDto.class);
-                    deck.setPictures(this.pictureService.getPicturesUrls(e.getPictures()));
+                    deck.setPicture(this.pictureService.getPictureUrl(e.getPicture()));
                     return deck;
                 })
                 .collect(Collectors.toList());
@@ -61,7 +61,7 @@ public class DeckServiceImpl implements DeckService {
                 .orElseThrow(() -> new ObjectNotFoundException(OBJECT_NAME_DECK));
 
         var result = this.modelMapper.map(deck, DeckDetailsDto.class);
-        result.setPictures(this.pictureService.getPicturesUrls(deck.getPictures()));
+        result.setPicture(this.pictureService.getPictureUrl(deck.getPicture()));
         result.setLiked(this.userService.currentUserHasLiked(deck));
 
         return result;
@@ -85,9 +85,9 @@ public class DeckServiceImpl implements DeckService {
     public void addDeck(AddDeckDto addDeckDto) throws IOException {
         var deck = this.modelMapper.map(addDeckDto, DeckEntity.class);
 
-        if (this.pictureService.validatePictures(addDeckDto.getPictures())) {
-            var pictures = this.pictureService.saveAll(addDeckDto.getPictures());
-            deck.setPictures(pictures);
+        if (this.pictureService.validatePicture(addDeckDto.getPicture())) {
+            var picture = this.pictureService.save(addDeckDto.getPicture());
+            deck.setPicture(picture);
         } else {
             throw new IllegalStateException("No pictures provided");
         }
@@ -119,11 +119,11 @@ public class DeckServiceImpl implements DeckService {
         var deck = this.deckRepository.findById(id)
                 .orElseThrow(()-> new ObjectNotFoundException(OBJECT_NAME_DECK));
 
-        this.pictureService.deletePictures(deck.getPictures());
+        this.pictureService.deletePicture(deck.getPicture());
 
-        if (this.pictureService.validatePictures(editDeckDto.getPictures())) {
-            var pictures = this.pictureService.saveAll(editDeckDto.getPictures());
-            deck.setPictures(pictures);
+        if (this.pictureService.validatePicture(editDeckDto.getPicture())) {
+            var picture = this.pictureService.save(editDeckDto.getPicture());
+            deck.setPicture(picture);
         } else {
             throw new IllegalStateException("No pictures provided");
         }
@@ -152,7 +152,7 @@ public class DeckServiceImpl implements DeckService {
                 .orElseThrow(() -> new ObjectNotFoundException(OBJECT_NAME_DECK));
 
         var result = this.modelMapper.map(deck, DeckInfoDto.class);
-        result.setPictures(this.pictureService.getPicturesUrls(deck.getPictures()));
+        result.setPicture(this.pictureService.getPictureUrl(deck.getPicture()));
 
         return result;
     }
@@ -172,6 +172,8 @@ public class DeckServiceImpl implements DeckService {
         this.deckRepository.delete(
                 this.deckRepository.findDeckEntityByTitle(deckTitleDto.getTitle())
                 .orElseThrow(()-> new ObjectNotFoundException(OBJECT_NAME_DECK)));
+
+
     }
 
 

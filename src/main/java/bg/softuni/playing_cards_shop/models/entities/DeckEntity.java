@@ -20,9 +20,8 @@ public class DeckEntity extends BaseEntity{
     @Column
     private Integer recommendedPrice;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name="deck_id")
-    private Set<PictureEntity> pictures;
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private PictureEntity picture;
 
     @Column(name = "country_of_origin")
     private String countryOfOrigin;
@@ -70,12 +69,12 @@ public class DeckEntity extends BaseEntity{
         return this;
     }
 
-    public Set<PictureEntity> getPictures() {
-        return pictures;
+    public PictureEntity getPicture() {
+        return picture;
     }
 
-    public DeckEntity setPictures(Set<PictureEntity> pictures) {
-        this.pictures = pictures;
+    public DeckEntity setPicture(PictureEntity picture) {
+        this.picture = picture;
         return this;
     }
 
@@ -142,11 +141,11 @@ public class DeckEntity extends BaseEntity{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         DeckEntity that = (DeckEntity) o;
-        return approved == that.approved && Objects.equals(title, that.title) && Objects.equals(description, that.description) && Objects.equals(pictures, that.pictures) && Objects.equals(countryOfOrigin, that.countryOfOrigin) && Objects.equals(distributor, that.distributor) && Objects.equals(creator, that.creator) && Objects.equals(categories, that.categories) && Objects.equals(offers, that.offers);
+        return approved == that.approved && Objects.equals(title, that.title) && Objects.equals(description, that.description) && Objects.equals(recommendedPrice, that.recommendedPrice) && Objects.equals(picture, that.picture) && Objects.equals(countryOfOrigin, that.countryOfOrigin) && Objects.equals(distributor, that.distributor) && Objects.equals(creator, that.creator) && Objects.equals(categories, that.categories) && Objects.equals(offers, that.offers);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(title, description, approved, pictures, countryOfOrigin, distributor, creator, categories, offers);
+        return Objects.hash(title, description, approved, recommendedPrice, picture, countryOfOrigin, distributor, creator, categories, offers);
     }
 }

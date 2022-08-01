@@ -149,22 +149,22 @@
                                         </label>
                                         <input required class="form-control" type="file" id="formFile"
                                                multiple
-                                               th:field="*{pictures}" th:errorclass="invalid-field"
+                                               th:field="*{picture}" th:errorclass="invalid-field"
                                                name="pictures">
                                         <div class="error"
-                                             th:text="${#strings.listJoin(#fields.errors('pictures'), '; ')}">
+                                             th:text="${#strings.listJoin(#fields.errors('picture'), '; ')}">
                                         </div>
                                     </div>
 
                                     <table class="form-group" id="image-container">
                                         <thead>
                                         <tr>
-                                            <th>Files Uploaded(At least 1 is needed):</th>
+                                            <th>Files Uploaded(1 picture required):</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr th:each="picture : *{pictures}">
-                                            <th th:text="${picture}"></th>
+                                        <tr>
+                                            <th th:text="*{picture}"></th>
                                         </tr>
                                         </tbody>
                                     </table>

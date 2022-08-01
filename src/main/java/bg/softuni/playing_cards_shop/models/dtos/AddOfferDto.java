@@ -25,7 +25,7 @@ public class AddOfferDto {
     private String description;
 
     @NotEmpty(message = "Please provide some pictures of the deck you are offering.")
-    private List<MultipartFile> pictures;
+    private MultipartFile picture;
 
     public String getDeckTitle() {
         return deckTitle;
@@ -45,12 +45,12 @@ public class AddOfferDto {
         return this;
     }
 
-    public List<MultipartFile> getPictures() {
-        return pictures;
+    public MultipartFile getPicture() {
+        return picture;
     }
 
-    public AddOfferDto setPictures(List<MultipartFile> pictures) {
-        this.pictures = pictures;
+    public AddOfferDto setPicture(MultipartFile picture) {
+        this.picture = picture;
         return this;
     }
 

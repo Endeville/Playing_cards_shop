@@ -6,7 +6,7 @@ public class CatalogOfferDto {
     private Long id;
     private String title;
     private String description;
-    private List<String> pictures;
+    private String picture;
 
     public Long getId() {
         return id;
@@ -35,12 +35,12 @@ public class CatalogOfferDto {
         return this;
     }
 
-    public List<String> getPictures() {
-        return pictures;
+    public String getPicture() {
+        return picture;
     }
 
-    public CatalogOfferDto setPictures(List<String> pictures) {
-        this.pictures = pictures;
+    public CatalogOfferDto setPicture(String picture) {
+        this.picture = picture;
         return this;
     }
 }

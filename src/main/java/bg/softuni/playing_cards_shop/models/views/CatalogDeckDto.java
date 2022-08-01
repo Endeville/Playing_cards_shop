@@ -5,7 +5,7 @@ import java.util.List;
 public class CatalogDeckDto {
     private Long id;
     private String title;
-    private List<String> pictures;
+    private String picture;
 
     public CatalogDeckDto() {
     }
@@ -28,12 +28,12 @@ public class CatalogDeckDto {
         return this;
     }
 
-    public List<String> getPictures() {
-        return pictures;
+    public String getPicture() {
+        return picture;
     }
 
-    public CatalogDeckDto setPictures(List<String> pictures) {
-        this.pictures = pictures;
+    public CatalogDeckDto setPicture(String picture) {
+        this.picture = picture;
         return this;
     }
 }

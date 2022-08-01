@@ -9,17 +9,14 @@ import java.util.List;
 import java.util.Set;
 
 public interface PictureService {
-    Set<PictureEntity> saveAll(List<MultipartFile> pictures) throws IOException;
-
-    List<String> getPicturesUrls(Set<PictureEntity> pictures);
 
     PictureEntity getDefaultProfilePicture();
 
     PictureEntity getDefaultDistributorProfile();
 
-    boolean validatePictures(List<MultipartFile> pictures);
+    boolean validatePicture(MultipartFile picture);
 
-    void deletePictures(Set<PictureEntity> pictures);
+    void deletePicture(PictureEntity picture);
 
     String getPictureUrl(PictureEntity picture);
 

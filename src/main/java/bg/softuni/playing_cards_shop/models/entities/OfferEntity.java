@@ -29,9 +29,8 @@ public class OfferEntity extends BaseEntity{
     @Enumerated(EnumType.STRING)
     private OfferStatus status;
 
-    @OneToMany
-    @JoinColumn(name = "offer_id")
-    private Set<PictureEntity> pictures;
+    @OneToOne
+    private PictureEntity picture;
 
     @OneToMany
     private Set<ReviewEntity> reviews;
@@ -75,12 +74,12 @@ public class OfferEntity extends BaseEntity{
         return this;
     }
 
-    public Set<PictureEntity> getPictures() {
-        return pictures;
+    public PictureEntity getPicture() {
+        return picture;
     }
 
-    public OfferEntity setPictures(Set<PictureEntity> additionalPictures) {
-        this.pictures = additionalPictures;
+    public OfferEntity setPicture(PictureEntity picture) {
+        this.picture = picture;
         return this;
     }
 

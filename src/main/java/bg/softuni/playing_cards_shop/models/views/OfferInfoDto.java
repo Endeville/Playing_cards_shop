@@ -9,7 +9,7 @@ public class OfferInfoDto {
     private int quantity;
     private String description;
     private String status;
-    private List<String> pictures;
+    private String pictures;
 
     public String getDeckTitle() {
         return deckTitle;
@@ -65,11 +65,11 @@ public class OfferInfoDto {
         return this;
     }
 
-    public List<String> getPictures() {
+    public String getPictures() {
         return pictures;
     }
 
-    public OfferInfoDto setPictures(List<String> pictures) {
+    public OfferInfoDto setPictures(String pictures) {
         this.pictures = pictures;
         return this;
     }

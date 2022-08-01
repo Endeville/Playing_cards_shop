@@ -55,7 +55,7 @@ public class WishlistItemServiceImpl implements WishlistItemService {
                 .stream()
                 .map(w->{
                     var deck = modelMapper.map(w.getDeck(), CatalogDeckDto.class);
-                    deck.setPictures(this.pictureService.getPicturesUrls(w.getDeck().getPictures()));
+                    deck.setPicture(this.pictureService.getPictureUrl(w.getDeck().getPicture()));
                     return deck;
                 })
                 .collect(Collectors.toList());

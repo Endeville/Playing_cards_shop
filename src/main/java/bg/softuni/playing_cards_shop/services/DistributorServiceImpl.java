@@ -50,7 +50,7 @@ public class DistributorServiceImpl implements DistributorService {
     public void addDistributor(AddDistributorDto distributorDto) throws IOException {
         var distributor = this.modelMapper.map(distributorDto, DistributorEntity.class);
 
-        if (this.pictureService.validatePictures(List.of(distributorDto.getPicture()))) {
+        if (this.pictureService.validatePicture(distributorDto.getPicture())) {
             var pictures = pictureService.save(distributorDto.getPicture());
             distributor.setPicture(pictures);
         } else {

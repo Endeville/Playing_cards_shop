@@ -48,9 +48,9 @@ public class OfferServiceImpl implements OfferService {
     public void addOffer(AddOfferDto addOfferDto) throws IOException {
         var offer=this.modelMapper.map(addOfferDto, OfferEntity.class);
 
-        if (this.pictureService.validatePictures(addOfferDto.getPictures())) {
-            var pictures = this.pictureService.saveAll(addOfferDto.getPictures());
-            offer.setPictures(pictures);
+        if (this.pictureService.validatePicture(addOfferDto.getPicture())) {
+            var picture = this.pictureService.save(addOfferDto.getPicture());
+            offer.setPicture(picture);
         } else {
             throw new IllegalStateException("No pictures provided");
         }
@@ -72,7 +72,7 @@ public class OfferServiceImpl implements OfferService {
                 .map((o)->{
                     var offer=this.modelMapper.map(o, CatalogOfferDto.class);
                     offer.setTitle(o.getDeck().getTitle());
-                    offer.setPictures(this.pictureService.getPicturesUrls(o.getPictures()));
+                    offer.setPicture(this.pictureService.getPictureUrl(o.getPicture()));
 
                     return offer;
                 })
@@ -85,7 +85,7 @@ public class OfferServiceImpl implements OfferService {
                 .orElseThrow(()-> new ObjectNotFoundException(OBJECT_NAME_OFFER));
         var result=this.modelMapper.map(offer, OfferDetailsDto.class);
 
-        result.setPictures(this.pictureService.getPicturesUrls(offer.getPictures()));
+        result.setPictures(this.pictureService.getPictureUrl(offer.getPicture()));
         result.setCarted(this.userService.currentUserHasCarted(offer));
 
         return result;
@@ -102,11 +102,11 @@ public class OfferServiceImpl implements OfferService {
         var offer = this.offerRepository.findById(id)
                 .orElseThrow(()-> new ObjectNotFoundException(OBJECT_NAME_OFFER));
 
-        this.pictureService.deletePictures(offer.getPictures());
+        this.pictureService.deletePicture(offer.getPicture());
 
-        if (this.pictureService.validatePictures(editOfferDto.getPictures())) {
-            var pictures = this.pictureService.saveAll(editOfferDto.getPictures());
-            offer.setPictures(pictures);
+        if (this.pictureService.validatePicture(editOfferDto.getPicture())) {
+            var picture = this.pictureService.save(editOfferDto.getPicture());
+            offer.setPicture(picture);
         } else {
             throw new IllegalStateException("No pictures provided");
         }
@@ -130,7 +130,7 @@ public class OfferServiceImpl implements OfferService {
                 .orElseThrow(()-> new ObjectNotFoundException(OBJECT_NAME_OFFER));
         var result=this.modelMapper.map(offer, OfferInfoDto.class);
 
-        result.setPictures(this.pictureService.getPicturesUrls(offer.getPictures()));
+        result.setPictures(this.pictureService.getPictureUrl(offer.getPicture()));
 
         return result;
     }

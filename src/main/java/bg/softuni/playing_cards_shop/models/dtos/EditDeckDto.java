@@ -29,8 +29,8 @@ public class EditDeckDto {
     @NotEmpty(message = "")
     private List<String> categories;
 
-    @NotEmpty(message = "Please upload pictures for this deck.")
-    private List<MultipartFile> pictures;
+    @NotEmpty(message = "Please upload a picture for this deck.")
+    private MultipartFile picture;
 
 
     public String getTitle() {
@@ -87,12 +87,12 @@ public class EditDeckDto {
         return this;
     }
 
-    public List<MultipartFile> getPictures() {
-        return pictures;
+    public MultipartFile getPicture() {
+        return picture;
     }
 
-    public EditDeckDto setPictures(List<MultipartFile> pictures) {
-        this.pictures = pictures;
+    public EditDeckDto setPicture(MultipartFile picture) {
+        this.picture = picture;
         return this;
     }
 }

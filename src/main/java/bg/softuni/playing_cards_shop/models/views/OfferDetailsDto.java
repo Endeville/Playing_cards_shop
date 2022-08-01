@@ -10,7 +10,7 @@ public class OfferDetailsDto {
     private int quantity;
     private String description;
     private String status;
-    private List<String> pictures;
+    private String pictures;
     private boolean carted;
 
     public Long getId() {
@@ -76,11 +76,11 @@ public class OfferDetailsDto {
         return this;
     }
 
-    public List<String> getPictures() {
+    public String getPictures() {
         return pictures;
     }
 
-    public OfferDetailsDto setPictures(List<String> pictures) {
+    public OfferDetailsDto setPictures(String pictures) {
         this.pictures = pictures;
         return this;
     }

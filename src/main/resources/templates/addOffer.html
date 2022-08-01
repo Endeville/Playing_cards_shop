@@ -115,17 +115,17 @@
                                             Click to upload images
                                         </label>
                                         <input name="pictures" class="form-control" type="file"
-                                               id="formFile" multiple required
-                                               th:field="*{pictures}" th:errorclass="is-invalid"
+                                               id="formFile" required
+                                               th:field="*{picture}" th:errorclass="is-invalid"
                                         >
                                         <div class="error"
-                                             th:text="${#strings.listJoin(#fields.errors('pictures'), '; ')}"></div>
+                                             th:text="${#strings.listJoin(#fields.errors('picture'), '; ')}"></div>
                                     </div>
 
                                     <table class="form-group" id="image-container">
                                         <thead>
                                         <tr>
-                                            <th>Files Uploaded(At least 1 is needed):</th>
+                                            <th>Files Uploaded(1 picture required):</th>
                                         </tr>
                                         </thead>
                                         <tbody>

@@ -30,26 +30,6 @@ public class PictureServiceImpl implements PictureService {
         this.modelMapper = modelMapper;
     }
 
-
-    @Override
-    public Set<PictureEntity> saveAll(List<MultipartFile> pictures) throws IOException {
-
-        var result=new HashSet<PictureEntity>();
-
-        for (MultipartFile picture : pictures) {
-            result.add(this.save(picture));
-        }
-
-        return result;
-    }
-
-    @Override
-    public List<String> getPicturesUrls(Set<PictureEntity> pictures) {
-        return pictures.stream()
-                .map(this::getPictureUrl)
-                .collect(Collectors.toList());
-    }
-
     @Override
     public PictureEntity getDefaultProfilePicture() {
         return this.pictureRepository.findPictureEntityByUrl("https://res.cloudinary.com/dykamqwpf/image/upload/v1658170325/default_creator_wgjltr.jpg")
@@ -57,17 +37,15 @@ public class PictureServiceImpl implements PictureService {
     }
 
     @Override
-    public boolean validatePictures(List<MultipartFile> pictures) {
-        return !pictures.isEmpty() && !pictures.get(0).getOriginalFilename().trim().equals("");
+    public boolean validatePicture(MultipartFile picture) {
+        return !picture.getOriginalFilename().trim().equals("");
     }
 
     @Override
-    public void deletePictures(Set<PictureEntity> pictures) {
-        pictures.stream()
-                .map(PictureEntity::getPublicId)
-                .forEach(this.cloudinaryService::deleteImage);
+    public void deletePicture(PictureEntity picture) {
+        this.cloudinaryService.deleteImage(picture.getPublicId());
 
-        this.pictureRepository.deleteAll(pictures);
+        this.pictureRepository.delete(picture);
     }
 
     @Override
