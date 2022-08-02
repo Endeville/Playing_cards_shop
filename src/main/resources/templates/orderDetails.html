@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -78,7 +78,21 @@
                             <div class="mb-3 d-flex justify-content-between">
                                 <div>
                                     <span class="me-3">22-11-2021</span>
-                                    <span class="badge rounded-pill bg-info">SHIPPING</span>
+
+                                    <div>
+                                        <input type="radio" class="statusInput" value="PLACED" name="status" id="PLACED">
+                                        <label for="PLACED" class="status">PLACED</label>
+
+                                        <input type="radio" class="statusInput" value="PACKAGED" name="status" id="PACKAGED">
+                                        <label for="PACKAGED" class="status">PACKAGED</label>
+
+                                        <input type="radio" class="statusInput" value="SENT" name="status" id="SENT">
+                                        <label for="SENT" class="status">SENT</label>
+
+                                        <input type="radio" class="statusInput" value="DELIVERED" name="status" id="DELIVERED">
+                                        <label for="DELIVERED"  class="status">DELIVERED</label>
+                                    </div>
+
                                 </div>
                             </div>
                             <table class="table table-borderless">
@@ -86,11 +100,9 @@
                                 <tr>
                                     <td class="product">
                                         <div class="d-flex mb-2">
-                                            <div class="flex-shrink-0 product-image">
-                                                <img src="https://via.placeholder.com/280x280/87CEFA/000000" alt="" width="35" class="img-fluid">
-                                            </div>
                                             <div class="flex-lg-grow-1 ms-3">
-                                                <h6 class="small mb-0"><a href="#" class="text-reset">Wireless Headphones with Noise Cancellation Tru Bass Bluetooth HiFi</a></h6>
+                                                <h6 class="small mb-0"><a href="#" class="text-reset">Wireless
+                                                    Headphones with Noise Cancellation Tru Bass Bluetooth HiFi</a></h6>
                                                 <span class="small">Color: Black</span>
                                             </div>
                                         </div>
@@ -98,15 +110,13 @@
                                     <td>1</td>
                                     <td class="text-end">$79.99</td>
                                 </tr>
-                                <tr class="product">
-                                    <td>
+                                <tr>
+                                    <td class="product">
                                         <div class="d-flex mb-2">
-                                            <div class="flex-shrink-0 product-image">
-                                                <img src="https://via.placeholder.com/280x280/FF69B4/000000" alt="" width="35" class="img-fluid">
-                                            </div>
                                             <div class="flex-lg-grow-1 ms-3">
-                                                <h6 class="small mb-0"><a href="#" class="text-reset">Smartwatch IP68 Waterproof GPS and Bluetooth Support</a></h6>
-                                                <span class="small">Color: White</span>
+                                                <h6 class="small mb-0"><a href="#" class="text-reset">Wireless
+                                                    Headphones with Noise Cancellation Tru Bass Bluetooth HiFi</a></h6>
+                                                <span class="small">Color: Black</span>
                                             </div>
                                         </div>
                                     </td>
@@ -115,14 +125,6 @@
                                 </tr>
                                 </tbody>
                                 <tfoot>
-                                <tr>
-                                    <td colspan="2">Subtotal</td>
-                                    <td class="text-end">$159,98</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2">Shipping</td>
-                                    <td class="text-end">Ask for quote</td>
-                                </tr>
                                 <tr class="fw-bold">
                                     <td colspan="2">TOTAL</td>
                                     <td class="text-end">$169,98</td>
@@ -138,7 +140,7 @@
                     <div class="card mb-4">
                         <div class="card-body">
                             <h3 class="h6">Customer Notes</h3>
-                            <p>Sed enim, faucibus litora velit vestibulum habitasse. Cras lobortis cum sem aliquet mauris rutrum. Sollicitudin. Morbi, sem tellus vestibulum porttitor.</p>
+                            <p></p>
                         </div>
                     </div>
                     <div class="card mb-4">
@@ -166,10 +168,10 @@
 
     //TODO: change this when making the template
 
-    document.querySelectorAll(".product").forEach(e=>e.addEventListener("click", (ev)=>{
+    document.querySelectorAll(".product").forEach(e => e.addEventListener("click", (ev) => {
         ev.preventDefault();
 
-        window.location="home";
+        window.location = "home";
     }))
 </script>
 

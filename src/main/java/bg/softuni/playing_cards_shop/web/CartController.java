@@ -44,7 +44,7 @@ public class CartController {
         var addresses = this.userService.findAddressesByUserUsername(userDetails.getUsername());
 
         var totalPrice = cartProducts.stream()
-                .map(p-> p.getOfferPrice().multiply(BigDecimal.valueOf(p.getQuantity())))
+                .map(p-> p.getOffer().getPrice().multiply(BigDecimal.valueOf(p.getQuantity())))
                 .reduce(BigDecimal::add)
                 .orElse(BigDecimal.ZERO);
 

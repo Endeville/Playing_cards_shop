@@ -78,13 +78,13 @@
     document.querySelectorAll(".contents").forEach(e => e.addEventListener("click", (ev) => {
         ev.preventDefault();
 
-        window.location = "/orders/" + ev.currentTarget.id;
+        window.location = "/orders/" + e.parentElement.id;
     }))
 
     document.querySelectorAll(".seller").forEach(e => e.addEventListener("click", (ev) => {
         ev.preventDefault();
 
-        window.location = "/users/" + ev.currentTarget.textContent;
+        window.location = "/users/profile/" + ev.currentTarget.textContent;
     }))
 </script>
 

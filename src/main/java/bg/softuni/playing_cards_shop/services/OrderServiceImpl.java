@@ -5,9 +5,11 @@ import bg.softuni.playing_cards_shop.models.entities.OrderEntity;
 import bg.softuni.playing_cards_shop.models.entities.OrderProductEntity;
 import bg.softuni.playing_cards_shop.models.entities.UserEntity;
 import bg.softuni.playing_cards_shop.models.entities.enums.OrderStatus;
+import bg.softuni.playing_cards_shop.models.views.OrderDetailsDto;
 import bg.softuni.playing_cards_shop.models.views.TableOrderDto;
 import bg.softuni.playing_cards_shop.repositories.OrderRepository;
 import bg.softuni.playing_cards_shop.services.interfaces.*;
+import bg.softuni.playing_cards_shop.web.exceptions.ObjectNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -106,5 +108,11 @@ public class OrderServiceImpl implements OrderService {
                 .stream()
                 .map(o->this.modelMapper.map(o, TableOrderDto.class))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public OrderDetailsDto findOrderDetailsById(Long id) {
+        return this.modelMapper.map(this.orderRepository.findById(id)
+                .orElseThrow(()->new ObjectNotFoundException(OBJECT_NAME_ORDER)), OrderDetailsDto.class);
     }
 }

@@ -1,6 +1,6 @@
 package bg.softuni.playing_cards_shop.models.views;
 
-public class OrderProductDto {
+public class OrderProductInfoDto {
     private String offerDeckTitle;
     private int quantity;
 
@@ -8,7 +8,7 @@ public class OrderProductDto {
         return offerDeckTitle;
     }
 
-    public OrderProductDto setOfferDeckTitle(String offerDeckTitle) {
+    public OrderProductInfoDto setOfferDeckTitle(String offerDeckTitle) {
         this.offerDeckTitle = offerDeckTitle;
         return this;
     }
@@ -17,7 +17,7 @@ public class OrderProductDto {
         return quantity;
     }
 
-    public OrderProductDto setQuantity(int quantity) {
+    public OrderProductInfoDto setQuantity(int quantity) {
         this.quantity = quantity;
         return this;
     }

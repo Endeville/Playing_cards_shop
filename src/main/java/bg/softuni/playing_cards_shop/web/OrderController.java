@@ -43,9 +43,9 @@ public class OrderController {
 
     @ExceptionHandler(InvalidOrderException.class)
     public ModelAndView handleEmptyOrderExceptions(InvalidOrderException e) {
-        var modelAndView = new ModelAndView("errors/no-cart-products");
+        var modelAndView = new ModelAndView("error/no-cart-products");
         modelAndView.addObject("warning", "Couldn't place the order because: " + e.getMessage());
-        modelAndView.setStatus(HttpStatus.BAD_REQUEST);
+        modelAndView.setStatus(HttpStatus.BAD_REQUEST);HttpStatus.
         return modelAndView;
     }
 
@@ -65,6 +65,15 @@ public class OrderController {
         model.addAttribute("orders", myOrders);
 
         return "orders";
+    }
+
+    @GetMapping("/{id}")
+    public String getOrderDetails(@PathVariable(name = "id") Long id, Model model){
+        var orderDetails=this.orderService.findOrderDetailsById(id);
+
+        model.addAttribute("order", orderDetails);
+
+        return "orderDetails";
     }
 
 }

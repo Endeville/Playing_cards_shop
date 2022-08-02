@@ -12,7 +12,7 @@ public class TableOrderDto {
     private Instant orderTime;
     private BigDecimal price;
     private OrderStatus status;
-    private List<OrderProductDto> products;
+    private List<OrderProductInfoDto> products;
 
     public Long getId() {
         return id;
@@ -59,11 +59,11 @@ public class TableOrderDto {
         return this;
     }
 
-    public List<OrderProductDto> getProducts() {
+    public List<OrderProductInfoDto> getProducts() {
         return products;
     }
 
-    public TableOrderDto setProducts(List<OrderProductDto> products) {
+    public TableOrderDto setProducts(List<OrderProductInfoDto> products) {
         this.products = products;
         return this;
     }

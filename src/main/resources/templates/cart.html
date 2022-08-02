@@ -85,12 +85,12 @@
                             <table class="table table-borderless">
                                 <tbody>
                                 <tr th:each="product : ${products}" th:object="${product}">
-                                    <td class="product" th:id="*{offerId}">
+                                    <td class="product" th:id="*{offer.id}">
                                         <div class="d-flex mb-2">
                                             <div class="flex-lg-grow-1 ms-3 product-description">
                                                 <h6 class="small mb-0"><a href="#" class="text-reset"
-                                                                          th:text="*{offerDeckTitle}"></a></h6>
-                                                <span class="small" th:text="|Seller : *{offerSellerUsername}|"></span>
+                                                                          th:text="*{offer.deckTitle}"></a></h6>
+                                                <span class="small" th:text="|Seller : *{offer.sellerUsername}|"></span>
                                             </div>
                                         </div>
                                     </td>
@@ -99,7 +99,7 @@
                                         <span class="quantity" th:text="*{quantity}"></span>
                                         <button class="plus">+</button>
                                     </td>
-                                    <td class="text-end product-price" th:text="|*{offerPrice * quantity}€|"></td>
+                                    <td class="text-end product-price" th:text="|*{offer.price * quantity}€|"></td>
                                 </tr>
                                 </tbody>
                                 <tfoot>

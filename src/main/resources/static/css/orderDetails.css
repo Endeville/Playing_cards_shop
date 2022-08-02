@@ -40,3 +40,19 @@ tbody>tr:hover{
     --bs-text-opacity: 1;
     color: inherit!important;
 }
+
+.statusInput{
+    display: none;
+}
+
+.status{
+    margin: 5px;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    padding: 2px;
+}
+
+input[type="radio"]:checked+label{
+    border: 2px solid var(--royal-red);
+    color: var(--royal-red);
+}

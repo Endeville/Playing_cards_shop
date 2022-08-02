@@ -12,7 +12,7 @@ public class NotFoundAdvice {
     @ExceptionHandler({ObjectNotFoundException.class})
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ModelAndView handleObjectNotFound(ObjectNotFoundException onfe){
-        var mv=new ModelAndView("errors/404");
+        var mv=new ModelAndView("error/404");
         mv.addObject("reason", onfe.getObjectName());
         return mv;
     }
