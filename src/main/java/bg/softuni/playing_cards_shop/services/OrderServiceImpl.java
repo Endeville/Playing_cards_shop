@@ -15,10 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.Instant;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -97,6 +94,7 @@ public class OrderServiceImpl implements OrderService {
     public List<TableOrderDto> findCurrentUserOrders() {
         return this.userService.getCurrentUser().getPlacedOrders()
                 .stream()
+                .sorted((o1,o2)->o2.getOrderTime().compareTo(o1.getOrderTime()))
                 .map(o -> this.modelMapper.map(o, TableOrderDto.class))
                 .collect(Collectors.toList());
     }
@@ -104,7 +102,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<TableOrderDto> findOrdersForCurrentUser() {
         var user=this.userService.getCurrentUser();
-        return this.orderRepository.findOrderEntitiesBySeller(user)
+        return this.orderRepository.findOrderEntitiesBySellerOrderByOrderTimeDesc(user)
                 .stream()
                 .map(o->this.modelMapper.map(o, TableOrderDto.class))
                 .collect(Collectors.toList());

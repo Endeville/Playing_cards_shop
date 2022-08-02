@@ -13,5 +13,5 @@ import java.util.Optional;
 
 @Repository
 public interface OrderRepository extends JpaRepository<OrderEntity, Long> {
-    Optional<OrderEntity> findOrderEntitiesBySeller(UserEntity seller);
+    List<OrderEntity> findOrderEntitiesBySellerOrderByOrderTimeDesc(UserEntity seller);
 }

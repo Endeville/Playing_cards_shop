@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -18,55 +17,27 @@
             crossorigin="anonymous"></script>
 
 
-    <script src="../static/js/sidebar.js" type="module"></script>
+    <script th:src="@{/js/sidebar.js}" type="module"></script>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/orderDetails.css}"/>
 
-    <link rel="stylesheet" href="../static/css/orderDetails.css"/>
 
-    <link rel="icon" href="../static/images/ace-of-spades.png">
-    <title>Victory</title>
+    <th:block th:replace="~{/fragments/head.html}"/>
+
 </head>
 <body>
+
 <header>
+
     <nav id="nav" class="navbar navbar-expand">
-
-        <a href="/"><img src="../static/images/emblem.png"></a>
-
-        <ul id="menu">
-            <li><a href="/catalog">Catalog</a></li>
-            <li><a href="/search">Offers</a></li>
-            <span id="guest-nav">
-                    <li class="guest"><a href="/login">Login</a></li>
-                    <li class="guest"><a href="/register">Register</a></li>
-                </span>
-            <span id="user-nav">
-                    <li class="user"><a href="/create">Wishlist</a></li>
-                    <li id="logoutBtn" class="user"><a href="javascript:void(0)">Logout</a></li>
-            </span>
-        </ul>
-
-        <a href="#" id="menu-toggle" class="navbar-brand">&#9776</a>
+        <th:block th:replace="~{/fragments/navigation.html}"/>
     </nav>
+
 </header>
 
-<div id="wrapper">
-    <div id="sidebar-wrapper">
-        <ul class="sidebar-nav">
-            <li><a href="#">Catalog</a></li>
-            <li><a href="#">Offers</a></li>
-            <li><a href="#">Login</a></li>
-            <li><a href="#">Register</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Wishlist</a></li>
-            <li><a href="#">Logout</a></li>
-        </ul>
-    </div>
-</div>
+<th:block th:replace="~{/fragments/sidebar.html}"/>
 
-<main>
+<main th:object="${order}">
     <div class="container-fluid">
 
         <div class="container">
@@ -77,19 +48,19 @@
                         <div class="card-body">
                             <div class="mb-3 d-flex justify-content-between">
                                 <div>
-                                    <span class="me-3">22-11-2021</span>
+                                    <span class="me-3" th:text="*{#dates.format(orderTime, 'dd-MMM-yyyy')}"></span>
 
                                     <div>
-                                        <input type="radio" class="statusInput" value="PLACED" name="status" id="PLACED">
+                                        <input type="radio" class="statusInput" value="PLACED" name="status" id="PLACED" th:field="*{status}">
                                         <label for="PLACED" class="status">PLACED</label>
 
-                                        <input type="radio" class="statusInput" value="PACKAGED" name="status" id="PACKAGED">
+                                        <input type="radio" class="statusInput" value="PACKAGED" name="status" id="PACKAGED"  th:field="*{status}">
                                         <label for="PACKAGED" class="status">PACKAGED</label>
 
-                                        <input type="radio" class="statusInput" value="SENT" name="status" id="SENT">
+                                        <input type="radio" class="statusInput" value="SENT" name="status" id="SENT" th:field="*{status}">
                                         <label for="SENT" class="status">SENT</label>
 
-                                        <input type="radio" class="statusInput" value="DELIVERED" name="status" id="DELIVERED">
+                                        <input type="radio" class="statusInput" value="DELIVERED" name="status" id="DELIVERED" th:field="*{status}">
                                         <label for="DELIVERED"  class="status">DELIVERED</label>
                                     </div>
 
@@ -97,37 +68,24 @@
                             </div>
                             <table class="table table-borderless">
                                 <tbody>
-                                <tr>
-                                    <td class="product">
+                                <tr th:each="product : *{products}" th:object="${product}" class="product" th:id="*{offer.id}">
+                                    <td>
                                         <div class="d-flex mb-2">
                                             <div class="flex-lg-grow-1 ms-3">
-                                                <h6 class="small mb-0"><a href="#" class="text-reset">Wireless
-                                                    Headphones with Noise Cancellation Tru Bass Bluetooth HiFi</a></h6>
-                                                <span class="small">Color: Black</span>
+                                                <h6 class="small mb-0"><a href="#" class="text-reset" th:text="*{offer.deckTitle}"></a></h6>
+                                                <span class="small" th:text="|Seller: *{offer.sellerUsername}|"></span>
                                             </div>
                                         </div>
                                     </td>
-                                    <td>1</td>
-                                    <td class="text-end">$79.99</td>
+                                    <td th:text="*{quantity}"></td>
+                                    <td class="text-end" th:text="|*{offer.price * quantity}€|"></td>
                                 </tr>
                                 <tr>
-                                    <td class="product">
-                                        <div class="d-flex mb-2">
-                                            <div class="flex-lg-grow-1 ms-3">
-                                                <h6 class="small mb-0"><a href="#" class="text-reset">Wireless
-                                                    Headphones with Noise Cancellation Tru Bass Bluetooth HiFi</a></h6>
-                                                <span class="small">Color: Black</span>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>1</td>
-                                    <td class="text-end">$79.99</td>
-                                </tr>
                                 </tbody>
                                 <tfoot>
                                 <tr class="fw-bold">
                                     <td colspan="2">TOTAL</td>
-                                    <td class="text-end">$169,98</td>
+                                    <td class="text-end" th:text="|*{price}€|"></td>
                                 </tr>
                                 </tfoot>
                             </table>
@@ -140,7 +98,7 @@
                     <div class="card mb-4">
                         <div class="card-body">
                             <h3 class="h6">Customer Notes</h3>
-                            <p></p>
+                            <p th:text="*{notes}"></p>
                         </div>
                     </div>
                     <div class="card mb-4">
@@ -148,10 +106,10 @@
                         <div class="card-body">
                             <h3 class="h6">Address</h3>
                             <address>
-                                <strong>John Doe</strong><br>
-                                1355 Market St, Suite 900<br>
-                                San Francisco, CA 94103<br>
-                                <abbr title="Phone">P:</abbr> (123) 456-7890
+                                <strong th:text="*{customerUsername}" class="customerUsername"></strong><br>
+                                <span th:text="|City, Country: *{address.city}, *{address.country}|"></span><br>
+                                <span th:text="|Street: *{address.street}|"></span><br>
+                                <abbr title="Phone" th:text="|Telephone: *{address.telephone}|"></abbr>
                             </address>
                         </div>
                     </div>
@@ -161,17 +119,20 @@
     </div>
 </main>
 
-<footer>&copy Victory 2022. All rights reserved.</footer>
+<th:block th:replace="~{/fragments/footer.html}"/>
 
 <script>
-
-
-    //TODO: change this when making the template
 
     document.querySelectorAll(".product").forEach(e => e.addEventListener("click", (ev) => {
         ev.preventDefault();
 
-        window.location = "home";
+        window.location = "/offers/" + e.id;
+    }))
+
+    document.querySelectorAll(".customerUsername").forEach(e => e.addEventListener("click", (ev) => {
+        ev.preventDefault();
+
+        window.location = "/users/profile/" + e.textContent;
     }))
 </script>
 

@@ -45,7 +45,7 @@ public class OrderController {
     public ModelAndView handleEmptyOrderExceptions(InvalidOrderException e) {
         var modelAndView = new ModelAndView("error/no-cart-products");
         modelAndView.addObject("warning", "Couldn't place the order because: " + e.getMessage());
-        modelAndView.setStatus(HttpStatus.BAD_REQUEST);HttpStatus.
+        modelAndView.setStatus(HttpStatus.BAD_REQUEST);
         return modelAndView;
     }
 
