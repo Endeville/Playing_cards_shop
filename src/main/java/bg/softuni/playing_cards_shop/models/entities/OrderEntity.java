@@ -1,9 +1,8 @@
 package bg.softuni.playing_cards_shop.models.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import bg.softuni.playing_cards_shop.models.entities.enums.OrderStatus;
+
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.Set;
@@ -12,19 +11,28 @@ import java.util.Set;
 @Table(name = "orders")
 public class OrderEntity extends BaseEntity{
 
+    @Column(nullable = false)
     private Instant orderTime;
 
+    @Column(nullable = false)
     private BigDecimal price;
 
+    @Column
     private String notes;
 
-    @ManyToOne
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private OrderStatus status;
+
+    @JoinColumn(nullable = false)
+    @ManyToOne(cascade = CascadeType.DETACH)
     private AddressEntity address;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.DETACH)
+    @JoinColumn(nullable = false)
     private UserEntity customer;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.MERGE, mappedBy = "order")
     private Set<OrderProductEntity> products;
 
 
@@ -79,6 +87,15 @@ public class OrderEntity extends BaseEntity{
 
     public OrderEntity setAddress(AddressEntity address) {
         this.address = address;
+        return this;
+    }
+
+    public OrderStatus getStatus() {
+        return status;
+    }
+
+    public OrderEntity setStatus(OrderStatus status) {
+        this.status = status;
         return this;
     }
 }

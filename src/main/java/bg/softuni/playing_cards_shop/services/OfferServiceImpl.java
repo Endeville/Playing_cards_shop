@@ -173,4 +173,25 @@ public class OfferServiceImpl implements OfferService {
     public void deleteOffer(Long id) {
         this.offerRepository.deleteById(id);
     }
+
+    @Transactional
+    @Override
+    public int decreaseQuantity(OfferEntity offer, int quantity) {
+        if(offer.getQuantity()-quantity<=0){
+            offer.setStatus(OfferStatus.EXPIRED);
+            var result=offer.getQuantity();
+            offer.setQuantity(0);
+            this.offerRepository.save(offer);
+            return result;
+        }else if(offer.getQuantity()-quantity<=3){
+            offer.setStatus(OfferStatus.LIMITED);
+            offer.setQuantity(offer.getQuantity()-quantity);
+            this.offerRepository.save(offer);
+            return quantity;
+        }else{
+            offer.setQuantity(offer.getQuantity()-quantity);
+            this.offerRepository.save(offer);
+            return quantity;
+        }
+    }
 }

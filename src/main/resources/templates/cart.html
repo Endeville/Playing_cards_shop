@@ -133,14 +133,13 @@
                         <div class="card mb-4 side" id="address-holder">
                             <!-- Shipping information -->
                             <div class="card-body">
+                                <div>
+                                    <div class="error" th:text="${#strings.listJoin(#fields.errors('addressId'), '; ')}">
+                                    </div>
+                                </div>
                                 <address>
 
                                     <div>Choose an address:</div>
-
-                                    <div>
-                                        <div class="error" th:text="${#strings.listJoin(#fields.errors('addressId'), '; ')}">
-                                        </div>
-                                    </div>
 
 
                                     <th:block th:each="address: ${addresses}" th:object="${address}">

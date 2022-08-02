@@ -5,6 +5,7 @@ import bg.softuni.playing_cards_shop.repositories.OrderPorductRepository;
 import bg.softuni.playing_cards_shop.services.interfaces.OrderProductService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -17,7 +18,7 @@ public class OrderProductServiceImpl implements OrderProductService {
     }
 
     @Override
-    public void saveAll(Set<OrderProductEntity> cart) {
-        this.orderPorductRepository.saveAll(cart);
+    public List<OrderProductEntity> saveAll(Set<OrderProductEntity> cart) {
+        return this.orderPorductRepository.saveAll(cart);
     }
 }

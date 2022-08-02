@@ -1,10 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -18,55 +16,25 @@
             crossorigin="anonymous"></script>
 
 
-    <script src="../static/js/backToTop.js" type="module"></script>
-    <script src="../static/js/sidebar.js" type="module"></script>
+    <script th:src="@{/js/backToTop.js}" type="module"></script>
+    <script th:src="@{/js/sidebar.js}" type="module"></script>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/orders.css}"/>
 
-    <link rel="stylesheet" href="../static/css/orders.css"/>
+    <th:block th:replace="~{/fragments/head.html}"/>
 
-    <link rel="icon" href="../static/images/ace-of-spades.png">
-    <title>Victory</title>
 </head>
 <body>
 
 <header>
+
     <nav id="nav" class="navbar navbar-expand">
-
-        <a href="/"><img src="../static/images/emblem.png"></a>
-
-        <ul id="menu">
-            <li><a href="/catalog">Catalog</a></li>
-            <li><a href="/search">Offers</a></li>
-            <span id="guest-nav">
-                    <li class="guest"><a href="/login">Login</a></li>
-                    <li class="guest"><a href="/register">Register</a></li>
-                </span>
-            <span id="user-nav">
-                    <li class="user"><a href="/create">Wishlist</a></li>
-                    <li id="logoutBtn" class="user"><a href="javascript:void(0)">Logout</a></li>
-            </span>
-        </ul>
-
-        <a href="#" id="menu-toggle" class="navbar-brand">&#9776</a>
+        <th:block th:replace="~{/fragments/navigation.html}"/>
     </nav>
+
 </header>
 
-<div id="wrapper">
-    <div id="sidebar-wrapper">
-        <ul class="sidebar-nav">
-            <li><a href="#">Catalog</a></li>
-            <li><a href="#">Offers</a></li>
-            <li><a href="#">Login</a></li>
-            <li><a href="#">Register</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Wishlist</a></li>
-            <li><a href="#">Logout</a></li>
-        </ul>
-    </div>
-</div>
+<th:block th:replace="~{/fragments/sidebar.html}"/>
 
 <main>
     <!-- Up to Top Button-->
@@ -80,7 +48,6 @@
                         <table class="table">
                             <thead>
                             <tr>
-                                <th>Seller</th>
                                 <th>Contents</th>
                                 <th>status</th>
                                 <th>Total</th>
@@ -88,105 +55,12 @@
                             </tr>
                             </thead>
                             <tbody class="table-body">
-                            <tr class="cell-1">
-                                <td>Gasper Antunes</td>
-                                <td>High Victorian</td>
-                                <td><span class="badge badge-success">Fullfilled</span></td>
-                                <td>$2674.00</td>
-                                <td>Today</td>
+                            <tr class="cell-1" th:each="order : ${orders}" th:object="${order}" th:id="*{id}">
+                                <td th:text="|*{products[0]}...|"></td>
+                                <td><span class="badge badge-success" th:text="*{status}"></span></td>
+                                <td th:text="|*{price}€|"></td>
+                                <td th:text="*{#dates.format(orderTime, 'dd-MMM-yyyy')}"></td>
                             </tr>
-                            <tr class="cell-1">
-                                <td>Gasper Antunes</td>
-                                <td>High Victorian</td>
-                                <td><span class="badge badge-info">Confirmed</span></td>
-                                <td>$2674.00</td>
-                                <td>Today</td>
-                            </tr>
-                            <tr class="cell-1">
-                                <td>Gasper Antunes</td>
-                                <td>High Victorian</td>
-                                <td><span class="badge badge-danger">Partially shipped</span></td>
-                                <td>$2674.00</td>
-                                <td>Today</td>
-                            </tr>
-                            <tr class="cell-1">
-                                <td>Gasper Antunes</td>
-                                <td>High Victorian</td>
-                                <td><span class="badge badge-success">Fullfilled</span></td>
-                                <td>$2674.00</td>
-                                <td>Today</td>
-                            </tr>
-                            <tr class="cell-1">
-                                <td>Gasper Antunes</td>
-                                <td>High Victorian</td>
-                                <td><span class="badge badge-success">Fullfilled</span></td>
-                                <td>$2674.00</td>
-                                <td>Today</td>
-                            </tr>
-                            <tr class="cell-1">
-                                <td>Gasper Antunes</td>
-                                <td>High Victorian</td>
-                                <td><span class="badge badge-success">Fullfilled</span></td>
-                                <td>$2674.00</td>
-                                <td>Today</td>
-                            </tr>
-                            <tr class="cell-1">
-                                <td>Gasper Antunes</td>
-                                <td>High Victorian</td>
-                                <td><span class="badge badge-success">Fullfilled</span></td>
-                                <td>$2674.00</td>
-                                <td>Today</td>
-                            </tr>
-                            <tr class="cell-1">
-                                <td>Gasper Antunes</td>
-                                <td>High Victorian</td>
-                                <td><span class="badge badge-success">Fullfilled</span></td>
-                                <td>$2674.00</td>
-                                <td>Today</td>
-                            </tr>
-                            <tr class="cell-1">
-                                <td>Gasper Antunes</td>
-                                <td>High Victorian</td>
-                                <td><span class="badge badge-success">Fullfilled</span></td>
-                                <td>$2674.00</td>
-                                <td>Today</td>
-                            </tr>
-                            <tr class="cell-1">
-                                <td>Gasper Antunes</td>
-                                <td>High Victorian</td>
-                                <td><span class="badge badge-success">Fullfilled</span></td>
-                                <td>$2674.00</td>
-                                <td>Today</td>
-                            </tr>
-                            <tr class="cell-1">
-                                <td>Gasper Antunes</td>
-                                <td>High Victorian</td>
-                                <td><span class="badge badge-success">Fullfilled</span></td>
-                                <td>$2674.00</td>
-                                <td>Today</td>
-                            </tr>
-                            <tr class="cell-1">
-                                <td>Gasper Antunes</td>
-                                <td>High Victorian</td>
-                                <td><span class="badge badge-success">Fullfilled</span></td>
-                                <td>$2674.00</td>
-                                <td>Today</td>
-                            </tr>
-                            <tr class="cell-1">
-                                <td>Gasper Antunes</td>
-                                <td>High Victorian</td>
-                                <td><span class="badge badge-success">Fullfilled</span></td>
-                                <td>$2674.00</td>
-                                <td>Today</td>
-                            </tr>
-                            <tr class="cell-1">
-                                <td>Gasper Antunes</td>
-                                <td>High Victorian</td>
-                                <td><span class="badge badge-success">Fullfilled</span></td>
-                                <td>$2674.00</td>
-                                <td>Today</td>
-                            </tr>
-
                             </tbody>
                         </table>
                     </div>
@@ -196,15 +70,13 @@
     </div>
 </main>
 
-<footer>&copy Victory 2022. All rights reserved.</footer>
+<th:block th:replace="~{/fragments/footer.html}"/>
 
 <script>
-    //TODO: change this when making the template
-
-    document.querySelectorAll(".cell-1").forEach(e=>e.addEventListener("click", (ev)=>{
+    document.querySelectorAll(".cell-1").forEach(e => e.addEventListener("click", (ev) => {
         ev.preventDefault();
 
-        window.location="home";
+        window.location = "/orders/" + ev.currentTarget.id;
     }))
 </script>
 

@@ -23,7 +23,7 @@ async function deleteOffer(ev, id){
     closeBtn.click();
 
     const options={
-        method: 'PUT',
+        method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
             'Accepts': 'application/json',

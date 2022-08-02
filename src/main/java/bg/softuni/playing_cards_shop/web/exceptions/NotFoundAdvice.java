@@ -10,7 +10,7 @@ public class NotFoundAdvice {
     @ExceptionHandler({ObjectNotFoundException.class})
     public ModelAndView handleObjectNotFound(ObjectNotFoundException onfe){
         var mv=new ModelAndView("errors/404");
-
+        mv.addObject("reason", onfe.getObjectName());
         return mv;
     }
 }

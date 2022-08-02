@@ -79,7 +79,8 @@
 
                     <div class="col-lg-5 col-md-5 col-sm-6 image-cont">
                         <div class="white-box text-center">
-                            <img th:src="*{picture}" class="img-responsive" style="height: 225px; width: 100%; display: block;">
+                            <img th:src="*{picture}" class="img-responsive"
+                                 style="height: 225px; width: 100%; display: block;">
                         </div>
                     </div>
 
@@ -89,12 +90,16 @@
                         <h2 class="mt-5" th:text="|*{price}€|">
                         </h2>
 
-                        <button class="btn btn-dark btn-rounded mr-1" data-toggle="tooltip" title=""
-                                data-original-title="Add to cart" id="add-cart-btn"
-                                th:classappend="*{carted} ? 'carted' : ''"
-                        >
-                            <i class="fa fa-shopping-cart"></i>
-                        </button>
+<!--                        todo: can buy only if its not owner nor admin-->
+                        <th:block>
+                            <button class="btn btn-dark btn-rounded mr-1" data-toggle="tooltip" title=""
+                                    data-original-title="Add to cart" id="add-cart-btn"
+                                    th:classappend="*{carted} ? 'carted' : ''"
+                            >
+                                <i class="fa fa-shopping-cart"></i>
+                            </button>
+                        </th:block>
+
                         <span sec:authorize="hasRole('ADMIN')" id="admin-panel">
                             <span sec:authorize="hasRole('ADMIN')">
                                 <a type="button"
@@ -120,7 +125,8 @@
                                 </tr>
                                 <tr>
                                     <td>Seller</td>
-                                    <td><a th:href="@{/users/profile/{username} (username=*{sellerUsername})}" th:text="*{sellerUsername}"></a></td>
+                                    <td><a th:href="@{/users/profile/{username} (username=*{sellerUsername})}"
+                                           th:text="*{sellerUsername}"></a></td>
                                 </tr>
                                 <tr>
                                     <td>Available quantity</td>
@@ -128,7 +134,8 @@
                                 </tr>
                                 <tr>
                                     <td>Reviews</td>
-                                    <td><a th:href="@{/offers/{id}/reviews (id=*{id})}">See all the reviews here</a></td>
+                                    <td><a th:href="@{/offers/{id}/reviews (id=*{id})}">See all the reviews here</a>
+                                    </td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -145,21 +152,21 @@
 
 <script th:inline="javascript">
 
-    const addCartBtn=document.getElementById("add-cart-btn");
+    const addCartBtn = document.getElementById("add-cart-btn");
     const csrfHeaderName = document.head.querySelector('[name=_csrf_header]').content;
     const csrfHeaderValue = document.head.querySelector('[name=_csrf]').content;
 
-    addCartBtn.addEventListener("click",addToCart);
+    addCartBtn.addEventListener("click", addToCart);
 
-    async function addToCart(ev){
-        if(addCartBtn.classList.contains("carted")){
+    async function addToCart(ev) {
+        if (addCartBtn.classList.contains("carted")) {
             uncartProduct(ev);
             return;
         }
 
         ev.preventDefault();
 
-        const options={
+        const options = {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -176,10 +183,10 @@
         addCartBtn.classList.add("carted");
     }
 
-    async function uncartProduct(ev){
+    async function uncartProduct(ev) {
         ev.preventDefault();
 
-        const options={
+        const options = {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',

@@ -33,4 +33,6 @@ public interface OfferService {
     boolean offerHasBeenRatedByUser(Long id, UserDetails principal);
 
     void deleteOffer(Long id);
+
+    int decreaseQuantity(OfferEntity offer, int quantity);
 }

@@ -70,6 +70,7 @@ address>div{
 input[type="text"]:hover, input[type="email"]:hover, input[type="password"]:hover{
     background: #fff;
     transition: background-color .4s;
+    color: var(--light-black);
 }
 
 input[type="radio"]{

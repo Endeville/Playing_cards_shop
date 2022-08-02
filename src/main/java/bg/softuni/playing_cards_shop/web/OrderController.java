@@ -5,11 +5,9 @@ import bg.softuni.playing_cards_shop.services.interfaces.OrderService;
 import bg.softuni.playing_cards_shop.web.exceptions.InvalidOrderException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -39,17 +37,24 @@ public class OrderController {
         if(this.orderService.placeOrder(cartNotesDto)){
             return "redirect:/orders";
         }else{
-            throw new InvalidOrderException("The cart is empty", cartNotesDto);
+            throw new InvalidOrderException("The cart is empty.", cartNotesDto);
         }
     }
 
-    //todo: doesn't handle the exception correctly
     @ExceptionHandler(InvalidOrderException.class)
     public ModelAndView handleEmptyOrderExceptions(InvalidOrderException e) {
-        var modelAndView = new ModelAndView("offers");
-        modelAndView.addObject("message", e.getMessage());
-        modelAndView.addObject("cartNotes", e.getCartNotesDto());
+        var modelAndView = new ModelAndView("errors/no-cart-products");
+        modelAndView.addObject("warning", "Couldn't place the order because: " + e.getMessage());
         modelAndView.setStatus(HttpStatus.BAD_REQUEST);
         return modelAndView;
+    }
+
+    @GetMapping
+    public String getOrders(Model model){
+        var myOrders=this.orderService.findCurrentUserOrders();
+
+        model.addAttribute("orders", myOrders);
+
+        return "orders";
     }
 }

@@ -22,7 +22,7 @@ public class OfferRestController {
     }
 
 
-    @PutMapping(value = "/delete", consumes = "application/json", produces = "application/json")
+    @DeleteMapping(value = "/delete", consumes = "application/json", produces = "application/json")
     public ResponseEntity<Void> deleteOffer(@RequestBody OfferIdDto offerIdDto,
                                                @AuthenticationPrincipal UserDetails principal){
         if (principal == null) {
