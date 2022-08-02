@@ -10,12 +10,13 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.Map;
 
-import static bg.softuni.playing_cards_shop.constants.GlobalConstants.*;
-
 @Service
 public class CloudinaryService {
 
     private final Cloudinary cloudinary;
+    public static final String TEMP_FILE = "temp-file";
+    public static final String URL = "url";
+    public static final String PUBLIC_ID = "public_id";
 
     public CloudinaryService(Cloudinary cloudinary) {
         this.cloudinary = cloudinary;

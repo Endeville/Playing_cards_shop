@@ -14,8 +14,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static bg.softuni.playing_cards_shop.constants.GlobalConstants.OBJECT_NAME_CREATOR;
-
 @Service
 public class CreatorServiceImpl implements CreatorService {
 

@@ -9,7 +9,6 @@ import bg.softuni.playing_cards_shop.web.exceptions.ObjectNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-import static bg.softuni.playing_cards_shop.constants.GlobalConstants.OBJECT_NAME_ADDRESS;
 
 @Service
 public class AddressServiceImpl implements AddressService {

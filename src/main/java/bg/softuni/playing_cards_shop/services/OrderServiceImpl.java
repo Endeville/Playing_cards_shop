@@ -3,6 +3,7 @@ package bg.softuni.playing_cards_shop.services;
 import bg.softuni.playing_cards_shop.models.dtos.CartNotesDto;
 import bg.softuni.playing_cards_shop.models.entities.OrderEntity;
 import bg.softuni.playing_cards_shop.models.entities.OrderProductEntity;
+import bg.softuni.playing_cards_shop.models.entities.UserEntity;
 import bg.softuni.playing_cards_shop.models.entities.enums.OrderStatus;
 import bg.softuni.playing_cards_shop.models.views.TableOrderDto;
 import bg.softuni.playing_cards_shop.repositories.OrderRepository;
@@ -12,7 +13,10 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -46,38 +50,61 @@ public class OrderServiceImpl implements OrderService {
 
         var address = this.addressService.findAddressById(cartNotesDto.getAddressId());
         var orderProducts = user.getCart().stream()
-                .map(cp -> this.modelMapper.map(cp, OrderProductEntity.class))
-                .collect(Collectors.toSet());
+                .map(cp -> {
+                    var map = this.modelMapper.map(cp, OrderProductEntity.class);
+                    map.setId(null);
+                    return map;
+                })
+                .collect(Collectors.groupingBy(p->p.getOffer().getSeller()));
+
         this.cartProductService.deleteCartProducts(user.getCart());
 
-        for (OrderProductEntity orderProduct : orderProducts) {
-            orderProduct.setQuantity(this.offerService.decreaseQuantity(orderProduct.getOffer(), orderProduct.getQuantity()));
+        for (List<OrderProductEntity> value : orderProducts.values()) {
+            for (OrderProductEntity orderProductEntity : value) {
+                orderProductEntity.setQuantity(this.offerService.decreaseQuantity(orderProductEntity.getOffer(), orderProductEntity.getQuantity()));
+            }
         }
 
-        var order = new OrderEntity()
-                .setOrderTime(Instant.now())
-                .setNotes(cartNotesDto.getNotes())
-                .setAddress(address)
-                .setCustomer(user)
-                .setProducts(orderProducts)
-                .setPrice(orderProducts.stream()
-                        .map(op -> op.getOffer().getPrice().multiply(BigDecimal.valueOf(op.getQuantity())))
-                        .reduce(BigDecimal.valueOf(0), BigDecimal::add))
-                .setStatus(OrderStatus.PLACED);
+        for (UserEntity seller : orderProducts.keySet()) {
+            var order = new OrderEntity()
+                    .setOrderTime(Instant.now())
+                    .setNotes(cartNotesDto.getNotes())
+                    .setAddress(address)
+                    .setCustomer(user)
+                    .setProducts(new HashSet<>(orderProducts.get(seller)))
+                    .setPrice(orderProducts.get(seller).stream()
+                            .map(op -> op.getOffer().getPrice().multiply(BigDecimal.valueOf(op.getQuantity())))
+                            .reduce(BigDecimal.valueOf(0), BigDecimal::add))
+                    .setStatus(OrderStatus.PLACED)
+                    .setSeller(seller);
 
-        var orderEntity=this.orderRepository.save(order);
-        for (OrderProductEntity orderProduct : orderProducts) {
-            orderProduct.setOrder(orderEntity);
+
+            var orderEntity=this.orderRepository.save(order);
+
+            for (OrderProductEntity orderProduct : orderProducts.get(seller)) {
+                orderProduct.setOrder(orderEntity);
+            }
+
+            this.orderProductService.saveAll(new HashSet<>(orderProducts.get(seller)));
         }
-        this.orderProductService.saveAll(orderProducts);
+
         return true;
     }
 
     @Override
     public List<TableOrderDto> findCurrentUserOrders() {
-        return this.userService.getCurrentUser().getOrders()
+        return this.userService.getCurrentUser().getPlacedOrders()
                 .stream()
                 .map(o -> this.modelMapper.map(o, TableOrderDto.class))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<TableOrderDto> findOrdersForCurrentUser() {
+        var user=this.userService.getCurrentUser();
+        return this.orderRepository.findOrderEntitiesBySeller(user)
+                .stream()
+                .map(o->this.modelMapper.map(o, TableOrderDto.class))
                 .collect(Collectors.toList());
     }
 }

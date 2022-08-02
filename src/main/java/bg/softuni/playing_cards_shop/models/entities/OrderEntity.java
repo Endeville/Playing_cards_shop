@@ -35,6 +35,9 @@ public class OrderEntity extends BaseEntity{
     @OneToMany(cascade = CascadeType.MERGE, mappedBy = "order")
     private Set<OrderProductEntity> products;
 
+    @ManyToOne
+    private UserEntity seller;
+
 
     public Instant getOrderTime() {
         return orderTime;
@@ -96,6 +99,15 @@ public class OrderEntity extends BaseEntity{
 
     public OrderEntity setStatus(OrderStatus status) {
         this.status = status;
+        return this;
+    }
+
+    public UserEntity getSeller() {
+        return seller;
+    }
+
+    public OrderEntity setSeller(UserEntity seller) {
+        this.seller = seller;
         return this;
     }
 }

@@ -12,6 +12,8 @@ import java.util.List;
 
 public interface UserService{
 
+    public static final String OBJECT_NAME_USER="user";
+
     void register(UserRegistrationDto user);
 
     boolean emailExists(String email);

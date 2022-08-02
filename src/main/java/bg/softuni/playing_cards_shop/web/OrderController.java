@@ -35,7 +35,7 @@ public class OrderController {
         }
 
         if(this.orderService.placeOrder(cartNotesDto)){
-            return "redirect:/orders";
+            return "redirect:/orders/placedOrders";
         }else{
             throw new InvalidOrderException("The cart is empty.", cartNotesDto);
         }
@@ -49,12 +49,22 @@ public class OrderController {
         return modelAndView;
     }
 
-    @GetMapping
-    public String getOrders(Model model){
-        var myOrders=this.orderService.findCurrentUserOrders();
+    @GetMapping("/placedOrders")
+    public String getPlacedOrder(Model model){
+        var placedOrders=this.orderService.findCurrentUserOrders();
+
+        model.addAttribute("orders", placedOrders);
+
+        return "orders";
+    }
+
+    @GetMapping("/myOrders")
+    public String getMyOrders(Model model){
+        var myOrders=this.orderService.findOrdersForCurrentUser();
 
         model.addAttribute("orders", myOrders);
 
         return "orders";
     }
+
 }

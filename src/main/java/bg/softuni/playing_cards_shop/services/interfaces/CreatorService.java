@@ -8,6 +8,9 @@ import java.io.IOException;
 import java.util.List;
 
 public interface CreatorService {
+
+    String OBJECT_NAME_CREATOR="creator";
+
     void addCreator(AddCreatorDto creatorDto) throws IOException;
 
     List<String> getCreatorsNames();

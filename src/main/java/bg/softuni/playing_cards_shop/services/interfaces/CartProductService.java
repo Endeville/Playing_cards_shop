@@ -11,6 +11,9 @@ import java.util.List;
 import java.util.Set;
 
 public interface CartProductService {
+
+    String OBJECT_NAME_CART_PRODUCT="cart product";
+
     List<CartProductDto> getCartProductsByCustomer(String username);
 
     CartProductEssentialsDto addProduct(OfferIdDto offerIdDto, UserDetails principal);

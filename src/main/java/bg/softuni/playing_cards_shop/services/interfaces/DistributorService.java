@@ -9,6 +9,9 @@ import java.util.List;
 
 public interface DistributorService {
 
+    String OBJECT_NAME_DISTRIBUTOR="distributor";
+
+
     void addDistributor(AddDistributorDto distributorDto) throws IOException;
 
     List<String> getDistributorsNames();

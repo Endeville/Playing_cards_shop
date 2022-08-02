@@ -10,12 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-
-import static bg.softuni.playing_cards_shop.constants.GlobalConstants.OBJECT_NAME_PICTURE;
 
 @Service
 public class PictureServiceImpl implements PictureService {

@@ -14,6 +14,9 @@ import java.io.IOException;
 import java.util.List;
 
 public interface OfferService {
+
+    String OBJECT_NAME_OFFER="offer";
+
     void addOffer(AddOfferDto addOfferDto) throws IOException;
 
     List<CatalogOfferDto> getActiveOffersByKeyword(String search, String sort);

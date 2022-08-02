@@ -49,14 +49,16 @@
                             <thead>
                             <tr>
                                 <th>Contents</th>
-                                <th>status</th>
+                                <th>Seller</th>
+                                <th>Status</th>
                                 <th>Total</th>
                                 <th>Created</th>
                             </tr>
                             </thead>
                             <tbody class="table-body">
-                            <tr class="cell-1" th:each="order : ${orders}" th:object="${order}" th:id="*{id}">
-                                <td th:text="|*{products[0]}...|"></td>
+                            <tr class="cell-1"  th:each="order : ${orders}" th:object="${order}" th:id="*{id}">
+                                <td class="contents" th:text="|*{products[0]}...|"></td>
+                                <td class="seller" th:text="*{sellerUsername}"></td>
                                 <td><span class="badge badge-success" th:text="*{status}"></span></td>
                                 <td th:text="|*{price}€|"></td>
                                 <td th:text="*{#dates.format(orderTime, 'dd-MMM-yyyy')}"></td>
@@ -73,10 +75,16 @@
 <th:block th:replace="~{/fragments/footer.html}"/>
 
 <script>
-    document.querySelectorAll(".cell-1").forEach(e => e.addEventListener("click", (ev) => {
+    document.querySelectorAll(".contents").forEach(e => e.addEventListener("click", (ev) => {
         ev.preventDefault();
 
         window.location = "/orders/" + ev.currentTarget.id;
+    }))
+
+    document.querySelectorAll(".seller").forEach(e => e.addEventListener("click", (ev) => {
+        ev.preventDefault();
+
+        window.location = "/users/" + ev.currentTarget.textContent;
     }))
 </script>
 

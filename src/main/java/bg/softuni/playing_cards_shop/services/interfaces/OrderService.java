@@ -9,4 +9,6 @@ public interface OrderService {
     boolean placeOrder(CartNotesDto cartNotesDto);
 
     List<TableOrderDto> findCurrentUserOrders();
+
+    List<TableOrderDto> findOrdersForCurrentUser();
 }

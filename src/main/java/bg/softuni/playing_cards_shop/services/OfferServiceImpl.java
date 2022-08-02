@@ -24,8 +24,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static bg.softuni.playing_cards_shop.constants.GlobalConstants.OBJECT_NAME_OFFER;
-
 @Service
 public class OfferServiceImpl implements OfferService {
 

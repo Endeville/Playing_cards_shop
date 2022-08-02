@@ -7,6 +7,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.List;
 
 public interface WishlistItemService {
+
+    String OBJECT_NAME_WISHLIST_ITEM="wishlist item";
+
     WishlistItemEntity like(String title);
 
     List<CatalogDeckDto> getCurrentUserWishlistByKeyword(UserDetails principal, String search, String sort);

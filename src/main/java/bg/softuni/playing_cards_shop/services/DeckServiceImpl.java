@@ -22,8 +22,6 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static bg.softuni.playing_cards_shop.constants.GlobalConstants.OBJECT_NAME_DECK;
-
 @Service
 public class DeckServiceImpl implements DeckService {
 

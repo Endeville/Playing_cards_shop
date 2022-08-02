@@ -16,8 +16,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static bg.softuni.playing_cards_shop.constants.GlobalConstants.OBJECT_NAME_WISHLIST_ITEM;
-
 @Service
 public class WishlistItemServiceImpl implements WishlistItemService {
 

@@ -8,6 +8,7 @@ import java.util.List;
 
 public class TableOrderDto {
     private Long id;
+    private String sellerUsername;
     private Instant orderTime;
     private BigDecimal price;
     private OrderStatus status;
@@ -19,6 +20,15 @@ public class TableOrderDto {
 
     public TableOrderDto setId(Long id) {
         this.id = id;
+        return this;
+    }
+
+    public String getSellerUsername() {
+        return sellerUsername;
+    }
+
+    public TableOrderDto setSellerUsername(String sellerUsername) {
+        this.sellerUsername = sellerUsername;
         return this;
     }
 

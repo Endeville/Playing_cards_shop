@@ -42,7 +42,10 @@ public class UserEntity extends BaseEntity{
     private Set<CartProductEntity> cart;
 
     @OneToMany(mappedBy = "customer")
-    private Set<OrderEntity> orders;
+    private Set<OrderEntity> placedOrders;
+
+    @OneToMany(mappedBy = "seller")
+    private Set<OrderEntity> myOrders;
 
     public UserEntity() {
     }
@@ -146,12 +149,21 @@ public class UserEntity extends BaseEntity{
         return this;
     }
 
-    public Set<OrderEntity> getOrders() {
-        return orders;
+    public Set<OrderEntity> getPlacedOrders() {
+        return placedOrders;
     }
 
-    public UserEntity setOrders(Set<OrderEntity> orders) {
-        this.orders = orders;
+    public UserEntity setPlacedOrders(Set<OrderEntity> placedOrders) {
+        this.placedOrders = placedOrders;
+        return this;
+    }
+
+    public Set<OrderEntity> getMyOrders() {
+        return myOrders;
+    }
+
+    public UserEntity setMyOrders(Set<OrderEntity> myOrders) {
+        this.myOrders = myOrders;
         return this;
     }
 
@@ -160,11 +172,11 @@ public class UserEntity extends BaseEntity{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UserEntity that = (UserEntity) o;
-        return rating == that.rating && Objects.equals(username, that.username) && Objects.equals(email, that.email) && Objects.equals(password, that.password) && Objects.equals(role, that.role) && Objects.equals(wishlist, that.wishlist) && Objects.equals(offers, that.offers) && Objects.equals(reviews, that.reviews) && Objects.equals(notifications, that.notifications) && Objects.equals(addresses, that.addresses) && Objects.equals(cart, that.cart) && Objects.equals(orders, that.orders);
+        return rating == that.rating && Objects.equals(username, that.username) && Objects.equals(email, that.email) && Objects.equals(password, that.password) && Objects.equals(role, that.role) && Objects.equals(wishlist, that.wishlist) && Objects.equals(offers, that.offers) && Objects.equals(reviews, that.reviews) && Objects.equals(notifications, that.notifications) && Objects.equals(addresses, that.addresses) && Objects.equals(cart, that.cart) && Objects.equals(placedOrders, that.placedOrders) && Objects.equals(myOrders, that.myOrders);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(username, email, password, rating, role, wishlist, offers, reviews, notifications, addresses, cart, orders);
+        return Objects.hash(username, email, password, rating, role, wishlist, offers, reviews, notifications, addresses, cart, placedOrders, myOrders);
     }
 }
