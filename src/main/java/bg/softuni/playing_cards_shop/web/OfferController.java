@@ -4,8 +4,10 @@ import bg.softuni.playing_cards_shop.models.dtos.AddOfferDto;
 import bg.softuni.playing_cards_shop.models.dtos.AddReviewDto;
 import bg.softuni.playing_cards_shop.models.dtos.EditOfferDto;
 import bg.softuni.playing_cards_shop.models.views.ReviewDetailsDto;
+import bg.softuni.playing_cards_shop.services.events.SendRequestEvent;
 import bg.softuni.playing_cards_shop.services.interfaces.DeckService;
 import bg.softuni.playing_cards_shop.services.interfaces.OfferService;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -50,8 +52,9 @@ public class OfferController {
     @GetMapping("/all")
     public String showOffers(@RequestParam(name = "sort", required = false, defaultValue = "deck.title") String sort,
                              @RequestParam(name = "search", required = false, defaultValue = "") String search,
+                             @RequestParam(name= "seller", required = false, defaultValue = "") String seller,
                              Model model) {
-        var offers = this.offerService.getActiveOffersByKeyword(search, sort);
+        var offers = this.offerService.getActiveOffersByKeyword(search, seller, sort);
         model.addAttribute("offers", offers);
         model.addAttribute("showSearch", true);
 
@@ -89,12 +92,11 @@ public class OfferController {
         var offer = this.offerService.getOfferDetailsById(id);
 
         model.addAttribute("offer", offer);
-//        model.addAttribute("canBuy", this.offerService.currentUserCanBuy(id));
 
         return "offerDetails";
     }
 
-    @GetMapping("/{id}/edit")
+    @GetMapping("/edit/{id}")
     public String editPage(@PathVariable(name = "id") Long id, Model model) {
         var offerById = this.offerService.getOfferInfoById(id);
 
@@ -106,7 +108,7 @@ public class OfferController {
         return "editOffer";
     }
 
-    @PatchMapping("/{id}/edit")
+    @PatchMapping("/edit/{id}")
     public String editOffer(@Valid EditOfferDto offer,
                             BindingResult result,
                             RedirectAttributes attributes,
@@ -115,7 +117,7 @@ public class OfferController {
             attributes.addFlashAttribute("editOffer", offer);
             attributes.addFlashAttribute("org.springframework.validation.BindingResult.offer", result);
 
-            return "redirect:/offers/" + id + "/edit";
+            return "redirect:/offers/edit/" + id;
         }
 
         this.offerService.editOffer(id, offer);

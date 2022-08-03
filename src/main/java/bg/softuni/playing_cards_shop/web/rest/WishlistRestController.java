@@ -10,6 +10,8 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api/wishlist")
 public class WishlistRestController {
@@ -21,7 +23,7 @@ public class WishlistRestController {
     }
 
     @PostMapping(value = "/like", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<WishlistItemDto> like(@RequestBody DeckTitleDto deckTitleDto, @AuthenticationPrincipal UserDetails principal) {
+    public ResponseEntity<WishlistItemDto> like(@Valid @RequestBody DeckTitleDto deckTitleDto, @AuthenticationPrincipal UserDetails principal) {
         if (principal == null) {
             return ResponseEntity
                     .status(HttpStatus.MOVED_PERMANENTLY)
@@ -39,7 +41,7 @@ public class WishlistRestController {
     }
 
     @DeleteMapping(value = "/dislike", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<Void> dislike(@RequestBody DeckTitleDto deckTitleDto, @AuthenticationPrincipal UserDetails principal) {
+    public ResponseEntity<Void> dislike(@Valid @RequestBody DeckTitleDto deckTitleDto, @AuthenticationPrincipal UserDetails principal) {
         if (principal == null) {
             return ResponseEntity
                     .status(HttpStatus.MOVED_PERMANENTLY)

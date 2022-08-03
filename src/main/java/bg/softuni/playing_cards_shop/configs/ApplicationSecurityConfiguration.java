@@ -31,12 +31,13 @@ public class ApplicationSecurityConfiguration {
         return httpSecurity
                 .authorizeRequests()
                     .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
+                    .antMatchers("/decks/edit/**", "/api/decks/delete/**", "/requests/all/**",
+                            "/offers/edit/**", "/api/offers/delete").hasRole(UserRole.ADMIN.name())
                     .antMatchers("/", "/users/login", "/users/register").permitAll()
                     .antMatchers("/decks/*", "/users/profile/**", "/addresses/**",
                             "/creators/**", "/distributors/**", "/offers/**", "/cart/**",
-                            "/wishlist/**", "/api/**", "/orders/**")
+                            "/wishlist/**", "/api/**", "/orders/**", "/requests/add/**")
                         .hasAnyRole(UserRole.ADMIN.name(), UserRole.CLIENT.name())
-                    .antMatchers("/admins/**", "/decks/**/edit/**", "/decks/**/delete/**").hasRole(UserRole.ADMIN.name())
                 .and()
                 .formLogin()
                     .loginPage("/users/login")

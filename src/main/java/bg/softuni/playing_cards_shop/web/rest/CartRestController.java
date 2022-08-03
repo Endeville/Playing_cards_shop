@@ -12,6 +12,8 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api/cart")
 public class CartRestController {
@@ -23,7 +25,7 @@ public class CartRestController {
     }
 
     @PostMapping(value = "/add", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<CartProductEssentialsDto> addToCart(@RequestBody OfferIdDto offerIdDto,
+    public ResponseEntity<CartProductEssentialsDto> addToCart(@Valid @RequestBody OfferIdDto offerIdDto,
                                                               @AuthenticationPrincipal UserDetails principal){
         if (principal == null) {
             return ResponseEntity
@@ -40,7 +42,7 @@ public class CartRestController {
     }
 
     @DeleteMapping(value = "/delete", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<Void> deleteFromCart(@RequestBody OfferIdDto offerIdDto,
+    public ResponseEntity<Void> deleteFromCart(@Valid @RequestBody OfferIdDto offerIdDto,
                                                                    @AuthenticationPrincipal UserDetails principal){
         if (principal == null) {
             return ResponseEntity
@@ -57,7 +59,7 @@ public class CartRestController {
     }
 
     @PutMapping(value = "/update", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<CartProductPriceQuantityDto> updateCartProduct(@RequestBody CartProductUpdateDto cartProductUpdateDto,
+    public ResponseEntity<CartProductPriceQuantityDto> updateCartProduct(@Valid @RequestBody CartProductUpdateDto cartProductUpdateDto,
                                                                          @AuthenticationPrincipal UserDetails principal){
         if (principal == null) {
             return ResponseEntity

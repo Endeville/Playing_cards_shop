@@ -10,6 +10,8 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api/orders")
 public class OrderRestController {
@@ -21,7 +23,7 @@ public class OrderRestController {
     }
 
     @PatchMapping(value="/updateStatus", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<OrderInfoDto> updateOrderStatus(@RequestBody OrderStatusDto orderIdDto,
+    public ResponseEntity<OrderInfoDto> updateOrderStatus(@Valid @RequestBody OrderStatusDto orderIdDto,
                                                           @AuthenticationPrincipal UserDetails principal){
         if (principal == null) {
             return ResponseEntity

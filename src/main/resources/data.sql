@@ -68,7 +68,7 @@ VALUES (1, 2),
 
 
 INSERT INTO offers(id, price, quantity, description, status, deck_id, seller_id, picture_id)
-VALUES (1, 20, 4, 'Great offer. You will not find anything better', 'APPROVED', 1, 1, 5),
+VALUES (1, 20, 4, 'Great offer. You will not find anything better', 'AVAILABLE', 1, 1, 5),
        (2, 5, 2, 'Better hurry the offer will not be available soon.', 'LIMITED', 2, 1, 6),
        (3, 9, 3, 'Wonderful offer for a limited time.', 'LIMITED', 3, 2, 8);
 

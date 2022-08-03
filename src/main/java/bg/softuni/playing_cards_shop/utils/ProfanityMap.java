@@ -10,8 +10,8 @@ import java.util.stream.Collectors;
 
 @Component
 public class ProfanityMap {
-    private Set<String> words;
-    private File file;
+    private final Set<String> words;
+    private final File file;
 
     public ProfanityMap() throws IOException {
         this.words=new HashSet<>();

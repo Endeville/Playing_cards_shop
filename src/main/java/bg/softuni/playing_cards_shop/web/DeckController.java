@@ -93,7 +93,7 @@ public class DeckController {
         return "redirect:/decks/all";
     }
 
-    @GetMapping("/{id}/edit")
+    @GetMapping("/edit/{id}")
     public String editPage(@PathVariable(name="id") Long id, Model model){
         var deckInfoById = this.deckService.findDeckInfoById(id);
 
@@ -106,7 +106,7 @@ public class DeckController {
         return "editDeck";
     }
 
-    @PatchMapping("/{id}/edit")
+    @PatchMapping("/edit/{id}")
     public String editDeck(@Valid EditDeckDto editDeckDto,
                            BindingResult result,
                            RedirectAttributes attributes,
@@ -115,7 +115,7 @@ public class DeckController {
             attributes.addFlashAttribute("editDeck", editDeckDto);
             attributes.addFlashAttribute("org.springframework.validation.BindingResult.deck", result);
 
-            return "redirect:/decks/" + id + "/edit";
+            return "redirect:/decks/edit/" + id;
         }
 
         this.deckService.editDeck(id,editDeckDto);

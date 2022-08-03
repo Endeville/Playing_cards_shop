@@ -11,6 +11,8 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api/offers")
 public class OfferRestController {
@@ -23,18 +25,11 @@ public class OfferRestController {
 
 
     @DeleteMapping(value = "/delete", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<Void> deleteOffer(@RequestBody OfferIdDto offerIdDto,
+    public ResponseEntity<Void> deleteOffer(@Valid @RequestBody OfferIdDto offerIdDto,
                                                @AuthenticationPrincipal UserDetails principal){
         if (principal == null) {
             return ResponseEntity
                     .status(HttpStatus.MOVED_PERMANENTLY)
-                    .header(HttpHeaders.LOCATION, "/users/login")
-                    .build();
-        }
-
-        if(!principal.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))){
-            return ResponseEntity
-                    .status(HttpStatus.FORBIDDEN)
                     .header(HttpHeaders.LOCATION, "/users/login")
                     .build();
         }

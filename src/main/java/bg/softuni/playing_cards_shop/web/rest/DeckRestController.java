@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api/decks")
 public class DeckRestController {
@@ -25,18 +27,11 @@ public class DeckRestController {
     }
 
     @DeleteMapping(value = "/delete", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<Void> deleteDeck(@RequestBody DeckTitleDto deckTitleDto,
+    public ResponseEntity<Void> deleteDeck(@Valid @RequestBody DeckTitleDto deckTitleDto,
                                                @AuthenticationPrincipal UserDetails principal){
         if (principal == null) {
             return ResponseEntity
                     .status(HttpStatus.MOVED_PERMANENTLY)
-                    .header(HttpHeaders.LOCATION, "/users/login")
-                    .build();
-        }
-
-        if(!principal.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))){
-            return ResponseEntity
-                    .status(HttpStatus.FORBIDDEN)
                     .header(HttpHeaders.LOCATION, "/users/login")
                     .build();
         }

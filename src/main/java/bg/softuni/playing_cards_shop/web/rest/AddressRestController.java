@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api/addresses")
 public class AddressRestController {
@@ -23,7 +25,7 @@ public class AddressRestController {
     }
 
     @DeleteMapping(value = "/delete", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<Void> dislike(@RequestBody AddressIdDto addressIdDto, @AuthenticationPrincipal UserDetails principal) {
+    public ResponseEntity<Void> dislike(@Valid @RequestBody AddressIdDto addressIdDto, @AuthenticationPrincipal UserDetails principal) {
         if (principal == null) {
             return ResponseEntity
                     .status(HttpStatus.MOVED_PERMANENTLY)

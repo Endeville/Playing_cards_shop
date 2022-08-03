@@ -19,7 +19,7 @@ public interface OfferService {
 
     void addOffer(AddOfferDto addOfferDto) throws IOException;
 
-    List<CatalogOfferDto> getActiveOffersByKeyword(String search, String sort);
+    List<CatalogOfferDto> getActiveOffersByKeyword(String search, String seller, String sort);
 
     OfferDetailsDto getOfferDetailsById(Long id);
 

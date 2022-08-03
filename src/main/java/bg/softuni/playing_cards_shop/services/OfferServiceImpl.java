@@ -54,7 +54,7 @@ public class OfferServiceImpl implements OfferService {
             throw new IllegalStateException("No pictures provided");
         }
 
-        offer.setStatus(OfferStatus.PENDING)
+        offer.setStatus(OfferStatus.AVAILABLE)
                 .setSeller(this.userService.getCurrentUser())
                 .setDeck(deckService.findDeckByTitle(addOfferDto.getDeckTitle()))
                 .setPrice(addOfferDto.getPrice())
@@ -66,8 +66,8 @@ public class OfferServiceImpl implements OfferService {
     }
 
     @Override
-    public List<CatalogOfferDto> getActiveOffersByKeyword(String search, String sort) {
-        return this.offerRepository.findOfferEntityByStatusApprovedOrLimited(search, Sort.by(sort)).stream()
+    public List<CatalogOfferDto> getActiveOffersByKeyword(String search, String seller, String sort) {
+        return this.offerRepository.findOfferEntityByStatusApprovedOrLimited(search, seller, Sort.by(sort)).stream()
                 .map((o)->{
                     var offer=this.modelMapper.map(o, CatalogOfferDto.class);
                     offer.setTitle(o.getDeck().getTitle());
@@ -110,7 +110,7 @@ public class OfferServiceImpl implements OfferService {
             throw new IllegalStateException("No pictures provided");
         }
 
-        offer.setStatus(OfferStatus.PENDING)
+        offer.setStatus(OfferStatus.AVAILABLE)
                 .setSeller(this.userService.getCurrentUser())
                 .setDeck(deckService.findDeckByTitle(editOfferDto.getDeckTitle()))
                 .setPrice(editOfferDto.getPrice())
@@ -118,8 +118,6 @@ public class OfferServiceImpl implements OfferService {
                 .setQuantity(editOfferDto.getQuantity())
                 .setDescription(editOfferDto.getDescription());
 
-
-        //todo: add the deck for mod approval
         this.offerRepository.save(offer);
     }
 
