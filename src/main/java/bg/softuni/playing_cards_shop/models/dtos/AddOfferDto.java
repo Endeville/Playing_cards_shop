@@ -2,10 +2,7 @@ package bg.softuni.playing_cards_shop.models.dtos;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Positive;
+import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -24,7 +21,7 @@ public class AddOfferDto {
     @NotBlank(message = "Description is compulsory(product condition, signatures, number etc.)")
     private String description;
 
-    @NotEmpty(message = "Please provide some pictures of the deck you are offering.")
+    @NotNull(message = "Please provide some pictures of the deck you are offering.")
     private MultipartFile picture;
 
     public String getDeckTitle() {

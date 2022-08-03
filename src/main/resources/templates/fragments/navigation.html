@@ -1,5 +1,5 @@
 <th:block>
-    <a href="/"><img src="../../images/emblem.png" alt="Victory"></a>
+    <a href="/"><img th:src="@{/images/emblem.png}" alt="Victory"></a>
 
     <ul id="menu">
         <span id="guest-nav" sec:authorize="!isAuthenticated()">

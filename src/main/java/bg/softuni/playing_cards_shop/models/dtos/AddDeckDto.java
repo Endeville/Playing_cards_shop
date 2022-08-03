@@ -31,7 +31,7 @@ public class AddDeckDto {
     @NotEmpty(message = "")
     private List<String> categories;
 
-    @NotEmpty(message = "Please upload a picture for this deck.")
+    @NotNull(message = "Please upload a picture for this deck.")
     private MultipartFile picture;
 
 
