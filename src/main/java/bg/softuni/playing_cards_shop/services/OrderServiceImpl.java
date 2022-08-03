@@ -7,12 +7,14 @@ import bg.softuni.playing_cards_shop.models.entities.UserEntity;
 import bg.softuni.playing_cards_shop.models.entities.enums.OrderStatus;
 import bg.softuni.playing_cards_shop.models.views.OrderDetailsDto;
 import bg.softuni.playing_cards_shop.models.views.TableOrderDto;
+import bg.softuni.playing_cards_shop.models.views.rest.OrderInfoDto;
 import bg.softuni.playing_cards_shop.repositories.OrderRepository;
 import bg.softuni.playing_cards_shop.services.interfaces.*;
 import bg.softuni.playing_cards_shop.web.exceptions.ObjectNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.*;
@@ -112,5 +114,16 @@ public class OrderServiceImpl implements OrderService {
     public OrderDetailsDto findOrderDetailsById(Long id) {
         return this.modelMapper.map(this.orderRepository.findById(id)
                 .orElseThrow(()->new ObjectNotFoundException(OBJECT_NAME_ORDER)), OrderDetailsDto.class);
+    }
+
+    @Transactional
+    @Override
+    public OrderInfoDto updateOrderStatus(Long id, OrderStatus status) {
+        var order=this.orderRepository.findById(id)
+                .orElseThrow(()-> new ObjectNotFoundException(OBJECT_NAME_ORDER))
+                .setStatus(status);
+
+        this.orderRepository.save(order);
+        return this.modelMapper.map(order, OrderInfoDto.class);
     }
 }

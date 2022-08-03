@@ -48,8 +48,6 @@ public class AddressController {
 
         this.addressService.addAddress(address, principal.getUsername());
 
-
-        //todo: reconsider
         return "redirect:/users/profile/" + principal.getUsername();
     }
 }

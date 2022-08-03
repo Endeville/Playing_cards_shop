@@ -7,6 +7,7 @@ import java.time.Instant;
 import java.util.List;
 
 public class OrderDetailsDto {
+    private Long id;
     private Instant orderTime;
     private BigDecimal price;
     private String notes;
@@ -14,6 +15,15 @@ public class OrderDetailsDto {
     private AddressDto address;
     private String customerUsername;
     private List<OrderProductDetailsDto> products;
+
+    public Long getId() {
+        return id;
+    }
+
+    public OrderDetailsDto setId(Long id) {
+        this.id = id;
+        return this;
+    }
 
     public Instant getOrderTime() {
         return orderTime;

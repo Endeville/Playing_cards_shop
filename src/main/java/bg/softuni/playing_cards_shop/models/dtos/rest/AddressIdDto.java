@@ -1,13 +1,16 @@
 package bg.softuni.playing_cards_shop.models.dtos.rest;
 
-public class AddressIdDto {
-    private String id;
+import javax.validation.constraints.NotNull;
 
-    public String getId() {
+public class AddressIdDto {
+    @NotNull
+    private Long id;
+
+    public Long getId() {
         return id;
     }
 
-    public AddressIdDto setId(String id) {
+    public AddressIdDto setId(Long id) {
         this.id = id;
         return this;
     }

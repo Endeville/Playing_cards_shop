@@ -66,7 +66,7 @@ public class CartRestController {
                     .build();
         }
 
-        CartProductPriceQuantityDto result=new CartProductPriceQuantityDto();
+        CartProductPriceQuantityDto result;
 
         if(cartProductUpdateDto.getOperation().equalsIgnoreCase("plus")){
             result=this.cartProductService.changeQuantity(cartProductUpdateDto.getOfferId(), 1);

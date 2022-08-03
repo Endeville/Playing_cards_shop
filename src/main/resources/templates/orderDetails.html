@@ -18,6 +18,7 @@
 
 
     <script th:src="@{/js/sidebar.js}" type="module"></script>
+    <script th:src="@{/js/orderStatus.js}" type="module"></script>
 
     <link rel="stylesheet" th:href="@{/css/orderDetails.css}"/>
 
@@ -50,7 +51,7 @@
                                 <div>
                                     <span class="me-3" th:text="*{#dates.format(orderTime, 'dd-MMM-yyyy')}"></span>
 
-                                    <div>
+                                    <div th:id="*{id}">
                                         <input type="radio" class="statusInput" value="PLACED" name="status" id="PLACED" th:field="*{status}">
                                         <label for="PLACED" class="status">PLACED</label>
 
@@ -122,7 +123,6 @@
 <th:block th:replace="~{/fragments/footer.html}"/>
 
 <script>
-
     document.querySelectorAll(".product").forEach(e => e.addEventListener("click", (ev) => {
         ev.preventDefault();
 

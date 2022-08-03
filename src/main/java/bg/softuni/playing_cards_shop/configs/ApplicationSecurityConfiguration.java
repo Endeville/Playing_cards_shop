@@ -35,8 +35,7 @@ public class ApplicationSecurityConfiguration {
                     .antMatchers("/decks/*", "/users/profile/**", "/addresses/**",
                             "/creators/**", "/distributors/**", "/offers/**", "/cart/**",
                             "/wishlist/**", "/api/**", "/orders/**")
-                        .hasAnyRole(UserRole.MODERATOR.name(), UserRole.ADMIN.name(), UserRole.CLIENT.name())
-                    .antMatchers("/moderators/**").hasAnyRole(UserRole.MODERATOR.name(), UserRole.ADMIN.name())
+                        .hasAnyRole(UserRole.ADMIN.name(), UserRole.CLIENT.name())
                     .antMatchers("/admins/**", "/decks/**/edit/**", "/decks/**/delete/**").hasRole(UserRole.ADMIN.name())
                 .and()
                 .formLogin()

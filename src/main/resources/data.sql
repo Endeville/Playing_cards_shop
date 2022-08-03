@@ -1,7 +1,6 @@
 INSERT INTO roles (id, role)
 VALUES (1, 'ADMIN'),
-       (2, 'MODERATOR'),
-       (3, 'CLIENT');
+       (2, 'CLIENT');
 
 INSERT INTO categories(id, category)
 VALUES (1, 'STANDARD'),
@@ -25,7 +24,7 @@ VALUES ('https://res.cloudinary.com/dykamqwpf/image/upload/v1657796050/playing_c
 
 INSERT INTO users(id, username, email, password, rating, role_id)
 VALUES (1, 'Endeville', 'victor.popdonchev@gmail.com',
-        '9f6095cc9b392438eb577c67382a951ae945df94ab649e268f1fc2b527c678daebf5609944280cf8', 5, 3),
+        '9f6095cc9b392438eb577c67382a951ae945df94ab649e268f1fc2b527c678daebf5609944280cf8', 5, 2),
        (2, 'Vipop', 'xvipop@gmail.com',
         '9f6095cc9b392438eb577c67382a951ae945df94ab649e268f1fc2b527c678daebf5609944280cf8', 5, 1);
 

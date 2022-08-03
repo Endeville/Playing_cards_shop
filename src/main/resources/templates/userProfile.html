@@ -107,7 +107,7 @@
     for (const deleteAddressBtn of deleteAddressBtns) {
         deleteAddressBtn.addEventListener("click", (ev)=>{
             ev.preventDefault();
-            const id=ev.currentTarget.id.substring(7);
+            const id=Number(ev.currentTarget.id.substring(7));
             deleteAddress(ev, id);
         })
     }
@@ -121,7 +121,7 @@
                 [csrfHeaderName]: csrfHeaderValue
             },
             body: JSON.stringify({
-                id: id
+                id
             })
         };
 
