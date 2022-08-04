@@ -32,7 +32,7 @@ public class ApplicationSecurityConfiguration {
                 .authorizeRequests()
                     .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                     .antMatchers("/decks/edit/**", "/api/decks/delete/**", "/requests/all/**",
-                            "/offers/edit/**", "/api/offers/delete", "/api/users/promote/**").hasRole(UserRole.ADMIN.name())
+                            "/offers/edit/**", "/api/offers/delete/**", "/api/users/promote/**").hasRole(UserRole.ADMIN.name())
                     .antMatchers("/", "/users/login", "/users/register").permitAll()
                     .antMatchers("/decks/*", "/users/profile/**", "/addresses/**",
                             "/creators/**", "/distributors/**", "/offers/**", "/cart/**",

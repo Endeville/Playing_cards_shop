@@ -40,7 +40,7 @@ public class RequestServiceImpl implements RequestService {
 
     @Override
     public List<RequestInfoDto> getAllRequests() {
-        return this.requestRepository.findAll()
+        return this.requestRepository.findAllByOrderByCreatedDesc()
                 .stream()
                 .map(r->this.modelMapper.map(r, RequestInfoDto.class))
                 .collect(Collectors.toList());

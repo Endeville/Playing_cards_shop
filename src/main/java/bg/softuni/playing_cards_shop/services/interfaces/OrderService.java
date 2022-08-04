@@ -7,6 +7,7 @@ import bg.softuni.playing_cards_shop.models.views.TableOrderDto;
 import bg.softuni.playing_cards_shop.models.views.rest.OrderInfoDto;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface OrderService {
 

@@ -23,4 +23,6 @@ public interface CartProductService {
     CartProductPriceQuantityDto changeQuantity(Long offerId, int i);
 
     void deleteCartProducts(Set<CartProductEntity> cart);
+
+    void deleteProduct(CartProductEntity cartProduct);
 }

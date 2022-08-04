@@ -12,7 +12,7 @@ public class RequestEntity extends BaseEntity{
     @Column(nullable = false)
     private Instant created;
 
-    @Column(nullable = false, columnDefinition = "LONGTEXT")
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String content;
 
     @ManyToOne(cascade = CascadeType.DETACH)

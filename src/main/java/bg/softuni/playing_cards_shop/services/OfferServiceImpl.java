@@ -110,15 +110,25 @@ public class OfferServiceImpl implements OfferService {
             throw new IllegalStateException("No pictures provided");
         }
 
-        offer.setStatus(OfferStatus.AVAILABLE)
+        offer.setQuantity(editOfferDto.getQuantity())
+                .setStatus(this.getStatus(offer.getQuantity()))
                 .setSeller(this.userService.getCurrentUser())
                 .setDeck(deckService.findDeckByTitle(editOfferDto.getDeckTitle()))
                 .setPrice(editOfferDto.getPrice())
                 .setReviews(new HashSet<>())
-                .setQuantity(editOfferDto.getQuantity())
                 .setDescription(editOfferDto.getDescription());
 
         this.offerRepository.save(offer);
+    }
+
+    private OfferStatus getStatus(Integer quantity) {
+        if(quantity<=0){
+            return OfferStatus.EXPIRED;
+        }else if(quantity<=3){
+            return OfferStatus.LIMITED;
+        }else{
+            return OfferStatus.AVAILABLE;
+        }
     }
 
     @Override
@@ -173,7 +183,8 @@ public class OfferServiceImpl implements OfferService {
     @Transactional
     @Override
     public int decreaseQuantity(OfferEntity offer, int quantity) {
-        if(offer.getQuantity()-quantity<=0){
+
+        if(offer.getQuantity()-quantity==0){
             offer.setStatus(OfferStatus.EXPIRED);
             var result=offer.getQuantity();
             offer.setQuantity(0);

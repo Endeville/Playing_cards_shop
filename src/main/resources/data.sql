@@ -42,7 +42,8 @@ VALUES (1, 'high_victorian_green_t27q49',
        (17, 'memento_1_pj6emq', 'https://res.cloudinary.com/dykamqwpf/image/upload/v1659610697/memento_1_pj6emq.jpg'),
        (18, 's-l5010_grlyhb', 'https://res.cloudinary.com/dykamqwpf/image/upload/v1659610697/s-l5010_grlyhb.jpg'),
        (19, 'index3_fqdfka', 'https://res.cloudinary.com/dykamqwpf/image/upload/v1659610913/index3_fqdfka.jpg'),
-       (20, 'index4_xyqwta', 'https://res.cloudinary.com/dykamqwpf/image/upload/v1659610932/index4_xyqwta.jpg');
+       (20, 'index4_xyqwta', 'https://res.cloudinary.com/dykamqwpf/image/upload/v1659610932/index4_xyqwta.jpg'),
+       (21, '1st-Playing-Cards-v1-by-Chris-Ramsay_j3lqet', 'https://res.cloudinary.com/dykamqwpf/image/upload/v1659624841/1st-Playing-Cards-v1-by-Chris-Ramsay_j3lqet.jpg');
 
 INSERT INTO users(id, username, email, password, rating, role_id)
 VALUES (1, 'Endeville', 'victor.popdonchev@gmail.com',
@@ -144,7 +145,23 @@ VALUES (1, 2),
 INSERT INTO offers(id, price, quantity, description, status, deck_id, seller_id, picture_id)
 VALUES (1, 20, 4, 'Great offer. You will not find anything better', 'AVAILABLE', 1, 1, 5),
        (2, 5, 2, 'Better hurry the offer will not be available soon.', 'LIMITED', 2, 1, 6),
-       (3, 9, 3, 'Wonderful offer for a limited time.', 'LIMITED', 3, 2, 8);
+       (3, 9, 3, 'Wonderful offer for a limited time.', 'LIMITED', 3, 2, 8),
+       (4, 60, 2, '1st v1 is one of the most popular decks these past years. I have several spare ones so I decided to share them with you. :)', 'LIMITED', 5, 4, 16),
+       (5, 30, 1, 'Very rare deck at an affordable price. It is unsealed but in mint condition.', 'LIMITED', 5, 3, 21),
+       (6, 18, 4, 'Wonderful deck by chris ramsay. Really nice to the touch. Handles perfectly.', 'AVAILABLE', 6, 1, 18);
+
+INSERT INTO cart_items(id, quantity, customer_id, offer_id)
+VALUES (1, 1, 1, 5),
+       (2, 2, 4, 3),
+       (3, 1, 1, 4),
+       (4, 1, 1, 5),
+       (5, 2, 3, 3);
+
+INSERT INTO requests(id, content, created, creator_id)
+VALUES (1, 'I love your site keep up the great work', CAST('2020-08-03 1:50:30' AS DATETIME), 1),
+    (2, 'I would like to get my money back. I got scammed.', CAST('2022-07-26 12:13:43' AS DATETIME), 3),
+    (3, 'I am still waiting for my money', CAST('2022-08-03 9:33:50' AS DATETIME), 3),
+    (4, 'I would suggest that you add notifications to the site so that whenever an order status is changed, we the clients get notified', CAST('2022-07-05 7:30:23' AS DATETIME), 4);
 
 UPDATE distributors
 SET picture_id=4

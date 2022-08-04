@@ -200,7 +200,7 @@
                                         <span sec:authorize="hasRole('ADMIN')">
                                             <a type="button"
                                                class="btn btn-sm btn-outline-secondary cardBtn editBtn"
-                                               th:href="@{/decks/{deckId}/edit (deckId=*{id})}">Edit</a>
+                                               th:href="@{/decks/edit/{deckId} (deckId=*{id})}">Edit</a>
                                             <a type="button"
                                                class="btn btn-sm btn-outline-secondary cardBtn deleteBtn"
                                                data-toggle="modal" data-target="#consentModal"

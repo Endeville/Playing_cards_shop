@@ -1,6 +1,7 @@
 package bg.softuni.playing_cards_shop.services;
 
 import bg.softuni.playing_cards_shop.models.dtos.CartNotesDto;
+import bg.softuni.playing_cards_shop.models.entities.CartProductEntity;
 import bg.softuni.playing_cards_shop.models.entities.OrderEntity;
 import bg.softuni.playing_cards_shop.models.entities.OrderProductEntity;
 import bg.softuni.playing_cards_shop.models.entities.UserEntity;
@@ -44,25 +45,27 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public boolean placeOrder(CartNotesDto cartNotesDto) {
         var user = this.userService.getCurrentUser();
+        var result= Optional.of("");
 
         if (user.getCart().isEmpty()) {
             return false;
         }
 
         var address = this.addressService.findAddressById(cartNotesDto.getAddressId());
-        var orderProducts = user.getCart().stream()
-                .map(cp -> {
-                    var map = this.modelMapper.map(cp, OrderProductEntity.class);
-                    map.setId(null);
-                    return map;
-                })
-                .collect(Collectors.groupingBy(p->p.getOffer().getSeller()));
 
-        this.cartProductService.deleteCartProducts(user.getCart());
+        var orderProducts=new HashMap<UserEntity, List<OrderProductEntity>>();
 
-        for (List<OrderProductEntity> value : orderProducts.values()) {
-            for (OrderProductEntity orderProductEntity : value) {
-                orderProductEntity.setQuantity(this.offerService.decreaseQuantity(orderProductEntity.getOffer(), orderProductEntity.getQuantity()));
+        for (CartProductEntity cartProduct : user.getCart()) {
+            if(cartProduct.getQuantity()<cartProduct.getOffer().getQuantity()){
+                var orderProduct=this.modelMapper.map(cartProduct, OrderProductEntity.class);
+
+                orderProduct.setId(null);
+                orderProduct.setQuantity(this.offerService.decreaseQuantity(orderProduct.getOffer(), orderProduct.getQuantity()));
+
+                orderProducts.putIfAbsent(orderProduct.getOffer().getSeller(), new ArrayList<>());
+                orderProducts.get(orderProduct.getOffer().getSeller()).add(orderProduct);
+
+                this.cartProductService.deleteProduct(cartProduct);
             }
         }
 

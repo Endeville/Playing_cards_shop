@@ -45,7 +45,13 @@ public class CartProductServiceImpl implements CartProductService {
                         return true;
                     }
                 })
-                .map(cp->this.modelMapper.map(cp, CartProductDto.class))
+                .map(cp->{
+                    if(cp.getQuantity()>cp.getOffer().getQuantity()){
+                        cp.setQuantity(cp.getOffer().getQuantity());
+                        this.cartProductRepository.save(cp);
+                    }
+                    return this.modelMapper.map(cp, CartProductDto.class);
+                })
                 .collect(Collectors.toList());
     }
 
@@ -96,5 +102,10 @@ public class CartProductServiceImpl implements CartProductService {
     @Override
     public void deleteCartProducts(Set<CartProductEntity> cart) {
         this.cartProductRepository.deleteAll(cart);
+    }
+
+    @Override
+    public void deleteProduct(CartProductEntity cartProduct) {
+        this.cartProductRepository.delete(cartProduct);
     }
 }

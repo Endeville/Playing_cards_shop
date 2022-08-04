@@ -8,7 +8,6 @@ public class CartProductEntity extends BaseEntity{
     @Column(nullable = false)
     private int quantity;
 
-    @JoinColumn(unique = true)
     @ManyToOne(optional = false, cascade = CascadeType.DETACH)
     private OfferEntity offer;
 

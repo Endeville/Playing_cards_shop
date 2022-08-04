@@ -35,7 +35,7 @@ public class OrderController {
         }
 
         if(this.orderService.placeOrder(cartNotesDto)){
-            return "redirect:/orders/placedOrders";
+            return "redirect:/cart";
         }else{
             throw new InvalidOrderException("The cart is empty.", cartNotesDto);
         }
