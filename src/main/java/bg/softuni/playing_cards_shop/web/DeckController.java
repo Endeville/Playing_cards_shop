@@ -72,8 +72,7 @@ public class DeckController {
     @PostMapping("/add")
     public String addDeck(@Valid AddDeckDto addDeckDto,
                           BindingResult result,
-                          RedirectAttributes attributes,
-                          HttpServletRequest request) throws IOException {
+                          RedirectAttributes attributes) throws IOException {
         if(result.hasErrors()){
             attributes.addFlashAttribute("addDeck", addDeckDto);
             attributes.addFlashAttribute("org.springframework.validation.BindingResult.deck", result);

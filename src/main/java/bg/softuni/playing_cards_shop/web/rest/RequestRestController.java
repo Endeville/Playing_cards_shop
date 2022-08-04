@@ -22,7 +22,7 @@ public class RequestRestController {
     }
 
     @DeleteMapping(value="/delete", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<Void> updateOrderStatus(@Valid @RequestBody RequestDeleteDto requestStatusDto,
+    public ResponseEntity<Void> checkRequest(@Valid @RequestBody RequestDeleteDto requestStatusDto,
                                                                @AuthenticationPrincipal UserDetails principal){
         if (principal == null) {
             return ResponseEntity

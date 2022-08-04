@@ -7,6 +7,7 @@ public class CatalogOfferDto {
     private String title;
     private String description;
     private String picture;
+    private boolean isOwner;
 
     public Long getId() {
         return id;
@@ -41,6 +42,15 @@ public class CatalogOfferDto {
 
     public CatalogOfferDto setPicture(String picture) {
         this.picture = picture;
+        return this;
+    }
+
+    public boolean isOwner() {
+        return isOwner;
+    }
+
+    public CatalogOfferDto setOwner(boolean owner) {
+        isOwner = owner;
         return this;
     }
 }

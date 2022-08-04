@@ -100,8 +100,7 @@
                             </button>
                         </th:block>
 
-                        <span sec:authorize="hasRole('ADMIN')" id="admin-panel">
-                            <span sec:authorize="hasRole('ADMIN')">
+                        <span th:if="*{#authentication.getAuthorities().contains('ROLE_ADMIN') || isOwner}" id="admin-panel">
                                 <a type="button"
                                    class="btn btn-sm btn-outline-secondary cardBtn editBtn"
                                    th:href="@{/offers/edit/{offerId} (offerId=*{id})}">Edit</a>
@@ -110,7 +109,6 @@
                                    data-toggle="modal" data-target="#consentModal"
                                    th:id="|delete-*{id}|"
                                    href="javascript:void(0)">Delete</a>
-                            </span>
                         </span>
                     </div>
 

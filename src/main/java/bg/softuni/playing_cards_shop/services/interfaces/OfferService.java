@@ -38,4 +38,6 @@ public interface OfferService {
     void deleteOffer(Long id);
 
     int decreaseQuantity(OfferEntity offer, int quantity);
+
+    boolean isOwner(String name, Long id);
 }

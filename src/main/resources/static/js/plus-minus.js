@@ -21,7 +21,7 @@ async function minus(ev){
     const quantity=Number(quantitySpan.textContent);
 
     const options={
-        method: 'PUT',
+        method: 'PATCH',
         headers,
         body: JSON.stringify({
             offerId,
@@ -59,7 +59,7 @@ async function plus(ev){
     const quantity=Number(quantitySpan.textContent);
 
     const options={
-        method: 'PUT',
+        method: 'PATCH',
         headers,
         body: JSON.stringify({
             offerId,

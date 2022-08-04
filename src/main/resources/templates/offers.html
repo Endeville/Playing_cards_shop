@@ -138,7 +138,7 @@
                                         <a type="button"
                                            class="btn btn-sm btn-outline-secondary cardBtn detailsBtn stretched-link"
                                            th:href="@{/offers/{offerId} (offerId=*{id})}">View</a>
-                                        <span sec:authorize="hasRole('ADMIN')">
+                                        <span th:if="${offer.isOwner or #authorization.expression('hasRole(''ROLE_ADMIN'')')}">
                                             <a type="button"
                                                class="btn btn-sm btn-outline-secondary cardBtn editBtn"
                                                th:href="@{/offers/edit/{offerId} (offerId=*{id})}">Edit</a>

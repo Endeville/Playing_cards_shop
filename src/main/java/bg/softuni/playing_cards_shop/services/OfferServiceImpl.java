@@ -72,6 +72,7 @@ public class OfferServiceImpl implements OfferService {
                     var offer=this.modelMapper.map(o, CatalogOfferDto.class);
                     offer.setTitle(o.getDeck().getTitle());
                     offer.setPicture(this.pictureService.getPictureUrl(o.getPicture()));
+                    offer.setOwner(o.getSeller().equals(this.userService.getCurrentUser()));
 
                     return offer;
                 })
@@ -200,5 +201,13 @@ public class OfferServiceImpl implements OfferService {
             this.offerRepository.save(offer);
             return quantity;
         }
+    }
+
+    @Override
+    public boolean isOwner(String name, Long id) {
+        return this.offerRepository.findById(id)
+                .orElseThrow(()->new ObjectNotFoundException(OBJECT_NAME_OFFER))
+                .getSeller().getUsername()
+                .equals(name);
     }
 }

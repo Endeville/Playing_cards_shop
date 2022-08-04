@@ -129,4 +129,12 @@ public class OrderServiceImpl implements OrderService {
         this.orderRepository.save(order);
         return this.modelMapper.map(order, OrderInfoDto.class);
     }
+
+    @Override
+    public boolean isSeller(String name, Long id) {
+        return this.orderRepository.findById(id)
+                .orElseThrow(()->new ObjectNotFoundException(OBJECT_NAME_ORDER))
+                .getSeller().getUsername()
+                .equals(name);
+    }
 }

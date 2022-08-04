@@ -58,7 +58,7 @@ public class CartRestController {
                 .build();
     }
 
-    @PutMapping(value = "/update", consumes = "application/json", produces = "application/json")
+    @PatchMapping(value = "/update", consumes = "application/json", produces = "application/json")
     public ResponseEntity<CartProductPriceQuantityDto> updateCartProduct(@Valid @RequestBody CartProductUpdateDto cartProductUpdateDto,
                                                                          @AuthenticationPrincipal UserDetails principal){
         if (principal == null) {

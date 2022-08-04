@@ -22,4 +22,6 @@ public interface OrderService {
     OrderDetailsDto findOrderDetailsById(Long id);
 
     OrderInfoDto updateOrderStatus(Long id, OrderStatus status);
+
+    boolean isSeller(String name, Long id);
 }

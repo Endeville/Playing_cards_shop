@@ -32,6 +32,8 @@ public class OrderRestController {
                     .build();
         }
 
+        //todo: add only order seller to be able to do that
+
         var result=this.orderService.updateOrderStatus(orderIdDto.getId(), orderIdDto.getStatus());
 
         return ResponseEntity

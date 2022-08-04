@@ -85,7 +85,7 @@
                         <h4 class="box-title mt-5">Product description</h4>
                         <p th:text="*{description}"></p>
 
-                        <th:block sec:authorize="!hasRole('ROLE_ADMIN')">
+                        <th:block>
                             <button class="btn btn-dark btn-rounded mr-1 heart-btn"
                                     th:classappend="*{liked} ? 'liked' : ''"
                                     data-toggle="tooltip" title=""
@@ -94,7 +94,7 @@
                                 <i class="fa-solid fa-heart"></i>
                             </button>
                         </th:block>
-                        <span sec:authorize="hasRole('ADMIN')" id="admin-panel">
+                        <span sec:authorize="hasRole('ROLE_ADMIN')" id="admin-panel">
                             <a type="button"
                                class="btn btn-sm btn-outline-secondary cardBtn editBtn"
                                th:href="@{/decks/edit/{deckId} (deckId=*{id})}">Edit</a>
