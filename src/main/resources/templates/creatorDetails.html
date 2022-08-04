@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+<head>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+    <script th:src="@{/js/sidebar.js}" type="module"></script>
+
+    <link rel="stylesheet" th:href="@{/css/distributorDetails.css}"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap/bootstrapNav.css}"/>
+
+    <th:block th:replace="~{fragments/head.html}"></th:block>
+
+</head>
+<body>
+
+
+<header>
+    <nav id="nav" class="navbar navbar-expand">
+        <th:block th:replace="~{/fragments/navigation.html}"></th:block>
+    </nav>
+</header>
+
+
+<th:block th:replace="~{/fragments/sidebar.html}"></th:block>
+
+<main>
+
+    <div class="container container-contact bootstrap snippets bootdeys bootdey" th:object="${creator}">
+        <div class="row decor-default">
+            <div class="col-md-12">
+                <div class="contact">
+                    <div class="controls">
+                        <img th:src="@{*{picture}}" alt="cover" class="cover" style="height: 500px; width: 100%; display: block;">
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4 col-md-5 col-xs-12">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    Name:
+                                </div>
+                                <div class="col-xs-9" th:text="*{name}">
+
+                                </div>
+                                <div class="col-xs-3">
+                                    Decks:
+                                </div>
+                                <div class="col-xs-9">
+                                    <a th:href="@{/decks/all(creator=*{name})}">View All Decks Here</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-8 col-md-7 col-xs-12">
+                            <p class="contact-description" th:text="*{description}"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<th:block th:replace="~{/fragments/footer.html}"/>
+
+</body>
+</html>

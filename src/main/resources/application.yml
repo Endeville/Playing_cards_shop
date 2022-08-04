@@ -1,0 +1,61 @@
+#logging:
+#    level:
+#        blog: WARN
+#        org: WARN
+#        org.hibernate.SQL: DEBUG
+#spring:
+#    servlet:
+#        multipart:
+#            max-file-size: 1MB
+#            max-request-size: 5MB
+#    mvc:
+#        hiddenmethod:
+#            filter:
+#                enabled: true
+
+#    sql:
+#        init:
+#            mode: always
+
+#Cloudinary Properties
+#cloudinary:
+#api-key:
+#api-secret:
+#cloud-name:
+
+
+
+server:
+  port: 8000
+
+
+spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/victory?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC
+    username: root
+    password: m!5Q2@bYTq
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: create-drop 
+    defer-datasource-initialization: true
+  sql:
+    init:
+      mode: always
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+
+
+cloudinary:
+  api-key: 123169491616986
+  api-secret: PKOdQAluFqeXPcOBQ0g451Vx4CI
+  cloud-name: dykamqwpf

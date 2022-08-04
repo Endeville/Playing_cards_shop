@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+
+
+    <script th:src="@{/js/sidebar.js}" type="module"></script>
+    <script th:src="@{/js/orderStatus.js}" type="module"></script>
+
+    <link rel="stylesheet" th:href="@{/css/orderDetails.css}"/>
+
+
+    <th:block th:replace="~{/fragments/head.html}"/>
+
+</head>
+<body>
+
+<header>
+
+    <nav id="nav" class="navbar navbar-expand">
+        <th:block th:replace="~{/fragments/navigation.html}"/>
+    </nav>
+
+</header>
+
+<th:block th:replace="~{/fragments/sidebar.html}"/>
+
+<main th:object="${order}">
+    <div class="container-fluid">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <!-- Details -->
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="mb-3 d-flex justify-content-between">
+                                <div>
+                                    <span class="me-3" th:text="*{#dates.format(orderTime, 'dd-MMM-yyyy')}"></span>
+
+                                    <div th:id="*{id}">
+                                        <input type="radio" class="statusInput" value="PLACED" name="status" id="PLACED" th:field="*{status}">
+                                        <label for="PLACED" class="status">PLACED</label>
+
+                                        <input type="radio" class="statusInput" value="PACKAGED" name="status" id="PACKAGED"  th:field="*{status}">
+                                        <label for="PACKAGED" class="status">PACKAGED</label>
+
+                                        <input type="radio" class="statusInput" value="SENT" name="status" id="SENT" th:field="*{status}">
+                                        <label for="SENT" class="status">SENT</label>
+
+                                        <input type="radio" class="statusInput" value="DELIVERED" name="status" id="DELIVERED" th:field="*{status}">
+                                        <label for="DELIVERED"  class="status">DELIVERED</label>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <table class="table table-borderless">
+                                <tbody>
+                                <tr th:each="product : *{products}" th:object="${product}" class="product" th:id="*{offer.id}">
+                                    <td>
+                                        <div class="d-flex mb-2">
+                                            <div class="flex-lg-grow-1 ms-3">
+                                                <h6 class="small mb-0"><a href="#" class="text-reset" th:text="*{offer.deckTitle}"></a></h6>
+                                                <span class="small" th:text="|Seller: *{offer.sellerUsername}|"></span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td th:text="*{quantity}"></td>
+                                    <td class="text-end" th:text="|*{offer.price * quantity}€|"></td>
+                                </tr>
+                                <tr>
+                                </tbody>
+                                <tfoot>
+                                <tr class="fw-bold">
+                                    <td colspan="2">TOTAL</td>
+                                    <td class="text-end" th:text="|*{price}€|"></td>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-lg-4">
+                    <!-- Customer Notes -->
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h3 class="h6">Customer Notes</h3>
+                            <p th:text="*{notes}"></p>
+                        </div>
+                    </div>
+                    <div class="card mb-4">
+                        <!-- Shipping information -->
+                        <div class="card-body">
+                            <h3 class="h6">Address</h3>
+                            <address>
+                                <strong th:text="*{customerUsername}" class="customerUsername"></strong><br>
+                                <span th:text="|City, Country: *{address.city}, *{address.country}|"></span><br>
+                                <span th:text="|Street: *{address.street}|"></span><br>
+                                <abbr title="Phone" th:text="|Telephone: *{address.telephone}|"></abbr>
+                            </address>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<th:block th:replace="~{/fragments/footer.html}"/>
+
+<script>
+    document.querySelectorAll(".product").forEach(e => e.addEventListener("click", (ev) => {
+        ev.preventDefault();
+
+        window.location = "/offers/" + e.id;
+    }))
+
+    document.querySelectorAll(".customerUsername").forEach(e => e.addEventListener("click", (ev) => {
+        ev.preventDefault();
+
+        window.location = "/users/profile/" + e.textContent;
+    }))
+</script>
+
+</body>
+</html>

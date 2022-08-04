@@ -1,0 +1,8 @@
+<th:block>
+    <form th:action="@{${#httpServletRequest.requestURI}}" th:method="GET" class="search" id="searchForm">
+        <input class="button sort btn btn-primary" type="button" data-toggle="modal" data-target="#exampleModalCenter" id="openSortModalBtn" name="category">
+        <input id="searchField" class="input" type="text" name="search" placeholder="Search">
+        <input class="button btn" type="submit" name="submit" value="🔍"/>
+    </form>
+<!--    todo: search functionality-->
+</th:block>

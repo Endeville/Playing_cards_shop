@@ -1,0 +1,146 @@
+@import "utils/navigation.css";
+@import "utils/footer.css";
+@import "utils/defaults.css";
+
+body{
+    background: url(../images/page-header-bg.jpg) center center no-repeat #0b1319;
+}
+
+main{
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    height: 88vh;
+    padding: 15vh 20px 40px;
+    text-align: center;
+    z-index: -1;
+
+    font-weight: bolder;
+}
+
+
+.panel-login {
+    border-color: var(--light-gold);
+    border-width: 4px;
+    -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+    margin-top: 10vh;
+    margin-bottom: 100px;
+    background-color: var(--light-black);
+}
+.panel-login>.panel-heading {
+    color: #00415d;
+    border-color: var(--light-gold);
+    text-align:center;
+    background-color: var(--light-black);
+    border-width: 2px;
+}
+.panel-login>.panel-heading a{
+    text-decoration: none;
+    color: #666;
+    font-weight: bold;
+    font-size: 20px;
+    -webkit-transition: all 0.1s linear;
+    -moz-transition: all 0.1s linear;
+    transition: all 0.1s linear;
+}
+
+.panel-login>.panel-heading a:hover{
+    color: var(--dense-gold);
+}
+
+.panel-login>.panel-heading a.active{
+    color: var(--grey);
+    font-size: 18px;
+    border-bottom: var(--dense-gold) 2px solid;
+}
+.panel-login>.panel-heading hr{
+    margin-top: 10px;
+    margin-bottom: 0px;
+    clear: both;
+    border: 0;
+    height: 1px;
+}
+
+.panel-login input[type="text"],.panel-login input[type="email"],.panel-login input[type="password"] {
+    height: 45px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    -webkit-transition: all 0.1s linear;
+    -moz-transition: all 0.1s linear;
+    transition: all 0.1s linear;
+
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    background: none;
+    line-height: 26px;
+    padding: 15px;
+    margin: 0 0 20px;
+    color: #d0d0d0;
+}
+
+.panel-login input[type="text"]:hover,.panel-login input[type="email"]:hover,.panel-login input[type="password"]:hover{
+    color: #000;
+    background: #fff;
+    transition: background-color .4s;
+}
+.btn-login {
+    background-color: var(--dense-gold);
+    outline: none;
+    color: var(--grey);
+    font-size: 14px;
+    height: auto;
+    padding: 14px 0;
+    text-transform: uppercase;
+    font-weight: bolder;
+}
+.btn-login:hover{
+    color: #000;
+    background: #fff;
+    transition: background-color .4s;
+}
+.forgot-password {
+    text-decoration: underline;
+    color: #888;
+}
+.forgot-password:hover,
+.forgot-password:focus {
+    text-decoration: underline;
+    color: #666;
+}
+
+.btn-register {
+    background-color: var(--royal-red);
+    outline: none;
+    color: var(--black);
+    font-size: 14px;
+    height: auto;
+    padding: 14px 0;
+    text-transform: uppercase;
+    font-weight: bolder;
+}
+.btn-register:hover {
+    color: var(--grey);
+    background: var(--dense-gold);
+    transition: background-color .4s;
+}
+
+.form-group>label{
+    color: var(--grey);
+}
+
+@media (max-height: 750px) {
+    main{
+        padding-top: 5vh;
+    }
+}
+
+.form-control{
+    margin-bottom: 0 !important;
+}
+
+
+

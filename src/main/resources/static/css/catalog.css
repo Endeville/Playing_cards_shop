@@ -1,0 +1,147 @@
+@import "utils/navigation.css";
+@import "utils/footer.css";
+@import "utils/backToTopBtn.css";
+@import "utils/defaults.css";
+@import "utils/modal.css";
+
+body{
+    font-size: 15px;
+    font-weight: bolder;
+}
+
+/*sort modal*/
+
+
+
+/*search bar*/
+
+.search {
+    align-items: center;
+    background: var(--grey);
+    border-radius: 3em;
+    box-shadow: var(--dense-gold) 0px 7px 20px 0px;
+    cursor: pointer;
+    display: flex;
+    height: 50px;
+    left: 50%;
+    overflow: hidden;
+    padding: 0 0 0 0.5em;
+    position: absolute;
+    top: 50%;
+    transform: translate(-110%, -50%);
+    width: 450px;
+    transition: all 0.25s;
+    content: '&#x21d5';
+}
+.top .search {
+    max-width: 75%;
+    height: 5em;
+    top: 150%;
+    transform: translate(-50%, 0);
+    border-radius: 5em;
+    width: 50em;
+}
+
+.input {
+    border: 0;
+    flex: 1;
+    font-size: 1.5em;
+    height: 100%;
+    opacity: 1;
+    outline: 0;
+    padding: 0 0.75em;
+    transition: all 0.25s;
+    background-color: transparent;
+    position: relative;
+}
+.top .input {
+    opacity: 1;
+    z-index: -1;
+}
+
+header .button {
+    align-items: center;
+    background: var(--dark-blue);
+    border: 0;
+    border-radius: 2.75em;
+    display: flex;
+    height: 80%;
+    justify-content: center;
+    margin: 0 0.75em;
+    width: 10%;
+    transition: all 0.25s;
+    z-index: -1;
+    cursor: pointer;
+}
+header .button::before {
+    font-size: 1.5em;
+    transition: all 0.25s;
+}
+.top .button {
+    width: 4.75em;
+    height: 4.75em;
+    border-radius: 4.75em;
+}
+.top .button::before {
+    font-size: 2.5em;
+}
+
+
+/*catalog - cards*/
+
+main{
+    position: relative;
+    z-index: -2;
+}
+
+a.card-link-wrap{
+    color: inherit;
+}
+
+#catalogCont{
+    background-color: transparent !important;
+    margin-top: 15vh;
+    margin-bottom: 10vh;
+}
+
+
+.productCard:hover{
+    transform: scale(1.01);
+}
+
+.productCard{
+    background-color: var(--dense-gold);
+}
+
+.productCard *{
+    color: var(--grey);
+}
+
+.btn-group{
+    margin-top: 2vh;
+}
+
+.cardBtn{
+    border-color: var(--light-black);
+    border-width: 3px;
+    margin: 5px;
+    border-radius: 7px !important;
+}
+
+.detailsBtn:hover{
+    background-color: var(--dark-blue);
+    border-color: var(--dark-blue);
+    transition: 0.5s;
+}
+
+.editBtn:hover{
+    background-color: green;
+    border-color: green;
+    transition: 0.5s;
+}
+
+.deleteBtn:hover{
+    background-color: firebrick;
+    border-color: firebrick;
+    transition: 0.5s;
+}

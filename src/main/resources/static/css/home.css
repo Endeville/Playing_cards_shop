@@ -1,0 +1,56 @@
+@import "utils/navigation.css";
+@import "utils/footer.css";
+@import "utils/defaults.css";
+
+body {
+    background-color: var(--light-black) !important;
+    background-image: url('../images/background-pattern.jpg');
+    background-position: center center;
+    background-repeat: repeat;
+    align-items: center;
+}
+
+.card {
+    background-color: var(--light-gold);
+    border-radius: 20px;
+    box-shadow: 4px 4px 5px 2px var(--black);
+    z-index: 0;
+    margin-top: 20vh;
+}
+
+.store-link {
+    font-family: Lato, Arial, sans-serif;
+    color: var(--dark-blue);
+    background-color: var(--black);
+    margin: 2px;
+    padding: 3px;
+    border: 3px solid var(--dark-blue);
+    border-radius: 50px;
+    align-self: center;
+    width: 8vw !important;
+    display: inline-block;
+    min-width: 60px;
+}
+
+@media (max-height: 600px) {
+    .card{
+        margin-top: 5vh;
+    }
+}
+
+
+
+.store-link:hover {
+    cursor: pointer;
+    color: var(--black);
+    text-decoration: none;
+    background-color: var(--light-gold);
+    border-color: var(--black);
+}
+
+.card-body {
+    margin: auto;
+    width: 100%;
+    padding: 5px;
+    text-align: center;
+}

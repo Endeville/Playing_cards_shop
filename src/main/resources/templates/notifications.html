@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+
+
+    <script src="../static/js/backToTop.js" type="module"></script>
+    <script src="../static/js/sidebar.js" type="module"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../static/css/notifications.css"/>
+
+    <link rel="icon" href="../static/images/ace-of-spades.png">
+    <title>Victory</title>
+<!--    todo: notifications page-->
+</head>
+<body>
+
+<header>
+    <nav id="nav" class="navbar navbar-expand">
+
+        <a href="/"><img src="../static/images/emblem.png"></a>
+
+        <ul id="menu">
+            <li><a href="/catalog">Catalog</a></li>
+            <li><a href="/search">Offers</a></li>
+            <span id="guest-nav">
+                    <li class="guest"><a href="/login">Login</a></li>
+                    <li class="guest"><a href="/register">Register</a></li>
+                </span>
+            <span id="user-nav">
+                    <li class="user"><a href="/create">Wishlist</a></li>
+                    <li id="logoutBtn" class="user"><a href="javascript:void(0)">Logout</a></li>
+            </span>
+        </ul>
+
+        <a href="#" id="menu-toggle" class="navbar-brand">&#9776</a>
+    </nav>
+</header>
+
+<div id="wrapper">
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li><a href="#">Catalog</a></li>
+            <li><a href="#">Offers</a></li>
+            <li><a href="#">Login</a></li>
+            <li><a href="#">Register</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Wishlist</a></li>
+            <li><a href="#">Logout</a></li>
+        </ul>
+    </div>
+</div>
+
+<main>
+    <!-- Up to Top Button-->
+    <button type="button" class="btn btn-floating btn-lg" id="btn-back-to-top">&#x2191</button>
+
+    <div class="container mt-5">
+        <div class="d-flex justify-content-center row">
+            <div class="col-md-10">
+                <div class="rounded">
+                    <div class="table-responsive table-borderless">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Content</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-body">
+                            <tr class="cell-1">
+                                <td class="content"><a>Got a new Message from gosho popov</a></td>
+                                <td class="date">27.09.2022 17:30</td>
+                            </tr>
+                            <tr class="cell-1">
+                                <td class="content"><a>Got a new Message from gosho popov</a></td>
+                                <td class="date">27.09.2022 17:30</td>
+                            </tr>
+                            <tr class="cell-1">
+                                <td class="content"><a>Got a new Message from gosho popov</a></td>
+                                <td class="date">27.09.2022 17:30</td>
+                            </tr>
+                            <tr class="cell-1">
+                                <td class="content"><a>Got a new Message from gosho popov</a></td>
+                                <td class="date">27.09.2022 17:30</td>
+                            </tr>
+                            <tr class="cell-1">
+                                <td class="content"><a>Got a new Message from gosho popov</a></td>
+                                <td class="date">27.09.2022 17:30</td>
+                            </tr>
+                            <tr class="cell-1">
+                                <td class="content"><a>Got a new Message from gosho popov</a></td>
+                                <td class="date">27.09.2022 17:30</td>
+                            </tr>
+                            <tr class="cell-1">
+                                <td class="content"><a>Got a new Message from gosho popov</a></td>
+                                <td class="date">27.09.2022 17:30</td>
+                            </tr>
+                            <tr class="cell-1">
+                                <td class="content"><a>Got a new Message from gosho popov</a></td>
+                                <td class="date">27.09.2022 17:30</td>
+                            </tr>
+                            <tr class="cell-1">
+                                <td class="content"><a>Got a new Message from gosho popov</a></td>
+                                <td class="date">27.09.2022 17:30</td>
+                            </tr>
+                            <tr class="cell-1">
+                                <td class="content"><a>Got a new Message from gosho popov</a></td>
+                                <td class="date">27.09.2022 17:30</td>
+                            </tr>
+                            <tr class="cell-1">
+                                <td class="content"><a>Got a new Message from gosho popov</a></td>
+                                <td class="date">27.09.2022 17:30</td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer>&copy Victory 2022. All rights reserved.</footer>
+
+<script>
+</script>
+
+</body>
+</html>

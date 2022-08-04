@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+<head>
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+
+    <script src="https://kit.fontawesome.com/b18db754f0.js" crossorigin="anonymous"></script>
+
+    <script th:src="@{/js/sidebar.js}" type="module"></script>
+    <script th:src="@{/js/deleteDeck.js}" type="module"></script>
+    <link rel="stylesheet" th:href="@{/css/productDetails.css}"/>
+
+    <th:block th:replace="~{/fragments/head.html}"></th:block>
+</head>
+<body>
+
+<header>
+    <nav id="nav" class="navbar navbar-expand">
+        <th:block th:replace="~{/fragments/navigation.html}"></th:block>
+    </nav>
+</header>
+
+<article class="modal fade" id="consentModal" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header no-border">
+                <h5 class="modal-title" id="consentModalTitle">
+                    Are you sure you want to continue?
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeConsentModalBtn">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body no-border">
+
+                <div class="modal-footer no-border">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="returnBtn">
+                        Return
+                    </button>
+                    <button class="btn btn-primary" id="continueBtn">
+                        Yes, continue
+                    </button>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</article>
+
+<th:block th:replace="~{/fragments/sidebar.html}"></th:block>
+
+<main>
+
+    <div class="container">
+        <div class="card" th:object="${deck}">
+            <div class="card-body">
+                <h3 class="card-title" th:text="*{title}"></h3>
+                <div class="row">
+                    <div class="col-lg-5 col-md-5 col-sm-6 image-cont">
+                        <div class="white-box text-center">
+                            <img th:src="*{picture}" class="img-responsive"
+                                 style="height: 225px; width: 100%; display: block;">
+                        </div>
+                    </div>
+                    <div class="col-lg-7 col-md-7 col-sm-6 description-details">
+                        <h4 class="box-title mt-5">Product description</h4>
+                        <p th:text="*{description}"></p>
+
+                        <th:block sec:authorize="!hasRole('ROLE_ADMIN')">
+                            <button class="btn btn-dark btn-rounded mr-1 heart-btn"
+                                    th:classappend="*{liked} ? 'liked' : ''"
+                                    data-toggle="tooltip" title=""
+                                    data-original-title="Add to cart">
+
+                                <i class="fa-solid fa-heart"></i>
+                            </button>
+                        </th:block>
+                        <span sec:authorize="hasRole('ADMIN')" id="admin-panel">
+                            <a type="button"
+                               class="btn btn-sm btn-outline-secondary cardBtn editBtn"
+                               th:href="@{/decks/{deckId}/edit (deckId=*{id})}">Edit</a>
+                            <a type="button"
+                               class="btn btn-sm btn-outline-secondary cardBtn deleteBtn"
+                               data-toggle="modal" data-target="#consentModal"
+                               th:id="|delete-*{title}|"
+                               href="javascript:void(0)">Delete</a>
+                        </span>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <h3 class="box-title mt-5">General Info</h3>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-product">
+                                <tbody>
+                                <tr>
+                                    <td>Title</td>
+                                    <td th:text="*{title}"></td>
+                                </tr>
+                                <tr>
+                                    <td>Distributor</td>
+                                    <td><a th:href="@{/distributors/{brand} (brand=*{distributorBrand})}"
+                                           th:text="*{distributorBrand}"></a></td>
+                                </tr>
+                                <tr>
+                                    <td>Creator</td>
+                                    <td><a th:href="@{/creators/{name} (name=*{creatorName})}"
+                                           th:text="*{creatorName}"></a></td>
+                                </tr>
+                                <tr>
+                                    <td>Recommended price</td>
+                                    <td th:text="*{recommendedPrice}<0 ? 'Missing information' : *{recommendedPrice} + '€'">
+                                        Missing information
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Country</td>
+                                    <td th:text="*{countryOfOrigin}"></td>
+                                </tr>
+                                <tr>
+                                    <td>Categories</td>
+                                    <td th:text="*{#strings.listJoin(categories, ', ')}"></td>
+                                </tr>
+                                <tr>
+                                    <td>Offers</td>
+                                    <td><a th:href="@{/offers/all (search=*{title})}">See all offers here</a></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<script th:inline="javascript">
+
+    const likeBtn = document.querySelector(".heart-btn");
+    const csrfHeaderName = document.head.querySelector('[name=_csrf_header]').content;
+    const csrfHeaderValue = document.head.querySelector('[name=_csrf]').content;
+
+    likeBtn.addEventListener("click", like);
+
+    async function like(ev) {
+        if (likeBtn.classList.contains("liked")) {
+            await dislike(ev)
+            return;
+        }
+        ev.preventDefault();
+
+        const options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accepts': 'application/json',
+                [csrfHeaderName]: csrfHeaderValue
+            },
+            body: JSON.stringify({
+                title: [[${deck.title}]]
+            })
+        };
+
+        await fetch("http://localhost:8000/api/wishlist/like", options);
+
+        likeBtn.classList.add("liked");
+    }
+
+    async function dislike(ev) {
+        ev.preventDefault();
+
+        const options = {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accepts': 'application/json',
+                [csrfHeaderName]: csrfHeaderValue
+            },
+            body: JSON.stringify({
+                title: [[${deck.title}]]
+            })
+        };
+
+        await fetch("http://localhost:8000/api/wishlist/dislike", options);
+
+        likeBtn.classList.remove("liked");
+    }
+</script>
+
+
+<th:block th:replace="~{/fragments/footer.html}"/>
+
+</body>
+</html>

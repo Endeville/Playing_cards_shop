@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+
+
+    <script th:src="@{/js/sidebar.js}" type="module"></script>
+    <script th:src="@{/js/plus-minus.js}" type="module"></script>
+
+    <link rel="stylesheet" th:href="@{/css/cart.css}"/>
+
+
+    <th:block th:replace="~{/fragments/head.html}"/>
+
+</head>
+<body>
+
+<header>
+
+    <nav id="nav" class="navbar navbar-expand">
+        <th:block th:replace="~{/fragments/navigation.html}"/>
+    </nav>
+
+</header>
+
+<article class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header no-border">
+                <h5 class="modal-title" id="exampleModalLongTitle">
+                    Are you sure you want to continue?
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body no-border">
+                <div class="modal-footer no-border">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeModalBtn">
+                        Return
+                    </button>
+                    <button type="submit" class="btn btn-primary" id="saveSortBtn" form="cart-notes">
+                        Yes, continue
+                    </button>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</article>
+
+<th:block th:replace="~{/fragments/sidebar.html}"/>
+
+<main>
+    <div class="container-fluid">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <!-- Details -->
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="mb-3 d-flex justify-content-between">
+                                <div>
+                                    <span class="badge rounded-pill bg-info">SHIPPING</span>
+                                </div>
+                            </div>
+                            <table class="table table-borderless">
+                                <tbody>
+                                <tr th:each="product : ${products}" th:object="${product}">
+                                    <td class="product" th:id="*{offer.id}">
+                                        <div class="d-flex mb-2">
+                                            <div class="flex-lg-grow-1 ms-3 product-description">
+                                                <h6 class="small mb-0"><a href="#" class="text-reset"
+                                                                          th:text="*{offer.deckTitle}"></a></h6>
+                                                <span class="small" th:text="|Seller : *{offer.sellerUsername}|"></span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="quantity-cont">
+                                        <button class="minus">-</button>
+                                        <span class="quantity" th:text="*{quantity}"></span>
+                                        <button class="plus">+</button>
+                                    </td>
+                                    <td class="text-end product-price" th:text="|*{offer.price * quantity}€|"></td>
+                                </tr>
+                                </tbody>
+                                <tfoot>
+                                <tr class="fw-bold">
+                                    <td colspan="2">TOTAL</td>
+                                    <td class="text-end" th:text="|${totalPrice}€|" id="total-price"></td>
+                                </tr>
+                                <tr id="purchase-row">
+                                    <td colspan="2"></td>
+                                    <td class="text-end">
+
+                                        <input type="button" id="purchase-btn" value="Order"
+                                               data-toggle="modal" data-target="#exampleModalCenter">
+                                    </td>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+                <form id="cart-notes" th:action="@{/orders/add}" th:method="POST" th:object="${cartNotes}">
+                    <div class="col-lg-4">
+                        <!-- Customer Notes -->
+                        <div class="card mb-4 side">
+                            <div class="card-body">
+                                <label class="h6" for="notes">Notes</label>
+                                <input type="text" id="notes" name="notes" th:field="*{notes}">
+                            </div>
+                        </div>
+                        <div class="card mb-4 side" id="address-holder">
+                            <!-- Shipping information -->
+                            <div class="card-body">
+                                <div>
+                                    <div class="error" th:text="${#strings.listJoin(#fields.errors('addressId'), '; ')}">
+                                    </div>
+                                </div>
+                                <address>
+
+                                    <div>Choose an address:</div>
+
+
+                                    <th:block th:each="address: ${addresses}" th:object="${address}">
+
+                                        <input type="radio" th:id="|address-*{id}|" th:value="*{id}" form="cart-notes" name="addressId">
+                                        <label th:for="|address-*{id}|" class="address-option">
+                                            <p th:text="|City, Country: *{city}, *{country}|"></p>
+                                            <p th:text="|Street: *{street}|"></p>
+                                            <p th:text="|Telephone: *{telephone}|"></p>
+                                        </label>
+
+                                    </th:block>
+
+                                    <a class="text-center w-100 d-block mt-4 font-weight-bold" id="add-address"
+                                       th:href="@{/addresses/add}">Add Address</a>
+                                </address>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<th:block th:replace="~{/fragments/footer.html}"/>
+
+
+<script>
+    document.querySelectorAll(".product").forEach(e => e.addEventListener("click", (ev) => {
+        ev.preventDefault();
+
+        const offerId = ev.currentTarget.id;
+
+        window.location = `/offers/${offerId}`;
+    }))
+</script>
+
+</body>
+</html>

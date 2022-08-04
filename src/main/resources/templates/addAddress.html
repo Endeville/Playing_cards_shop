@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+<head>
+
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+
+
+    <link rel="stylesheet" th:href="@{/css/addForm.css}"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap/bootstrapNav.css}"/>
+
+    <script th:src="@{/js/sidebar.js}" type="module"></script>
+
+
+    <th:block th:replace="~{/fragments/head.html}"/>
+</head>
+<body>
+
+<header>
+
+    <nav id="nav" class="navbar navbar-expand">
+        <th:block th:replace="~{/fragments/navigation.html}"/>
+    </nav>
+
+</header>
+
+<th:block th:replace="~{/fragments/sidebar.html}"/>
+
+<main>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3" id="form-cont">
+                <div class="panel panel-offer">
+                    <div class="panel-heading">
+                        <div class="row">
+
+                            <div class="col">
+                                <label class="active" id="form-link">Add Address</label>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-12">
+
+
+                                <form id="address-form" th:action="@{/addresses/add}" th:method="POST"
+                                      role="form" style="display: block;" th:object="${address}">
+
+                                    <div class="form-group">
+                                        <input type="text" name="country" id="country" tabindex="2"
+                                               class="form-control" placeholder="Country"
+                                                th:field="*{country}" th:errorclass="invalid-field">
+                                        <div class="error"  th:text="${#strings.listJoin(#fields.errors('country'), '; ')}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" name="city" id="city" tabindex="2"
+                                               class="form-control" placeholder="City"
+                                                th:field="*{city}" th:errorclass="invalid-field">
+                                        <div class="error" th:text="${#strings.listJoin(#fields.errors('city'), '; ')}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" name="street" id="street" tabindex="2"
+                                               class="form-control" placeholder="Street"
+                                                th:field="*{street}" th:errorclass="invalid-field">
+                                        <div class="error" th:text="${#strings.listJoin(#fields.errors('street'), '; ')}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" name="telephone" id="telephone" tabindex="2"
+                                               class="form-control" placeholder="Telephone"
+                                                th:field="*{telephone}" th:errorclass="invalid-field">
+                                        <div class="error" th:text="${#strings.listJoin(#fields.errors('telephone'), '; ')}">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-sm-6 col-sm-offset-3" id="submit-cont">
+                                            <input type="submit" name="add-submit" id="add-submit" tabindex="4"
+                                                   class="form-control btn btn-add" value="Add address">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<th:block th:replace="~{/fragments/footer.html}"/>
+
+</body>
+</html>

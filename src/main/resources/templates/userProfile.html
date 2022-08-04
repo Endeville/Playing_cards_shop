@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+<head>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+
+    <script th:src="@{/js/sidebar.js}" type="module"></script>
+
+    <link rel="stylesheet" th:href="@{/css/userProfile.css}"/>
+
+    <th:block th:replace="~{/fragments/head.html}"/>
+
+</head>
+<body>
+<header>
+
+    <nav id="nav" class="navbar navbar-expand">
+        <th:block th:replace="~{/fragments/navigation.html}"/>
+    </nav>
+
+</header>
+
+<th:block th:replace="~{/fragments/sidebar.html}"/>
+
+<main>
+    <div class="page-content page-container" id="page-content" th:object="${user}">
+        <div class="padding">
+            <div class="row container d-flex justify-content-center">
+                <div class="col-xl-6 col-md-12">
+                    <div class="card user-card-full">
+                        <div class="row m-l-0 m-r-0">
+                            <div class="col-sm-4 bg-c-lite-green user-profile">
+                                <div class="card-block text-center text-white">
+                                    <div class="m-b-25">
+                                    </div>
+                                    <p class="m-b-10 f-w-600" th:text="*{role}">Client</p>
+                                    <h6 class="f-w-600 username" th:text="*{username}"></h6>
+                                    <i class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="card-block">
+                                    <h6 class="m-b-20 p-b-5 b-b-default f-w-600 header">Information</h6>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <p class="m-b-10 f-w-600 header ">Email</p>
+                                            <h6 class="text-muted f-w-400" th:text="*{email}">rntng@gmail.com</h6>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <p class="m-b-10 f-w-600 header header">Rating</p>
+                                            <h6 class="text-muted f-w-400" th:text="*{rating}">98979989898</h6>
+                                        </div>
+                                        <div class="col-sm-6 addressBar">
+                                            <p class="m-b-10 f-w-600 header header">Address/es</p>
+                                            <div th:each="address : *{addresses}" class="address-holder">
+                                                <h6 class="text-muted f-w-400"
+                                                    th:text="${address}">
+                                                </h6>
+                                                <button class="delete-address" th:id="|delete-${address.id}|">
+                                                    <img th:src="@{/images/bin.png}" alt="Delete" style="height: 20px; width: 20px;">
+                                                </button>
+                                            </div>
+
+                                            <a th:href="@{/addresses/add}" class="add-address">Add Address</a>
+                                        </div>
+                                    </div>
+                                    <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600 header">Publications</h6>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <p class="m-b-10 f-w-600 header">Reviews</p>
+                                            <h6 class="text-muted f-w-400"><a href="/">Sam Disuja</a></h6>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <p class="m-b-10 f-w-600 header">Most Viewed</p>
+                                            <h6 class="text-muted f-w-400">Dinoter husainm</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<th:block th:replace="~{/fragments/footer.html}"/>
+
+
+<script th:inline="javascript">
+
+    const deleteAddressBtns=document.querySelectorAll(".delete-address");
+    const csrfHeaderName = document.head.querySelector('[name=_csrf_header]').content;
+    const csrfHeaderValue = document.head.querySelector('[name=_csrf]').content;
+
+    for (const deleteAddressBtn of deleteAddressBtns) {
+        deleteAddressBtn.addEventListener("click", (ev)=>{
+            ev.preventDefault();
+            const id=Number(ev.currentTarget.id.substring(7));
+            deleteAddress(ev, id);
+        })
+    }
+
+    async function deleteAddress(ev, id){
+        const options={
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accepts': 'application/json',
+                [csrfHeaderName]: csrfHeaderValue
+            },
+            body: JSON.stringify({
+                id
+            })
+        };
+
+
+        ev.currentTarget.parentElement.style.display='none';
+        await fetch("http://localhost:8000/api/addresses/delete", options);
+    }
+</script>
+
+</body>
+</html>

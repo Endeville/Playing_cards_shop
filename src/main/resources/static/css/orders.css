@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css?family=Assistant');
+@import "utils/navigation.css";
+@import "utils/footer.css";
+@import "utils/backToTopBtn.css";
+@import "utils/defaults.css";
+
+.container{
+    max-width: 90vw !important;
+    width: 90vw !important;
+    margin-bottom: 100px;
+}
+
+.cell-1 {
+    border-collapse: separate;
+    border-spacing: 0 4em;
+    background: var(--grey);
+    border-bottom: 5px solid transparent;
+    background-clip: padding-box;
+}
+
+thead {
+    background: var(--royal-red);
+    color: var(--light-gold);
+}
+
+tbody>tr:hover{
+    cursor: pointer;
+    background-color: rgb(227, 224, 224);
+}
+tr{
+    border: none;
+}
+
+.contents:hover, .seller:hover{
+    color: var(--dark-blue);
+}

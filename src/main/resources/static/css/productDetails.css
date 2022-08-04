@@ -1,0 +1,103 @@
+@import "utils/navigation.css";
+@import "utils/footer.css";
+@import "utils/defaults.css";
+@import "utils/modal.css";
+
+body{
+    background-color: var(--light-black) !important;
+    background-image: url('../images/background-pattern.jpg');
+    background-position: center center;
+    background-repeat: repeat;
+
+    font-size: 1rem;
+    font-weight: bolder;
+}
+
+.container{
+    position: sticky;
+    z-index: -2;
+    margin-bottom: 100px;
+}
+
+.card {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: transparent;
+    background-clip: border-box;
+    border: 4px solid var(--royal-red);
+    border-radius: 0;
+    z-index: -2200;
+    color: var(--grey);
+}
+.card .card-subtitle {
+    font-weight: 300;
+    margin-bottom: 10px;
+    color: #8898aa;
+}
+
+
+.table{
+    background-color: var(--light-black);
+    border: 3px solid var(--dense-gold);
+}
+
+.table-product.table-striped tbody tr:nth-of-type(even) {
+    background-color: var(--grey) !important
+}
+.table-product td{
+    border-top: 0px solid #dee2e6 !important;
+    color: #728299!important;
+}
+
+.table a:hover{
+    color: var(--dark-blue);
+}
+
+@media (max-width: 100px) {
+    .image-cont{
+        display: block;
+    }
+}
+
+.heart-btn{
+    font-size: 16px;
+}
+
+.liked{
+    background-color: var(--royal-red);
+}
+
+.carted{
+    background-color: green;
+}
+
+.buy-btn{
+    background-color: var(--dark-blue);
+    border-color: var(--dark-blue);
+    color: var(--grey);
+}
+
+#purchase-btn{
+    color: inherit !important;
+}
+
+
+
+.editBtn:hover{
+    background-color: green;
+    border-color: green;
+    transition: 0.5s;
+}
+
+.deleteBtn:hover{
+    background-color: firebrick;
+    border-color: firebrick;
+    transition: 0.5s;
+}

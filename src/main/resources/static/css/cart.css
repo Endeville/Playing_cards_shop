@@ -1,0 +1,207 @@
+@import "utils/navigation.css";
+@import "utils/footer.css";
+@import "utils/defaults.css";
+@import "utils/modal.css";
+
+body{
+    background: url(../images/page-header-bg.jpg) center center repeat #0b1319;
+}
+
+.container{
+    margin-top: 10vh;
+    margin-bottom: 100px;
+}
+
+.card {
+    box-shadow: 0 20px 27px 0 rgb(0 0 0 / 5%);
+    background-color: var(--grey);
+}
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: var(--grey);
+    background-clip: border-box;
+    border: 0 solid rgba(0,0,0,.125);
+}
+
+.col-lg-4{
+    max-width: 100%;
+}
+
+.side{
+    border: 2px solid var(--light-gold);
+    background-color: var(--light-black);
+    color: var(--grey);
+}
+
+#address-holder{
+    max-height: 385px;
+    overflow-y: scroll;
+}
+
+input[type="text"],input[type="email"], input[type="password"] {
+    height: 45px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    -webkit-transition: all 0.1s linear;
+    -moz-transition: all 0.1s linear;
+    transition: all 0.1s linear;
+
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    background: none;
+    line-height: 26px;
+    padding: 15px;
+    margin: 0 0 10px;
+    color: var(--grey);
+}
+
+address>div{
+    margin-bottom: 20px;
+    font-weight: bolder;
+    font-size: 20px
+}
+
+input[type="text"]:hover, input[type="email"]:hover, input[type="password"]:hover{
+    background: #fff;
+    transition: background-color .4s;
+    color: var(--light-black);
+}
+
+input[type="radio"]{
+    display: none;
+}
+
+address>label{
+    padding: 20px 20px 10px;
+}
+
+.address-option{
+    display: block;
+    line-height: 10px;
+    border: 3px solid transparent;
+}
+
+.address-option:hover{
+    border: 3px solid var(--dense-gold);
+    border-radius: 15px;
+}
+
+input[type="radio"]:checked+label{
+    border: 3px solid var(--royal-red);
+    border-radius: 15px;
+}
+
+#add-address{
+    padding: 10px 10px 12px;
+    border: 3px solid transparent;
+}
+
+#add-address:hover{
+    border: 3px solid var(--royal-red);
+    color: var(--royal-red);
+    cursor: pointer;
+}
+
+tbody{
+    font-size: 20px !important;
+}
+
+.product:hover{
+    cursor: pointer;
+    background-color: rgb(227, 224, 224);
+}
+
+.product-image{
+    margin-right: 10px;
+}
+
+.text-reset {
+    --bs-text-opacity: 1;
+    color: inherit!important;
+}
+
+.quantity-cont{
+    width: 150px;
+    text-align: center;
+}
+
+.quantity-cont>button{
+    background: none;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+
+    border: 2px solid transparent;
+    padding-bottom: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 30px;
+}
+
+.quantity-cont>button:hover{
+    border-color: var(--dense-gold);
+}
+
+.minus{
+    margin-right: 5px;
+}
+
+.plus{
+    margin-left: 5px;
+}
+
+#purchase-btn{
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+
+    background: var(--royal-red) none;
+    color: var(--grey);
+
+    padding: 8px;
+    border: 5px solid transparent;
+    border-radius: 10px;
+    width: 85px;
+}
+
+#purchase-btn:hover{
+    background-color: transparent;
+    border-color: var(--royal-red);
+    color: var(--royal-red);
+}
+
+#purchase-row{
+    margin-top: 100px;
+}
+
+
+@media (max-width: 450px) {
+
+    .quantity-cont{
+        width: 5px;
+    }
+    .minus{
+        display: block;
+        margin: 0;
+    }
+    .plus{
+        display: block;
+        margin: 0;
+    }
+
+    .product-image{
+        display: none;
+    }
+    .product-description{
+        display: inline;
+        overflow: hidden;
+    }
+}
+

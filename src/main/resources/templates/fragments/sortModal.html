@@ -1,0 +1,45 @@
+<th:block>
+    <article class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <form th:action="" th:method="get" id="sort_form">
+
+                        <!--                    Change ids(and label fors) and sort options-->
+
+                        <input type="radio" name="sort_alphabetically" value="Sort Alphabetically" id="1">
+                        <label for="1">Sort Alphabetically</label>
+
+                        <input type="radio" name="sort_alphabetically" value="Sort by Price(Low to High)" id="2">
+                        <label for="2">Sort By Price(Low to High)</label>
+
+                        <input type="radio" name="sort_alphabetically" value="Sort by Price(High to Low)" id="3">
+                        <label for="3">Sort by Price(High to Low)</label>
+
+                        <input type="radio" name="sort_alphabetically" value="Sort by " id="4">
+                        <label for="4">Sort Alphabetically</label>
+
+                    </form>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeModalBtn">Close
+                        </button>
+                        <button type="submit" class="btn btn-primary" id="saveSortBtn" form="sort_form">Save changes
+                        </button>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </article>
+</th:block>
