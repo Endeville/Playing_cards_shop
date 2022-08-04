@@ -15,7 +15,7 @@ public interface DeckService {
 
     String OBJECT_NAME_DECK="deck";
 
-    List<CatalogDeckDto> getApprovedDecksByKeyword(String search, String sort, String distributor, String creator);
+    List<CatalogDeckDto> getDecksByKeyword(String search, String sort, String distributor, String creator);
 
     DeckDetailsDto findDeckDetailsById(long id);
 

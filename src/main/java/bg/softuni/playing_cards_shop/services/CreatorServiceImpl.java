@@ -37,8 +37,6 @@ public class CreatorServiceImpl implements CreatorService {
             creator.setPicture(this.pictureService.getDefaultProfilePicture());
         }
 
-
-        //todo: add the creator for mod approval
         this.creatorRepository.save(creator);
     }
 

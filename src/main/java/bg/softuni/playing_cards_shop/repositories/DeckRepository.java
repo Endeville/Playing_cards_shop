@@ -13,15 +13,12 @@ import java.util.Set;
 
 @Repository
 public interface DeckRepository extends JpaRepository<DeckEntity, Long> {
-    List<DeckEntity> getDeckEntitiesByApproved(boolean approved);
 
     @Query("SELECT d from DeckEntity d " +
-            "where d.approved=:approved " +
-            "and d.title like %:search% " +
+            "where d.title like %:search% " +
             "and d.creator.name like %:creator% " +
             "and d.distributor.brand like %:distributor%")
-    List<DeckEntity> getDeckEntitiesByApprovedAndTitleDistributorOrCreatorContaining(@Param(value = "approved") boolean approved,
-                                                                                       @Param(value="search") String search,
+    List<DeckEntity> getDeckEntitiesByTitleDistributorOrCreatorContaining(@Param(value="search") String search,
                                                                                        Sort sort,
                                                                                        @Param(value = "distributor") String distributor,
                                                                                        @Param(value = "creator") String creator);

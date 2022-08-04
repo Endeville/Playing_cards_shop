@@ -55,8 +55,6 @@ public class DistributorServiceImpl implements DistributorService {
             distributor.setPicture(this.pictureService.getDefaultDistributorProfile());
         }
 
-
-        //todo: add the distributor for mod approval
         this.distributorRepository.save(distributor);
     }
 

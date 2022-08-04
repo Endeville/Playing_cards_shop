@@ -14,9 +14,6 @@ public class DeckEntity extends BaseEntity{
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    @Column(nullable=false, columnDefinition = "BOOLEAN DEFAULT FALSE")
-    private boolean approved;
-
     @Column
     private Integer recommendedPrice;
 
@@ -60,15 +57,6 @@ public class DeckEntity extends BaseEntity{
         return this;
     }
 
-    public boolean getApproved() {
-        return approved;
-    }
-
-    public DeckEntity setApproved(boolean accepted) {
-        this.approved = accepted;
-        return this;
-    }
-
     public PictureEntity getPicture() {
         return picture;
     }
@@ -85,10 +73,6 @@ public class DeckEntity extends BaseEntity{
     public DeckEntity setRecommendedPrice(Integer recommendedPrice) {
         this.recommendedPrice = recommendedPrice;
         return this;
-    }
-
-    public boolean isApproved() {
-        return approved;
     }
 
     public String getCountryOfOrigin() {
@@ -141,11 +125,11 @@ public class DeckEntity extends BaseEntity{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         DeckEntity that = (DeckEntity) o;
-        return approved == that.approved && Objects.equals(title, that.title) && Objects.equals(description, that.description) && Objects.equals(recommendedPrice, that.recommendedPrice) && Objects.equals(picture, that.picture) && Objects.equals(countryOfOrigin, that.countryOfOrigin) && Objects.equals(distributor, that.distributor) && Objects.equals(creator, that.creator) && Objects.equals(categories, that.categories) && Objects.equals(offers, that.offers);
+        return Objects.equals(title, that.title) && Objects.equals(description, that.description) && Objects.equals(recommendedPrice, that.recommendedPrice) && Objects.equals(picture, that.picture) && Objects.equals(countryOfOrigin, that.countryOfOrigin) && Objects.equals(distributor, that.distributor) && Objects.equals(creator, that.creator) && Objects.equals(categories, that.categories) && Objects.equals(offers, that.offers);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(title, description, approved, recommendedPrice, picture, countryOfOrigin, distributor, creator, categories, offers);
+        return Objects.hash(title, description, recommendedPrice, picture, countryOfOrigin, distributor, creator, categories, offers);
     }
 }

@@ -17,6 +17,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -126,6 +127,28 @@ public class UserServiceImpl implements UserService {
         this.userRepository.save(user);
 
         return this.modelMapper.map(user, UserPromotedDto.class);
+    }
+
+    @Transactional
+    @Override
+    public void updateRatings() {
+        var users=this.userRepository.findAll();
+        for (UserEntity user : users) {
+            var ratingSum=user.getOffers().stream()
+                    .flatMapToInt(o->o.getReviews().stream().mapToInt(r-> (int) r.getRating()))
+                    .reduce(Integer::sum)
+                    .orElse(0);
+            var ratingSize=0;
+            for (OfferEntity offer : user.getOffers()) {
+                ratingSize+=offer.getReviews().size();
+            }
+            if(ratingSize==0){
+                user.setRating((short) 0);
+            }else {
+                user.setRating((short) (ratingSum / ratingSize));
+            }
+        }
+        this.userRepository.saveAll(users);
     }
 
 

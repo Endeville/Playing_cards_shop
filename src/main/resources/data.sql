@@ -50,10 +50,10 @@ As a result, our team has consulted and created magic for the majority of magic 
         'https://ellusionist.com/');
 
 
-INSERT INTO decks (title, country_of_origin, description, approved,recommended_price, creator_id, distributor_id, picture_id)
-VALUES ('High Victorian Green', 'USA', 'somethign idk', true, 5, 1, 1, 1),
-       ('Monarchs Navy Blue', 'USA', 'monarchs ofc', true, 10, 2, 1, 2),
-       ('Knights', 'USA', 'The deck itself is superb with a clever marking system. The art work is stunning, the feel is great!', true, 12,3, 2, 7);
+INSERT INTO decks (title, country_of_origin, description,recommended_price, creator_id, distributor_id, picture_id)
+VALUES ('High Victorian Green', 'USA', 'somethign idk', 5, 1, 1, 1),
+       ('Monarchs Navy Blue', 'USA', 'monarchs ofc', 10, 2, 1, 2),
+       ('Knights', 'USA', 'The deck itself is superb with a clever marking system. The art work is stunning, the feel is great!', 12,3, 2, 7);
 
 INSERT INTO decks_categories(decks_id, categories_id)
 VALUES (1, 2),

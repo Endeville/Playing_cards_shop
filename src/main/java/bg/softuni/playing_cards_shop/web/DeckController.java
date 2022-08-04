@@ -46,7 +46,7 @@ public class DeckController {
                           @RequestParam(name="distributor", required = false, defaultValue = "") String distributor,
                           @RequestParam(name="creator", required = false, defaultValue = "") String creator,
                           Model model){
-        model.addAttribute("decks",deckService.getApprovedDecksByKeyword(search, sort, distributor, creator));
+        model.addAttribute("decks",deckService.getDecksByKeyword(search, sort, distributor, creator));
         model.addAttribute("showSearch", true);
 
         return "catalog";

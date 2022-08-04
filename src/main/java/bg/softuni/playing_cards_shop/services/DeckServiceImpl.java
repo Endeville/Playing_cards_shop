@@ -44,8 +44,8 @@ public class DeckServiceImpl implements DeckService {
     }
 
     @Override
-    public List<CatalogDeckDto> getApprovedDecksByKeyword(String search, String sort, String distributor, String creator) {
-        return deckRepository.getDeckEntitiesByApprovedAndTitleDistributorOrCreatorContaining(true, search, Sort.by(sort), distributor, creator).stream()
+    public List<CatalogDeckDto> getDecksByKeyword(String search, String sort, String distributor, String creator) {
+        return deckRepository.getDeckEntitiesByTitleDistributorOrCreatorContaining(search, Sort.by(sort), distributor, creator).stream()
                 .map(e -> {
                     var deck = modelMapper.map(e, CatalogDeckDto.class);
                     deck.setPicture(this.pictureService.getPictureUrl(e.getPicture()));
@@ -75,7 +75,7 @@ public class DeckServiceImpl implements DeckService {
 
     @Override
     public List<String> getAllDeckTitles() {
-        return this.deckRepository.getDeckEntitiesByApproved(true).stream()
+        return this.deckRepository.findAll().stream()
                 .map(DeckEntity::getTitle)
                 .collect(Collectors.toList());
     }
@@ -100,11 +100,9 @@ public class DeckServiceImpl implements DeckService {
         deck.setCreator(creator)
                 .setDistributor(distributor)
                 .setCategories(new LinkedHashSet<>(categories))
-                .setApproved(false)
                 .setRecommendedPrice(-1);
 
 
-        //todo: add the deck for mod approval
         this.deckRepository.save(deck);
     }
 
@@ -141,7 +139,6 @@ public class DeckServiceImpl implements DeckService {
                 .setDescription(editDeckDto.getDescription());
 
 
-        //todo: add the deck for mod approval
         this.deckRepository.save(deck);
     }
 
@@ -159,12 +156,12 @@ public class DeckServiceImpl implements DeckService {
     @Transactional
     @Override
     public void updateRecommendedPrices() {
-        var deckEntitiesByApproved = this.deckRepository.getDeckEntitiesByApproved(true);
-        for (DeckEntity deckEntity : deckEntitiesByApproved) {
+        var decks = this.deckRepository.findAll();
+        for (DeckEntity deckEntity : decks) {
             deckEntity.setRecommendedPrice(calculateRecommendedPriceForDeck(deckEntity));
         }
 
-        this.deckRepository.saveAll(deckEntitiesByApproved);
+        this.deckRepository.saveAll(decks);
     }
 
     @Override
@@ -178,7 +175,7 @@ public class DeckServiceImpl implements DeckService {
     private Integer calculateRecommendedPriceForDeck(DeckEntity deck) {
         return (int) deck
                 .getOffers().stream()
-                .filter(o -> o.getStatus().name().equals("APPROVED") || o.getStatus().name().equals("LIMITED"))
+                .filter(o -> o.getStatus().name().equals("AVAILABLE") || o.getStatus().name().equals("LIMITED"))
                 .map(OfferEntity::getPrice)
                 .mapToDouble(BigDecimal::doubleValue)
                 .average()

@@ -36,4 +36,6 @@ public interface UserService{
     boolean currentUserHasCarted(OfferEntity offer);
 
     UserPromotedDto promote(String username);
+
+    void updateRatings();
 }
