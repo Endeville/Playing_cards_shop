@@ -7,6 +7,7 @@ import bg.softuni.playing_cards_shop.models.entities.OfferEntity;
 import bg.softuni.playing_cards_shop.models.entities.UserEntity;
 import bg.softuni.playing_cards_shop.models.views.AddressDto;
 import bg.softuni.playing_cards_shop.models.views.UserProfileDto;
+import bg.softuni.playing_cards_shop.models.views.rest.UserPromotedDto;
 
 import java.util.List;
 
@@ -33,4 +34,6 @@ public interface UserService{
     UserEntity getCurrentUser();
 
     boolean currentUserHasCarted(OfferEntity offer);
+
+    UserPromotedDto promote(String username);
 }

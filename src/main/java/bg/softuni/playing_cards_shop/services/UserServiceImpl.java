@@ -1,13 +1,11 @@
 package bg.softuni.playing_cards_shop.services;
 
 import bg.softuni.playing_cards_shop.models.dtos.UserRegistrationDto;
-import bg.softuni.playing_cards_shop.models.entities.AddressEntity;
-import bg.softuni.playing_cards_shop.models.entities.DeckEntity;
-import bg.softuni.playing_cards_shop.models.entities.OfferEntity;
-import bg.softuni.playing_cards_shop.models.entities.UserEntity;
+import bg.softuni.playing_cards_shop.models.entities.*;
 import bg.softuni.playing_cards_shop.models.entities.enums.UserRole;
 import bg.softuni.playing_cards_shop.models.views.AddressDto;
 import bg.softuni.playing_cards_shop.models.views.UserProfileDto;
+import bg.softuni.playing_cards_shop.models.views.rest.UserPromotedDto;
 import bg.softuni.playing_cards_shop.repositories.UserRepository;
 import bg.softuni.playing_cards_shop.services.interfaces.UserRoleService;
 import bg.softuni.playing_cards_shop.services.interfaces.UserService;
@@ -118,6 +116,16 @@ public class UserServiceImpl implements UserService {
         return user.getCart()
                 .stream()
                 .anyMatch(cp->cp.getOffer().equals(offer));
+    }
+
+    @Override
+    public UserPromotedDto promote(String username) {
+        var user=this.userRepository.findUserEntityByUsername(username)
+                .orElseThrow(()->new ObjectNotFoundException(OBJECT_NAME_USER));
+        user.setRole(this.userRoleService.findByRole(UserRole.ADMIN));
+        this.userRepository.save(user);
+
+        return this.modelMapper.map(user, UserPromotedDto.class);
     }
 
 

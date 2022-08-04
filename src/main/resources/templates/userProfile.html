@@ -24,6 +24,7 @@
 
 
     <script th:src="@{/js/sidebar.js}" type="module"></script>
+    <script th:src="@{/js/deleteAddresses.js}" type="module"></script>
 
     <link rel="stylesheet" th:href="@{/css/userProfile.css}"/>
 
@@ -82,7 +83,10 @@
                                     </div>
                                     <p class="m-b-10 f-w-600" th:text="*{role}">Client</p>
                                     <h6 class="f-w-600 username" th:text="*{username}"></h6>
-                                    <button data-toggle="modal" data-target="#consentModal" id="promoteBtn">Promote</button>
+                                    <button data-toggle="modal" data-target="#consentModal" id="promoteBtn"
+                                            th:unless="*{role=='ADMIN'}"
+                                            sec:authorize="hasRole('ROLE_ADMIN')">Promote
+                                    </button>
                                     <i class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
                                 </div>
                             </div>
@@ -105,7 +109,8 @@
                                                     th:text="${address}">
                                                 </h6>
                                                 <button class="delete-address" th:id="|delete-${address.id}|">
-                                                    <img th:src="@{/images/bin.png}" alt="Delete" style="height: 20px; width: 20px;">
+                                                    <img th:src="@{/images/bin.png}" alt="Delete"
+                                                         style="height: 20px; width: 20px;">
                                                 </button>
                                             </div>
 
@@ -115,7 +120,9 @@
                                     <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600 header">Offers</h6>
                                     <div class="row">
                                         <div class="col-sm-6">
-                                            <p class="m-b-10 f-w-600 header"><a id="offersAnchor" th:href="@{/offers/all (seller=*{username})}">See all offers here</a></p>
+                                            <p class="m-b-10 f-w-600 header"><a id="offersAnchor"
+                                                                                th:href="@{/offers/all (seller=*{username})}">See
+                                                all offers here</a></p>
                                         </div>
                                     </div>
                                 </div>
@@ -130,37 +137,32 @@
 
 <th:block th:replace="~{/fragments/footer.html}"/>
 
-
 <script th:inline="javascript">
-
-    const deleteAddressBtns=document.querySelectorAll(".delete-address");
+    const continueBtn = document.getElementById("continueBtn");
     const csrfHeaderName = document.head.querySelector('[name=_csrf_header]').content;
     const csrfHeaderValue = document.head.querySelector('[name=_csrf]').content;
 
-    for (const deleteAddressBtn of deleteAddressBtns) {
-        deleteAddressBtn.addEventListener("click", (ev)=>{
-            ev.preventDefault();
-            const id=Number(ev.currentTarget.id.substring(7));
-            deleteAddress(ev, id);
-        })
-    }
+    continueBtn.addEventListener("click", promote);
 
-    async function deleteAddress(ev, id){
-        const options={
-            method: 'DELETE',
+    async function promote(ev) {
+        ev.preventDefault();
+
+        const username = [[${user.username}]];
+
+        const options = {
+            method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
                 'Accepts': 'application/json',
                 [csrfHeaderName]: csrfHeaderValue
             },
             body: JSON.stringify({
-                id
+                username
             })
         };
 
-
-        ev.currentTarget.parentElement.style.display='none';
-        await fetch("http://localhost:8000/api/addresses/delete", options);
+        await fetch("http://localhost:8000/api/users/promote", options);
+        window.location = "/users/profile/" + username;
     }
 </script>
 
