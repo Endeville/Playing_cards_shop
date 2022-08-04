@@ -101,6 +101,7 @@
                                     </td>
                                     <td class="text-end product-price" th:text="|*{offer.price * quantity}€|"></td>
                                 </tr>
+                                <tr th:if="${#lists.isEmpty(products)}">No items in the cart</tr>
                                 </tbody>
                                 <tfoot>
                                 <tr class="fw-bold">
