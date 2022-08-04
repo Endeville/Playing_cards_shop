@@ -6,6 +6,7 @@ import bg.softuni.playing_cards_shop.services.interfaces.OrderService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +23,7 @@ public class OrderRestController {
         this.orderService = orderService;
     }
 
+    @PreAuthorize("isSeller(#orderIdDto.id)")
     @PatchMapping(value="/updateStatus", consumes = "application/json", produces = "application/json")
     public ResponseEntity<OrderInfoDto> updateOrderStatus(@Valid @RequestBody OrderStatusDto orderIdDto,
                                                           @AuthenticationPrincipal UserDetails principal){
@@ -31,8 +33,6 @@ public class OrderRestController {
                     .header(HttpHeaders.LOCATION, "/users/login")
                     .build();
         }
-
-        //todo: add only order seller to be able to do that
 
         var result=this.orderService.updateOrderStatus(orderIdDto.getId(), orderIdDto.getStatus());
 

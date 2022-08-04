@@ -45,7 +45,6 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public boolean placeOrder(CartNotesDto cartNotesDto) {
         var user = this.userService.getCurrentUser();
-        var result= Optional.of("");
 
         if (user.getCart().isEmpty()) {
             return false;

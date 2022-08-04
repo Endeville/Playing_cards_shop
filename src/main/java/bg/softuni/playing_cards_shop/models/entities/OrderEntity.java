@@ -20,10 +20,6 @@ public class OrderEntity extends BaseEntity{
     @Column
     private String notes;
 
-//    todo: add rated functionality - ask for the customer to rate the service
-    @Column(columnDefinition = "BOOLEAN DEFAULT FALSE")
-    private boolean rated;
-
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private OrderStatus status;
@@ -112,15 +108,6 @@ public class OrderEntity extends BaseEntity{
 
     public OrderEntity setSeller(UserEntity seller) {
         this.seller = seller;
-        return this;
-    }
-
-    public boolean isRated() {
-        return rated;
-    }
-
-    public OrderEntity setRated(boolean rated) {
-        this.rated = rated;
         return this;
     }
 }
