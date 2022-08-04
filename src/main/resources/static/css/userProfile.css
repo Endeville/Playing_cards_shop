@@ -1,6 +1,7 @@
 @import "utils/navigation.css";
 @import "utils/footer.css";
 @import "utils/defaults.css";
+@import "utils/modal.css";
 
 .padding{
     padding: 5rem !important;
@@ -218,5 +219,27 @@ h6{
     .delete-address{
         width: 30px;
     }
+}
+
+#offersAnchor:hover{
+    color: var(--dark-blue);
+}
+
+.username{
+    width: 100%;
+}
+
+#promoteBtn{
+    background-color: transparent;
+    color: var(--grey);
+    border: 2px solid var(--light-gold);
+    border-radius: 10px;
+    padding: 2px;
+    font-weight: bolder;
+    margin-top: 10px;
+}
+
+#promoteBtn:hover{
+    color: var(--light-gold);
 }
 

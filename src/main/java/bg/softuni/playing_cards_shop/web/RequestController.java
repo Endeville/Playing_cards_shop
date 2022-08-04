@@ -5,6 +5,7 @@ import bg.softuni.playing_cards_shop.services.events.SendRequestEvent;
 import bg.softuni.playing_cards_shop.services.interfaces.RequestService;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -52,6 +53,15 @@ public class RequestController {
         this.requestService.addRequest(requestDto);
 
         return "redirect:/decks/all";
+    }
+
+    @GetMapping("/all")
+    public String allRequest(Model model){
+        var requests=this.requestService.getAllRequests();
+
+        model.addAttribute("requests", requests);
+
+        return "requests";
     }
 
     private void publishRequestSendEvent(String content) {

@@ -2,22 +2,32 @@
     <a href="/"><img th:src="@{/images/emblem.png}" alt="Victory"></a>
 
     <ul id="menu">
-        <span id="guest-nav" sec:authorize="!isAuthenticated()">
+        <span sec:authorize="!isAuthenticated()">
                     <li class="guest"><a th:href="@{/users/login}">Login</a></li>
                     <li class="guest"><a th:href="@{/users/register}">Register</a></li>
         </span>
-        <span id="user-nav" sec:authorize="isAuthenticated()">
+        <span sec:authorize="isAuthenticated()">
                     <li><a th:href="@{/decks/all}">Catalog</a></li>
-                    <li class="user"><a th:href="@{/offers/all}">Offers</a></li>
-                    <li class="user"><a th:href="@{/wishlist}">Wishlist</a></li>
-                    <li class="user"><a th:href="@{/users/profile/{username} (username=${#authentication.name})}">Profile</a></li>
-                    <li class="user"><a th:href="@{/cart}">Cart</a></li>
+                    <li><a th:href="@{/offers/all}">Offers</a></li>
+                    <li><a th:href="@{/offers/add}"> Add Offer</a></li>
+                    <li><a th:href="@{/wishlist}">Wishlist</a></li>
+                    <li><a th:href="@{/users/profile/{username} (username=${#authentication.name})}">Profile</a></li>
+                    <li><a th:href="@{/cart}">Cart</a></li>
+                    <li><a th:href="@{/orders/myOrders}">My orders</a></li>
+                    <li><a th:href="@{/orders/placedOrders}">Placed Orders</a></li>
+                    <li><a th:href="@{/requests/add}">Sent Request</a></li>
                     <li id="logoutBtn" class="user">
                         <form th:action="@{/users/logout}"
                               th:method="POST">
                                 <input type="submit" value="Logout">
                         </form>
                     </li>
+        </span>
+        <span sec:authorize="hasRole('ROLE_ADMIN')">
+                    <li><a th:href="@{/requests/all}">Requests</a></li>
+                    <li><a th:href="@{/decks/add}">Add Deck</a></li>
+                    <li><a th:href="@{/creators/add}">Add creator</a></li>
+                    <li><a th:href="@{/distributor/add}">Add distributor</a></li>
         </span>
     </ul>
 

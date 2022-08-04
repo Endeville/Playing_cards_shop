@@ -49,7 +49,10 @@ tbody>tr>td>a:hover{
 }
 
 .request{
+    max-width: 1000px;
     width: 60%;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .request:hover, .creator:hover{
@@ -73,16 +76,9 @@ tbody>tr>td>a:hover{
     padding: 5px 10px;
 }
 
-.approve:hover{
+.check:hover{
     border: 2px solid green;
     border-radius: 5px;
     color: green;
-    font-weight: bolder;
-}
-
-.decline:hover{
-    border: 2px solid firebrick;
-    border-radius: 5px;
-    color: firebrick;
     font-weight: bolder;
 }

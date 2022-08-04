@@ -10,6 +10,15 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
             crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
 
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
@@ -30,6 +39,34 @@
 
 </header>
 
+<article class="modal fade" id="consentModal" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header no-border">
+                <h5 class="modal-title" id="consentModalTitle">
+                    Are you sure you want to promote this user?
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeConsentModalBtn">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body no-border">
+                <div class="modal-footer no-border">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="returnBtn">
+                        Return
+                    </button>
+                    <button class="btn btn-primary" id="continueBtn">
+                        Yes, continue
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
+
 <th:block th:replace="~{/fragments/sidebar.html}"/>
 
 <main>
@@ -45,6 +82,7 @@
                                     </div>
                                     <p class="m-b-10 f-w-600" th:text="*{role}">Client</p>
                                     <h6 class="f-w-600 username" th:text="*{username}"></h6>
+                                    <button data-toggle="modal" data-target="#consentModal" id="promoteBtn">Promote</button>
                                     <i class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
                                 </div>
                             </div>
@@ -74,15 +112,10 @@
                                             <a th:href="@{/addresses/add}" class="add-address">Add Address</a>
                                         </div>
                                     </div>
-                                    <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600 header">Publications</h6>
+                                    <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600 header">Offers</h6>
                                     <div class="row">
                                         <div class="col-sm-6">
-                                            <p class="m-b-10 f-w-600 header">Reviews</p>
-                                            <h6 class="text-muted f-w-400"><a href="/">Sam Disuja</a></h6>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <p class="m-b-10 f-w-600 header">Most Viewed</p>
-                                            <h6 class="text-muted f-w-400">Dinoter husainm</h6>
+                                            <p class="m-b-10 f-w-600 header"><a id="offersAnchor" th:href="@{/offers/all (seller=*{username})}">See all offers here</a></p>
                                         </div>
                                     </div>
                                 </div>
