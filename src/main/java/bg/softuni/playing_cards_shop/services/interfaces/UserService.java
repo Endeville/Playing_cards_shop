@@ -13,7 +13,7 @@ import java.util.List;
 
 public interface UserService{
 
-    public static final String OBJECT_NAME_USER="user";
+    String OBJECT_NAME_USER="user";
 
     void register(UserRegistrationDto user);
 
@@ -27,15 +27,13 @@ public interface UserService{
 
     UserEntity findUserByUsername(String username);
 
-    boolean currentUserHasLiked(DeckEntity deck);
-
     List<AddressDto> findAddressesByUserUsername(String username);
 
     UserEntity getCurrentUser();
 
-    boolean currentUserHasCarted(OfferEntity offer);
-
     UserPromotedDto promote(String username);
 
     void updateRatings();
+
+    boolean ownsProfile(String name, Long id);
 }

@@ -108,4 +108,11 @@ public class CartProductServiceImpl implements CartProductService {
     public void deleteProduct(CartProductEntity cartProduct) {
         this.cartProductRepository.delete(cartProduct);
     }
+
+    @Override
+    public boolean hasCarted(String name, Long id) {
+        return this.cartProductRepository.findById(id)
+                .orElseThrow(()-> new ObjectNotFoundException(OBJECT_NAME_CART_PRODUCT))
+                .getCustomer().getUsername().equals(name);
+    }
 }

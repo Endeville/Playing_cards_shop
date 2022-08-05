@@ -42,4 +42,11 @@ public class AddressServiceImpl implements AddressService {
         return this.addressRepository.findById(addressId)
                 .orElseThrow(()->new ObjectNotFoundException(OBJECT_NAME_ADDRESS));
     }
+
+    @Override
+    public boolean ownsAddress(String name, Long id) {
+        return this.addressRepository.findById(id)
+                .orElseThrow(()->new ObjectNotFoundException(OBJECT_NAME_ADDRESS))
+                .getUser().getUsername().equals(name);
+    }
 }

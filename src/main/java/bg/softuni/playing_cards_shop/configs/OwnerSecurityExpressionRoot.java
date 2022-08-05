@@ -1,12 +1,9 @@
 package bg.softuni.playing_cards_shop.configs;
 
-import bg.softuni.playing_cards_shop.services.interfaces.OfferService;
-import bg.softuni.playing_cards_shop.services.interfaces.OrderService;
+import bg.softuni.playing_cards_shop.services.interfaces.*;
 import org.springframework.security.access.expression.SecurityExpressionRoot;
 import org.springframework.security.access.expression.method.MethodSecurityExpressionOperations;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.web.FilterInvocation;
-import org.springframework.security.web.access.expression.WebSecurityExpressionRoot;
 
 public class OwnerSecurityExpressionRoot
             extends SecurityExpressionRoot
@@ -15,15 +12,23 @@ public class OwnerSecurityExpressionRoot
     private final Authentication authentication;
     private final OfferService offerService;
     private final OrderService orderService;
+    private final CartProductService cartProductService;
+    private final AddressService addressService;
+    private final WishlistItemService wishlistItemService;
+    private final UserService userService;
     private Object filterObject;
     private Object returnObject;
 
 
-    public OwnerSecurityExpressionRoot(Authentication authentication, OfferService offerService, OrderService orderService) {
+    public OwnerSecurityExpressionRoot(Authentication authentication, OfferService offerService, OrderService orderService, CartProductService cartProductService, AddressService addressService, WishlistItemService wishlistItemService, UserService userService) {
         super(authentication);
         this.authentication=authentication;
         this.offerService = offerService;
         this.orderService = orderService;
+        this.cartProductService = cartProductService;
+        this.addressService = addressService;
+        this.wishlistItemService = wishlistItemService;
+        this.userService = userService;
     }
 
     public boolean isOwner(Long id){
@@ -40,6 +45,38 @@ public class OwnerSecurityExpressionRoot
         }
 
         return this.orderService.isSeller(authentication.getName(), id);
+    }
+
+    public boolean ownsAddress(Long id){
+        if(authentication.getPrincipal()==null){
+            return false;
+        }
+
+        return this.addressService.ownsAddress(authentication.getName(), id);
+    }
+
+    public boolean ownsProfile(Long id){
+        if(authentication.getPrincipal()==null){
+            return false;
+        }
+
+        return this.userService.ownsProfile(authentication.getName(), id);
+    }
+
+    public boolean hasCarted(Long id){
+        if(authentication.getPrincipal()==null){
+            return false;
+        }
+
+        return this.cartProductService.hasCarted(authentication.getName(), id);
+    }
+
+    public boolean hasLiked(Long id){
+        if(authentication.getPrincipal()==null){
+            return false;
+        }
+
+        return this.wishlistItemService.hasLiked(authentication.getName(), id);
     }
 
     @Override

@@ -29,16 +29,14 @@ public class DeckServiceImpl implements DeckService {
     private final PictureService pictureService;
     private final CreatorService creatorService;
     private final CategoryService categoryService;
-    private final UserService userService;
     private final DistributorService distributorService;
     private final ModelMapper modelMapper;
 
-    public DeckServiceImpl(DeckRepository deckRepository, PictureService pictureService, CreatorService creatorService, CategoryService categoryService, UserService userService, DistributorService distributorService, ModelMapper modelMapper) {
+    public DeckServiceImpl(DeckRepository deckRepository, PictureService pictureService, CreatorService creatorService, CategoryService categoryService, DistributorService distributorService, ModelMapper modelMapper) {
         this.deckRepository = deckRepository;
         this.pictureService = pictureService;
         this.creatorService = creatorService;
         this.categoryService = categoryService;
-        this.userService = userService;
         this.distributorService = distributorService;
         this.modelMapper = modelMapper;
     }
@@ -61,7 +59,6 @@ public class DeckServiceImpl implements DeckService {
 
         var result = this.modelMapper.map(deck, DeckDetailsDto.class);
         result.setPicture(this.pictureService.getPictureUrl(deck.getPicture()));
-        result.setLiked(this.userService.currentUserHasLiked(deck));
 
         return result;
     }

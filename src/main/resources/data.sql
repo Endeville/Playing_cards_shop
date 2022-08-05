@@ -154,7 +154,7 @@ INSERT INTO cart_items(id, quantity, customer_id, offer_id)
 VALUES (1, 1, 1, 5),
        (2, 2, 4, 3),
        (3, 1, 1, 4),
-       (4, 1, 1, 5),
+       (4, 1, 1, 3),
        (5, 2, 3, 3);
 
 INSERT INTO requests(id, content, created, creator_id)

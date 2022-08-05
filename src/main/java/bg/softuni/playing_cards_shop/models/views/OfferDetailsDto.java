@@ -11,7 +11,6 @@ public class OfferDetailsDto {
     private String description;
     private String status;
     private String picture;
-    private boolean carted;
 
     public Long getId() {
         return id;
@@ -82,15 +81,6 @@ public class OfferDetailsDto {
 
     public OfferDetailsDto setPicture(String picture) {
         this.picture = picture;
-        return this;
-    }
-
-    public boolean isCarted() {
-        return carted;
-    }
-
-    public OfferDetailsDto setCarted(boolean carted) {
-        this.carted = carted;
         return this;
     }
 }

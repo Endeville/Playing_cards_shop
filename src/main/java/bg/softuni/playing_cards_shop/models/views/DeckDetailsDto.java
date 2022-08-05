@@ -12,7 +12,6 @@ public class DeckDetailsDto {
     private String creatorName;
     private String distributorBrand;
     private Integer recommendedPrice;
-    private boolean liked;
 
     public Long getId() {
         return id;
@@ -83,15 +82,6 @@ public class DeckDetailsDto {
 
     public DeckDetailsDto setPicture(String picture) {
         this.picture = picture;
-        return this;
-    }
-
-    public boolean isLiked() {
-        return liked;
-    }
-
-    public DeckDetailsDto setLiked(boolean liked) {
-        this.liked = liked;
         return this;
     }
 

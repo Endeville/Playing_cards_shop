@@ -81,7 +81,6 @@ public class OfferServiceImpl implements OfferService {
         var result = this.modelMapper.map(offer, OfferDetailsDto.class);
 
         result.setPicture(this.pictureService.getPictureUrl(offer.getPicture()));
-        result.setCarted(this.userService.currentUserHasCarted(offer));
 
         return result;
     }

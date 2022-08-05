@@ -8,6 +8,7 @@ import bg.softuni.playing_cards_shop.services.interfaces.CartProductService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
@@ -24,15 +25,10 @@ public class CartRestController {
         this.cartProductService = cartProductService;
     }
 
+    @PreAuthorize("!hasCarted(#offerIdDto.id)")
     @PostMapping(value = "/add", consumes = "application/json", produces = "application/json")
     public ResponseEntity<CartProductEssentialsDto> addToCart(@Valid @RequestBody OfferIdDto offerIdDto,
                                                               @AuthenticationPrincipal UserDetails principal){
-        if (principal == null) {
-            return ResponseEntity
-                    .status(HttpStatus.MOVED_PERMANENTLY)
-                    .header(HttpHeaders.LOCATION, "/users/login")
-                    .build();
-        }
 
         var cartProduct=this.cartProductService.addProduct(offerIdDto, principal);
 
@@ -41,16 +37,9 @@ public class CartRestController {
                 .body(cartProduct);
     }
 
+    @PreAuthorize("hasCarted(#offerIdDto.id)")
     @DeleteMapping(value = "/delete", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<Void> deleteFromCart(@Valid @RequestBody OfferIdDto offerIdDto,
-                                                                   @AuthenticationPrincipal UserDetails principal){
-        if (principal == null) {
-            return ResponseEntity
-                    .status(HttpStatus.MOVED_PERMANENTLY)
-                    .header(HttpHeaders.LOCATION, "/users/login")
-                    .build();
-        }
-
+    public ResponseEntity<Void> deleteFromCart(@Valid @RequestBody OfferIdDto offerIdDto){
         this.cartProductService.deleteProduct(offerIdDto);
 
         return ResponseEntity
@@ -58,16 +47,9 @@ public class CartRestController {
                 .build();
     }
 
+    @PreAuthorize("hasCarted(#cartProductUpdateDto.offerId)")
     @PatchMapping(value = "/update", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<CartProductPriceQuantityDto> updateCartProduct(@Valid @RequestBody CartProductUpdateDto cartProductUpdateDto,
-                                                                         @AuthenticationPrincipal UserDetails principal){
-        if (principal == null) {
-            return ResponseEntity
-                    .status(HttpStatus.MOVED_PERMANENTLY)
-                    .header(HttpHeaders.LOCATION, "/users/login")
-                    .build();
-        }
-
+    public ResponseEntity<CartProductPriceQuantityDto> updateCartProduct(@Valid @RequestBody CartProductUpdateDto cartProductUpdateDto){
         CartProductPriceQuantityDto result;
 
         if(cartProductUpdateDto.getOperation().equalsIgnoreCase("plus")){

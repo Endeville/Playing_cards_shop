@@ -87,15 +87,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean currentUserHasLiked(DeckEntity deck) {
-        var user = this.getCurrentUser();
-
-        return user.getWishlist()
-                .stream()
-                .anyMatch(w -> w.getDeck().equals(deck));
-    }
-
-    @Override
     public List<AddressDto> findAddressesByUserUsername(String username) {
         return this.userRepository.findUserEntityByUsername(username)
                 .orElseThrow(()->new ObjectNotFoundException(OBJECT_NAME_USER))
@@ -108,15 +99,6 @@ public class UserServiceImpl implements UserService {
     public UserEntity getCurrentUser() {
         return this.userRepository.findUserEntityByUsername(SecurityContextHolder.getContext().getAuthentication().getName())
                 .orElseThrow(()-> new ObjectNotFoundException(OBJECT_NAME_USER));
-    }
-
-    @Override
-    public boolean currentUserHasCarted(OfferEntity offer) {
-        var user=this.getCurrentUser();
-
-        return user.getCart()
-                .stream()
-                .anyMatch(cp->cp.getOffer().equals(offer));
     }
 
     @Override
@@ -149,6 +131,13 @@ public class UserServiceImpl implements UserService {
             }
         }
         this.userRepository.saveAll(users);
+    }
+
+    @Override
+    public boolean ownsProfile(String name, Long id) {
+        return this.userRepository.findById(id)
+                .orElseThrow(()-> new ObjectNotFoundException(OBJECT_NAME_USER))
+                .getUsername().equals(name);
     }
 
 

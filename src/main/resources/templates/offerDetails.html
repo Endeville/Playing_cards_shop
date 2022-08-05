@@ -94,7 +94,7 @@
                         <th:block th:unless="${#authorization.expression('isOwner(__${offer.id}__)')}">
                             <button class="btn btn-dark btn-rounded mr-1" data-toggle="tooltip" title=""
                                     data-original-title="Add to cart" id="add-cart-btn"
-                                    th:classappend="*{carted} ? 'carted' : ''"
+                                    th:classappend="${#authorization.expression('hasCarted(__${offer.id}__)')} ? 'carted' : ''"
                             >
                                 <i class="fa fa-shopping-cart"></i>
                             </button>

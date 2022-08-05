@@ -12,4 +12,6 @@ public interface AddressService {
     void deleteAddressById(Long id);
 
     AddressEntity findAddressById(Long addressId);
+
+    boolean ownsAddress(String name, Long id);
 }

@@ -102,7 +102,7 @@
                                             <p class="m-b-10 f-w-600 header header">Rating</p>
                                             <h6 class="text-muted f-w-400" th:text="*{rating}">98979989898</h6>
                                         </div>
-                                        <div class="col-sm-6 addressBar">
+                                        <div class="col-sm-6 addressBar" th:if="${#authorization.expression('ownsProfile(__${user.id}__)')}">
                                             <p class="m-b-10 f-w-600 header header">Address/es</p>
                                             <div th:each="address : *{addresses}" class="address-holder">
                                                 <h6 class="text-muted f-w-400"

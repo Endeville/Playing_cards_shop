@@ -51,7 +51,7 @@
                                 <div>
                                     <span class="me-3" th:text="*{#dates.format(orderTime, 'dd-MMM-yyyy')}"></span>
 
-                                    <div th:id="*{id}">
+                                    <div th:id="*{id}" th:if="${#authorization.expression('isSeller(__${order.id}__)')}">
                                         <input type="radio" class="statusInput" value="PLACED" name="status" id="PLACED" th:field="*{status}">
                                         <label for="PLACED" class="status">PLACED</label>
 

@@ -25,4 +25,6 @@ public interface CartProductService {
     void deleteCartProducts(Set<CartProductEntity> cart);
 
     void deleteProduct(CartProductEntity cartProduct);
+
+    boolean hasCarted(String name, Long id);
 }

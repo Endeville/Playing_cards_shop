@@ -4,11 +4,21 @@ import bg.softuni.playing_cards_shop.models.entities.enums.UserRole;
 import java.util.List;
 
 public class UserProfileDto {
+    private Long id;
     private String username;
     private String email;
     private short rating;
     private List<AddressDto> addresses;
     private UserRole role;
+
+    public Long getId() {
+        return id;
+    }
+
+    public UserProfileDto setId(Long id) {
+        this.id = id;
+        return this;
+    }
 
     public String getUsername() {
         return username;
