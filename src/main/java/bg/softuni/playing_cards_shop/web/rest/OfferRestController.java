@@ -6,6 +6,7 @@ import bg.softuni.playing_cards_shop.services.interfaces.OfferService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -24,6 +25,7 @@ public class OfferRestController {
     }
 
 
+    @PreAuthorize("hasRole('ROLE_ADMIN') or isOwner(#offerIdDto.id)")
     @DeleteMapping(value = "/delete", consumes = "application/json", produces = "application/json")
     public ResponseEntity<Void> deleteOffer(@Valid @RequestBody OfferIdDto offerIdDto,
                                                @AuthenticationPrincipal UserDetails principal){

@@ -91,7 +91,7 @@
                         </h2>
 
 <!--                        todo: can buy only if its not owner nor admin-->
-                        <th:block>
+                        <th:block th:unless="${#authorization.expression('isOwner(__${offer.id}__)')}">
                             <button class="btn btn-dark btn-rounded mr-1" data-toggle="tooltip" title=""
                                     data-original-title="Add to cart" id="add-cart-btn"
                                     th:classappend="*{carted} ? 'carted' : ''"
@@ -100,7 +100,7 @@
                             </button>
                         </th:block>
 
-                        <span th:if="*{#authentication.getAuthorities().contains('ROLE_ADMIN') || isOwner}" id="admin-panel">
+                        <span th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'') or isOwner(__${offer.id}__)')}" id="admin-panel">
                                 <a type="button"
                                    class="btn btn-sm btn-outline-secondary cardBtn editBtn"
                                    th:href="@{/offers/edit/{offerId} (offerId=*{id})}">Edit</a>

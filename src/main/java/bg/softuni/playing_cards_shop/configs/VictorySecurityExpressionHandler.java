@@ -8,6 +8,7 @@ import org.springframework.security.access.expression.method.MethodSecurityExpre
 import org.springframework.security.authentication.AuthenticationTrustResolverImpl;
 import org.springframework.security.core.Authentication;
 
+
 public class VictorySecurityExpressionHandler extends DefaultMethodSecurityExpressionHandler {
 
     private final OfferService offerService;

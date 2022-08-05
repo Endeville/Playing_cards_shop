@@ -66,9 +66,8 @@ public class OfferServiceImpl implements OfferService {
         return this.offerRepository.findOfferEntityByStatusApprovedOrLimited(search, seller, Sort.by(sort)).stream()
                 .map((o) -> {
                     var offer = this.modelMapper.map(o, CatalogOfferDto.class);
-                    offer.setTitle(o.getDeck().getTitle());
-                    offer.setPicture(this.pictureService.getPictureUrl(o.getPicture()));
-                    offer.setOwner(o.getSeller().equals(this.userService.getCurrentUser()));
+                    offer.setTitle(o.getDeck().getTitle())
+                            .setPicture(this.pictureService.getPictureUrl(o.getPicture()));
 
                     return offer;
                 })

@@ -2,6 +2,7 @@ package bg.softuni.playing_cards_shop.web;
 
 import bg.softuni.playing_cards_shop.models.dtos.UserRegistrationDto;
 import bg.softuni.playing_cards_shop.services.UserServiceImpl;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

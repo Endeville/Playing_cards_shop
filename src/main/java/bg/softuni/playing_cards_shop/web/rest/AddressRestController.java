@@ -5,6 +5,7 @@ import bg.softuni.playing_cards_shop.services.interfaces.AddressService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -24,6 +25,8 @@ public class AddressRestController {
         this.addressService = addressService;
     }
 
+
+    @PreAuthorize("ownsAddress(#addressIdDto.id)")
     @DeleteMapping(value = "/delete", consumes = "application/json", produces = "application/json")
     public ResponseEntity<Void> dislike(@Valid @RequestBody AddressIdDto addressIdDto, @AuthenticationPrincipal UserDetails principal) {
         if (principal == null) {

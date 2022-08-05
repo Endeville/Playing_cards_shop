@@ -5,6 +5,8 @@ import bg.softuni.playing_cards_shop.services.interfaces.OrderService;
 import org.springframework.security.access.expression.SecurityExpressionRoot;
 import org.springframework.security.access.expression.method.MethodSecurityExpressionOperations;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.web.FilterInvocation;
+import org.springframework.security.web.access.expression.WebSecurityExpressionRoot;
 
 public class OwnerSecurityExpressionRoot
             extends SecurityExpressionRoot

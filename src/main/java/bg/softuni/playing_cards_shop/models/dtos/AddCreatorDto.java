@@ -16,7 +16,6 @@ public class AddCreatorDto {
     @NotBlank(message = "Please give a brief description of the creator.")
     private String description;
 
-    //todo: spring adds some tomcat multipart file when this is empty -> fix it
     private MultipartFile picture;
 
     public AddCreatorDto() {

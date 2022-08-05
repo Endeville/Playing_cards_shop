@@ -8,6 +8,7 @@ import bg.softuni.playing_cards_shop.services.events.SendRequestEvent;
 import bg.softuni.playing_cards_shop.services.interfaces.DeckService;
 import bg.softuni.playing_cards_shop.services.interfaces.OfferService;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -87,8 +88,7 @@ public class OfferController {
 
     @GetMapping("/{id}")
     public String offerDetails(@PathVariable(name = "id") Long id,
-                               Model model,
-                               @AuthenticationPrincipal UserDetails principal) {
+                               Model model) {
         var offer = this.offerService.getOfferDetailsById(id);
 
         model.addAttribute("offer", offer);
@@ -96,6 +96,7 @@ public class OfferController {
         return "offerDetails";
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN') or isOwner(#id)")
     @GetMapping("/edit/{id}")
     public String editPage(@PathVariable(name = "id") Long id, Model model) {
         var offerById = this.offerService.getOfferInfoById(id);
@@ -108,6 +109,7 @@ public class OfferController {
         return "editOffer";
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN') or isOwner(#id)")
     @PatchMapping("/edit/{id}")
     public String editOffer(@Valid EditOfferDto offer,
                             BindingResult result,
@@ -138,6 +140,7 @@ public class OfferController {
         return "reviews";
     }
 
+    @PreAuthorize("!isOwner(#id)")
     @PostMapping("/{id}/reviews/add")
     public String addReview(@Valid AddReviewDto review,
                             BindingResult result,
