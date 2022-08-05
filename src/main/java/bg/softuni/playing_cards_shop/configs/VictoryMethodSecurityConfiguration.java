@@ -13,21 +13,19 @@ public class VictoryMethodSecurityConfiguration extends GlobalMethodSecurityConf
     private final OrderService orderService;
     private final CartProductService cartProductService;
     private final AddressService addressService;
-    private final WishlistItemService wishlistItemService;
     private final UserService userService;
 
-    public VictoryMethodSecurityConfiguration(OfferService offerService, OrderService orderService, CartProductService cartProductService, AddressService addressService, WishlistItemService wishlistItemService, UserService userService) {
+    public VictoryMethodSecurityConfiguration(OfferService offerService, OrderService orderService, CartProductService cartProductService, AddressService addressService, UserService userService) {
         this.offerService = offerService;
         this.orderService = orderService;
         this.cartProductService = cartProductService;
         this.addressService = addressService;
-        this.wishlistItemService = wishlistItemService;
         this.userService = userService;
     }
 
 
     @Override
     protected MethodSecurityExpressionHandler createExpressionHandler() {
-        return new VictorySecurityExpressionHandler(offerService, orderService, cartProductService, addressService, wishlistItemService, userService);
+        return new VictorySecurityExpressionHandler(offerService, orderService, cartProductService, addressService, userService);
     }
 }

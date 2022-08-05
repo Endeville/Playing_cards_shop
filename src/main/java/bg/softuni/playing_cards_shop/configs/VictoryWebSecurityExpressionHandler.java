@@ -14,21 +14,19 @@ public class VictoryWebSecurityExpressionHandler extends DefaultWebSecurityExpre
     private final OfferService offerService;
     private final OrderService orderService;
     private final CartProductService cartProductService;
-    private final WishlistItemService wishlistItemService;
     private final UserService userService;
 
-    public VictoryWebSecurityExpressionHandler(OfferService offerService, OrderService orderService, CartProductService cartProductService, WishlistItemService wishlistItemService, UserService userService) {
+    public VictoryWebSecurityExpressionHandler(OfferService offerService, OrderService orderService, CartProductService cartProductService, UserService userService) {
         this.offerService = offerService;
         this.orderService = orderService;
         this.cartProductService = cartProductService;
-        this.wishlistItemService = wishlistItemService;
         this.userService = userService;
     }
 
     @Override
     protected SecurityExpressionOperations createSecurityExpressionRoot(Authentication authentication, FilterInvocation fi) {
 
-        var root=new OwnerWebSecurityExpressionRoot(authentication, fi, offerService, orderService, cartProductService, wishlistItemService, userService);
+        var root=new OwnerWebSecurityExpressionRoot(authentication, fi, offerService, orderService, cartProductService, userService);
 
         root.setPermissionEvaluator(getPermissionEvaluator());
         root.setTrustResolver(new AuthenticationTrustResolverImpl());

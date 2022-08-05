@@ -55,7 +55,7 @@ public class OrderServiceImpl implements OrderService {
         var orderProducts=new HashMap<UserEntity, List<OrderProductEntity>>();
 
         for (CartProductEntity cartProduct : user.getCart()) {
-            if(cartProduct.getQuantity()<cartProduct.getOffer().getQuantity()){
+            if(cartProduct.getQuantity()<=cartProduct.getOffer().getQuantity()){
                 var orderProduct=this.modelMapper.map(cartProduct, OrderProductEntity.class);
 
                 orderProduct.setId(null);

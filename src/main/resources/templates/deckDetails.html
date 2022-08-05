@@ -87,7 +87,7 @@
 
                         <th:block>
                             <button class="btn btn-dark btn-rounded mr-1 heart-btn"
-                                    th:classappend="*{liked} ? 'liked' : ''"
+                                    th:classappend="${#authorization.expression('hasLiked(''__${deck.title}__'')')} ? 'liked' : ''"
                                     data-toggle="tooltip" title=""
                                     data-original-title="Add to cart">
 

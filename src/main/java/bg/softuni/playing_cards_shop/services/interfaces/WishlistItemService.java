@@ -15,6 +15,4 @@ public interface WishlistItemService {
     List<CatalogDeckDto> getCurrentUserWishlistByKeyword(UserDetails principal, String search, String sort);
 
     void dislike(String title);
-
-    boolean hasLiked(String name, Long id);
 }

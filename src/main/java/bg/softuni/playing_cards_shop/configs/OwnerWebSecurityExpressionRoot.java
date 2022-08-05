@@ -11,15 +11,13 @@ public class OwnerWebSecurityExpressionRoot extends WebSecurityExpressionRoot {
     private final OfferService offerService;
     private final OrderService orderService;
     private final CartProductService cartProductService;
-    private final WishlistItemService wishlistItemService;
     private final UserService userService;
 
-    public OwnerWebSecurityExpressionRoot(Authentication a, FilterInvocation fi, OfferService offerService, OrderService orderService, CartProductService cartProductService, WishlistItemService wishlistItemService, UserService userService) {
+    public OwnerWebSecurityExpressionRoot(Authentication a, FilterInvocation fi, OfferService offerService, OrderService orderService, CartProductService cartProductService, UserService userService) {
         super(a, fi);
         this.offerService = offerService;
         this.orderService = orderService;
         this.cartProductService = cartProductService;
-        this.wishlistItemService = wishlistItemService;
         this.userService = userService;
     }
 
@@ -55,11 +53,11 @@ public class OwnerWebSecurityExpressionRoot extends WebSecurityExpressionRoot {
         return this.cartProductService.hasCarted(authentication.getName(), id);
     }
 
-    public boolean hasLiked(Long id){
+    public boolean hasLiked(String deckTitle){
         if(authentication.getPrincipal()==null){
             return false;
         }
 
-        return this.wishlistItemService.hasLiked(authentication.getName(), id);
+        return this.userService.hasLiked(authentication.getName(), deckTitle);
     }
 }

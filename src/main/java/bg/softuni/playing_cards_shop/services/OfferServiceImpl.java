@@ -50,12 +50,12 @@ public class OfferServiceImpl implements OfferService {
         var picture = this.pictureService.save(addOfferDto.getPicture());
         offer.setPicture(picture);
 
-        offer.setStatus(OfferStatus.AVAILABLE)
+        offer.setQuantity(addOfferDto.getQuantity())
+                .setStatus(this.getStatus(offer.getQuantity()))
                 .setSeller(this.userService.getCurrentUser())
                 .setDeck(deckService.findDeckByTitle(addOfferDto.getDeckTitle()))
                 .setPrice(addOfferDto.getPrice())
                 .setReviews(new HashSet<>())
-                .setQuantity(addOfferDto.getQuantity())
                 .setDescription(addOfferDto.getDescription());
 
         this.offerRepository.save(offer);

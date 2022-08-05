@@ -14,21 +14,19 @@ public class VictorySecurityExpressionHandler extends DefaultMethodSecurityExpre
     private final OrderService orderService;
     private final CartProductService cartProductService;
     private final AddressService addressService;
-    private final WishlistItemService wishlistItemService;
     private final UserService userService;
 
-    public VictorySecurityExpressionHandler(OfferService offerService, OrderService orderService, CartProductService cartProductService, AddressService addressService, WishlistItemService wishlistItemService, UserService userService) {
+    public VictorySecurityExpressionHandler(OfferService offerService, OrderService orderService, CartProductService cartProductService, AddressService addressService, UserService userService) {
         this.offerService = offerService;
         this.orderService = orderService;
         this.cartProductService = cartProductService;
         this.addressService = addressService;
-        this.wishlistItemService = wishlistItemService;
         this.userService = userService;
     }
 
     @Override
     protected MethodSecurityExpressionOperations createSecurityExpressionRoot(Authentication authentication, MethodInvocation invocation) {
-        OwnerSecurityExpressionRoot root = new OwnerSecurityExpressionRoot(authentication, offerService, orderService, cartProductService, addressService, wishlistItemService, userService);
+        OwnerSecurityExpressionRoot root = new OwnerSecurityExpressionRoot(authentication, offerService, orderService, cartProductService, addressService, userService);
 
         root.setPermissionEvaluator(getPermissionEvaluator());
         root.setTrustResolver(new AuthenticationTrustResolverImpl());

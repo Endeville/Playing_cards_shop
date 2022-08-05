@@ -6,6 +6,7 @@ import bg.softuni.playing_cards_shop.services.interfaces.WishlistItemService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +23,7 @@ public class WishlistRestController {
         this.wishlistService = wishlistService;
     }
 
+    @PreAuthorize("!hasLiked(#deckTitleDto.title)")
     @PostMapping(value = "/like", consumes = "application/json", produces = "application/json")
     public ResponseEntity<WishlistItemDto> like(@Valid @RequestBody DeckTitleDto deckTitleDto, @AuthenticationPrincipal UserDetails principal) {
         if (principal == null) {
@@ -40,6 +42,8 @@ public class WishlistRestController {
                         .setUserUsername(wishlist.getUser().getUsername()));
     }
 
+
+    @PreAuthorize("hasLiked(#deckTitleDto.title)")
     @DeleteMapping(value = "/dislike", consumes = "application/json", produces = "application/json")
     public ResponseEntity<Void> dislike(@Valid @RequestBody DeckTitleDto deckTitleDto, @AuthenticationPrincipal UserDetails principal) {
         if (principal == null) {

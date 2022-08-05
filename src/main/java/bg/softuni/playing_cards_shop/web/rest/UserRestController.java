@@ -6,6 +6,7 @@ import bg.softuni.playing_cards_shop.services.interfaces.UserService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -25,6 +26,7 @@ public class UserRestController {
         this.userService = userService;
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PatchMapping(value = "/promote", consumes = "application/json", produces = "application/json")
     public ResponseEntity<UserPromotedDto> promote(@Valid @RequestBody UserUsernameDto userUsernameDto,
                                                    @AuthenticationPrincipal UserDetails principal){
