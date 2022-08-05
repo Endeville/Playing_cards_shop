@@ -75,7 +75,7 @@ public class OfferController {
                            RedirectAttributes attributes) throws IOException {
         if (result.hasErrors()) {
             attributes.addFlashAttribute("addOffer", addOfferDto);
-            attributes.addFlashAttribute("org.springframework.validation.BindingResult.offer", result);
+            attributes.addFlashAttribute("org.springframework.validation.BindingResult.addOffer", result);
 
             return "redirect:/offers/add";
         }
@@ -115,7 +115,7 @@ public class OfferController {
                             @PathVariable(name = "id") Long id) throws IOException {
         if (result.hasErrors()) {
             attributes.addFlashAttribute("editOffer", offer);
-            attributes.addFlashAttribute("org.springframework.validation.BindingResult.offer", result);
+            attributes.addFlashAttribute("org.springframework.validation.BindingResult.editOffer", result);
 
             return "redirect:/offers/edit/" + id;
         }

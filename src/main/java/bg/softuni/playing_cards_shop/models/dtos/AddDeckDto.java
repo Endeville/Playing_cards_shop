@@ -1,5 +1,6 @@
 package bg.softuni.playing_cards_shop.models.dtos;
 
+import bg.softuni.playing_cards_shop.models.validations.NotEmptyFile;
 import bg.softuni.playing_cards_shop.models.validations.UniqueField;
 import bg.softuni.playing_cards_shop.models.validations.enums.FieldType;
 import org.springframework.web.multipart.MultipartFile;
@@ -31,7 +32,7 @@ public class AddDeckDto {
     @NotEmpty(message = "")
     private List<String> categories;
 
-    @NotNull(message = "Please upload a picture for this deck.")
+    @NotEmptyFile(message = "Please provide a picture.")
     private MultipartFile picture;
 
 

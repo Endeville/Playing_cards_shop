@@ -1,6 +1,7 @@
 package bg.softuni.playing_cards_shop.models.validations;
 
 import bg.softuni.playing_cards_shop.models.validations.enums.FieldType;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
@@ -11,12 +12,10 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = UniqueFieldValidator.class)
-public @interface UniqueField {
+@Constraint(validatedBy = NotEmptyFileValidator.class)
+public @interface NotEmptyFile {
 
-    FieldType fieldType();
-
-    String message() default "Entity with such property already exists";
+    String message() default "File is empty.";
 
     Class<?>[] groups() default {};
 

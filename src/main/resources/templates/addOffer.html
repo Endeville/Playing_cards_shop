@@ -80,7 +80,7 @@
                                         </div>
 
                                         <div>
-                                            <a target="_blank" th:href="@{/decks/add}" class="addMissingInfoAnchor">
+                                            <a target="_blank" th:href="@{/requests/add}" class="addMissingInfoAnchor">
                                                 Cannot find the deck you are searching for?
                                             </a>
                                         </div>
@@ -96,7 +96,7 @@
                                     <div class="form-group">
                                         <input type="number" min="0.00" step="0.01" name="price" id="Price"
                                                tabindex="2"
-                                               class="form-control" placeholder="Price"
+                                               class="form-control" placeholder="Price(in Euro)"
                                                th:field="*{price}" th:errorclass="is-invalid">
                                         <div class="error"
                                              th:text="${#strings.listJoin(#fields.errors('price'), '; ')}"></div>
@@ -115,7 +115,7 @@
                                             Click to upload images
                                         </label>
                                         <input name="pictures" class="form-control" type="file"
-                                               id="formFile" required
+                                               id="formFile"
                                                th:field="*{picture}" th:errorclass="is-invalid"
                                         >
                                         <div class="error"

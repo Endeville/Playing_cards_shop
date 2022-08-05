@@ -84,17 +84,12 @@ public class DeckServiceImpl implements DeckService {
     public void addDeck(AddDeckDto addDeckDto) throws IOException {
         var deck = this.modelMapper.map(addDeckDto, DeckEntity.class);
 
-        if (this.pictureService.validatePicture(addDeckDto.getPicture())) {
-            var picture = this.pictureService.save(addDeckDto.getPicture());
-            deck.setPicture(picture);
-        } else {
-            throw new IllegalStateException("No pictures provided");
-        }
+        var picture = this.pictureService.save(addDeckDto.getPicture());
+        deck.setPicture(picture);
 
         var creator = this.creatorService.findByName(addDeckDto.getCreatorName());
         var distributor = this.distributorService.findDistributorByBrand(addDeckDto.getDistributorBrand());
         var categories = this.categoryService.findCategoriesByNames(addDeckDto.getCategories());
-
 
 
         deck.setCreator(creator)
@@ -114,21 +109,16 @@ public class DeckServiceImpl implements DeckService {
     @Override
     public void editDeck(Long id, EditDeckDto editDeckDto) throws IOException {
         var deck = this.deckRepository.findById(id)
-                .orElseThrow(()-> new ObjectNotFoundException(OBJECT_NAME_DECK));
+                .orElseThrow(() -> new ObjectNotFoundException(OBJECT_NAME_DECK));
 
         this.pictureService.deletePicture(deck.getPicture());
 
-        if (this.pictureService.validatePicture(editDeckDto.getPicture())) {
-            var picture = this.pictureService.save(editDeckDto.getPicture());
-            deck.setPicture(picture);
-        } else {
-            throw new IllegalStateException("No pictures provided");
-        }
+        var picture = this.pictureService.save(editDeckDto.getPicture());
+        deck.setPicture(picture);
 
         var creator = this.creatorService.findByName(editDeckDto.getCreatorName());
         var distributor = this.distributorService.findDistributorByBrand(editDeckDto.getDistributorBrand());
         var categories = this.categoryService.findCategoriesByNames(editDeckDto.getCategories());
-
 
 
         deck.setCreator(creator)
@@ -168,7 +158,7 @@ public class DeckServiceImpl implements DeckService {
     public void deleteDeck(DeckTitleDto deckTitleDto) {
         this.deckRepository.delete(
                 this.deckRepository.findDeckEntityByTitle(deckTitleDto.getTitle())
-                .orElseThrow(()-> new ObjectNotFoundException(OBJECT_NAME_DECK)));
+                        .orElseThrow(() -> new ObjectNotFoundException(OBJECT_NAME_DECK)));
     }
 
 

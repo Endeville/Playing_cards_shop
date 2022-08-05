@@ -9,7 +9,7 @@ public class AddReviewDto {
     @Max(value=5, message = "The rating must be maximum 5.")
     private short rating;
 
-    @Size(min=5, message = "Please share your opinion on this offer.")
+    @Size(min=5, max=1000, message = "Please share your opinion on this offer(up to 1000 characters).")
     private String review;
 
     public short getRating() {

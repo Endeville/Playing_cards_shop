@@ -1,5 +1,6 @@
 package bg.softuni.playing_cards_shop.models.dtos;
 
+import bg.softuni.playing_cards_shop.models.validations.NotEmptyFile;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.*;
@@ -11,9 +12,11 @@ public class AddOfferDto {
     @NotBlank(message = "Please fill in a title.")
     private String deckTitle;
 
-    @Positive(message = "Please enter a valid price(in euro).")
+    @NotNull(message = "Please enter a valid price(in Euro)")
+    @Positive(message = "Please enter a valid price(in Euro).")
     private BigDecimal price;
 
+    @NotNull(message = "Please enter valid quantity")
     @Positive(message = "Please select valid quantity.")
     @Max(40)
     private Integer quantity;
@@ -21,7 +24,7 @@ public class AddOfferDto {
     @NotBlank(message = "Description is compulsory(product condition, signatures, number etc.)")
     private String description;
 
-    @NotNull(message = "Please provide some pictures of the deck you are offering.")
+    @NotEmptyFile(message = "Please provide a picture.")
     private MultipartFile picture;
 
     public String getDeckTitle() {

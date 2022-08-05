@@ -75,7 +75,7 @@ public class DeckController {
                           RedirectAttributes attributes) throws IOException {
         if(result.hasErrors()){
             attributes.addFlashAttribute("addDeck", addDeckDto);
-            attributes.addFlashAttribute("org.springframework.validation.BindingResult.deck", result);
+            attributes.addFlashAttribute("org.springframework.validation.BindingResult.addDeck", result);
 
             return "redirect:/decks/add";
         }
@@ -84,7 +84,7 @@ public class DeckController {
             this.deckService.addDeck(addDeckDto);
         }catch(IllegalStateException e){
             attributes.addFlashAttribute("addDeck", addDeckDto);
-            attributes.addFlashAttribute("org.springframework.validation.BindingResult.deck", result);
+            attributes.addFlashAttribute("org.springframework.validation.BindingResult.addDeck", result);
 
             return "redirect:/decks/add";
         }
@@ -112,7 +112,7 @@ public class DeckController {
                            @PathVariable(name="id") Long id) throws IOException {
         if(result.hasErrors()){
             attributes.addFlashAttribute("editDeck", editDeckDto);
-            attributes.addFlashAttribute("org.springframework.validation.BindingResult.deck", result);
+            attributes.addFlashAttribute("org.springframework.validation.BindingResult.editDeck", result);
 
             return "redirect:/decks/edit/" + id;
         }

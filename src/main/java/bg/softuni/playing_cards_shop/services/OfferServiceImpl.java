@@ -45,14 +45,10 @@ public class OfferServiceImpl implements OfferService {
 
     @Override
     public void addOffer(AddOfferDto addOfferDto) throws IOException {
-        var offer=this.modelMapper.map(addOfferDto, OfferEntity.class);
+        var offer = this.modelMapper.map(addOfferDto, OfferEntity.class);
 
-        if (this.pictureService.validatePicture(addOfferDto.getPicture())) {
-            var picture = this.pictureService.save(addOfferDto.getPicture());
-            offer.setPicture(picture);
-        } else {
-            throw new IllegalStateException("No pictures provided");
-        }
+        var picture = this.pictureService.save(addOfferDto.getPicture());
+        offer.setPicture(picture);
 
         offer.setStatus(OfferStatus.AVAILABLE)
                 .setSeller(this.userService.getCurrentUser())
@@ -68,8 +64,8 @@ public class OfferServiceImpl implements OfferService {
     @Override
     public List<CatalogOfferDto> getActiveOffersByKeyword(String search, String seller, String sort) {
         return this.offerRepository.findOfferEntityByStatusApprovedOrLimited(search, seller, Sort.by(sort)).stream()
-                .map((o)->{
-                    var offer=this.modelMapper.map(o, CatalogOfferDto.class);
+                .map((o) -> {
+                    var offer = this.modelMapper.map(o, CatalogOfferDto.class);
                     offer.setTitle(o.getDeck().getTitle());
                     offer.setPicture(this.pictureService.getPictureUrl(o.getPicture()));
                     offer.setOwner(o.getSeller().equals(this.userService.getCurrentUser()));
@@ -82,8 +78,8 @@ public class OfferServiceImpl implements OfferService {
     @Override
     public OfferDetailsDto getOfferDetailsById(Long id) {
         var offer = this.offerRepository.findById(id)
-                .orElseThrow(()-> new ObjectNotFoundException(OBJECT_NAME_OFFER));
-        var result=this.modelMapper.map(offer, OfferDetailsDto.class);
+                .orElseThrow(() -> new ObjectNotFoundException(OBJECT_NAME_OFFER));
+        var result = this.modelMapper.map(offer, OfferDetailsDto.class);
 
         result.setPicture(this.pictureService.getPictureUrl(offer.getPicture()));
         result.setCarted(this.userService.currentUserHasCarted(offer));
@@ -94,22 +90,18 @@ public class OfferServiceImpl implements OfferService {
     @Override
     public OfferEntity findOfferById(Long id) {
         return this.offerRepository.findById(id)
-                .orElseThrow(()->new ObjectNotFoundException(OBJECT_NAME_OFFER));
+                .orElseThrow(() -> new ObjectNotFoundException(OBJECT_NAME_OFFER));
     }
 
     @Override
     public void editOffer(Long id, EditOfferDto editOfferDto) throws IOException {
         var offer = this.offerRepository.findById(id)
-                .orElseThrow(()-> new ObjectNotFoundException(OBJECT_NAME_OFFER));
+                .orElseThrow(() -> new ObjectNotFoundException(OBJECT_NAME_OFFER));
 
         this.pictureService.deletePicture(offer.getPicture());
 
-        if (this.pictureService.validatePicture(editOfferDto.getPicture())) {
-            var picture = this.pictureService.save(editOfferDto.getPicture());
-            offer.setPicture(picture);
-        } else {
-            throw new IllegalStateException("No pictures provided");
-        }
+        var picture = this.pictureService.save(editOfferDto.getPicture());
+        offer.setPicture(picture);
 
         offer.setQuantity(editOfferDto.getQuantity())
                 .setStatus(this.getStatus(offer.getQuantity()))
@@ -123,11 +115,11 @@ public class OfferServiceImpl implements OfferService {
     }
 
     private OfferStatus getStatus(Integer quantity) {
-        if(quantity<=0){
+        if (quantity <= 0) {
             return OfferStatus.EXPIRED;
-        }else if(quantity<=3){
+        } else if (quantity <= 3) {
             return OfferStatus.LIMITED;
-        }else{
+        } else {
             return OfferStatus.AVAILABLE;
         }
     }
@@ -135,8 +127,8 @@ public class OfferServiceImpl implements OfferService {
     @Override
     public OfferInfoDto getOfferInfoById(Long id) {
         var offer = this.offerRepository.findById(id)
-                .orElseThrow(()-> new ObjectNotFoundException(OBJECT_NAME_OFFER));
-        var result=this.modelMapper.map(offer, OfferInfoDto.class);
+                .orElseThrow(() -> new ObjectNotFoundException(OBJECT_NAME_OFFER));
+        var result = this.modelMapper.map(offer, OfferInfoDto.class);
 
         result.setPicture(this.pictureService.getPictureUrl(offer.getPicture()));
 
@@ -146,19 +138,19 @@ public class OfferServiceImpl implements OfferService {
     @Override
     public List<ReviewDetailsDto> findReviewsByOfferId(Long id) {
         return this.offerRepository.findById(id)
-                .orElseThrow(()->new ObjectNotFoundException(OBJECT_NAME_OFFER))
+                .orElseThrow(() -> new ObjectNotFoundException(OBJECT_NAME_OFFER))
                 .getReviews().stream()
-                .map(r-> this.modelMapper.map(r, ReviewDetailsDto.class))
+                .map(r -> this.modelMapper.map(r, ReviewDetailsDto.class))
                 .collect(Collectors.toList());
     }
 
     @Override
     public void addReviewToOfferById(Long id, AddReviewDto review) {
-        var offer=this.offerRepository.findById(id)
-                .orElseThrow(()->new ObjectNotFoundException(OBJECT_NAME_OFFER));
+        var offer = this.offerRepository.findById(id)
+                .orElseThrow(() -> new ObjectNotFoundException(OBJECT_NAME_OFFER));
 
-        var reviewToAdd=this.reviewService.addReview(review);
-        var reviews=offer.getReviews();
+        var reviewToAdd = this.reviewService.addReview(review);
+        var reviews = offer.getReviews();
         reviews.add(reviewToAdd);
 
         offer.setReviews(reviews);
@@ -168,12 +160,12 @@ public class OfferServiceImpl implements OfferService {
 
     @Override
     public boolean offerHasBeenRatedByUser(Long id, UserDetails principal) {
-        var user=this.userService.getCurrentUser();
+        var user = this.userService.getCurrentUser();
         return offerRepository.findById(id)
-                .orElseThrow(()->new ObjectNotFoundException(OBJECT_NAME_OFFER))
+                .orElseThrow(() -> new ObjectNotFoundException(OBJECT_NAME_OFFER))
                 .getReviews()
                 .stream().map(ReviewEntity::getCreator)
-                .anyMatch(c-> c.equals(user));
+                .anyMatch(c -> c.equals(user));
     }
 
     @Override
@@ -185,19 +177,19 @@ public class OfferServiceImpl implements OfferService {
     @Override
     public int decreaseQuantity(OfferEntity offer, int quantity) {
 
-        if(offer.getQuantity()-quantity==0){
+        if (offer.getQuantity() - quantity == 0) {
             offer.setStatus(OfferStatus.EXPIRED);
-            var result=offer.getQuantity();
+            var result = offer.getQuantity();
             offer.setQuantity(0);
             this.offerRepository.save(offer);
             return result;
-        }else if(offer.getQuantity()-quantity<=3){
+        } else if (offer.getQuantity() - quantity <= 3) {
             offer.setStatus(OfferStatus.LIMITED);
-            offer.setQuantity(offer.getQuantity()-quantity);
+            offer.setQuantity(offer.getQuantity() - quantity);
             this.offerRepository.save(offer);
             return quantity;
-        }else{
-            offer.setQuantity(offer.getQuantity()-quantity);
+        } else {
+            offer.setQuantity(offer.getQuantity() - quantity);
             this.offerRepository.save(offer);
             return quantity;
         }
@@ -206,7 +198,7 @@ public class OfferServiceImpl implements OfferService {
     @Override
     public boolean isOwner(String name, Long id) {
         return this.offerRepository.findById(id)
-                .orElseThrow(()->new ObjectNotFoundException(OBJECT_NAME_OFFER))
+                .orElseThrow(() -> new ObjectNotFoundException(OBJECT_NAME_OFFER))
                 .getSeller().getUsername()
                 .equals(name);
     }

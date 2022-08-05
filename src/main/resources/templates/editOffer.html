@@ -58,7 +58,7 @@
 
 
                                 <form id="offer-form"
-                                      th:method="patch" th:action="@{/offers/{id}/edit (id=${id})}"
+                                      th:method="patch" th:action="@{/offers/edit/{id} (id=${id})}"
                                       th:object="${editOffer}" role="form" style="display: block;"
                                       enctype="multipart/form-data"
                                 >
