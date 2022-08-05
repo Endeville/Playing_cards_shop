@@ -2,11 +2,15 @@ package bg.softuni.playing_cards_shop.services.security;
 
 import bg.softuni.playing_cards_shop.models.entities.UserEntity;
 import bg.softuni.playing_cards_shop.repositories.UserRepository;
+import org.modelmapper.Converters;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
+import java.util.Collection;
+import java.util.Set;
 
 public class AppUserDetailsService implements UserDetailsService {
 
@@ -25,10 +29,9 @@ public class AppUserDetailsService implements UserDetailsService {
     }
 
     private UserDetails map(UserEntity userEntity) {
-        return User.builder()
-                .username(userEntity.getUsername())
-                .password(userEntity.getPassword())
-                .authorities(new SimpleGrantedAuthority("ROLE_" + userEntity.getRole().getRole().name()))
-                .build();
+        return new AppUser(
+                userEntity.getUsername(),
+                userEntity.getPassword(),
+                Set.of(new SimpleGrantedAuthority("ROLE_" + userEntity.getRole().getRole().name())));
     }
 }

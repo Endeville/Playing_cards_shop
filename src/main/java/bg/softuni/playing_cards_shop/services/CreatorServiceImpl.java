@@ -29,6 +29,10 @@ public class CreatorServiceImpl implements CreatorService {
 
     @Override
     public void addCreator(AddCreatorDto creatorDto) throws IOException {
+        this.creatorRepository.save(parseToCreator(creatorDto));
+    }
+
+    private CreatorEntity parseToCreator(AddCreatorDto creatorDto) throws IOException {
         var creator = this.modelMapper.map(creatorDto, CreatorEntity.class);
         if (this.pictureService.validatePicture(creatorDto.getPicture())) {
             var picture = this.pictureService.save(creatorDto.getPicture());
@@ -37,7 +41,7 @@ public class CreatorServiceImpl implements CreatorService {
             creator.setPicture(this.pictureService.getDefaultProfilePicture());
         }
 
-        this.creatorRepository.save(creator);
+        return creator;
     }
 
     @Override

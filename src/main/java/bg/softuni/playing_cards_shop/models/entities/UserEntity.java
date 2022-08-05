@@ -32,9 +32,6 @@ public class UserEntity extends BaseEntity{
     @OneToMany(mappedBy = "creator")
     private Set<ReviewEntity> reviews;
 
-    @OneToMany
-    private Set<NotificationEntity> notifications;
-
     @OneToMany(mappedBy = "user")
     private Set<AddressEntity> addresses;
 
@@ -122,15 +119,6 @@ public class UserEntity extends BaseEntity{
         return this;
     }
 
-    public Set<NotificationEntity> getNotifications() {
-        return notifications;
-    }
-
-    public UserEntity setNotifications(Set<NotificationEntity> notifications) {
-        this.notifications = notifications;
-        return this;
-    }
-
     public Set<AddressEntity> getAddresses() {
         return addresses;
     }
@@ -172,11 +160,11 @@ public class UserEntity extends BaseEntity{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UserEntity that = (UserEntity) o;
-        return rating == that.rating && Objects.equals(username, that.username) && Objects.equals(email, that.email) && Objects.equals(password, that.password) && Objects.equals(role, that.role) && Objects.equals(wishlist, that.wishlist) && Objects.equals(offers, that.offers) && Objects.equals(reviews, that.reviews) && Objects.equals(notifications, that.notifications) && Objects.equals(addresses, that.addresses) && Objects.equals(cart, that.cart) && Objects.equals(placedOrders, that.placedOrders) && Objects.equals(myOrders, that.myOrders);
+        return rating == that.rating && Objects.equals(username, that.username) && Objects.equals(email, that.email) && Objects.equals(password, that.password) && Objects.equals(role, that.role) && Objects.equals(wishlist, that.wishlist) && Objects.equals(offers, that.offers) && Objects.equals(reviews, that.reviews) && Objects.equals(addresses, that.addresses) && Objects.equals(cart, that.cart) && Objects.equals(placedOrders, that.placedOrders) && Objects.equals(myOrders, that.myOrders);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(username, email, password, rating, role, wishlist, offers, reviews, notifications, addresses, cart, placedOrders, myOrders);
+        return Objects.hash(username, email, password, rating, role, wishlist, offers, reviews, addresses, cart, placedOrders, myOrders);
     }
 }
