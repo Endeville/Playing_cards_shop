@@ -3,6 +3,7 @@ package bg.softuni.playing_cards_shop.services;
 import bg.softuni.playing_cards_shop.models.cloudinary.CloudinaryImage;
 import bg.softuni.playing_cards_shop.models.dtos.AddCreatorDto;
 import bg.softuni.playing_cards_shop.models.entities.CreatorEntity;
+import bg.softuni.playing_cards_shop.models.entities.DistributorEntity;
 import bg.softuni.playing_cards_shop.models.entities.PictureEntity;
 import bg.softuni.playing_cards_shop.models.views.CreatorDetailsDto;
 import bg.softuni.playing_cards_shop.repositories.CreatorRepository;
@@ -58,11 +59,7 @@ public class CreatorServiceImplTest {
 
     @Test
     public void testNameExists_NameExists(){
-        var creator=new CreatorEntity()
-                .setName("Creator1")
-                .setDescription("Description1")
-                .setPicture(defaultPictureProfile())
-                .setDecks(null);
+        var creator=getTestCreator();
 
         when(creatorService.nameExists(creator.getName())).thenReturn(true);
 
@@ -73,20 +70,18 @@ public class CreatorServiceImplTest {
 
     @Test
     public void testNameExists_NameDoesNotExist(){
-        when(creatorService.nameExists(any())).thenReturn(false);
+        var creator=getTestCreator();
 
-        var result=creatorService.nameExists("ferfwe");
+        when(creatorRepository.existsByName(creator.getName())).thenReturn(false);
+
+        var result=creatorService.nameExists(creator.getName());
 
         assertFalse(result);
     }
 
     @Test
     public void testFindByName_NameExists(){
-        var creator=new CreatorEntity()
-                .setName("Creator")
-                .setDescription("CreatorDescription")
-                .setDecks(null)
-                .setPicture(defaultPictureProfile());
+        var creator=getTestCreator();
 
         when(creatorRepository.findCreatorEntityByName(creator.getName())).thenReturn(Optional.of(creator));
 
@@ -109,11 +104,7 @@ public class CreatorServiceImplTest {
 
     @Test
     public void testGetCreatorDetailsByName_NameExists(){
-        var creator=new CreatorEntity()
-                .setName("Creator")
-                .setDescription("Description")
-                .setPicture(defaultPictureProfile())
-                .setDecks(null);
+        var creator=getTestCreator();
 
         when(creatorRepository.findCreatorEntityByName(creator.getName()))
                 .thenReturn(Optional.of(creator));
@@ -134,6 +125,7 @@ public class CreatorServiceImplTest {
     @Test
     public void testGetCreatorDetailsByName_NameDoesNotExist(){
 
+
         when(creatorRepository.findCreatorEntityByName(any()))
                 .thenReturn(Optional.empty());
 
@@ -150,9 +142,9 @@ public class CreatorServiceImplTest {
 
         var result=this.creatorService.getCreatorsNames();
 
-        assertEquals(2, result.size());
-        assertEquals(result.get(0), "Creator1");
-        assertEquals(result.get(1), "Creator2");
+        assertEquals(creators.size(), result.size());
+        assertEquals(result.get(0), creators.get(0).getName());
+        assertEquals(result.get(1), creators.get(1).getName());
 
     }
 
@@ -215,6 +207,14 @@ public class CreatorServiceImplTest {
         return new PictureEntity()
                 .setUrl("https://res.cloudinary.com/dykamqwpf/image/upload/v1658170325/default_creator_wgjltr.jpg")
                 .setPublicId("default_creator_wgjltr.jpg");
+    }
+
+    private CreatorEntity getTestCreator(){
+        return new CreatorEntity()
+                .setName("Creator")
+                .setDescription("Description")
+                .setPicture(defaultPictureProfile())
+                .setDecks(null);
     }
 
     private List<CreatorEntity> initCreators(){

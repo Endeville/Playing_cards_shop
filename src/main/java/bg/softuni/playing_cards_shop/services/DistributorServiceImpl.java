@@ -46,16 +46,20 @@ public class DistributorServiceImpl implements DistributorService {
 
     @Override
     public void addDistributor(AddDistributorDto distributorDto) throws IOException {
-        var distributor = this.modelMapper.map(distributorDto, DistributorEntity.class);
+        this.distributorRepository.save(parseToDistributor(distributorDto));
+    }
 
-        if (this.pictureService.validatePicture(distributorDto.getPicture())) {
-            var pictures = pictureService.save(distributorDto.getPicture());
-            distributor.setPicture(pictures);
+    private DistributorEntity parseToDistributor(AddDistributorDto addDistributorDto) throws IOException {
+        var distributor = this.modelMapper.map(addDistributorDto, DistributorEntity.class);
+
+        if (this.pictureService.validatePicture(addDistributorDto.getPicture())) {
+            var picture = pictureService.save(addDistributorDto.getPicture());
+            distributor.setPicture(picture);
         } else {
             distributor.setPicture(this.pictureService.getDefaultDistributorProfile());
         }
 
-        this.distributorRepository.save(distributor);
+        return distributor;
     }
 
     @Override
