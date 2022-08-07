@@ -2,7 +2,12 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create-drop
-    defer-datasource-initialization: true
+    defer-datasource-initialization: false
   sql:
     init:
       mode: never
+
+cloudinary:
+  api-key: 123169491616986
+  api-secret: PKOdQAluFqeXPcOBQ0g451Vx4CI
+  cloud-name: dykamqwpf

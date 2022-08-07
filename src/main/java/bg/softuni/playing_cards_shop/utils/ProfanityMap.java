@@ -1,12 +1,12 @@
 package bg.softuni.playing_cards_shop.utils;
 
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 import java.io.*;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 @Component
 public class ProfanityMap {

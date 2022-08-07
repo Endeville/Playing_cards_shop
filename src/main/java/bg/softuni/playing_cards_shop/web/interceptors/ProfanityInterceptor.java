@@ -4,16 +4,10 @@ import bg.softuni.playing_cards_shop.utils.ProfanityMap;
 import bg.softuni.playing_cards_shop.web.exceptions.InappropriateLanguageException;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
-import org.springframework.web.servlet.HandlerMapping;
 
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 @Component
 public class ProfanityInterceptor implements HandlerInterceptor {

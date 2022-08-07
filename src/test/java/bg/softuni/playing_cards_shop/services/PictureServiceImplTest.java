@@ -77,22 +77,6 @@ public class PictureServiceImplTest {
         );
     }
 
-//    @Test
-//    public void testDeletePicture(){
-//        var picture1=new PictureEntity()
-//                .setUrl("testUrl1.jpg")
-//                .setPublicId("testUrl1.jpg");
-//        var picture2=new PictureEntity()
-//                .setUrl("testUrl1.jpg")
-//                .setPublicId("testUrl1.jpg");
-//
-//        when(pictureRepository.findPictureEntityByUrl("testUrl1.jpg")).thenReturn(Optional.of(picture2));
-//
-//        pictureService.deletePicture(picture1);
-//
-//        verify(pictureRepository, times(1)).delete(picture2);
-//    }
-
     @Test
     public void testGetPictureUrl(){
         var picture=new PictureEntity()
