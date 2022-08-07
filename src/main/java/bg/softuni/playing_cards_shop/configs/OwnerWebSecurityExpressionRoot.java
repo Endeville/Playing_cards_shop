@@ -62,4 +62,12 @@ public class OwnerWebSecurityExpressionRoot extends WebSecurityExpressionRoot {
 
         return this.wishlistItemService.hasLiked(authentication.getName(), deckTitle);
     }
+
+    public boolean canBuy(Long id){
+        if(authentication.getPrincipal()==null){
+            return false;
+        }
+
+        return this.offerService.checkAvailability(id);
+    }
 }

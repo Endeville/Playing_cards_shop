@@ -24,6 +24,7 @@
                             </a>
                         </li>
                     </th:block>
+
                     <li><a th:href="@{/decks/all}">Catalog</a></li>
                     <li><a th:href="@{/offers/all}">Offers</a></li>
                     <li><a th:href="@{/wishlist}">Wishlist</a></li>
@@ -35,13 +36,8 @@
                     <li><a th:href="@{/cart}">Cart</a></li>
                     <li><a th:href="@{/orders/myOrders}">My orders</a></li>
                     <li><a th:href="@{/orders/placedOrders}">Placed Orders</a></li>
-                    <li><a th:href="@{/requests/add}">Sent Request</a></li>
-                    <li>
-                        <form th:action="@{/users/logout}"
-                              th:method="POST">
-                            <input type="submit" value="Logout">
-                        </form>
-                    </li>
+                    <li><a th:href="@{/requests/add}">Send Request</a></li>
+
                 </th:block>
 
                 <th:block sec:authorize="hasRole('ROLE_ADMIN')">
@@ -50,6 +46,13 @@
                     <li><a th:href="@{/creators/add}">Add creator</a></li>
                     <li><a th:href="@{/distributor/add}">Add distributor</a></li>
                 </th:block>
+
+                <li class="logoutField" sec:authorize="isAuthenticated()">
+                    <form th:action="@{/users/logout}"
+                          th:method="POST">
+                        <input type="submit" value="Logout">
+                    </form>
+                </li>
             </ul>
         </div>
     </div>

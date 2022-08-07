@@ -40,4 +40,6 @@ public interface OfferService {
     int decreaseQuantity(OfferEntity offer, int quantity);
 
     boolean isOwner(String name, Long id);
+
+    boolean checkAvailability(Long id);
 }

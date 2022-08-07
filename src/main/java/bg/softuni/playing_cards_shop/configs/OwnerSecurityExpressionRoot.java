@@ -71,6 +71,14 @@ public class OwnerSecurityExpressionRoot
         return this.cartProductService.hasCarted(authentication.getName(), id);
     }
 
+    public boolean canBuy(Long id){
+        if(authentication.getPrincipal()==null){
+            return false;
+        }
+
+        return this.offerService.checkAvailability(id);
+    }
+
     @Override
     public void setFilterObject(Object filterObject) {
         this.filterObject=filterObject;

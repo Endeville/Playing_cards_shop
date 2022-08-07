@@ -200,4 +200,11 @@ public class OfferServiceImpl implements OfferService {
                 .getSeller().getUsername()
                 .equals(name);
     }
+
+    @Override
+    public boolean checkAvailability(Long id) {
+        return this.offerRepository.findById(id)
+                .orElseThrow(()->new ObjectNotFoundException(OBJECT_NAME_OFFER))
+                .getQuantity()>0;
+    }
 }

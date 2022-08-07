@@ -25,6 +25,7 @@ public class CartRestController {
         this.cartProductService = cartProductService;
     }
 
+    @PreAuthorize("canBuy(#offerIdDto.id)")
     @PostMapping(value = "/add", consumes = "application/json", produces = "application/json")
     public ResponseEntity<CartProductEssentialsDto> addToCart(@Valid @RequestBody OfferIdDto offerIdDto,
                                                               @AuthenticationPrincipal UserDetails principal){

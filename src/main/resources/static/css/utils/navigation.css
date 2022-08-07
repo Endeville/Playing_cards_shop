@@ -26,12 +26,6 @@
     display: inline-block;
 }
 
-@media (max-height: 400px) {
-    #nav{
-        position: fixed;
-    }
-}
-
 #nav>ul a{
     text-decoration: none;
     color: var(--grey);
@@ -165,7 +159,7 @@ li::before {
 
 #sidebar-wrapper ul{
     width: 100%;
-    text-align: center;
+    /*text-align: center;*/
 }
 
 #search-input{
@@ -189,17 +183,19 @@ li::before {
     line-height: 50px;
     width: 100%;
     font-weight: bolder;
+    text-align: center;
 }
 
 @media (max-height: 700px) {
+    .sidebar-nav li:not([class="logoutField"]){
+        display: inline-block;
+        width: 49% !important;
+        border: none;
+        margin: 0;
+    }
+
     .sidebar-nav li{
         line-height: 40px;
-    }
-}
-
-@media (max-height: 500px) {
-    .sidebar-nav li{
-        line-height: 30px;
     }
 }
 
@@ -207,7 +203,7 @@ li::before {
     display: block;
     text-decoration: none;
     color: #999999;
-    width: 100vw;
+    width: 100%;
 }
 
 .sidebar-nav li a:hover {
@@ -233,7 +229,7 @@ li::before {
     display: block;
     text-decoration: none;
     color: #999999;
-    width: 100vw;
+    width: 100%;
     background-color: transparent;
     border: none;
 }
