@@ -68,4 +68,9 @@ public class WishlistItemServiceImpl implements WishlistItemService {
                 .orElseThrow(()->new ObjectNotFoundException(OBJECT_NAME_WISHLIST_ITEM));
         this.wishlistItemRepository.delete(item);
     }
+
+    @Override
+    public boolean hasLiked(String username, String title) {
+        return this.wishlistItemRepository.existsByUserUsernameAndDeckTitle(username, title);
+    }
 }

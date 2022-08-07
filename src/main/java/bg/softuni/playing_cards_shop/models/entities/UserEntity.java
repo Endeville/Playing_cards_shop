@@ -20,7 +20,7 @@ public class UserEntity extends BaseEntity{
     @Column
     private short rating;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, cascade = CascadeType.DETACH)
     private UserRoleEntity role;
 
     @OneToMany(mappedBy = "user")
@@ -32,7 +32,7 @@ public class UserEntity extends BaseEntity{
     @OneToMany(mappedBy = "creator")
     private Set<ReviewEntity> reviews;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.DETACH)
     private Set<AddressEntity> addresses;
 
     @OneToMany(mappedBy = "customer")

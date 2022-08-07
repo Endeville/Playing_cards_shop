@@ -17,4 +17,6 @@ public interface CartProductRepository extends JpaRepository<CartProductEntity, 
     List<CartProductEntity> findCartProductEntitiesByCustomerUsername(String customerUsername);
 
     Optional<CartProductEntity> findCartProductEntityByOfferIdAndCustomerId(Long offer_id, Long customer_id);
+
+    boolean existsByCustomerUsernameAndOfferId(String customer_username, Long offer_id);
 }

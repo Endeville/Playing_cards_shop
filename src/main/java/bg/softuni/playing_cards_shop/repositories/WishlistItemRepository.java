@@ -16,4 +16,6 @@ public interface WishlistItemRepository extends JpaRepository<WishlistItemEntity
     Optional<WishlistItemEntity> findWishlistItemEntityByUserAndDeck(UserEntity user, DeckEntity deck);
 
     List<WishlistItemEntity> findWishlistItemEntitiesByUserUsernameAndDeckTitleContainingIgnoreCase(String username, String search, Sort sort);
+
+    boolean existsByUserUsernameAndDeckTitle(String user_username, String deck_title);
 }

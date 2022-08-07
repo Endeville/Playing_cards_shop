@@ -111,8 +111,6 @@ public class CartProductServiceImpl implements CartProductService {
 
     @Override
     public boolean hasCarted(String name, Long id) {
-        return this.cartProductRepository.findById(id)
-                .orElseThrow(()-> new ObjectNotFoundException(OBJECT_NAME_CART_PRODUCT))
-                .getCustomer().getUsername().equals(name);
+        return this.cartProductRepository.existsByCustomerUsernameAndOfferId(name, id);
     }
 }

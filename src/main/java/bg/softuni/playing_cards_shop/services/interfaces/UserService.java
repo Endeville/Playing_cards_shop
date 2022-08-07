@@ -36,6 +36,4 @@ public interface UserService{
     void updateRatings();
 
     boolean ownsProfile(String name, Long id);
-
-    boolean hasLiked(String name, String deckTitle);
 }

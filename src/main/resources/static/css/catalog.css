@@ -9,10 +9,6 @@ body{
     font-weight: bolder;
 }
 
-/*sort modal*/
-
-
-
 /*search bar*/
 
 .search {
@@ -28,7 +24,7 @@ body{
     padding: 0 0 0 0.5em;
     position: absolute;
     top: 50%;
-    transform: translate(-110%, -50%);
+    transform: translate(-100%, -50%);
     width: 450px;
     transition: all 0.25s;
     content: '&#x21d5';

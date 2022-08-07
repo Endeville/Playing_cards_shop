@@ -140,16 +140,6 @@ public class UserServiceImpl implements UserService {
                 .getUsername().equals(name);
     }
 
-    @Override
-    public boolean hasLiked(String name, String deckTitle) {
-        return this.userRepository.findUserEntityByUsername(name)
-                .orElseThrow(() -> new ObjectNotFoundException(OBJECT_NAME_USER))
-                .getWishlist().stream()
-                .map(wi -> wi.getDeck().getTitle())
-                .toList()
-                .contains(deckTitle);
-    }
-
 
     @Override
     public boolean emailExists(String email) {

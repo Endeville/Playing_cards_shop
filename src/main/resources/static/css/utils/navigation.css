@@ -77,8 +77,8 @@
 }
 
 #nav ul {
-    margin: 0 0 0 auto;
-    max-width: 50vw;
+    margin: 35px 0 auto 500px;
+    max-width: 85vw;
 }
 
 #nav ul li {
@@ -191,6 +191,18 @@ li::before {
     font-weight: bolder;
 }
 
+@media (max-height: 700px) {
+    .sidebar-nav li{
+        line-height: 40px;
+    }
+}
+
+@media (max-height: 500px) {
+    .sidebar-nav li{
+        line-height: 30px;
+    }
+}
+
 .sidebar-nav li a {
     display: block;
     text-decoration: none;
@@ -287,6 +299,14 @@ header {
 
 header.top {
     background: transparent;
+}
+
+#menu{
+    display: none;
+}
+
+#menu-toggle{
+    display: inline-block;
 }
 
 @media (max-width: 1800px) {

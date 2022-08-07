@@ -23,13 +23,11 @@ public class WishlistRestController {
         this.wishlistService = wishlistService;
     }
 
-    @PreAuthorize("!hasLiked(#deckTitleDto.title)")
     @PostMapping(value = "/like", consumes = "application/json", produces = "application/json")
     public ResponseEntity<WishlistItemDto> like(@Valid @RequestBody DeckTitleDto deckTitleDto, @AuthenticationPrincipal UserDetails principal) {
-        if (principal == null) {
+        if(wishlistService.hasLiked(principal.getUsername(), deckTitleDto.getTitle())){
             return ResponseEntity
-                    .status(HttpStatus.MOVED_PERMANENTLY)
-                    .header(HttpHeaders.LOCATION, "/users/login")
+                    .status(HttpStatus.CONFLICT)
                     .build();
         }
 
@@ -43,13 +41,12 @@ public class WishlistRestController {
     }
 
 
-    @PreAuthorize("hasLiked(#deckTitleDto.title)")
     @DeleteMapping(value = "/dislike", consumes = "application/json", produces = "application/json")
     public ResponseEntity<Void> dislike(@Valid @RequestBody DeckTitleDto deckTitleDto, @AuthenticationPrincipal UserDetails principal) {
-        if (principal == null) {
+
+        if(!wishlistService.hasLiked(principal.getUsername(), deckTitleDto.getTitle())){
             return ResponseEntity
-                    .status(HttpStatus.MOVED_PERMANENTLY)
-                    .header(HttpHeaders.LOCATION, "/users/login")
+                    .status(HttpStatus.CONFLICT)
                     .build();
         }
 

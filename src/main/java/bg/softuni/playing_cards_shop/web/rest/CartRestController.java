@@ -25,10 +25,15 @@ public class CartRestController {
         this.cartProductService = cartProductService;
     }
 
-    @PreAuthorize("!hasCarted(#offerIdDto.id)")
     @PostMapping(value = "/add", consumes = "application/json", produces = "application/json")
     public ResponseEntity<CartProductEssentialsDto> addToCart(@Valid @RequestBody OfferIdDto offerIdDto,
                                                               @AuthenticationPrincipal UserDetails principal){
+
+        if(cartProductService.hasCarted(principal.getUsername(), offerIdDto.getId())){
+            return ResponseEntity
+                    .status(HttpStatus.CONFLICT)
+                    .build();
+        }
 
         var cartProduct=this.cartProductService.addProduct(offerIdDto, principal);
 
@@ -36,10 +41,15 @@ public class CartRestController {
                 .ok()
                 .body(cartProduct);
     }
-
-    @PreAuthorize("hasCarted(#offerIdDto.id)")
     @DeleteMapping(value = "/delete", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<Void> deleteFromCart(@Valid @RequestBody OfferIdDto offerIdDto){
+    public ResponseEntity<Void> deleteFromCart(@Valid @RequestBody OfferIdDto offerIdDto, @AuthenticationPrincipal UserDetails principal){
+
+        if(!cartProductService.hasCarted(principal.getUsername(), offerIdDto.getId())){
+            return ResponseEntity
+                    .status(HttpStatus.CONFLICT)
+                    .build();
+        }
+
         this.cartProductService.deleteProduct(offerIdDto);
 
         return ResponseEntity
@@ -50,6 +60,9 @@ public class CartRestController {
     @PreAuthorize("hasCarted(#cartProductUpdateDto.offerId)")
     @PatchMapping(value = "/update", consumes = "application/json", produces = "application/json")
     public ResponseEntity<CartProductPriceQuantityDto> updateCartProduct(@Valid @RequestBody CartProductUpdateDto cartProductUpdateDto){
+
+
+
         CartProductPriceQuantityDto result;
 
         if(cartProductUpdateDto.getOperation().equalsIgnoreCase("plus")){

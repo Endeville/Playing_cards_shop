@@ -41,12 +41,12 @@ public class UserControllerTests {
     @BeforeEach
     void setup(){
         testDataUtils.initRoles();
-        testClient=testDataUtils.createTestClient("testClient");
-        testDataUtils.createTestAdmin("testAdmin");
+        testClient=testDataUtils.createTestClient("testClient", "email1@test.com");
+        testDataUtils.createTestAdmin("testAdmin", "email2@test.com");
     }
 
     @AfterEach
-    void tearDown(){
+    void teardown(){
         testDataUtils.cleanUp();
     }
 

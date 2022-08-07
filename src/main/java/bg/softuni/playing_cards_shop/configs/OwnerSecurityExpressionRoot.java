@@ -1,9 +1,11 @@
 package bg.softuni.playing_cards_shop.configs;
 
 import bg.softuni.playing_cards_shop.services.interfaces.*;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.access.expression.SecurityExpressionRoot;
 import org.springframework.security.access.expression.method.MethodSecurityExpressionOperations;
 import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 public class OwnerSecurityExpressionRoot
             extends SecurityExpressionRoot
@@ -67,14 +69,6 @@ public class OwnerSecurityExpressionRoot
         }
 
         return this.cartProductService.hasCarted(authentication.getName(), id);
-    }
-
-    public boolean hasLiked(String deckTitle){
-        if(authentication.getPrincipal()==null){
-            return false;
-        }
-
-        return this.userService.hasLiked(authentication.getName(), deckTitle);
     }
 
     @Override

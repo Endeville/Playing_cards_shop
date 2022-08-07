@@ -59,14 +59,16 @@
 
 
                                 <form id="distributor-form" th:method="POST" enctype="multipart/form-data"
-                                      th:action="@{/distributors/add}" role="form" style="display: block;" th:object="${distributor}">
+                                      th:action="@{/distributors/add}" role="form" style="display: block;"
+                                      th:object="${distributor}">
 
 
                                     <div class="form-group">
                                         <input type="text" name="brand" id="brand" tabindex="1"
                                                class="form-control" placeholder="Brand" value=""
-                                                th:field="*{brand}" th:errorclass="invalid-field">
-                                        <div class="error"  th:text="${#strings.listJoin(#fields.errors('brand'), '; ')}">
+                                               th:field="*{brand}" th:errorclass="invalid-field">
+                                        <div class="error"
+                                             th:text="${#strings.listJoin(#fields.errors('brand'), '; ')}">
                                         </div>
                                     </div>
 
@@ -74,7 +76,8 @@
                                         <input type="text" name="siteUrl" id="url" tabindex="2"
                                                class="form-control" placeholder="Site url"
                                                th:field="*{siteUrl}" th:errorclass="invalid-field">
-                                        <div class="error"  th:text="${#strings.listJoin(#fields.errors('siteUrl'), '; ')}">
+                                        <div class="error"
+                                             th:text="${#strings.listJoin(#fields.errors('siteUrl'), '; ')}">
                                         </div>
                                     </div>
 
@@ -82,7 +85,8 @@
                                         <input type="text" name="description" id="description" tabindex="2"
                                                class="form-control" placeholder="Description"
                                                th:field="*{description}" th:errorclass="invalid-field">
-                                        <div class="error"  th:text="${#strings.listJoin(#fields.errors('description'), '; ')}">
+                                        <div class="error"
+                                             th:text="${#strings.listJoin(#fields.errors('description'), '; ')}">
                                         </div>
                                     </div>
 
@@ -93,12 +97,14 @@
                                         <input class="form-control" type="file"
                                                id="formFile" multiple accept=".jpg, .jpeg, .png"
                                                th:field="*{picture}" th:errorclass="invalid-field">
-                                        <div class="error"  th:text="*{picture}">
-                                        </div>
                                     </div>
 
                                     <table class="form-group" id="image-container">
-                                        <thead><tr><th>Files Uploaded(Maximum 1):</th></tr></thead>
+                                        <thead>
+                                        <tr>
+                                            <th>Files Uploaded(Maximum 1):</th>
+                                        </tr>
+                                        </thead>
                                         <tbody>
                                         </tbody>
                                     </table>
