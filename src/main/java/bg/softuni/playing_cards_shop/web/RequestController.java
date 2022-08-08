@@ -48,8 +48,6 @@ public class RequestController {
 
             return "redirect:/requests/add";
         }
-
-//        this.publishRequestSendEvent(requestDto.getContent());
         this.requestService.addRequest(requestDto);
 
         return "redirect:/decks/all";

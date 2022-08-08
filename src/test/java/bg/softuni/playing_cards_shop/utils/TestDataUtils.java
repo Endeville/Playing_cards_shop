@@ -70,7 +70,7 @@ public class TestDataUtils {
             testAdmin=createTestAdmin("TestAdmin1", "test4@email.com");
 
             testPicture=getTestPicture();
-//            testDistributor=getTestDistributor("Brand1", testPicture, null);
+            testDistributor=getTestDistributor("Brand1", testPicture, null);
             testCreator=createTestCreator("testCreator", null, testPicture);
 //
 //            testReview1=getTestReview(testReviewer1);
