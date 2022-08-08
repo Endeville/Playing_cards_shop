@@ -4,15 +4,19 @@ package bg.softuni.playing_cards_shop.web;
 import bg.softuni.playing_cards_shop.models.entities.UserEntity;
 import bg.softuni.playing_cards_shop.models.views.AddressDto;
 import bg.softuni.playing_cards_shop.utils.TestDataUtils;
+import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.context.event.annotation.BeforeTestClass;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static bg.softuni.playing_cards_shop.utils.TestDataUtils.testClient;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -28,21 +32,15 @@ public class AddressControllerTests {
     @Autowired
     private TestDataUtils testDataUtils;
 
-    private UserEntity testClient;
-
     @BeforeEach
     void setup(){
-        testClient=testDataUtils.createTestClient("testClient", "email@test.com");
-        testDataUtils.initRoles();
-    }
-
-    @AfterEach
-    void teardown(){
-        testDataUtils.cleanUp();
+        if(!TestDataUtils.isSetUp) {
+            testDataUtils.init();
+        }
     }
 
     @Test
-    @WithMockUser(username = "testClient", roles = "CLIENT")
+    @WithMockUser(username = "TestClient1", roles = "CLIENT")
     void testAddAddressPage() throws Exception {
         mockMvc.perform(get("/addresses/add")
                 .with(csrf()))
@@ -51,7 +49,7 @@ public class AddressControllerTests {
     }
 
     @Test
-    @WithMockUser(username = "testClient", roles = "CLIENT")
+    @WithMockUser(username = "TestClient1", roles = "CLIENT")
     void testAddAddress() throws Exception {
         mockMvc.perform(post("/addresses/add")
                 .param("country", "CountryTest")

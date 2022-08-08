@@ -292,21 +292,6 @@ public class UserServiceImplTest {
         assertEquals(2, users.get(2).getRating());
     }
 
-    @Test
-    public void testHasLiked_HasLiked(){
-        var user=getTestUser("CLIENT", 0, 0, 0);
-        var deck=getTestDeck();
-        var wishlistItem=new WishlistItemEntity()
-                .setUser(user)
-                .setDeck(deck);
-        user.setWishlist(Set.of(wishlistItem));
-
-        when(userRepository.findUserEntityByUsername(user.getUsername()))
-                .thenReturn(Optional.of(user));
-
-        assertTrue(userService.hasLiked(user.getUsername(), deck.getTitle()));
-    }
-
     private UserEntity getTestUser(String role, int addresses, int offers, int reviewsPerOffer){
         var user= new UserEntity()
                 .setUsername("Username")

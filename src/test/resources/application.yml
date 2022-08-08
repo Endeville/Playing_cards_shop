@@ -1,11 +1,13 @@
 spring:
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: create
     defer-datasource-initialization: false
   sql:
     init:
       mode: never
+  datasource:
+    url: jdbc:hsqldb:mem:testdb;sql.syntax_mys=true
 
 cloudinary:
   api-key: 123169491616986
