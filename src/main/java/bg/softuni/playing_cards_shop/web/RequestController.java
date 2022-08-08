@@ -61,9 +61,4 @@ public class RequestController {
 
         return "requests";
     }
-
-    private void publishRequestSendEvent(String content) {
-        var event=new SendRequestEvent(this, content);
-        this.eventPublisher.publishEvent(event);
-    }
 }
