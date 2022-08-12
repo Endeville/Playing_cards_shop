@@ -15,12 +15,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.io.File;
 import java.io.IOException;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 import java.util.TreeMap;
 
 @Controller
@@ -101,9 +104,11 @@ public class OfferController {
     public String editPage(@PathVariable(name = "id") Long id, Model model) {
         var offerById = this.offerService.getOfferInfoById(id);
 
-        model.addAttribute("editOffer", offerById);
-        model.addAttribute("id", id);
+        if(model.asMap().get("org.springframework.validation.BindingResult.editOffer")==null){
+            model.addAttribute("editOffer", offerById);
+        }
 
+        model.addAttribute("id", id);
         model.addAttribute("deckTitles", this.deckService.getAllDeckTitles());
 
         return "editOffer";
@@ -116,6 +121,9 @@ public class OfferController {
                             RedirectAttributes attributes,
                             @PathVariable(name = "id") Long id) throws IOException {
         if (result.hasErrors()) {
+            if(Objects.equals(offer.getPicture().getOriginalFilename(), "")){
+                offer.setPicture(null);
+            }
             attributes.addFlashAttribute("editOffer", offer);
             attributes.addFlashAttribute("org.springframework.validation.BindingResult.editOffer", result);
 

@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -108,10 +109,12 @@ public class DeckServiceImpl implements DeckService {
         var deck = this.deckRepository.findById(id)
                 .orElseThrow(() -> new ObjectNotFoundException(OBJECT_NAME_DECK));
 
-        this.pictureService.deletePicture(deck.getPicture());
+        if(editDeckDto.getPicture()==null || !Objects.requireNonNull(editDeckDto.getPicture().getOriginalFilename()).isBlank()){
+            this.pictureService.deletePicture(deck.getPicture());
 
-        var picture = this.pictureService.save(editDeckDto.getPicture());
-        deck.setPicture(picture);
+            var picture = this.pictureService.save(editDeckDto.getPicture());
+            deck.setPicture(picture);
+        }
 
         var creator = this.creatorService.findByName(editDeckDto.getCreatorName());
         var distributor = this.distributorService.findDistributorByBrand(editDeckDto.getDistributorBrand());

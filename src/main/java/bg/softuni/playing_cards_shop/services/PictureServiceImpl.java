@@ -50,7 +50,7 @@ public class PictureServiceImpl implements PictureService {
     @Override
     public PictureEntity save(MultipartFile picture) throws IOException {
         final var uploaded = cloudinaryService.uploadImage(picture);
-        return pictureRepository.save(this.modelMapper.map(uploaded, PictureEntity.class));
+        return pictureRepository.save(new PictureEntity().setUrl(uploaded.getUrl()).setPublicId(uploaded.getPublicId()));
     }
 
     @Override

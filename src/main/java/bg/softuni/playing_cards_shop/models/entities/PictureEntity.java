@@ -10,7 +10,6 @@ import javax.persistence.Table;
 public class PictureEntity extends BaseEntity {
 
     @Column(nullable = false)
-    @Lob
     private String url;
 
     private String publicId;

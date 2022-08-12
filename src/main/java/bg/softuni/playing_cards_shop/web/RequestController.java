@@ -29,20 +29,20 @@ public class RequestController {
 
 
     @ModelAttribute("addRequest")
-    public AddRequestDto addRequestDto(){
+    public AddRequestDto addRequestDto() {
         return new AddRequestDto();
     }
 
     @GetMapping("/add")
-    public String getAddRequestPage(){
+    public String getAddRequestPage() {
         return "addRequest";
     }
 
     @PostMapping("/add")
     public String addRequest(@Valid AddRequestDto requestDto,
                              BindingResult result,
-                             RedirectAttributes attributes){
-        if(result.hasErrors()){
+                             RedirectAttributes attributes) {
+        if (result.hasErrors()) {
             attributes.addFlashAttribute("addRequest", requestDto);
             attributes.addFlashAttribute("org.springframework.validation.BindingResult.addRequest", result);
 
@@ -54,8 +54,8 @@ public class RequestController {
     }
 
     @GetMapping("/all")
-    public String allRequest(Model model){
-        var requests=this.requestService.getAllRequests();
+    public String allRequest(Model model) {
+        var requests = this.requestService.getAllRequests();
 
         model.addAttribute("requests", requests);
 

@@ -35,6 +35,9 @@ public class OfferEntity extends BaseEntity{
     @OneToMany(cascade = CascadeType.ALL)
     private Set<ReviewEntity> reviews;
 
+    @OneToMany(cascade = CascadeType.REMOVE)
+    private Set<OrderProductEntity> orderProducts;
+
     public OfferEntity() {
     }
 
@@ -107,6 +110,15 @@ public class OfferEntity extends BaseEntity{
 
     public OfferEntity setDescription(String description) {
         this.description = description;
+        return this;
+    }
+
+    public Set<OrderProductEntity> getOrderProducts() {
+        return orderProducts;
+    }
+
+    public OfferEntity setOrderProducts(Set<OrderProductEntity> orderProducts) {
+        this.orderProducts = orderProducts;
         return this;
     }
 }

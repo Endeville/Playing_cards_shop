@@ -14,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.IOException;
+import java.util.Objects;
 
 @Controller
 @RequestMapping("/decks")
@@ -30,39 +31,39 @@ public class DeckController {
     }
 
     @ModelAttribute("addDeck")
-    public AddDeckDto addDeckDto(){
+    public AddDeckDto addDeckDto() {
         return new AddDeckDto();
     }
 
     @ModelAttribute("editDeck")
-    public EditDeckDto editDeckDto(){
+    public EditDeckDto editDeckDto() {
         return new EditDeckDto();
     }
 
 
     @GetMapping("/all")
-    public String catalog(@RequestParam(name="sort", required = false, defaultValue = "title") String sort,
+    public String catalog(@RequestParam(name = "sort", required = false, defaultValue = "title") String sort,
                           @RequestParam(name = "search", required = false, defaultValue = "") String search,
-                          @RequestParam(name="distributor", required = false, defaultValue = "") String distributor,
-                          @RequestParam(name="creator", required = false, defaultValue = "") String creator,
-                          Model model){
-        model.addAttribute("decks",deckService.getDecksByKeyword(search, sort, distributor, creator));
+                          @RequestParam(name = "distributor", required = false, defaultValue = "") String distributor,
+                          @RequestParam(name = "creator", required = false, defaultValue = "") String creator,
+                          Model model) {
+        model.addAttribute("decks", deckService.getDecksByKeyword(search, sort, distributor, creator));
         model.addAttribute("showSearch", true);
 
         return "catalog";
     }
 
     @GetMapping("/{id}")
-    public String deckDetails(@PathVariable(name = "id") Long id, Model model){
-        var deckDto=this.deckService.findDeckDetailsById(id);
+    public String deckDetails(@PathVariable(name = "id") Long id, Model model) {
+        var deckDto = this.deckService.findDeckDetailsById(id);
 
-        model.addAttribute("deck",deckDto);
+        model.addAttribute("deck", deckDto);
 
         return "deckDetails";
     }
 
     @GetMapping("/add")
-    public String addDeckForm(Model model){
+    public String addDeckForm(Model model) {
         model.addAttribute("distributors", this.distributorService.getDistributorsNames());
         model.addAttribute("creators", this.creatorService.getCreatorsNames());
 
@@ -73,7 +74,7 @@ public class DeckController {
     public String addDeck(@Valid AddDeckDto addDeckDto,
                           BindingResult result,
                           RedirectAttributes attributes) throws IOException {
-        if(result.hasErrors()){
+        if (result.hasErrors()) {
             attributes.addFlashAttribute("addDeck", addDeckDto);
             attributes.addFlashAttribute("org.springframework.validation.BindingResult.addDeck", result);
 
@@ -82,7 +83,7 @@ public class DeckController {
 
         try {
             this.deckService.addDeck(addDeckDto);
-        }catch(IllegalStateException e){
+        } catch (IllegalStateException e) {
             attributes.addFlashAttribute("addDeck", addDeckDto);
             attributes.addFlashAttribute("org.springframework.validation.BindingResult.addDeck", result);
 
@@ -93,10 +94,13 @@ public class DeckController {
     }
 
     @GetMapping("/edit/{id}")
-    public String editPage(@PathVariable(name="id") Long id, Model model){
+    public String editPage(@PathVariable(name = "id") Long id, Model model) {
         var deckInfoById = this.deckService.findDeckInfoById(id);
 
-        model.addAttribute("editDeck", deckInfoById);
+        if(model.asMap().get("org.springframework.validation.BindingResult.editOffer")==null){
+            model.addAttribute("editDeck", deckInfoById);
+        }
+
         model.addAttribute("id", id);
 
         model.addAttribute("distributors", this.distributorService.getDistributorsNames());
@@ -109,15 +113,16 @@ public class DeckController {
     public String editDeck(@Valid EditDeckDto editDeckDto,
                            BindingResult result,
                            RedirectAttributes attributes,
-                           @PathVariable(name="id") Long id) throws IOException {
-        if(result.hasErrors()){
+                           @PathVariable(name = "id") Long id){
+        if (result.hasErrors()) {
+            if (Objects.equals(editDeckDto.getPicture().getOriginalFilename(), "")) {
+                editDeckDto.setPicture(null);
+            }
             attributes.addFlashAttribute("editDeck", editDeckDto);
             attributes.addFlashAttribute("org.springframework.validation.BindingResult.editDeck", result);
 
-            return "redirect:/decks/edit/" + id;
+            return "redirect:/decks/edit/" + id + "/error";
         }
-
-        this.deckService.editDeck(id,editDeckDto);
 
         return "redirect:/decks/all";
     }

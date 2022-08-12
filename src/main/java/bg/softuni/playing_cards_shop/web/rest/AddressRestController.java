@@ -36,6 +36,13 @@ public class AddressRestController {
                     .build();
         }
 
+        var address=this.addressService.findAddressById(addressIdDto.getId());
+        if(address.getOrders().size()>0){
+            return ResponseEntity
+                    .status(HttpStatus.CONFLICT)
+                    .build();
+        }
+
         this.addressService.deleteAddressById(addressIdDto.getId());
 
         return ResponseEntity

@@ -14,14 +14,11 @@ import java.util.List;
 public class EditDeckDto {
     @NotNull(message = "")
     @Size(min=1, max=100, message = "Please fill in the title of the deck(up to 100 characters).")
-    @UniqueField(fieldType = FieldType.DECK_TITLE)
     private String title;
 
     private String description;
 
     private String countryOfOrigin;
-
-    private final boolean approved=false;
 
     @NotBlank(message = "")
     private String distributorBrand;
@@ -32,7 +29,6 @@ public class EditDeckDto {
     @NotEmpty(message = "")
     private List<String> categories;
 
-    @NotEmptyFile(message = "Please provide a picture.")
     private MultipartFile picture;
 
 

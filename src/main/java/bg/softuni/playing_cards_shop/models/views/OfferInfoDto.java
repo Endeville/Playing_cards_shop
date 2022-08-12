@@ -1,5 +1,7 @@
 package bg.softuni.playing_cards_shop.models.views;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import java.util.List;
 
 public class OfferInfoDto {

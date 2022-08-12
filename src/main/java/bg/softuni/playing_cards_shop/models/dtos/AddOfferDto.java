@@ -18,10 +18,9 @@ public class AddOfferDto {
 
     @NotNull(message = "Please enter valid quantity")
     @Positive(message = "Please select valid quantity.")
-    @Max(40)
     private Integer quantity;
 
-    @NotBlank(message = "Description is compulsory(product condition, signatures, number etc.)")
+    @NotBlank(message = "Description is compulsory.")
     private String description;
 
     @NotEmptyFile(message = "Please provide a picture.")

@@ -1,6 +1,9 @@
 package bg.softuni.playing_cards_shop.models.entities;
 
+import bg.softuni.playing_cards_shop.models.dtos.AddAddressDto;
+
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "addresses")
@@ -19,6 +22,9 @@ public class AddressEntity  extends BaseEntity{
 
     @ManyToOne(cascade = CascadeType.DETACH)
     private UserEntity user;
+
+    @OneToMany(mappedBy = "address", cascade = CascadeType.DETACH)
+    private Set<OrderEntity> orders;
 
     public String getCountry() {
         return country;
@@ -62,6 +68,15 @@ public class AddressEntity  extends BaseEntity{
 
     public AddressEntity setUser(UserEntity user) {
         this.user = user;
+        return this;
+    }
+
+    public Set<OrderEntity> getOrders() {
+        return orders;
+    }
+
+    public AddressEntity setOrders(Set<OrderEntity> orders) {
+        this.orders = orders;
         return this;
     }
 }

@@ -21,8 +21,6 @@ public class AddDeckDto {
 
     private String countryOfOrigin;
 
-    private final boolean approved=false;
-
     @NotBlank(message = "")
     private String distributorBrand;
 

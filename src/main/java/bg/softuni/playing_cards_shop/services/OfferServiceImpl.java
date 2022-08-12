@@ -22,6 +22,7 @@ import javax.transaction.Transactional;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -96,10 +97,12 @@ public class OfferServiceImpl implements OfferService {
         var offer = this.offerRepository.findById(id)
                 .orElseThrow(() -> new ObjectNotFoundException(OBJECT_NAME_OFFER));
 
-        this.pictureService.deletePicture(offer.getPicture());
+        if(editOfferDto.getPicture()==null || !Objects.requireNonNull(editOfferDto.getPicture().getOriginalFilename()).isBlank()){
+            this.pictureService.deletePicture(offer.getPicture());
 
-        var picture = this.pictureService.save(editOfferDto.getPicture());
-        offer.setPicture(picture);
+            var picture = this.pictureService.save(editOfferDto.getPicture());
+            offer.setPicture(picture);
+        }
 
         offer.setQuantity(editOfferDto.getQuantity())
                 .setStatus(this.getStatus(offer.getQuantity()))

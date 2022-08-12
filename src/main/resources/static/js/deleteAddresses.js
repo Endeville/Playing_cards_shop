@@ -23,7 +23,14 @@ async function deleteAddress(ev, id){
         })
     };
 
+    const target=ev.currentTarget;
 
-    ev.currentTarget.parentElement.style.display='none';
-    await fetch("http://localhost:8000/api/addresses/delete", options);
+    const res=await fetch("http://localhost:8000/api/addresses/delete", options);
+
+    if(res.status!==409){
+        target.parentElement.style.display='none';
+    }else{
+        target.parentElement.textContent=target.parentElement.textContent.concat(" - Cannot delete this address");
+        target.style.display='none';
+    }
 }

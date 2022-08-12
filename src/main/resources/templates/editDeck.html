@@ -64,10 +64,7 @@
                                     <div class="form-group">
                                         <input type="text" name="title" id="title" tabindex="1"
                                                class="form-control" placeholder="Title" value=""
-                                               th:field="*{title}" th:errorclass="invalid-field">
-                                        <div class="error"
-                                             th:text="${#strings.listJoin(#fields.errors('title'), '; ')}">
-                                        </div>
+                                               th:field="*{title}">
                                     </div>
 
                                     <div class="form-group distributor">
@@ -147,8 +144,7 @@
                                         <label for="formFile" class="custom-file-upload">
                                             Click to upload images
                                         </label>
-                                        <input required class="form-control" type="file" id="formFile"
-                                               multiple
+                                        <input class="form-control" type="file" id="formFile"
                                                th:field="*{picture}" th:errorclass="invalid-field"
                                                name="pictures">
                                         <div class="error"
@@ -159,7 +155,7 @@
                                     <table class="form-group" id="image-container">
                                         <thead>
                                         <tr>
-                                            <th>Files Uploaded(1 picture required):</th>
+                                            <th>Files Uploaded(upload if new):</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -174,7 +170,7 @@
                                         <div class="col-sm-6 col-sm-offset-3" id="submit-cont">
                                             <input type="submit" name="add-submit" id="add-submit"
                                                    tabindex="4"
-                                                   class="form-control btn btn-add" value="Create">
+                                                   class="form-control btn btn-add" value="Edit">
                                         </div>
                                     </div>
                                 </form>

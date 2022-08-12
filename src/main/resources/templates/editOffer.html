@@ -80,7 +80,7 @@
                                         </div>
 
                                         <div>
-                                            <a target="_blank" th:href="@{/decks/add}" class="addMissingInfoAnchor">
+                                            <a target="_blank" th:href="@{/requests/add}" class="addMissingInfoAnchor">
                                                 Cannot find the deck you are searching for?
                                             </a>
                                         </div>
@@ -115,7 +115,7 @@
                                             Click to upload images
                                         </label>
                                         <input name="pictures" class="form-control" type="file"
-                                               id="formFile" multiple required
+                                               id="formFile"
                                                th:field="*{picture}" th:errorclass="is-invalid"
                                         >
                                         <div class="error"
@@ -125,7 +125,7 @@
                                     <table class="form-group" id="image-container">
                                         <thead>
                                         <tr>
-                                            <th>Files Uploaded(1 picture required):</th>
+                                            <th>Files Uploaded(upload if new):</th>
                                         </tr>
                                         </thead>
                                         <tbody>
